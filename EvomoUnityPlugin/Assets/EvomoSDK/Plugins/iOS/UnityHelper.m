@@ -1,6 +1,11 @@
 
 #import <Foundation/Foundation.h>
-#import <EvomoUnitySDK/EvomounityBridge.h>
+#if __has_include("EvomoUnitySDK-Swift.h")
+    #import "EvomoUnitySDK-Swift.h"
+#else
+    #import <EvomoUnitySDK/EvomoUnitySDK-Swift.h>
+#endif
+#import "EvomounityBridge.h"
 
 EvomounityBridge *bridge;
 
