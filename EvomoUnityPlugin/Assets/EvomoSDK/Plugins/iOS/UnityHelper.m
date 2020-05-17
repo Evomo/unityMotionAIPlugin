@@ -7,12 +7,18 @@
 #endif
 #import "EvomounityBridge.h"
 
-EvomounityBridge *bridge;
+NSString* CreateNSString (const char* string)
+{
+  if (string)
+    return [NSString stringWithUTF8String: string];
+  else
+        return [NSString stringWithUTF8String: ""];
+}
 
-void InitEvomoBridge(UnityCallback testCallback, NSString* licenseID)
+void InitEvomoBridge(UnityCallback testCallback, const char* licenseID)
 {
     bridge = [EvomounityBridge alloc];
-    [bridge Init:testCallback licenseID:licenseID];
+    [bridge Init:testCallback licenseID:CreateNSString(licenseID)];
 }
 
 void StartEvomoBridge()
@@ -25,17 +31,17 @@ void StopEvomoBridge()
     [bridge Stop];
 }
 
-void LogEventBridge(NSString* eventType, NSString* note)
+void LogEventBridge(const char* eventType, const char* note)
 {
-    [bridge LogEvent:eventType note:note];
+    [bridge LogEvent:CreateNSString(eventType) note:CreateNSString(note)];
 }
 
-void LogTargetMovementBridge(NSString* movementType, NSString* note)
+void LogTargetMovementBridge(const char* movementType, const char* note)
 {
-    [bridge LogTargetMovement:movementType note:note];
+    [bridge LogTargetMovement:CreateNSString(movementType) note:CreateNSString(note)];
 }
 
-void LogFailureBridge(NSString* source, NSString* failureType, NSString* movementType, NSString* note)
+void LogFailureBridge(const char* source, const char* failureType, const char* movementType, const char* note)
 {
-    [bridge LogFailure:source failureType:failureType movementType:movementType note:note];
+    [bridge LogFailure:CreateNSString(source) failureType:CreateNSString(failureType) movementType:CreateNSString(movementType) note:CreateNSString(note)];
 }

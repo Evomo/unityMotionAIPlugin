@@ -16,9 +16,7 @@ public class EvomoDemoManager : MonoBehaviour
         SubscribeToEvomoEvents();
         DebugText.text = "Waiting for Evomo Init";
         Evomo.Init(EvomoReady, "");
-        Evomo.LogEvent("init", "test");
-        Evomo.LogTargetMovement("hop", "abc");
-        Evomo.LogFailure("app", "toLess", "hop", "abc");
+        Evomo.LogFailure(Evomo.EventSource.app, Evomo.FailureType.toLess, Evomo.MovementType.Duck, "abc");
     }
 
     private void SubscribeToEvomoEvents()
@@ -38,11 +36,13 @@ public class EvomoDemoManager : MonoBehaviour
     public void StartTracking()
     {
         Evomo.StartTracking();
+        Evomo.LogEvent("Started");
     }
 
     private void OnLeft()
     {
         DebugText.text = "Move Left Detected";
+        Evomo.LogTargetMovement(Evomo.MovementType.Left);
     }
     private void OnRight()
     {

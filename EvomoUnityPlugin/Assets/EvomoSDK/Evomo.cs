@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
@@ -26,7 +26,7 @@ public class Evomo : MonoBehaviour
 #if UNITY_IOS && !UNITY_EDITOR
 
     [DllImport("__Internal")]
-    private static extern void InitEvomoBridge(UnityCallback callback, String licenseID);
+    private static extern void InitEvomoBridge(UnityCallback callback, string licenseID);
 
     [DllImport("__Internal")]
     private static extern void StartEvomoBridge();
@@ -35,15 +35,35 @@ public class Evomo : MonoBehaviour
     private static extern void StopEvomoBridge();
 
     [DllImport("__Internal")]
-    private static extern void LogEventBridge(String eventType, String note);
+    private static extern void LogEventBridge(string eventType, string note);
 
     [DllImport("__Internal")]
-    private static extern void LogTargetMovementBridge(String movementType, String note);
+    private static extern void LogTargetMovementBridge(string movementType, string note);
 
     [DllImport("__Internal")]
-    private static extern void LogFailureBridge(String source, String failureType, String movementType, String note);
+    private static extern void LogFailureBridge(string source, string failureType, string movementType, string note);
 
 #endif
+
+    public enum EventSource
+    {
+        app,
+        manual
+    }
+
+    public enum FailureType
+    {
+        toLess,
+        toMuch
+    }
+
+    public enum MovementType
+    {
+        Jump,
+        Duck,
+        Left,
+        Right
+    }
 
     private enum NativeMessageType
     {
@@ -82,7 +102,7 @@ public class Evomo : MonoBehaviour
 
 #endif
 
-    public static void Init(Action callback, String licenseID)
+    public static void Init(Action callback, string licenseID)
     {
 #if UNITY_IOS && !UNITY_EDITOR
         _initCallback = callback;
@@ -106,27 +126,26 @@ public class Evomo : MonoBehaviour
 #endif
     }
 
-    public static void LogEvent(String eventType, String note)
+    public static void LogEvent(string eventType, string note = "")
     {
 #if UNITY_IOS && !UNITY_EDITOR
         LogEventBridge(eventType, note);
 #endif
     }
 
-    public static void LogTargetMovement(String movementType, String note)
+    public static void LogTargetMovement(MovementType movementType, string note = "")
     {
 #if UNITY_IOS && !UNITY_EDITOR
-        LogTargetMovementBridge(movementType, note);
+        LogTargetMovementBridge(movementType.toString(), note);
 #endif
     }
 
-    public static void LogFailure(String source, String failureType, String movementType, String note)
+    public static void LogFailure(EventSource source, FailureType failureType, MovementType movementType, string note = "")
     {
+
 #if UNITY_IOS && !UNITY_EDITOR
-        LogFailureBridge(source, failureType, movementType, note);
+        LogFailureBridge(source.ToString(), failureType.ToString(), movementType.toString(), note);
 #endif
     }
 
 }
-
-
