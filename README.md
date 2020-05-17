@@ -10,4 +10,4 @@
 
 ## Docu
 
-Check our Docu Page [Evomo Unity SDK Docu](https://evomo.github.io/motionAI-docu/docs/getStartedUnity).
+Check our Docu Page - [Evomo Unity SDK Docu](https://evomo.github.io/motionAI-docu/docs/getStartedUnity).
