@@ -9,7 +9,7 @@
 
 EvomounityBridge *bridge;
 
-void InitEvomoBridge(UnityCallback testCallback, String licenseID)
+void InitEvomoBridge(UnityCallback testCallback, NSString* licenseID)
 {
     bridge = [EvomounityBridge alloc];
     [bridge Init:testCallback licenseID:licenseID];
@@ -25,17 +25,17 @@ void StopEvomoBridge()
     [bridge Stop];
 }
 
-void LogEventBridge(String eventType, String note)
+void LogEventBridge(NSString* eventType, NSString* note)
 {
     [bridge LogEvent:eventType note:note];
 }
 
-void LogTargetMovementBridge(String movementType, String note)
+void LogTargetMovementBridge(NSString* movementType, NSString* note)
 {
     [bridge LogTargetMovement:movementType note:note];
 }
 
-void LogFailureBridge(String: source, String failureType, String movementType, String note)
+void LogFailureBridge(NSString* source, NSString* failureType, NSString* movementType, NSString* note)
 {
     [bridge LogFailure:source failureType:failureType movementType:movementType note:note];
 }
