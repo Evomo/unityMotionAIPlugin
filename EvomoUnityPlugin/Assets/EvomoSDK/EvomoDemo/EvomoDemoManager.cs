@@ -15,7 +15,10 @@ public class EvomoDemoManager : MonoBehaviour
         StartTrackingButton.SetActive(false);
         SubscribeToEvomoEvents();
         DebugText.text = "Waiting for Evomo Init";
-        Evomo.Init(EvomoReady);
+        Evomo.Init(EvomoReady, "");
+        Evomo.LogEvent("init", "test");
+        Evomo.LogTargetMovement("hop", "abc");
+        Evomo.LogFailure("app", "toLess", "hop", "abc");
     }
 
     private void SubscribeToEvomoEvents()

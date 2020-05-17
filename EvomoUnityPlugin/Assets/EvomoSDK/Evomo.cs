@@ -26,13 +26,22 @@ public class Evomo : MonoBehaviour
 #if UNITY_IOS && !UNITY_EDITOR
 
     [DllImport("__Internal")]
-    private static extern void InitEvomoBridge(UnityCallback callback);
+    private static extern void InitEvomoBridge(UnityCallback callback, String licenseID);
 
     [DllImport("__Internal")]
     private static extern void StartEvomoBridge();
 
     [DllImport("__Internal")]
     private static extern void StopEvomoBridge();
+
+    [DllImport("__Internal")]
+    private static extern void LogEventBridge(String eventType, String note);
+
+    [DllImport("__Internal")]
+    private static extern void LogTargetMovementBridge(String movementType, String note);
+
+    [DllImport("__Internal")]
+    private static extern void LogFailureBridge(String source, String failureType, String movementType, String note);
 
 #endif
 
@@ -73,11 +82,11 @@ public class Evomo : MonoBehaviour
 
 #endif
 
-    public static void Init(Action callback)
+    public static void Init(Action callback, String licenseID)
     {
 #if UNITY_IOS && !UNITY_EDITOR
         _initCallback = callback;
-        InitEvomoBridge(MessageRecived);
+        InitEvomoBridge(MessageRecived, licenseID);
 #else
         callback();
 #endif
@@ -94,6 +103,27 @@ public class Evomo : MonoBehaviour
     {
 #if UNITY_IOS && !UNITY_EDITOR
         StopEvomoBridge();
+#endif
+    }
+
+    public static void LogEvent(String eventType, String note)
+    {
+#if UNITY_IOS && !UNITY_EDITOR
+        LogEventBridge(eventType, note);
+#endif
+    }
+
+    public static void LogTargetMovement(String movementType, String note)
+    {
+#if UNITY_IOS && !UNITY_EDITOR
+        LogTargetMovementBridge(movementType, note);
+#endif
+    }
+
+    public static void LogFailure(String source, String failureType, String movementType, String note)
+    {
+#if UNITY_IOS && !UNITY_EDITOR
+        LogFailureBridge(source, failureType, movementType, note);
 #endif
     }
 

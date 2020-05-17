@@ -9,10 +9,10 @@
 
 EvomounityBridge *bridge;
 
-void InitEvomoBridge(UnityCallback testCallback)
+void InitEvomoBridge(UnityCallback testCallback, String licenseID)
 {
     bridge = [EvomounityBridge alloc];
-    [bridge Init:testCallback];
+    [bridge Init:testCallback licenseID:licenseID];
 }
 
 void StartEvomoBridge()
@@ -23,4 +23,19 @@ void StartEvomoBridge()
 void StopEvomoBridge()
 {
     [bridge Stop];
+}
+
+void LogEventBridge(String eventType, String note)
+{
+    [bridge LogEvent:eventType note:note];
+}
+
+void LogTargetMovementBridge(String movementType, String note)
+{
+    [bridge LogTargetMovement:movementType note:note];
+}
+
+void LogFailureBridge(String: source, String failureType, String movementType, String note)
+{
+    [bridge LogFailure:source failureType:failureType movementType:movementType note:note];
 }
