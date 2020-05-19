@@ -35,7 +35,7 @@ public class EvomoDemoManager : MonoBehaviour
 
     public void StartTracking()
     {
-        Evomo.StartTracking();
+        Evomo.StartTracking(deviceOrientation: Evomo.DeviceOrientation.buttonDown);
         Evomo.LogEvent("Started");
     }
 

@@ -7,6 +7,8 @@
 #endif
 #import "EvomounityBridge.h"
 
+EvomounityBridge *bridge;
+
 NSString* CreateNSString (const char* string)
 {
   if (string)
@@ -21,9 +23,9 @@ void InitEvomoBridge(UnityCallback testCallback, const char* licenseID)
     [bridge Init:testCallback licenseID:CreateNSString(licenseID)];
 }
 
-void StartEvomoBridge()
+void StartEvomoBridge(const char* deviceOrientation, const char* classificationModel)
 {
-    [bridge Start];
+    [bridge Start:CreateNSString(deviceOrientation) classificationModel:CreateNSString(classificationModel)];
 }
 
 void StopEvomoBridge()

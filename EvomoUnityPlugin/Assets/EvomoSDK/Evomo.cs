@@ -29,7 +29,7 @@ public class Evomo : MonoBehaviour
     private static extern void InitEvomoBridge(UnityCallback callback, string licenseID);
 
     [DllImport("__Internal")]
-    private static extern void StartEvomoBridge();
+    private static extern void StartEvomoBridge(string deviceOrientation, string classificationModel);
 
     [DllImport("__Internal")]
     private static extern void StopEvomoBridge();
@@ -44,6 +44,13 @@ public class Evomo : MonoBehaviour
     private static extern void LogFailureBridge(string source, string failureType, string movementType, string note);
 
 #endif
+
+    public enum DeviceOrientation
+    {
+        buttonDown,
+        buttonRight,
+        buttonLeft
+    }
 
     public enum EventSource
     {
@@ -62,7 +69,8 @@ public class Evomo : MonoBehaviour
         Jump,
         Duck,
         Left,
-        Right
+        Right,
+        Tab
     }
 
     private enum NativeMessageType
@@ -112,10 +120,10 @@ public class Evomo : MonoBehaviour
 #endif
     }
 
-    public static void StartTracking()
+    public static void StartTracking(DeviceOrientation deviceOrientation = DeviceOrientation.buttonDown, string classificationModel = "2115")
     {
 #if UNITY_IOS && !UNITY_EDITOR
-        StartEvomoBridge();
+        StartEvomoBridge(deviceOrientation.ToString(), classificationModel);
 #endif
     }
 
@@ -136,7 +144,7 @@ public class Evomo : MonoBehaviour
     public static void LogTargetMovement(MovementType movementType, string note = "")
     {
 #if UNITY_IOS && !UNITY_EDITOR
-        LogTargetMovementBridge(movementType.toString(), note);
+        LogTargetMovementBridge(movementType.ToString(), note);
 #endif
     }
 
@@ -144,7 +152,7 @@ public class Evomo : MonoBehaviour
     {
 
 #if UNITY_IOS && !UNITY_EDITOR
-        LogFailureBridge(source.ToString(), failureType.ToString(), movementType.toString(), note);
+        LogFailureBridge(source.ToString(), failureType.ToString(), movementType.ToString(), note);
 #endif
     }
 
