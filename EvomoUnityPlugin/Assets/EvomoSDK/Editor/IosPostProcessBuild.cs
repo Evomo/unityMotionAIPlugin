@@ -57,7 +57,7 @@ public class IosPostprocess : IPostprocessBuildWithReport // Will execute after 
 
         var podfilePath = Application.dataPath + "/EvomoSDK/BuildFiles/Podfile2019";
 
-        if (Application.unityVersion.Contains("2020"))
+        if (Application.unityVersion.Contains("2020") || Application.unityVersion.Contains("2019.3"))
         {
             podfilePath = Application.dataPath + "/EvomoSDK/BuildFiles/Podfile2020";
         }
