@@ -43,6 +43,9 @@ public class Evomo : MonoBehaviour
     [DllImport("__Internal")]
     private static extern void LogFailureBridge(string source, string failureType, string movementType, string note);
 
+    [DllImport("__Internal")]
+    private static extern void SetUsername(string username);
+
 #endif
 
     public enum DeviceOrientation
@@ -120,7 +123,7 @@ public class Evomo : MonoBehaviour
 #endif
     }
 
-    public static void StartTracking(DeviceOrientation deviceOrientation = DeviceOrientation.buttonDown, string classificationModel = "2115")
+    public static void StartTracking(DeviceOrientation deviceOrientation = DeviceOrientation.buttonDown, string classificationModel = "2129")
     {
 #if UNITY_IOS && !UNITY_EDITOR
         StartEvomoBridge(deviceOrientation.ToString(), classificationModel);
@@ -153,6 +156,14 @@ public class Evomo : MonoBehaviour
 
 #if UNITY_IOS && !UNITY_EDITOR
         LogFailureBridge(source.ToString(), failureType.ToString(), movementType.ToString(), note);
+#endif
+    }
+
+    public static void SetUsername(String username)
+    {
+
+#if UNITY_IOS && !UNITY_EDITOR
+        SetUsernameBridge(username);
 #endif
     }
 

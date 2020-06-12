@@ -47,3 +47,8 @@ void LogFailureBridge(const char* source, const char* failureType, const char* m
 {
     [bridge LogFailure:CreateNSString(source) failureType:CreateNSString(failureType) movementType:CreateNSString(movementType) note:CreateNSString(note)];
 }
+
+void SetUsernameBridge(const char* username)
+{
+    [bridge SetUsername:CreateNSString(username)];
+}
