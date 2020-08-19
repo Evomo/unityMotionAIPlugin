@@ -16,5 +16,6 @@
       "displayName": "Demo",
       "description": "Demo to test the tracking API",
       "path": "Assets/EvomoDemo"
-    },
+    } 
+  ]
 }
