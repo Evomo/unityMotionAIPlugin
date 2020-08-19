@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\Dan Amador.DESKTOP-2VI585I\.Rider2019.1\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Dan Amador.DESKTOP-2VI585I\.Rider2019.1\system\resharper-host\local\Transient\ReSharperHost\v191\SolutionCaches\_EvomoUnityPlugin.-909748120.00" t="ExcludeRecursive" />
+    <e p="Z:\Coding\Evomo\unityMotionAIPlugin\EvomoUnityPlugin" t="IncludeRecursive">
+      <e p="Assets" t="Include">
+        <e p="Editor" t="Include">
+          <e p="Evomo.UnityPlugin.Tests.asmdef" t="Include" />
+          <e p="IosPostProcessBuild.cs" t="Include" />
+        </e>
+        <e p="Runtime" t="Include">
+          <e p="Evomo.cs" t="Include" />
+          <e p="Evomo.UnityPlugin.Runtime.asmdef" t="Include" />
+          <e p="EvomoDemo" t="Include">
+            <e p="EvomoDemoManager.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="Evomo.UnityPlugin.Runtime.csproj" t="IncludeRecursive" />
+      <e p="Evomo.UnityPlugin.Tests.csproj" t="IncludeRecursive" />
+      <e p="EvomoUnityPlugin.sln" t="IncludeFlat" />
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="Packages" t="ExcludeRecursive" />
+      <e p="Temp\bin" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>
