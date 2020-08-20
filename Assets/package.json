@@ -13,8 +13,8 @@
   },
   "samples": [
     {
-      "displayName": "Demo asdasd",
-      "description": "Demo to test the tracking AP asdasdI",
+      "displayName": "Demo",
+      "description": "Demo to test the tracking API",
       "path": "EvomoDemo"
     } 
   ]

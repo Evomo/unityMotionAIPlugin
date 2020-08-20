@@ -2,11 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using MotionAI;
 #if UNITY_IOS && !UNITY_EDITOR
 using AOT;
 #endif
 using UnityEngine;
 using UnityEngine.Events;
+using DeviceOrientation = UnityEngine.DeviceOrientation;
 
 public class Evomo : MonoBehaviour
 {
@@ -23,6 +25,8 @@ public class Evomo : MonoBehaviour
 
     private static Action _initCallback;
 
+
+#region Internal Load
 #if UNITY_IOS && !UNITY_EDITOR
 
     [DllImport("__Internal")]
@@ -47,43 +51,7 @@ public class Evomo : MonoBehaviour
     private static extern void SetUsernameBridge(string username);
 
 #endif
-
-    public enum DeviceOrientation
-    {
-        buttonDown,
-        buttonRight,
-        buttonLeft
-    }
-
-    public enum EventSource
-    {
-        app,
-        manual
-    }
-
-    public enum FailureType
-    {
-        toLess,
-        toMuch
-    }
-
-    public enum MovementType
-    {
-        Jump,
-        Duck,
-        Left,
-        Right,
-        Tab
-    }
-
-    private enum NativeMessageType
-    {
-        READY = 0,
-        JUMP = 1,
-        DUCK = 2,
-        LEFT = 3,
-        RIGHT = 4
-    }
+#endregion
 
 #if UNITY_IOS && !UNITY_EDITOR
 
@@ -123,7 +91,7 @@ public class Evomo : MonoBehaviour
 #endif
     }
 
-    public static void StartTracking(DeviceOrientation deviceOrientation = DeviceOrientation.buttonDown, string classificationModel = "subway-surfer")
+    public static void StartTracking(DeviceOrientation deviceOrientation = DeviceOrientation.Portrait, string classificationModel = "subway-surfer")
     {
 #if UNITY_IOS && !UNITY_EDITOR
         StartEvomoBridge(deviceOrientation.ToString(), classificationModel);
