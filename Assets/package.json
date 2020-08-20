@@ -1,11 +1,15 @@
 {
   "name": "com.evomo.motionai",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "displayName": "Evomo MotionAI",
   "description": "Plugin to classify complex movements used in exergames",
   "unity": "2019.1",
-  "unityRelease": "0b5",
-  "type": "Plugin",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DanAmador/unityMotionAIPlugin.git"
+  },
+  "dependencies": {
+  },
   "author": {
     "name": "Evomo",
     "email": "jakob.wowy@evomo.de",

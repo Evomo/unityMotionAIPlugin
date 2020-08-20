@@ -1,32 +1,28 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using MotionAI;
 #if UNITY_IOS && !UNITY_EDITOR
 using AOT;
 #endif
-using UnityEngine;
+using System;
 using UnityEngine.Events;
 using DeviceOrientation = UnityEngine.DeviceOrientation;
 
-public class Evomo : MonoBehaviour
-{
+namespace MotionAI {
+    public class Evomo 
+    {
 
-    public delegate void UnityCallback(int value);
+        public delegate void UnityCallback(int value);
 
-    public static UnityEvent OnJump = new UnityEvent();
+        public static UnityEvent OnJump = new UnityEvent();
 
-    public static UnityEvent OnDuck = new UnityEvent();
+        public static UnityEvent OnDuck = new UnityEvent();
 
-    public static UnityEvent OnLeft = new UnityEvent();
+        public static UnityEvent OnLeft = new UnityEvent();
 
-    public static UnityEvent OnRight = new UnityEvent();
+        public static UnityEvent OnRight = new UnityEvent();
 
-    private static Action _initCallback;
+        private static Action _initCallback;
 
 
-#region Internal Load
+        #region Internal Load
 #if UNITY_IOS && !UNITY_EDITOR
 
     [DllImport("__Internal")]
@@ -51,7 +47,7 @@ public class Evomo : MonoBehaviour
     private static extern void SetUsernameBridge(string username);
 
 #endif
-#endregion
+        #endregion
 
 #if UNITY_IOS && !UNITY_EDITOR
 
@@ -81,58 +77,59 @@ public class Evomo : MonoBehaviour
 
 #endif
 
-    public static void Init(Action callback, string licenseID)
-    {
+        public static void Init(Action callback, string licenseID)
+        {
 #if UNITY_IOS && !UNITY_EDITOR
         _initCallback = callback;
         InitEvomoBridge(MessageRecived, licenseID);
 #else
-        callback();
+            callback();
 #endif
-    }
+        }
 
-    public static void StartTracking(DeviceOrientation deviceOrientation = DeviceOrientation.Portrait, string classificationModel = "subway-surfer")
-    {
+        public static void StartTracking(DeviceOrientation deviceOrientation = DeviceOrientation.Portrait, string classificationModel = "subway-surfer")
+        {
 #if UNITY_IOS && !UNITY_EDITOR
         StartEvomoBridge(deviceOrientation.ToString(), classificationModel);
 #endif
-    }
+        }
 
-    public static void StopTracking()
-    {
+        public static void StopTracking()
+        {
 #if UNITY_IOS && !UNITY_EDITOR
         StopEvomoBridge();
 #endif
-    }
+        }
 
-    public static void LogEvent(string eventType, string note = "")
-    {
+        public static void LogEvent(string eventType, string note = "")
+        {
 #if UNITY_IOS && !UNITY_EDITOR
         LogEventBridge(eventType, note);
 #endif
-    }
+        }
 
-    public static void LogTargetMovement(MovementType movementType, string note = "")
-    {
+        public static void LogTargetMovement(MovementType movementType, string note = "")
+        {
 #if UNITY_IOS && !UNITY_EDITOR
         LogTargetMovementBridge(movementType.ToString(), note);
 #endif
-    }
+        }
 
-    public static void LogFailure(EventSource source, FailureType failureType, MovementType movementType, string note = "")
-    {
+        public static void LogFailure(EventSource source, FailureType failureType, MovementType movementType, string note = "")
+        {
 
 #if UNITY_IOS && !UNITY_EDITOR
         LogFailureBridge(source.ToString(), failureType.ToString(), movementType.ToString(), note);
 #endif
-    }
+        }
 
-    public static void SetUsername(String username)
-    {
+        public static void SetUsername(String username)
+        {
 
 #if UNITY_IOS && !UNITY_EDITOR
         SetUsernameBridge(username);
 #endif
-    }
+        }
 
+    }
 }

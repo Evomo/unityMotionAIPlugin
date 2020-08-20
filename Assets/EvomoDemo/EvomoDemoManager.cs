@@ -36,7 +36,7 @@ namespace EvomoDemo {
 
         public void StartTracking()
         {
-            Evomo.StartTracking(deviceOrientation: DeviceOrientation.Portrait);
+            Evomo.StartTracking();
             Evomo.LogEvent("Started");
         }
 
