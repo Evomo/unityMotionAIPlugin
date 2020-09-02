@@ -11,7 +11,7 @@ namespace MotionAI.Editor {
 	public class GameLauncherMenu : MonoBehaviour {
 		[MenuItem("Evomo/Create Game Asset")]
 		public static void CreateSceneObjects() {
-			GameLauncherData gs = ScriptableObject.CreateInstance<GameLauncherData>();
+			GameHubGame gs = ScriptableObject.CreateInstance<GameHubGame>();
 			gs.gameName = Application.productName;
 
 			AssetDatabase.CreateAsset(gs, $"Assets/{gs.gameName}.asset");

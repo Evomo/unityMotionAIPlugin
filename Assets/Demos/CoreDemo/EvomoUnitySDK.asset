@@ -9,12 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14a8725f97ef22c4d9b83b9645722aae, type: 3}
+  m_Script: {fileID: 11500000, guid: 4c16bd77948ec854b9f2896609ccb112, type: 3}
   m_Name: EvomoUnitySDK
   m_EditorClassIdentifier: 
   mainSceneReference:
-    sceneAsset: {fileID: 102900000, guid: d2d1363118c531848b6523a64776729b, type: 3}
-    scenePath: Assets/EvomoDemo/EvomoDemoScene.unity
+    sceneAsset: {fileID: 102900000, guid: 0feecf998dc8eea4d9b9d926afc214a3, type: 3}
+    scenePath: Assets/GameLaunchDemo/EndScene.unity
   gameName: EvomoUnitySDK
-  image: {fileID: 10309, guid: 0000000000000000f000000000000000, type: 0}
-  description: 
+  image: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
+  description: 'Scene to test loading and unloading '
+  developerName: 

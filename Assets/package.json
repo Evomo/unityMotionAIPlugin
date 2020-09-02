@@ -17,9 +17,15 @@
   },
   "samples": [
     {
-      "displayName": "Demo",
+      "displayName": "Tracking Demo",
       "description": "Demo to test the tracking API",
-      "path": "EvomoDemo"
-    } 
+      "path": "Demos/CoreDemo"
+    } ,
+
+    {
+      "displayName": "GameHub Game Demo",
+      "description": "Demo to show off how to change scenes in the Gamehub",
+      "path": "Demos/GameLaunchDemo"
+    }
   ]
 }
