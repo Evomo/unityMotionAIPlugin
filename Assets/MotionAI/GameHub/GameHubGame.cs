@@ -20,7 +20,6 @@ namespace MotionAI.GameHub {
 		public string developerName;
 
 
-
 		private void OnEnable() {
 			try {
 				TextureImporter ti = (TextureImporter) AssetImporter.GetAtPath(AssetDatabase.GetAssetPath(image));
@@ -28,7 +27,8 @@ namespace MotionAI.GameHub {
 				ti.npotScale = TextureImporterNPOTScale.None;
 				ti.isReadable = true;
 			}
-			catch (NullReferenceException e) {
+			catch (NullReferenceException) {
+				
 			}
 		}
 
