@@ -1,32 +1,34 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using MotionAI.Core.POCO;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace MotionAI.Core.Controller {
 	[Serializable]
-	public class OnControllerPaired : UnityEvent<string> {
-	}
-
-	public class ControllerManager : MonoBehaviour {
+	public class ControllerManager {
 		private Dictionary<string, MotionAIController> _controllerDict;
 
-		[SerializeField] private Queue<MotionAIController> _availableMotionControllers;
+		[SerializeField] private List<MotionAIController> _availableMotionControllers;
 
 
 		public bool _pairingController { get; private set; }
 
 		public OnControllerPaired onPaired;
+		public OnMotion onMovement;
 
-		private void Start() {
+		public ControllerManager() {
 			_controllerDict = new Dictionary<string, MotionAIController>();
-			_availableMotionControllers = new Queue<MotionAIController>();
+			_availableMotionControllers = new List<MotionAIController>();
+			onPaired = new OnControllerPaired();
+			onMovement = new OnMotion();
 		}
 
-		public void PairController() {
+		public void PairController(List<MotionAIController> availableControllers) {
 			if (!_pairingController) {
-				_availableMotionControllers = new Queue<MotionAIController>(FindObjectsOfType<MotionAIController>());
+				_availableMotionControllers = availableControllers;
 				_controllerDict = new Dictionary<string, MotionAIController>();
 			}
 
@@ -36,18 +38,23 @@ namespace MotionAI.Core.Controller {
 
 		private void PairController(string deviceId) {
 			if (!_controllerDict.ContainsKey(deviceId)) {
-				MotionAIController controller = _availableMotionControllers.Dequeue();
+				MotionAIController controller = _availableMotionControllers.First();
+				_availableMotionControllers.Remove(controller);
 				controller.setDeviceId(deviceId);
 				_controllerDict.Add(deviceId, controller);
 				onPaired.Invoke(deviceId);
 			}
 		}
 
-		public void ManageMotion(BridgeMessage msg) {
+		public void ManageMotion(Movement msg) {
 			Debug.Log(msg.ToString());
 			if (_pairingController || _availableMotionControllers.Count > 0) {
-				PairController(msg.deviceId);
+				if (msg.elmos.Count > 0) {
+					PairController(msg.elmos.First().deviceIdent);
+				}
 			}
+
+			onMovement.Invoke(msg);
 		}
 	}
 }

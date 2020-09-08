@@ -7,12 +7,12 @@ using System.Collections.Generic;
 using System.Linq;
 using DataStructures;
 using MotionAI.Core.Controller;
+using MotionAI.Core.POCO;
 using UnityEngine;
 using static MotionAI.UtilHelper;
 
 namespace MotionAI.Core {
-	[RequireComponent(typeof(ControllerManager))]
-	public class MotionAIManager : Singleton<MotionAIManager> {
+	public class MotionAIManager : MonoBehaviour {
 		#region Internal Load
 
 #if UNITY_IOS && !UNITY_EDITOR
@@ -105,15 +105,13 @@ namespace MotionAI.Core {
 #if UNITY_IOS && !UNITY_EDITOR
         SetUsernameBridge(SDKConfig.username);
 #endif
-			controllerManager = GetComponent<ControllerManager>();
-
+			controllerManager = new ControllerManager();
 		}
 
 		private void OnEnable() {
 #if UNITY_IOS && !UNITY_EDITORz
         InitEvomoBridge(SDKConfig.licenseID);
 #endif
-
 		}
 
 
@@ -125,10 +123,16 @@ namespace MotionAI.Core {
 
 
 		public void ManageMotion(string movementStr) {
-			BridgeMessage msg = JsonUtility.FromJson<BridgeMessage>(movementStr);
+			Movement msg = JsonUtility.FromJson<Movement>(movementStr);
 
 			controllerManager.ManageMotion(msg);
 		}
+
+
+		public void ControlPairing() {
+			controllerManager.PairController(FindObjectsOfType<MotionAIController>().ToList());
+		}
+
 		#endregion
 	}
 }
