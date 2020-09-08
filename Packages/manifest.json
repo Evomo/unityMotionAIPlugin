@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.solidalloy.type.references": "https://github.com/SolidAlloy/ClassTypeReference-for-Unity.git",
     "com.unity.collab-proxy": "1.2.16",
     "com.unity.ide.rider": "1.2.1",
     "com.unity.ide.visualstudio": "2.0.1",
@@ -39,5 +40,11 @@
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0"
+  },
+  "lock": {
+    "com.solidalloy.type.references": {
+      "revision": "HEAD",
+      "hash": "558e86b2e68af94c980f435e534b53e671af6c73"
+    }
   }
 }
