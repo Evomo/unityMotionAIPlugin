@@ -2,10 +2,7 @@
 using AOT;
 #endif
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
-using DataStructures;
 using MotionAI.Core.Controller;
 using MotionAI.Core.POCO;
 using UnityEngine;
@@ -56,7 +53,7 @@ namespace MotionAI.Core {
 
 		public void StartTracking() {
 #if UNITY_IOS && !UNITY_EDITOR
-        StartEvomoBridge(UtilHelper.ToCustomOrientation(Input.deviceOrientation), SDKConfig.classificationModel);
+        StartEvomoBridge(UtilHelper.ToCustomOrientation(Input.deviceOrientation), mySDKConfig.classificationModel.ToString;
 #endif
 		}
 
@@ -96,21 +93,21 @@ namespace MotionAI.Core {
 
 		#region Unity 
 
-		public SDKConfig SDKConfig;
+		public SDKConfig mySDKConfig;
 		public ControllerManager controllerManager;
 
 		#region Lifecycle
 
 		private void Awake() {
 #if UNITY_IOS && !UNITY_EDITOR
-        SetUsernameBridge(SDKConfig.username);
+        SetUsernameBridge(mySDKConfig.username);
 #endif
 			controllerManager = new ControllerManager();
 		}
 
 		private void OnEnable() {
 #if UNITY_IOS && !UNITY_EDITORz
-        InitEvomoBridge(SDKConfig.licenseID);
+        InitEvomoBridge(mySDKConfig.licenseID);
 #endif
 		}
 
@@ -123,9 +120,18 @@ namespace MotionAI.Core {
 
 
 		public void ManageMotion(string movementStr) {
-			Movement msg = JsonUtility.FromJson<Movement>(movementStr);
+			BridgeMessage msg = JsonUtility.FromJson<BridgeMessage>(movementStr);
 
-			controllerManager.ManageMotion(msg);
+
+			if (msg.elmo != null) {
+			
+				Movement mv = new Movement();
+				mv.elmos.Add(msg.elmo);
+				controllerManager.ManageMotion(msg.movement);
+			}
+			else {
+				controllerManager.ManageMotion(msg.movement);
+			}
 		}
 
 

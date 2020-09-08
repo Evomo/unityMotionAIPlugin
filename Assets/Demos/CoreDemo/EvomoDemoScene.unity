@@ -379,12 +379,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e073381bf237b42b69fd7dbc3cebb8b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SDKConfig:
+  mySDKConfig:
     licenseID: 
     username: 
     classificationModel:
       GuidAssignmentFailed: 0
-      _typeNameAndAssembly: 
+      _typeNameAndAssembly: MotionAI.Core.Models.HopDuckLeanController, MotionAI.Core
       _GUID: 
   controllerManager:
     _availableMotionControllers: []

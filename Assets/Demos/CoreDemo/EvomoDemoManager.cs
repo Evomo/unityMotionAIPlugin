@@ -57,7 +57,7 @@ namespace Demos.CoreDemo {
 		}
 
 		public void onControllerPaired(string deviceId) {
-			Debug.Log(deviceId);
+			DebugText.text = $"Device with id {deviceId} was paired";
 		}
 	}
 }

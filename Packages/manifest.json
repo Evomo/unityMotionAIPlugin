@@ -1,5 +1,31 @@
 {
+  "scopedRegistries": [
+    {
+      "name": "NPM Registry",
+      "url": "https://registry.npmjs.org",
+      "scopes": [
+        "com.mambojambostudios.unity-atoms-core",
+        "com.mambojambostudios.unity-atoms-base-atoms",
+        "com.mambojambostudios.unity-atoms-fsm",
+        "com.mambojambostudios.unity-atoms-mobile",
+        "com.mambojambostudios.unity-atoms-mono-hooks",
+        "com.mambojambostudios.unity-atoms-tags",
+        "com.mambojambostudios.unity-atoms-scene-mgmt",
+        "com.mambojambostudios.unity-atoms-ui"
+      ]
+    }
+  ],
   "dependencies": {
+    "com.mambojambostudios.unity-atoms-core": "4.3.0",
+    "com.mambojambostudios.unity-atoms-base-atoms": "4.3.0",
+    "com.mambojambostudios.unity-atoms-fsm": "4.3.0",
+    "com.mambojambostudios.unity-atoms-mobile": "4.3.0",
+    "com.mambojambostudios.unity-atoms-mono-hooks": "4.3.0",
+    "com.mambojambostudios.unity-atoms-tags": "4.3.0",
+    "com.mambojambostudios.unity-atoms-scene-mgmt": "4.3.0",
+    "com.mambojambostudios.unity-atoms-ui": "4.3.0",
+    "com.coffee.upm-git-extension": "https://github.com/mob-sakai/UpmGitExtension.git",
+    "com.neuecc.unirx": "git+https://github.com/starikcetin/UniRx#7.1.0",
     "com.solidalloy.type.references": "https://github.com/SolidAlloy/ClassTypeReference-for-Unity.git",
     "com.unity.collab-proxy": "1.2.16",
     "com.unity.ide.rider": "1.2.1",
@@ -42,9 +68,17 @@
     "com.unity.modules.xr": "1.0.0"
   },
   "lock": {
+    "com.coffee.upm-git-extension": {
+      "revision": "HEAD",
+      "hash": "ecf4c7d1b03d9cb4ce3b5fc784ec46ccc1bcbdfd"
+    },
     "com.solidalloy.type.references": {
       "revision": "HEAD",
       "hash": "558e86b2e68af94c980f435e534b53e671af6c73"
+    },
+    "com.neuecc.unirx": {
+      "revision": "7.1.0",
+      "hash": "1a85804d5cb938ca07eb8f2ef95ec5fe9714c218"
     }
   }
 }

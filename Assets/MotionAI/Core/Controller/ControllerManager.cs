@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using MotionAI.Core.POCO;
+using UniRx;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -24,6 +25,7 @@ namespace MotionAI.Core.Controller {
 			_availableMotionControllers = new List<MotionAIController>();
 			onPaired = new OnControllerPaired();
 			onMovement = new OnMotion();
+			
 		}
 
 		public void PairController(List<MotionAIController> availableControllers) {
@@ -40,7 +42,7 @@ namespace MotionAI.Core.Controller {
 			if (!_controllers.ContainsKey(deviceId)) {
 				MotionAIController controller = _availableMotionControllers.First();
 				_availableMotionControllers.Remove(controller);
-				controller.setDevice(deviceId);
+				controller.setDevice(deviceId, onMovement);
 				_controllers.Add(deviceId, controller);
 				onPaired.Invoke(deviceId);
 			}
@@ -53,11 +55,7 @@ namespace MotionAI.Core.Controller {
 				if (_pairingController || _availableMotionControllers.Count > 0) {
 					PairController(dID);
 				}
-
-				if (_controllers.ContainsKey(dID)) {
-					_controllers[dID].HandleMovement(msg);
-				}
-
+				
 				onMovement.Invoke(msg);
 			}
 		}
