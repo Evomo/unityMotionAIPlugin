@@ -17,15 +17,14 @@ namespace MotionAI.Core.Controller {
 
 		public bool _pairingController { get; private set; }
 
-		public ControllerPairedEvent pairedEvent;
-		public OnMovementEvent onMovement;
+		[HideInInspector] public ControllerPairedEvent pairedEvent;
+		[HideInInspector] public OnMovementEvent onMovement;
 
 		public ControllerManager() {
 			_controllers = new Dictionary<string, MotionAIController>();
 			_availableMotionControllers = new List<MotionAIController>();
 			pairedEvent = new ControllerPairedEvent();
 			onMovement = new OnMovementEvent();
-			
 		}
 
 		public void PairController(List<MotionAIController> availableControllers) {
@@ -55,7 +54,7 @@ namespace MotionAI.Core.Controller {
 				if (_pairingController || _availableMotionControllers.Count > 0) {
 					PairController(dID);
 				}
-				
+
 				onMovement.Invoke(msg);
 			}
 		}

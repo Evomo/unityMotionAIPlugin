@@ -1,5 +1,4 @@
 using System;
-using MotionAI.Core.Models;
 
 namespace MotionAI.Core.POCO {
 	[Serializable]

@@ -1,12 +1,6 @@
-﻿using System.Collections.Generic;
-using UnityAtoms.BaseAtoms;
-using UnityEngine;
+﻿namespace MotionAI.Core.POCO {
 
-namespace MotionAI.Core.Models {
-	public interface IMovementModel {
-	}
-
-	public enum ModelNames {
+	public enum MovementModel {
 		gaming_movements,
 		gaming_movements_hdll,
 		gaming_movements_lll,

@@ -1,5 +1,6 @@
 using System;
 using MotionAI.Core.Controller;
+using MotionAI.Core.POCO;
 using TypeReferences;
 using TypeReferences.Deprecated;
 
@@ -9,7 +10,6 @@ namespace MotionAI.Core {
 		public string licenseID;
 		public string username;
 
-		[ClassExtends(typeof(MotionAIController))]
-		public TypeReference classificationModel;
+		public MovementModel classificationModel;
 	}
 }

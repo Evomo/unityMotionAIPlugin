@@ -1,10 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using MotionAI.Core.Controller;
-using MotionAI.Core.Models;
 using MotionAI.Core.POCO;
-using UnityEngine.Events;
 
 namespace Demos.CoreDemo {
 	public class ElmoController : MotionAIController {
