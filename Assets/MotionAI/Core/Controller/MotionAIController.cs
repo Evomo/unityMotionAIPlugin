@@ -4,18 +4,31 @@ using UniRx;
 using UnityEngine;
 
 namespace MotionAI.Core.Controller {
-	public class MotionAIController : MonoBehaviour {
-		[SerializeField] private string _deviceId;
+	public class MotionAiController : MonoBehaviour {
+		[SerializeReference]private string _deviceId;
 
-		public void setDevice(string id, OnMovementEvent onMovement) {
+
+		public bool isPaired {
+			get;
+			private set;
+		}
+		[Tooltip(
+			"Does this controller react to every movement or does it only subscribes to movements with the corresponding device ID?")]
+		public bool isGlobal;
+
+		public void SetDevice(string id, OnMovementEvent onMovement) {
 			_deviceId = id;
-			onMovement.AsObservable()
-				.Where(movement => movement.elmos.First().deviceIdent == _deviceId)
-				.Subscribe(HandleMovement);
+			onMovement.AddListener(MovementCallBack);
 		}
 
-		public virtual void HandleMovement(Movement msg) {
-			
+		private void MovementCallBack(Movement msg) {
+			string diD = msg.elmos.First().deviceIdent;
+			if (diD == _deviceId || !isGlobal) {
+				HandleMovement(msg);
+			}
+		}
+
+		protected virtual void HandleMovement(Movement msg) {
 			Debug.Log("MOVEMENT");
 		}
 	}

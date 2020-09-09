@@ -10,9 +10,9 @@ using UnityEngine.Events;
 namespace MotionAI.Core.Controller {
 	[Serializable]
 	public class ControllerManager {
-		private Dictionary<string, MotionAIController> _controllers;
+		private Dictionary<string, HashSet<MotionAiController>> _controllers;
 
-		[SerializeField] private List<MotionAIController> _availableMotionControllers;
+		[SerializeField] private List<MotionAiController> availableMotionControllers;
 
 
 		public bool _pairingController { get; private set; }
@@ -21,16 +21,26 @@ namespace MotionAI.Core.Controller {
 		[HideInInspector] public OnMovementEvent onMovement;
 
 		public ControllerManager() {
-			_controllers = new Dictionary<string, MotionAIController>();
-			_availableMotionControllers = new List<MotionAIController>();
+			_controllers = new Dictionary<string, HashSet<MotionAiController>>();
+			availableMotionControllers = new List<MotionAiController>();
 			pairedEvent = new ControllerPairedEvent();
 			onMovement = new OnMovementEvent();
 		}
 
-		public void PairController(List<MotionAIController> availableControllers) {
+
+		public void PairController(List<MotionAiController> availableControllers) {
 			if (!_pairingController) {
-				_availableMotionControllers = availableControllers;
-				_controllers = new Dictionary<string, MotionAIController>();
+				_controllers = new Dictionary<string, HashSet<MotionAiController>>();
+
+				availableMotionControllers = availableControllers
+					.Select(c => {
+						if (c.isGlobal) {
+							PairController("global", c);
+						}
+
+						return c;
+					})
+					.Where(controller => controller.isPaired == false).ToList();
 			}
 
 			_pairingController = !_pairingController;
@@ -39,19 +49,31 @@ namespace MotionAI.Core.Controller {
 
 		private void PairController(string deviceId) {
 			if (!_controllers.ContainsKey(deviceId)) {
-				MotionAIController controller = _availableMotionControllers.First();
-				_availableMotionControllers.Remove(controller);
-				controller.setDevice(deviceId, onMovement);
-				_controllers.Add(deviceId, controller);
-				pairedEvent.Invoke(deviceId);
+				MotionAiController controller = availableMotionControllers.First();
+				availableMotionControllers.Remove(controller);
+				PairController(deviceId, controller);
 			}
+		}
+
+		private void PairController(string deviceId, MotionAiController controller) {
+			controller.SetDevice(deviceId, onMovement);
+			HashSet<MotionAiController> cSet;
+			if (_controllers.ContainsKey(deviceId)) {
+				cSet = _controllers[deviceId];
+			}
+			else {
+				cSet = new HashSet<MotionAiController>();
+				_controllers.Add(deviceId, cSet);
+			}
+			cSet?.Add(controller);
+			pairedEvent.Invoke(deviceId);
 		}
 
 		public void ManageMotion(Movement msg) {
 			Debug.Log(JsonUtility.ToJson(msg, true));
 			if (msg.elmos.Count > 0) {
 				string dID = msg.elmos.First().deviceIdent;
-				if (_pairingController || _availableMotionControllers.Count > 0) {
+				if (_pairingController || availableMotionControllers.Count > 0) {
 					PairController(dID);
 				}
 

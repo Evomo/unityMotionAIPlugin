@@ -55,6 +55,7 @@ namespace MotionAI.Core {
 #if UNITY_IOS && !UNITY_EDITOR
         StartEvomoBridge(UtilHelper.ToCustomOrientation(Input.deviceOrientation), mySDKConfig.classificationModel.ToString;
 #endif
+			ControlPairing();
 		}
 
 		public void StopTracking() {
@@ -136,7 +137,7 @@ namespace MotionAI.Core {
 
 
 		public void ControlPairing() {
-			controllerManager.PairController(FindObjectsOfType<MotionAIController>().ToList());
+			controllerManager.PairController(FindObjectsOfType<MotionAiController>().ToList());
 		}
 
 		#endregion

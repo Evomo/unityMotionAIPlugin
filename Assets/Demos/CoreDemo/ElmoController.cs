@@ -2,12 +2,12 @@ using MotionAI.Core.Controller;
 using MotionAI.Core.POCO;
 
 namespace Demos.CoreDemo {
-	public class ElmoController : MotionAIController {
+	public class ElmoController : MotionAiController {
 		private ElementalMovement lastElmo;
 
 		public OnElmoEvent jump, duck, left, right;
 
-		public override void HandleMovement(Movement msg) {
+		protected override void HandleMovement(Movement msg) {
 			msg.elmos.ForEach(HandleElmo);
 		}
 
