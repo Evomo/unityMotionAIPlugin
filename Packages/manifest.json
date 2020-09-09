@@ -16,23 +16,23 @@
     }
   ],
   "dependencies": {
-    "com.mambojambostudios.unity-atoms-core": "4.3.0",
+    "com.coffee.upm-git-extension": "https://github.com/mob-sakai/UpmGitExtension.git",
     "com.mambojambostudios.unity-atoms-base-atoms": "4.3.0",
+    "com.mambojambostudios.unity-atoms-core": "4.3.0",
     "com.mambojambostudios.unity-atoms-fsm": "4.3.0",
     "com.mambojambostudios.unity-atoms-mobile": "4.3.0",
     "com.mambojambostudios.unity-atoms-mono-hooks": "4.3.0",
-    "com.mambojambostudios.unity-atoms-tags": "4.3.0",
     "com.mambojambostudios.unity-atoms-scene-mgmt": "4.3.0",
+    "com.mambojambostudios.unity-atoms-tags": "4.3.0",
     "com.mambojambostudios.unity-atoms-ui": "4.3.0",
-    "com.coffee.upm-git-extension": "https://github.com/mob-sakai/UpmGitExtension.git",
     "com.neuecc.unirx": "git+https://github.com/starikcetin/UniRx#7.1.0",
     "com.solidalloy.type.references": "https://github.com/SolidAlloy/ClassTypeReference-for-Unity.git",
-    "com.unity.collab-proxy": "1.2.16",
+    "com.unity.collab-proxy": "1.3.8",
     "com.unity.ide.rider": "1.2.1",
-    "com.unity.ide.visualstudio": "2.0.1",
-    "com.unity.ide.vscode": "1.2.0",
-    "com.unity.test-framework": "1.1.13",
-    "com.unity.textmeshpro": "3.0.0-preview.1",
+    "com.unity.ide.visualstudio": "2.0.2",
+    "com.unity.ide.vscode": "1.2.1",
+    "com.unity.test-framework": "1.1.14",
+    "com.unity.textmeshpro": "3.0.1",
     "com.unity.timeline": "1.2.10",
     "com.unity.ugui": "1.0.0",
     "com.unity.modules.ai": "1.0.0",
@@ -66,19 +66,5 @@
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0"
-  },
-  "lock": {
-    "com.coffee.upm-git-extension": {
-      "revision": "HEAD",
-      "hash": "ecf4c7d1b03d9cb4ce3b5fc784ec46ccc1bcbdfd"
-    },
-    "com.solidalloy.type.references": {
-      "revision": "HEAD",
-      "hash": "558e86b2e68af94c980f435e534b53e671af6c73"
-    },
-    "com.neuecc.unirx": {
-      "revision": "7.1.0",
-      "hash": "1a85804d5cb938ca07eb8f2ef95ec5fe9714c218"
-    }
   }
 }
