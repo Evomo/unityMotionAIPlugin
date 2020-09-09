@@ -28,6 +28,7 @@ namespace Demos.CoreDemo {
 					break;
 				}
 
+
 				// rescue rejected elmo
 				if (lastElmo != null) {
 					if (lastElmo.rejected && elementalMovement.rejected == false) {
@@ -53,13 +54,13 @@ namespace Demos.CoreDemo {
 		}
 
 		private void RecoverElmo(ElementalMovement elementalMovement, OnElmoEvent callback) {
-			ElmoEnum lastOpposite = DownOpossite(lastElmo.typeID);
+			ElmoEnum lastOpposite = DownOpposite(lastElmo.typeID);
 			if (elementalMovement.typeID == lastOpposite) {
 				callback.Invoke(elementalMovement);
 			}
 		}
 
-		private ElmoEnum DownOpossite(ElmoEnum e) {
+		private ElmoEnum DownOpposite(ElmoEnum e) {
 			switch (e) {
 			case ElmoEnum.duck_down:
 				return ElmoEnum.duck_up;
