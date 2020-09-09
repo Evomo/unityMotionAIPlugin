@@ -127,7 +127,7 @@ namespace MotionAI.Core {
 			
 				Movement mv = new Movement();
 				mv.elmos.Add(msg.elmo);
-				controllerManager.ManageMotion(msg.movement);
+				controllerManager.ManageMotion(mv);
 			}
 			else {
 				controllerManager.ManageMotion(msg.movement);

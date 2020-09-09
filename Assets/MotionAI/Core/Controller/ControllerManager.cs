@@ -17,14 +17,14 @@ namespace MotionAI.Core.Controller {
 
 		public bool _pairingController { get; private set; }
 
-		public OnControllerPaired onPaired;
-		public OnMotion onMovement;
+		public ControllerPairedEvent pairedEvent;
+		public OnMovementEvent onMovement;
 
 		public ControllerManager() {
 			_controllers = new Dictionary<string, MotionAIController>();
 			_availableMotionControllers = new List<MotionAIController>();
-			onPaired = new OnControllerPaired();
-			onMovement = new OnMotion();
+			pairedEvent = new ControllerPairedEvent();
+			onMovement = new OnMovementEvent();
 			
 		}
 
@@ -44,12 +44,12 @@ namespace MotionAI.Core.Controller {
 				_availableMotionControllers.Remove(controller);
 				controller.setDevice(deviceId, onMovement);
 				_controllers.Add(deviceId, controller);
-				onPaired.Invoke(deviceId);
+				pairedEvent.Invoke(deviceId);
 			}
 		}
 
 		public void ManageMotion(Movement msg) {
-			Debug.Log(msg.ToString());
+			Debug.Log(JsonUtility.ToJson(msg, true));
 			if (msg.elmos.Count > 0) {
 				string dID = msg.elmos.First().deviceIdent;
 				if (_pairingController || _availableMotionControllers.Count > 0) {

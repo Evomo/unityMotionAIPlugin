@@ -3,7 +3,13 @@ using MotionAI.Core.POCO;
 using UnityEngine.Events;
 
 namespace MotionAI.Core.Controller {
-	public class OnControllerPaired : UnityEvent<string> { }
+	
+	[Serializable]
+	public class ControllerPairedEvent : UnityEvent<string> { }
+	[Serializable]
 
-	public class OnMotion  : UnityEvent<Movement>{}
+	public class OnMovementEvent : UnityEvent<Movement> { }
+
+[Serializable]
+	public class OnElmoEvent : UnityEvent<ElementalMovement> { }
 }

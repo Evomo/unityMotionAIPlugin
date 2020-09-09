@@ -23,7 +23,7 @@ namespace Demos.CoreDemo {
 			maim.LogFailure(UtilHelper.EventSource.app, UtilHelper.FailureType.toLess, UtilHelper.MovementType.Duck,
 				"abc");
 			maim.SetUsername("testUser");
-			maim.controllerManager.onPaired.AddListener(onControllerPaired);
+			maim.controllerManager.pairedEvent.AddListener(onControllerPaired);
 			maim.controllerManager.onMovement.AddListener(onMovement);
 		}
 
@@ -53,9 +53,12 @@ namespace Demos.CoreDemo {
 
 
 		public void onMovement(Movement mv) {
-			DebugText.text = mv.ToString();
+			DebugText.text = JsonUtility.ToJson(mv, true);
 		}
 
+		public void OnElmo(ElementalMovement mv) {
+			DebugText.text = JsonUtility.ToJson(mv, true);
+		}
 		public void onControllerPaired(string deviceId) {
 			DebugText.text = $"Device with id {deviceId} was paired";
 		}

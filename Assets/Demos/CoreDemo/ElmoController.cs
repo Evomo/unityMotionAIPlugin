@@ -10,7 +10,7 @@ namespace Demos.CoreDemo {
 	public class ElmoController : MotionAIController {
 		private ElementalMovement lastElmo;
 
-		public UnityEvent jump, duck, left, right;
+		public OnElmoEvent jump, duck, left, right;
 
 		public override void HandleMovement(Movement msg) {
 			msg.elmos.ForEach(HandleElmo);
@@ -20,16 +20,16 @@ namespace Demos.CoreDemo {
 			if (!elementalMovement.rejected) {
 				switch (elementalMovement.typeID) {
 				case ElmoEnum.hop_single_up:
-					jump.Invoke();
+					jump.Invoke(elementalMovement);
 					break;
 				case ElmoEnum.duck_down:
-					duck.Invoke();
+					duck.Invoke(elementalMovement);
 					break;
 				case ElmoEnum.side_step_left_up:
-					left.Invoke();
+					left.Invoke(elementalMovement);
 					break;
 				case ElmoEnum.side_step_right_up:
-					right.Invoke();
+					right.Invoke(elementalMovement);
 					break;
 				}
 
@@ -57,10 +57,10 @@ namespace Demos.CoreDemo {
 			lastElmo = elementalMovement;
 		}
 
-		private void RecoverElmo(ElementalMovement elementalMovement, UnityEvent callback) {
+		private void RecoverElmo(ElementalMovement elementalMovement, OnElmoEvent callback) {
 			ElmoEnum lastOpposite = DownOpossite(lastElmo.typeID);
 			if (elementalMovement.typeID == lastOpposite) {
-				callback.Invoke();
+				callback.Invoke(elementalMovement);
 			}
 		}
 

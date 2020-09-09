@@ -4,11 +4,11 @@ using System.Collections.Generic;
 namespace MotionAI.Core.POCO {
 	[Serializable]
 	public class Movement {
-		public float? gVelAmplitudePositive;
-		public float? gVelAmplitudeNegative;
-		public float? amplitude;
-		public float? durationPositive;
-		public float? durationNegative;
+		public float gVelAmplitudePositive;
+		public float gVelAmplitudeNegative;
+		public float amplitude;
+		public float durationPositive;
+		public float durationNegative;
 
 		public List<ElementalMovement> elmos;
 		public short typeID;

@@ -7,7 +7,7 @@ namespace MotionAI.Core.Controller {
 	public class MotionAIController : MonoBehaviour {
 		[SerializeField] private string _deviceId;
 
-		public void setDevice(string id, OnMotion onMovement) {
+		public void setDevice(string id, OnMovementEvent onMovement) {
 			_deviceId = id;
 			onMovement.AsObservable()
 				.Where(movement => movement.elmos.First().deviceIdent == _deviceId)
