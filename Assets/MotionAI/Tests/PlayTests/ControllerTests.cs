@@ -16,7 +16,7 @@ namespace MotionAI.Tests.PlayTests {
 
 			int amountOfControllers = 3;
 			for (int i = 0; i < amountOfControllers; i++) {
-				MotionAiController c = new GameObject().AddComponent<MotionAiController>();
+				MotionAIController c = new GameObject().AddComponent<MotionAIController>();
 				// c.isGlobal = true;
 			}
 
@@ -33,7 +33,7 @@ namespace MotionAI.Tests.PlayTests {
 
 			int amountOfControllers = 3;
 			for (int i = 0; i < amountOfControllers; i++) {
-				MotionAiController c = new GameObject().AddComponent<MotionAiController>();
+				MotionAIController c = new GameObject().AddComponent<MotionAIController>();
 				c.isGlobal = true;
 			}
 
@@ -50,12 +50,12 @@ namespace MotionAI.Tests.PlayTests {
 
 			MotionAIManager manager = new GameObject().AddComponent<MotionAIManager>();
 			List<string> dids = new List<string>();
-			List<MotionAiController> controllers = new List<MotionAiController>();
+			List<MotionAIController> controllers = new List<MotionAIController>();
 
 
 			int amountOfControllers = 3;
 			for (int i = 0; i < amountOfControllers; i++) {
-				MotionAiController c = new GameObject().AddComponent<MotionAiController>();
+				MotionAIController c = new GameObject().AddComponent<MotionAIController>();
 				controllers.Add(c);
 				dids.Add(new string(Enumerable.Repeat(chars, 10)
 					.Select(s => s[Random.Range(0, s.Length)]).ToArray()));
@@ -74,7 +74,7 @@ namespace MotionAI.Tests.PlayTests {
 
 			for (int i = 0; i < amountOfControllers; i++) {
 				string did = dids[i];
-				MotionAiController c =  manager.controllerManager.controllers[did].First();
+				MotionAIController c =  manager.controllerManager.controllers[did].First();
 				c.DeviceId.Should().Be(did);
 				c.IsPaired.Should().BeTrue();
 			}
@@ -89,12 +89,12 @@ namespace MotionAI.Tests.PlayTests {
 
 			MotionAIManager manager = new GameObject().AddComponent<MotionAIManager>();
 			List<string> dids = new List<string>();
-			List<MotionAiController> controllers = new List<MotionAiController>();
+			List<MotionAIController> controllers = new List<MotionAIController>();
 
 
 			int amountOfControllers = 3;
 			for (int i = 0; i < amountOfControllers; i++) {
-				MotionAiController c = new GameObject().AddComponent<MotionAiController>();
+				MotionAIController c = new GameObject().AddComponent<MotionAIController>();
 				controllers.Add(c);
 				dids.Add(new string(Enumerable.Repeat(chars, 10)
 					.Select(s => s[Random.Range(0, s.Length)]).ToArray()));

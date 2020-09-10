@@ -1,18 +1,25 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using MotionAI.Core.Controller;
+using MotionAI.Core.POCO;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
-public class DemoController : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+namespace Demos.CoreDemo {
+	public class DemoController : MotionAIController {
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+		public ParticleSystem ps;
+		private void Start() {
+			ps = GetComponent<ParticleSystem>();
+			var mainModule = ps.main;
+			mainModule.startColor = Random.ColorHSV();
+		}
+
+		protected override void HandleMovement(Movement msg) {
+			var emissionModule = ps.emission;
+			var velocityOverLifetimeModule = ps.velocityOverLifetime;
+			emissionModule.burstCount = (int)msg.amplitude * 7;
+			velocityOverLifetimeModule.xMultiplier = msg.elmos.Count;
+			velocityOverLifetimeModule.yMultiplier = msg.elmos.Count;
+			ps.Play();
+		}
+	}
 }

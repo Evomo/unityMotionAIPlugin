@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 namespace MotionAI.Core.Controller {
 	[Serializable]
-	public class ControllerPairedEvent : UnityEvent<MotionAiController> {
+	public class ControllerPairedEvent : UnityEvent<MotionAIController> {
 	}
 
 	[Serializable]

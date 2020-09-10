@@ -140,7 +140,7 @@ namespace MotionAI.Core {
 
 
 		public void ControlPairing() {
-			controllerManager.PairController(FindObjectsOfType<MotionAiController>().ToList());
+			controllerManager.PairController(FindObjectsOfType<MotionAIController>().ToList());
 		}
 
 		#endregion

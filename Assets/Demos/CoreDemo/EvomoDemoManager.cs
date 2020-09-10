@@ -55,7 +55,7 @@ namespace Demos.CoreDemo {
 			}
 
 			m.elmos = fakeElmos;
-			maim.ManageMotion(JsonUtility.ToJson(m));
+			maim.controllerManager.ManageMotion(m);
 		}
 
 
@@ -73,7 +73,7 @@ namespace Demos.CoreDemo {
 			DebugText.text = JsonUtility.ToJson(mv, true);
 		}
 
-		public void onControllerPaired(MotionAiController c) {
+		public void onControllerPaired(MotionAIController c) {
 			DebugText.text = $"Device with id {c.DeviceId} was paired";
 		}
 	}
