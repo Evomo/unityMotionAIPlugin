@@ -55,6 +55,7 @@ namespace MotionAI.Core {
 #if UNITY_IOS && !UNITY_EDITOR
         StartEvomoBridge(UtilHelper.ToCustomOrientation(Input.deviceOrientation), mySDKConfig.classificationModel.ToString;
 #endif
+			IsTracking = true;
 			ControlPairing();
 		}
 
@@ -62,6 +63,7 @@ namespace MotionAI.Core {
 #if UNITY_IOS && !UNITY_EDITOR
         StopEvomoBridge();
 #endif
+			IsTracking = false;
 		}
 
 		public static void LogEvent(string eventType, string note = "") {
@@ -70,13 +72,13 @@ namespace MotionAI.Core {
 #endif
 		}
 
-		public static void LogTargetMovement(MovementType movementType, string note = "") {
+		public static void LogTargetMovement(ElmoEnum movementType, string note = "") {
 #if UNITY_IOS && !UNITY_EDITOR
         LogTargetMovementBridge(movementType.ToString(), note);
 #endif
 		}
 
-		public void LogFailure(EventSource source, FailureType failureType, MovementType movementType,
+		public void LogFailure(EventSource source, FailureType failureType, ElmoEnum movementType,
 			string note = "") {
 #if UNITY_IOS && !UNITY_EDITOR
         LogFailureBridge(source.ToString(), failureType.ToString(), movementType.ToString(), note);
@@ -96,6 +98,8 @@ namespace MotionAI.Core {
 
 		public SDKConfig mySDKConfig;
 		public ControllerManager controllerManager;
+
+		public bool IsTracking { get; private set; }
 
 		#region Lifecycle
 
@@ -125,7 +129,6 @@ namespace MotionAI.Core {
 
 
 			if (msg.movement == null) {
-			
 				Movement mv = new Movement();
 				mv.elmos.Add(msg.elmo);
 				controllerManager.ManageMotion(mv);

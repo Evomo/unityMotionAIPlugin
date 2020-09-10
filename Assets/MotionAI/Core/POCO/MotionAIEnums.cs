@@ -8,6 +8,10 @@
 	}
 
 
+	public enum MovementEnum {
+		test, 
+		
+	}
 	public enum ElmoEnum {
 		hop_single_up,
 		duck_down,

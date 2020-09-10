@@ -6,8 +6,8 @@ namespace MotionAI.Core.POCO {
 		public ElmoEnum typeID;
 		public string typeLabel;
 		public bool rejected;
-		public DateTime start;
-		public DateTime end;
+		// public DateTime start;
+		// public DateTime end;
 		public string deviceIdent;
 	}
 }

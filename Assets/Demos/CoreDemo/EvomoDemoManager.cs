@@ -9,18 +9,19 @@ using Random = UnityEngine.Random;
 namespace Demos.CoreDemo {
 	[RequireComponent(typeof(MotionAIManager))]
 	public class EvomoDemoManager : MonoBehaviour {
-		public List<string> debugMovement;
+		public List<string> fakeDeviceIds;
 		public Text DebugText;
 
 		public Text startTrackingButton;
 
+
+		public Movement lastMovement;
 		public MotionAIManager maim;
 
-		private bool isTracking;
 
 		private void Start() {
 			maim = GetComponent<MotionAIManager>();
-			maim.LogFailure(UtilHelper.EventSource.app, UtilHelper.FailureType.toLess, UtilHelper.MovementType.Duck,
+			maim.LogFailure(UtilHelper.EventSource.app, UtilHelper.FailureType.toLess, ElmoEnum.duck_down,
 				"abc");
 			maim.SetUsername("testUser");
 			maim.controllerManager.pairedEvent.AddListener(onControllerPaired);
@@ -29,9 +30,7 @@ namespace Demos.CoreDemo {
 
 
 		public void TrackHandle() {
-			isTracking = !isTracking;
-
-			if (isTracking) {
+			if (!maim.IsTracking) {
 				maim.StartTracking();
 				startTrackingButton.text = "Stop Tracking";
 			}
@@ -42,8 +41,20 @@ namespace Demos.CoreDemo {
 		}
 
 		public void SendDebugMovementString() {
-			string sentText = debugMovement[Random.Range(0, debugMovement.Count)];
-			maim.ManageMotion(sentText);
+			string debugId = fakeDeviceIds[Random.Range(0, fakeDeviceIds.Count)];
+
+			Movement m = new Movement {gVelAmplitudeNegative = Random.Range(0, 10), amplitude = Random.Range(0, 10)};
+
+
+			int amountOfElmos = Random.Range(0, 5);
+			List<ElementalMovement> fakeElmos = new List<ElementalMovement>();
+			for (int i = 0; i < amountOfElmos; i++) {
+				ElementalMovement e = new ElementalMovement {deviceIdent = debugId};
+				fakeElmos.Add(e);
+			}
+
+			m.elmos = fakeElmos;
+			maim.ManageMotion(JsonUtility.ToJson(m));
 		}
 
 
@@ -54,11 +65,13 @@ namespace Demos.CoreDemo {
 
 		public void onMovement(Movement mv) {
 			DebugText.text = JsonUtility.ToJson(mv, true);
+			lastMovement = mv;
 		}
 
 		public void OnElmo(ElementalMovement mv) {
 			DebugText.text = JsonUtility.ToJson(mv, true);
 		}
+
 		public void onControllerPaired(string deviceId) {
 			DebugText.text = $"Device with id {deviceId} was paired";
 		}

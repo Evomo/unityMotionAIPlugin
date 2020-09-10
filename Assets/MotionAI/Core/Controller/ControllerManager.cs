@@ -68,7 +68,7 @@ namespace MotionAI.Core.Controller {
 
 		public void ManageMotion(Movement msg) {
 			Debug.Log(JsonUtility.ToJson(msg, true));
-			if (msg.elmos.Count > 0) {
+			if (msg.elmos?.Count > 0) {
 				string dID = msg.elmos.First().deviceIdent;
 				if (_pairingController || availableMotionControllers.Count > 0) {
 					PairController(dID);

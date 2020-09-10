@@ -10,10 +10,10 @@ namespace MotionAI.Core.POCO {
 		public float durationPositive;
 		public float durationNegative;
 
-		public List<ElementalMovement> elmos;
-		public short typeID;
+		public List<ElementalMovement> elmos = new List<ElementalMovement>();
+		public MovementEnum typeID;
 		public string typeLabel;
-		public DateTime start;
-		public DateTime end;
+		// public DateTime start;
+		// public DateTime end;
 	}
 }

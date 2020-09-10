@@ -1,7 +1,11 @@
+using System;
 using UnityEngine;
 
 namespace MotionAI {
+	
 	public class UtilHelper {
+		
+
 		public enum EventSource {
 			app,
 			manual

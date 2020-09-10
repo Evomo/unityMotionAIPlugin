@@ -154,6 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _deviceId: 
+  isGlobal: 0
   jump:
     m_PersistentCalls:
       m_Calls:
@@ -367,6 +368,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _deviceId: 
+  isGlobal: 0
   jump:
     m_PersistentCalls:
       m_Calls: []
@@ -423,19 +425,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19ebe3db025e842a2b0baacdf3cf1cc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugMovement:
-  - '{"movement":{   "gVelAmplitudePositive" : 0.29999999999999999,   "start" : "2020-09-08T00:11:38.513",  
-    "amplitude" : 0.10000000000000001,   "durationPositive" : 0.20000000000000001,  
-    "elmos" : [     {       "typeID" : 1,       "end" : "2020-09-08T00:11:39.513",      
-    "rejected" : false,       "typeLabel" : "test",       "start" : "2020-09-08T00:11:38.513",      
-    "deviceIdent" : "3DF671DD-47D6-4F21-ADE2-6C2AB52A9875"     },     {       "typeID"
-    : 1,       "typeLabel" : "test",       "rejected" : false,       "start" : "2020-09-08T00:11:38.514",      
-    "end" : "2020-09-08T00:11:39.514",       "deviceIdent" : "A4E657DE-59AA-4424-BD44-539F3C58AE47"    
-    }   ],   "typeID" : 1,   "typeLabel" : "testType",   "end" : "2020-09-08T00:11:39.513",  
-    "durationNegative" : 0.20000000000000001,   "gVelAmplitudeNegative" : 0.29999999999999999
-    }}'
+  fakeDeviceIds:
+  - one
+  - two
+  - three
   DebugText: {fileID: 1173423659}
   startTrackingButton: {fileID: 1817138074}
+  lastMovement:
+    gVelAmplitudePositive: 0
+    gVelAmplitudeNegative: 0
+    amplitude: 0
+    durationPositive: 0
+    durationNegative: 0
+    elmos:
+    - typeID: 0
+      typeLabel: 
+      rejected: 0
+      deviceIdent: 
+    typeID: 0
+    typeLabel: 
   maim: {fileID: 0}
 --- !u!4 &701655733
 Transform:
@@ -468,7 +476,7 @@ MonoBehaviour:
     username: 
     classificationModel: 0
   controllerManager:
-    _availableMotionControllers: []
+    availableMotionControllers: []
     pairedEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -658,7 +666,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 701655732}
-        m_TargetAssemblyTypeName: 
+        m_TargetAssemblyTypeName: Demos.CoreDemo.EvomoDemoManager, Assembly-CSharp
         m_MethodName: TrackHandle
         m_Mode: 1
         m_Arguments:
