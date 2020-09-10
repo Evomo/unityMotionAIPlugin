@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using MotionAI;
 using MotionAI.Core;
+using MotionAI.Core.Controller;
 using MotionAI.Core.POCO;
 using UnityEngine;
 using UnityEngine.UI;
@@ -72,8 +73,8 @@ namespace Demos.CoreDemo {
 			DebugText.text = JsonUtility.ToJson(mv, true);
 		}
 
-		public void onControllerPaired(string deviceId) {
-			DebugText.text = $"Device with id {deviceId} was paired";
+		public void onControllerPaired(MotionAiController c) {
+			DebugText.text = $"Device with id {c.DeviceId} was paired";
 		}
 	}
 }
