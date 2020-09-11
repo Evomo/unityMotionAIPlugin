@@ -1,61 +1,80 @@
-﻿using MotionAI;
+﻿using System.Collections.Generic;
+using MotionAI;
+using MotionAI.Core;
+using MotionAI.Core.Controller;
+using MotionAI.Core.POCO;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
-namespace EvomoDemo {
-    public class EvomoDemoManager : MonoBehaviour
-    {
+namespace Demos.CoreDemo {
+	[RequireComponent(typeof(MotionAIManager))]
+	public class EvomoDemoManager : MonoBehaviour {
+		public List<string> fakeDeviceIds;
+		public Text DebugText;
 
-        public GameObject StartTrackingButton;
+		public Text startTrackingButton;
 
-        public Text DebugText;
 
-        private void Awake()
-        {
-            StartTrackingButton.SetActive(false);
-            SubscribeToEvomoEvents();
-            DebugText.text = "Waiting for Evomo Init";
-            Evomo.Init(EvomoReady, "");
-            Evomo.LogFailure(EventSource.app, FailureType.toLess, MovementType.Duck, "abc");
-            Evomo.SetUsername("testUser");
-        }
+		public Movement lastMovement;
+		public MotionAIManager maim;
 
-        private void SubscribeToEvomoEvents()
-        {
-            Evomo.OnLeft.AddListener(OnLeft);
-            Evomo.OnRight.AddListener(OnRight);
-            Evomo.OnJump.AddListener(OnJump);
-            Evomo.OnDuck.AddListener(OnDuck);
-        }
 
-        private void EvomoReady()
-        {
-            StartTrackingButton.SetActive(true);
-            DebugText.text = "Evomo Init Complete";
-        }
+		private void Start() {
+			maim = GetComponent<MotionAIManager>();
+			maim.LogFailure(UtilHelper.EventSource.app, UtilHelper.FailureType.toLess, ElmoEnum.duck_down,
+				"abc");
+			maim.SetUsername("testUser");
+			maim.controllerManager.pairedEvent.AddListener(onControllerPaired);
+			maim.controllerManager.onMovement.AddListener(onMovement);
+		}
 
-        public void StartTracking()
-        {
-            Evomo.StartTracking();
-            Evomo.LogEvent("Started");
-        }
 
-        private void OnLeft()
-        {
-            DebugText.text = "Move Left Detected";
-            Evomo.LogTargetMovement(MovementType.Left);
-        }
-        private void OnRight()
-        {
-            DebugText.text = "Move Right Detected";
-        }
-        private void OnJump()
-        {
-            DebugText.text = "Jump Detected";
-        }
-        private void OnDuck()
-        {
-            DebugText.text = "Duck Detected";
-        }
-    }
+		public void TrackHandle() {
+			if (!maim.IsTracking) {
+				maim.StartTracking();
+				startTrackingButton.text = "Stop Tracking";
+			}
+			else {
+				maim.StopTracking();
+				startTrackingButton.text = "Start Tracking";
+			}
+		}
+
+		public void SendDebugMovementString() {
+			string debugId = fakeDeviceIds[Random.Range(0, fakeDeviceIds.Count)];
+
+			Movement m = new Movement {gVelAmplitudeNegative = Random.Range(0, 10), amplitude = Random.Range(0, 10)};
+
+
+			int amountOfElmos = Random.Range(0, 5);
+			List<ElementalMovement> fakeElmos = new List<ElementalMovement>();
+			for (int i = 0; i < amountOfElmos; i++) {
+				ElementalMovement e = new ElementalMovement {deviceIdent = debugId};
+				fakeElmos.Add(e);
+			}
+
+			m.elmos = fakeElmos;
+			maim.controllerManager.ManageMotion(m);
+		}
+
+
+		public void StartPairController() {
+			maim.ControlPairing();
+		}
+
+
+		public void onMovement(Movement mv) {
+			DebugText.text = JsonUtility.ToJson(mv, true);
+			lastMovement = mv;
+		}
+
+		public void OnElmo(ElementalMovement mv) {
+			DebugText.text = JsonUtility.ToJson(mv, true);
+		}
+
+		public void onControllerPaired(MotionAIController c) {
+			DebugText.text = $"Device with id {c.DeviceId} was paired";
+		}
+	}
 }

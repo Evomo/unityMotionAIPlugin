@@ -20,7 +20,7 @@ NSString* CreateNSString (const char* string)
 void InitEvomoBridge(UnityCallback testCallback, const char* licenseID)
 {
     bridge = [EvomounityBridge alloc];
-    [bridge Init:testCallback licenseID:CreateNSString(licenseID)];
+    [bridge licenseID:CreateNSString(licenseID)];
 }
 
 void StartEvomoBridge(const char* deviceOrientation, const char* classificationModel)
