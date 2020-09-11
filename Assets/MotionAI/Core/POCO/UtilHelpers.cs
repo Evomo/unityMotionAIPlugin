@@ -24,6 +24,8 @@ namespace MotionAI {
 			Tab
 		}
 
+		
+		
 		public static string ToCustomOrientation(DeviceOrientation dvO) {
 			switch (dvO) {
 				case DeviceOrientation.LandscapeLeft:

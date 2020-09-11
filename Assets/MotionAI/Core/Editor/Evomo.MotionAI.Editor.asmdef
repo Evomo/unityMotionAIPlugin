@@ -1,7 +1,8 @@
 {
     "name": "Evomo.MotionAI.Editor",
     "references": [
-        "GUID:15d493d4108fa4e4797ac3c02a89e5d8"
+        "GUID:15d493d4108fa4e4797ac3c02a89e5d8",
+        "GUID:d6c83174c9952c944b4f431cc951f36f"
     ],
     "includePlatforms": [
         "Editor"

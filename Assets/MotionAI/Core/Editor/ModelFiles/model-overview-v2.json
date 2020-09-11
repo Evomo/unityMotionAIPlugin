@@ -1,0 +1,520 @@
+{
+  "models": [
+    {
+      "device_position": "Belly",
+      "movement_types": [
+        "burpee",
+        "calf_raise",
+        "chin-up",
+        "climbers",
+        "good_morning",
+        "high_knees",
+        "hip_raise",
+        "jumping_jack",
+        "lunge",
+        "mountain_climbers",
+        "plank_jack",
+        "pull-up",
+        "push-up_classic",
+        "push-up_freeletics",
+        "push-up_on_fists",
+        "push-up_on_knees",
+        "sit-up_moving_arms",
+        "sit-up_static_arms",
+        "split_lunge",
+        "sprawl",
+        "squat_jump",
+        "squat_moving_arms",
+        "squat_static_arms"
+      ],
+      "test_run": 1415,
+      "filename": "elmo_classification_model_tr-1415_epoch-22_dp-belly_32-32-32.evomodel"
+    },
+    {
+      "device_position": "UpperArm",
+      "movement_types": [
+        "squat_moving_arms",
+        "push-up_on_fists",
+        "squat_static_arms",
+        "jumping_jack",
+        "lunge_walking",
+        "push-up_classic",
+        "mountain_climbers",
+        "lunge",
+        "burpee",
+        "sit-up_moving_arms",
+        "rope_jump",
+        "squat_jump",
+        "push-up_on_knees",
+        "high_knees",
+        "split_lunge",
+        "good_morning",
+        "unknown"
+      ],
+      "test_run": 1883,
+      "filename": "elmo_classification_model_tr-1883_epoch-21_dp-left_upper_arm_32-40-48.evomodel"
+    },
+    {
+      "device_position": "Belly",
+      "movement_types": [
+        "squat_moving_arms",
+        "push-up_on_fists",
+        "pull-up",
+        "chin-up",
+        "bench_dip",
+        "jumping_jack",
+        "push-up_classic",
+        "lunge_walking",
+        "mountain_climbers",
+        "lunge",
+        "burpee",
+        "sit-up_moving_arms",
+        "squat_jump",
+        "push-up_on_knees",
+        "high_knees",
+        "hip_raise",
+        "sprawl",
+        "calf_raise",
+        "plank",
+        "climbers",
+        "plank_jack",
+        "lunge_reverse",
+        "good_morning",
+        "unknown"
+      ],
+      "test_run": 1915,
+      "filename": "elmo_classification_model_tr-1915_epoch-28_dp-belly_32-40-48.evomodel"
+    },
+    {
+      "device_position": "Chest",
+      "movement_types": [
+        "squat_moving_arms",
+        "push-up_on_fists",
+        "chin-up",
+        "bench_dip",
+        "jumping_jack",
+        "lunge_walking",
+        "push-up_classic",
+        "mountain_climbers",
+        "lunge",
+        "burpee",
+        "sit-up_moving_arms",
+        "squat_jump",
+        "push-up_on_knees",
+        "high_knees",
+        "split_lunge",
+        "hip_raise",
+        "calf_raise",
+        "climbers",
+        "plank_jack",
+        "lunge_reverse",
+        "good_morning",
+        "unknown"
+      ],
+      "test_run": 1921,
+      "filename": "elmo_classification_model_tr-1921_epoch-17_dp-chest_32-40-48.evomodel"
+    },
+    {
+      "device_position": "Chest",
+      "movement_types": [
+        "squat_moving_arms",
+        "push-up_on_fists",
+        "chin-up",
+        "jumping_jack",
+        "lunge_walking",
+        "push-up_classic",
+        "mountain_climbers",
+        "lunge",
+        "burpee",
+        "sit-up_moving_arms",
+        "squat_jump",
+        "push-up_on_knees",
+        "high_knees",
+        "split_lunge",
+        "hip_raise",
+        "calf_raise",
+        "climbers",
+        "plank_jack",
+        "lunge_reverse",
+        "good_morning",
+        "unknown"
+      ],
+      "test_run": 1922,
+      "filename": "elmo_classification_model_tr-1922_epoch-19_dp-chest_32-40-48.evomodel"
+    },
+    {
+      "device_position": "Hand",
+      "movement_types": [
+        "heart",
+        "hands_in_the_air_bounce",
+        "hands_in_the_air_wink",
+        "unknown"
+      ],
+      "test_run": 1984,
+      "filename": "elmo_classification_model_tr-1984_epoch-30_dp-right_hand_32-32-32.evomodel"
+    },
+    {
+      "device_position": "Hand",
+      "movement_types": [
+        "heart",
+        "gesture_large_q",
+        "hands_in_the_air_bounce",
+        "hands_in_the_air_wink",
+        "gesture_large_m",
+        "unknown"
+      ],
+      "test_run": 1989,
+      "filename": "elmo_classification_model_tr-1989_epoch-23_dp-right_hand_32-32-32.evomodel"
+    },
+    {
+      "device_position": "Hand",
+      "movement_types": [
+        "duck",
+        "turn_90_right",
+        "turn_90_left",
+        "turn_90",
+        "side_step",
+        "side_step_left",
+        "side_step_right",
+        "hop_group",
+        "unknown"
+      ],
+      "test_run": 2019,
+      "filename": "elmo_classification_model_tr-2019_epoch-26_dp-hand_32-32-32.evomodel"
+    },
+    {
+      "device_position": "Hand",
+      "movement_types": [
+        "duck",
+        "turn_90_right",
+        "turn_90_left",
+        "turn_90",
+        "side_step",
+        "side_step_left",
+        "side_step_right",
+        "hop_group",
+        "unknown"
+      ],
+      "test_run": 2021,
+      "filename": "elmo_classification_model_tr-2021_epoch-26_dp-hand_32-32-32.evomodel"
+    },
+    {
+      "device_position": "Hand",
+      "movement_types": [
+        "duck",
+        "side_step",
+        "side_step_right",
+        "side_step_left",
+        "hop_group",
+        "unknown"
+      ],
+      "test_run": 2048,
+      "filename": "elmo_classification_model_tr-2048_epoch-29_dp-hand_32-32-32.evomodel"
+    },
+    {
+      "device_position": "Hand",
+      "movement_types": [
+        "duck",
+        "turn_90_right",
+        "turn_90_left",
+        "turn_90",
+        "side_step",
+        "side_step_left",
+        "side_step_right",
+        "hop_group",
+        "unknown"
+      ],
+      "test_run": 2049,
+      "filename": "elmo_classification_model_tr-2049_epoch-25_dp-hand_32-32-32.evomodel"
+    },
+    {
+      "device_position": "Hand",
+      "movement_types": [
+        "duck",
+        "turn_90_right",
+        "turn_90_left",
+        "turn_90",
+        "side_step",
+        "side_step_left",
+        "side_step_right",
+        "hop_single_straight",
+        "unknown"
+      ],
+      "test_run": 2057,
+      "filename": "elmo_classification_model_tr-2057_epoch-23_dp-hand_32-32-32.evomodel"
+    },
+    {
+      "device_position": "Hand",
+      "movement_types": [
+        "duck",
+        "hop_single",
+        "turn_90_right",
+        "turn_90_left",
+        "turn_90",
+        "side_step",
+        "side_step_left",
+        "side_step_right",
+        "gaming_movements",
+        "unknown"
+      ],
+      "test_run": 2092,
+      "filename": "elmo_classification_model_tr-2092_epoch-26_dp-hand_32-32-32.evomodel"
+    },
+    {
+      "device_position": "Hand",
+      "movement_types": [
+        "duck",
+        "hop_single",
+        "turn_90_right",
+        "turn_90_left",
+        "turn_90",
+        "side_step",
+        "side_step_left",
+        "side_step_right",
+        "gaming_movements",
+        "unknown"
+      ],
+      "test_run": 2097,
+      "filename": "elmo_classification_model_tr-2097_epoch-32_dp-hand_32-32-32.evomodel"
+    },
+    {
+      "device_position": "Hand",
+      "movement_types": [
+        "duck",
+        "hop_single",
+        "turn_90_right",
+        "turn_90_left",
+        "turn_90",
+        "side_step",
+        "side_step_left",
+        "side_step_right",
+        "gaming_movements",
+        "unknown"
+      ],
+      "test_run": 2098,
+      "filename": "elmo_classification_model_tr-2098_epoch-32_dp-hand_32-32-32.evomodel"
+    },
+    {
+      "device_position": "Hand",
+      "movement_types": [
+        "duck",
+        "hop_single",
+        "turn_90_right",
+        "turn_90_left",
+        "turn_90",
+        "side_step",
+        "side_step_left",
+        "side_step_right",
+        "gaming_movements",
+        "unknown"
+      ],
+      "test_run": 2098,
+      "filename": "elmo_classification_model_tr-2098_epoch-36_dp-hand_32-32-32.evomodel"
+    },
+    {
+      "device_position": "Hand",
+      "movement_types": [
+        "duck",
+        "hop_single",
+        "turn_90_right",
+        "turn_90_left",
+        "turn_90",
+        "side_step",
+        "side_step_left",
+        "side_step_right",
+        "gaming_movements",
+        "unknown"
+      ],
+      "test_run": 2102,
+      "filename": "elmo_classification_model_tr-2102_epoch-28_dp-hand_32-32-32.evomodel"
+    },
+    {
+      "device_position": "Hand",
+      "movement_types": [
+        "duck",
+        "hop_single",
+        "turn_90_right",
+        "turn_90_left",
+        "turn_90",
+        "side_step",
+        "side_step_left",
+        "side_step_right",
+        "gaming_movements",
+        "unknown"
+      ],
+      "test_run": 2107,
+      "filename": "elmo_classification_model_tr-2107_epoch-9_dp-hand_32-32-32.evomodel"
+    },
+    {
+      "device_position": "Hand",
+      "movement_types": [
+        "duck",
+        "hop_single",
+        "turn_90_right",
+        "turn_90_left",
+        "turn_90",
+        "side_step",
+        "side_step_left",
+        "side_step_right",
+        "gaming_movements",
+        "unknown"
+      ],
+      "test_run": 2113,
+      "filename": "elmo_classification_model_tr-2113_epoch-19_dp-hand_32-32-32.evomodel"
+    },
+    {
+      "device_position": "Hand",
+      "movement_types": [
+        "duck",
+        "hop_single",
+        "turn_90_right",
+        "turn_90_left",
+        "turn_90",
+        "side_step",
+        "side_step_left",
+        "side_step_right",
+        "gaming_movements",
+        "unknown"
+      ],
+      "test_run": 2113,
+      "filename": "elmo_classification_model_tr-2113_epoch-22_dp-hand_32-32-32.evomodel"
+    },
+    {
+      "device_position": "Hand",
+      "movement_types": [
+        "duck",
+        "hop_single",
+        "turn_90_right",
+        "turn_90_left",
+        "turn_90",
+        "side_step",
+        "side_step_left",
+        "side_step_right",
+        "gaming_movements",
+        "unknown"
+      ],
+      "test_run": 2114,
+      "filename": "elmo_classification_model_tr-2114_epoch-19_dp-hand_32-32-32.evomodel"
+    },
+    {
+      "device_position": "Hand",
+      "movement_types": [
+        "duck",
+        "hop_single",
+        "turn_90_right",
+        "turn_90_left",
+        "turn_90",
+        "side_step",
+        "side_step_left",
+        "side_step_right",
+        "gaming_movements",
+        "unknown"
+      ],
+      "test_run": 2115,
+      "filename": "elmo_classification_model_tr-2115_epoch-16_dp-hand_32-32-32.evomodel"
+    },
+    {
+      "device_position": "Hand",
+      "movement_types": [
+        "duck",
+        "hop_single",
+        "turn_90_right",
+        "turn_90_left",
+        "turn_90",
+        "side_step",
+        "side_step_left",
+        "side_step_right",
+        "gaming_movements",
+        "unknown"
+      ],
+      "test_run": 2128,
+      "filename": "elmo_classification_model_tr-2128_epoch-24_dp-hand_32-32-32.evomodel"
+    },
+    {
+      "device_position": "Hand",
+      "movement_types": [
+        "duck",
+        "hop_single",
+        "turn_90_right",
+        "turn_90_left",
+        "turn_90",
+        "side_step",
+        "side_step_left",
+        "side_step_right",
+        "gaming_movements",
+        "unknown"
+      ],
+      "test_run": 2129,
+      "filename": "elmo_classification_model_tr-2129_epoch-24_dp-hand_32-32-32.evomodel"
+    },
+    {
+      "device_position": "Hand",
+      "movement_types": [
+        "duck",
+        "hop_single",
+        "turn_90_right",
+        "turn_90_left",
+        "turn_90",
+        "side_step",
+        "side_step_left",
+        "side_step_right",
+        "gaming_movements",
+        "unknown"
+      ],
+      "test_run": 2129,
+      "filename": "elmo_classification_model_tr-2129_epoch-24_dp-hand_32-32-32.evotfmod"
+    },
+    {
+      "device_position": "Hand",
+      "movement_types": [
+        "duck",
+        "hop_single",
+        "turn_90_right",
+        "turn_90_left",
+        "turn_90",
+        "side_step",
+        "side_step_left",
+        "side_step_right",
+        "gaming_movements",
+        "unknown"
+      ],
+      "test_run": 2129,
+      "filename": "elmo_classification_model_tr-2129_epoch-24_dp-hand_32-32-32.model_weights"
+    },
+    {
+      "device_position": "Hand",
+      "movement_types": [
+        "duck",
+        "hop_single",
+        "turn_90_right",
+        "turn_90_left",
+        "turn_90",
+        "side_step",
+        "side_step_left",
+        "side_step_right",
+        "gaming_movements",
+        "unknown"
+      ],
+      "test_run": 2129,
+      "filename": "elmo_classification_model_tr-2129_epoch-24_dp-hand_32-32-32.tflite"
+    }
+  ],
+  "model_series": [
+    {
+      "position": "Hand",
+      "name": "subway-surfer",
+      "builds": {
+        "prod": 2129,
+        "beta": 2115
+      }
+    },
+    {
+      "position": "Belly",
+      "name": "bodyweight",
+      "builds": {
+        "prod": null,
+        "beta": 1915
+      }
+    }
+  ]
+}
