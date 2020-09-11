@@ -7,6 +7,13 @@
 - The EvomoUnityMotionAI only supports 64 bit builds.
 
 
+## Install 
+
+We recommend installing using the [UpmGitExtensions](https://github.com/mob-sakai/UpmGitExtension). 
+
+But you can also install it by adding the following line in the package.json: 
+
+      "com.evomo.motionai": "git+https://github.com/Evomo/unityMotionAIPlugin?path=Assets#master"
 
 ## Docu
 
