@@ -1,0 +1,16 @@
+{
+    "name": "Gamehub.Game.Demo",
+    "references": [
+        "GUID:a7edfe8d70fa914489ae8c3b9ae82a4b",
+        "GUID:d6c83174c9952c944b4f431cc951f36f"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

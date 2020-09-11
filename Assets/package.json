@@ -1,0 +1,31 @@
+{
+  "name": "com.evomo.motionai",
+  "version": "0.1.0",
+  "displayName": "Evomo MotionAI",
+  "description": "Plugin to classify complex movements used in exergames",
+  "unity": "2019.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DanAmador/unityMotionAIPlugin.git"
+  },
+  "dependencies": {
+  },
+  "author": {
+    "name": "Evomo",
+    "email": "jakob.wowy@evomo.de",
+    "url": "https://www.evomo.de"
+  },
+  "samples": [
+    {
+      "displayName": "Tracking Demo",
+      "description": "Demo to test the tracking API",
+      "path": "Demos/CoreDemo"
+    } ,
+
+    {
+      "displayName": "GameHub Game Demo",
+      "description": "Demo to show off how to change scenes in the Gamehub",
+      "path": "Demos/GameLaunchDemo"
+    }
+  ]
+}

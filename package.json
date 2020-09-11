@@ -1,0 +1,21 @@
+{
+  "name": "com.evomo.motionai",
+  "version": "0.0.1",
+  "displayName": "Evomo MotionAI",
+  "description": "Plugin to classify complex movements used in exergames",
+  "unity": "2019.1",
+  "unityRelease": "0b5",
+  "type": "Plugin",
+  "author": {
+    "name": "Evomo",
+    "email": "jakob.wowy@evomo.de",
+    "url": "https://www.evomo.de"
+  },
+  "samples": [
+    {
+      "displayName": "Demo",
+      "description": "Demo to test the tracking API",
+      "path": "EvomoDemo"
+    } 
+  ]
+}
