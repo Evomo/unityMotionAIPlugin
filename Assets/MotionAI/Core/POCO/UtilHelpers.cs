@@ -16,15 +16,7 @@ namespace MotionAI {
 			toMuch
 		}
 
-		public enum MovementType {
-			Jump,
-			Duck,
-			Left,
-			Right,
-			Tab
-		}
 
-		
 		
 		public static string ToCustomOrientation(DeviceOrientation dvO) {
 			switch (dvO) {
