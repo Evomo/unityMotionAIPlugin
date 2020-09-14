@@ -9,24 +9,17 @@ using UnityEngine;
 using static MotionAI.Core.Models.Constants;
 
 namespace MotionAI.Core.Editor.ModelGenerator.Builders {
-	public class InternalClassBuilder : BaseClassBuilder {
-		private readonly CustomClassBuilder _external;
-
-		public InternalClassBuilder(string cname, CustomClassBuilder external) : base(cname) {
+	public partial class CustomClassBuilder {
+		public CustomClassBuilder(string cname, CustomClassBuilder external) : base(cname) {
 			_external = external;
+			_internalClasses = new List<CustomClassBuilder>();
 
+			
 			targetClass.TypeAttributes = TypeAttributes.Public | TypeAttributes.Sealed;
 		}
 
-		private InternalClassBuilder WithReferenceTo(string cleanString) {
-			CodeMemberField s = new CodeMemberField();
-//			s.Type = new CodeTypeReference(initialValue.GetType());
 
-
-			return this;
-		}
-
-		public InternalClassBuilder WithReadOnlyField<T>(string name, T initialValue) {
+		public CustomClassBuilder WithReadOnlyField<T>(string name, T initialValue) {
 			CodeMemberField s = new CodeMemberField();
 			CodeTypeReferenceExpression typeRef = new CodeTypeReferenceExpression(initialValue.GetType());
 			bool isEnum = initialValue.GetType().IsEnum;
@@ -42,7 +35,7 @@ namespace MotionAI.Core.Editor.ModelGenerator.Builders {
 			return this;
 		}
 
-		public InternalClassBuilder WithElmos(List<string> elmos) {
+		public CustomClassBuilder WithElmos(List<string> elmos) {
 			foreach (string elmo in elmos) {
 				try {
 					string cleanString = elmo.CleanFromDB();
@@ -65,33 +58,6 @@ namespace MotionAI.Core.Editor.ModelGenerator.Builders {
 			WithElmos(mv.elmos);
 			return _external;
 		}
-
-	
-		public InternalClassBuilder WithMovements(List<string> movements) {
-			Type movementClass = typeof(Movements);
-
-			foreach (string move in movements) {
-				try {
-					TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
-
-					string cleanString = textInfo.ToTitleCase(move.CleanFromDB());
-					var member = movementClass.GetMember(cleanString);
-
-					WithReferenceTo(cleanString);
-				}
-				catch (ArgumentException e) {
-					Debug.LogError(e);
-				}
-			}
-
-			return this;
-		}
-
-
-		public static implicit operator CustomClassBuilder(InternalClassBuilder b) => b._external;
-
-		public override void Build() {
-			_external.Build();
-		}
+		
 	}
 }

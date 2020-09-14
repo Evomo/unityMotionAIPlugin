@@ -48,7 +48,7 @@ namespace MotionAI.Core.Editor.ModelGenerator {
 
 
 			foreach (ModelSeries model_series in mj.model_series) {
-				InternalClassBuilder icb = ccb.WithInternalClass(model_series.name);
+				CustomClassBuilder icb = ccb.WithInternalClass(model_series.name);
 
 				int modelNum = model_series.builds.prod == 0 ? model_series.builds.beta : model_series.builds.prod;
 				Model foundModel = mj.models.Find(x => x.test_run == modelNum);
@@ -59,10 +59,11 @@ namespace MotionAI.Core.Editor.ModelGenerator {
 					.WithReadOnlyField("name", model_series.name);
 
 				if (foundModel != null) {
+					CustomClassBuilder icb2 = icb.WithInternalClass("Movements");
 					foreach (string moveName in foundModel.movement_types) {
 						Movement mv = mj.movement_types.Find(m => m.name == moveName);
 						if (mv != null) {
-							icb.WithInternalClass(moveName.CleanFromDB())
+							icb2.WithInternalClass(moveName.CleanFromDB())
 								.CreateMovement(mv);
 						}
 						else {

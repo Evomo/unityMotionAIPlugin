@@ -11,7 +11,7 @@
 namespace MotionAI.Core.Models {
     
     public class Movements {
-        public static class Arm_Spin {
+        public sealed class Arm_Spin {
             public const string name = "arm_spin";
             public const int id = 86;
             public const MotionAI.Core.Models.Constants.ElmoEnum arm_spin_up = MotionAI.Core.Models.Constants.ElmoEnum.arm_spin_up;
