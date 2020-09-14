@@ -43,6 +43,7 @@ namespace MotionAI.Core.Editor.ModelGenerator.Builders {
 			CustomClassBuilder icb = new CustomClassBuilder(cname, this);
 			_internalClasses.Add(icb);
 
+			
 			return icb;
 		}
 

@@ -44,9 +44,10 @@ namespace MotionAI.Core.Editor.ModelGenerator {
 			StreamReader reader = new StreamReader(modelJsonPath);
 			ModelJson mj = JsonUtility.FromJson<ModelJson>(reader.ReadToEnd());
 
-			CustomClassBuilder ccb = new CustomClassBuilder(outputPath, "Models");
+			CustomClassBuilder ccb = new CustomClassBuilder(outputPath, "Evomodels");
 
 
+			
 			foreach (ModelSeries model_series in mj.model_series) {
 				CustomClassBuilder icb = ccb.WithInternalClass(model_series.name);
 
@@ -137,6 +138,7 @@ namespace MotionAI.Core.Editor.ModelGenerator {
 
 			cb.WithEnum("ElmoEnum", elmos)
 				.WithEnum("DevicePosition", device_positions)
+				
 				.Build();
 		}
 	}
