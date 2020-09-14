@@ -14,7 +14,7 @@ namespace MotionAI.Core.Editor.ModelGenerator.Builders {
 			_external = external;
 			_internalClasses = new List<CustomClassBuilder>();
 
-			
+
 			targetClass.TypeAttributes = TypeAttributes.Public | TypeAttributes.Sealed;
 		}
 
@@ -36,12 +36,13 @@ namespace MotionAI.Core.Editor.ModelGenerator.Builders {
 		}
 
 		public CustomClassBuilder WithElmos(List<string> elmos) {
+			CustomClassBuilder elmoClass = this.WithInternalClass("Elmos");
 			foreach (string elmo in elmos) {
 				try {
 					string cleanString = elmo.CleanFromDB();
 					ElmoEnum val = (ElmoEnum) Enum.Parse(typeof(ElmoEnum), cleanString);
 
-					WithReadOnlyField(elmo, val);
+					elmoClass.WithReadOnlyField(elmo, val);
 				}
 				catch (ArgumentException e) {
 					Debug.LogError(e);
@@ -58,6 +59,5 @@ namespace MotionAI.Core.Editor.ModelGenerator.Builders {
 			WithElmos(mv.elmos);
 			return _external;
 		}
-		
 	}
 }
