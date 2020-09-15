@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using MotionAI.Core.Editor.ModelGenerator.Builders;
-using MotionAI.Core.Models;
 using MotionAI.Core.Util;
-using NUnit.Framework.Internal;
 using UnityEditor;
 using UnityEngine;
 
@@ -47,7 +43,6 @@ namespace MotionAI.Core.Editor.ModelGenerator {
 			CustomClassBuilder ccb = new CustomClassBuilder(outputPath, "Evomodels");
 
 
-			
 			foreach (ModelSeries model_series in mj.model_series) {
 				CustomClassBuilder icb = ccb.WithInternalClass(model_series.name);
 
@@ -134,12 +129,38 @@ namespace MotionAI.Core.Editor.ModelGenerator {
 				.OrderBy(e => e)
 				.Select(e => e.CleanFromDB())
 				.ToList();
-			CustomClassBuilder cb = new CustomClassBuilder(outputPath, "Constants");
 
-			cb.WithEnum("ElmoEnum", elmos)
+			Dictionary<string, int> movements = mj.movement_types
+				.DistinctBy(x => x.name)
+				.ToDictionary(x => x.name, x => x.id);
+
+
+			List<string> models = mj.model_series.Select(x => x.name).Distinct().ToList();
+			new CustomClassBuilder(outputPath, "Constants")
+				.WithEnum("ElmoEnum", elmos)
 				.WithEnum("DevicePosition", device_positions)
-				
+				.WithEnum("MovementEnum", movements)
+				.WithEnum("MovementModel", models)
 				.Build();
+
+			string f = $"{outputPath}/Constants.cs";
+			string[] lines = File.ReadAllLines(f);
+			string[] newLines = RemoveUnnecessaryLine(lines);
+			File.WriteAllLines(f, newLines);
+		}
+
+		private string[] RemoveUnnecessaryLine(string[] lines) {
+			// Hardcoding goes bzzzzzzzzzzzzrt
+			string toCheck = "    public class Constants {";
+			List<string> l = new List<string>();
+			foreach (string line in lines) {
+				if (!line.Equals(toCheck)) {
+					l.Add(line);
+				}
+			}
+
+			l.RemoveAt(l.Count - 1);
+			return l.ToArray();
 		}
 	}
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using MotionAI.Core.Models.Constants;
 
 namespace MotionAI.Core.POCO {
 	[Serializable]
@@ -9,7 +10,8 @@ namespace MotionAI.Core.POCO {
 		public float amplitude;
 		public float durationPositive;
 		public float durationNegative;
-
+		
+		
 		public List<ElementalMovement> elmos = new List<ElementalMovement>();
 		public MovementEnum typeID;
 		public string typeLabel;

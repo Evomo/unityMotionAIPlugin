@@ -1,7 +1,7 @@
-using MotionAI.Core.Controller;
+using MotionAI.Core.Models.Constants;
 using MotionAI.Core.POCO;
 
-namespace Demos.CoreDemo {
+namespace MotionAI.Core.Controller.Example {
 	public class ElmoController : MotionAIController {
 		private ElementalMovement lastElmo;
 
@@ -71,7 +71,7 @@ namespace Demos.CoreDemo {
 			case ElmoEnum.side_step_right_down:
 				return ElmoEnum.side_step_right_up;
 			default:
-				return ElmoEnum.none;
+				return ElmoEnum.heartUp;
 			}
 		}
 	}

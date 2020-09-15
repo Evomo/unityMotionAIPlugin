@@ -19,9 +19,11 @@ namespace MotionAI.Core.Editor.ModelGenerator.Builders {
 			this.className = cleanName;
 			targetUnit = new CodeCompileUnit();
 			targetClass = new CodeTypeDeclaration(cleanName);
-			codeNamespace = new CodeNamespace("MotionAI.Core.Models");
+
+
+			codeNamespace = new CodeNamespace($"MotionAI.Core.Models.{cleanName}");
 			targetUnit.Namespaces.Add(codeNamespace);
-			codeNamespace.Types.Add(targetClass);
+				codeNamespace.Types.Add(targetClass);
 		}
 
 

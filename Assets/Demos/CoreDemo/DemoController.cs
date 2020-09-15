@@ -1,4 +1,5 @@
 ﻿using MotionAI.Core.Controller;
+using MotionAI.Core.Models;
 using MotionAI.Core.POCO;
 using UnityEngine;
 using Random = UnityEngine.Random;

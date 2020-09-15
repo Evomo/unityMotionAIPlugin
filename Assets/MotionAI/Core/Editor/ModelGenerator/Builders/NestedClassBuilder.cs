@@ -1,12 +1,10 @@
 using System;
 using System.CodeDom;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Reflection;
-using MotionAI.Core.Models;
+using MotionAI.Core.Models.Constants;
 using MotionAI.Core.Util;
 using UnityEngine;
-using static MotionAI.Core.Models.Constants;
 
 namespace MotionAI.Core.Editor.ModelGenerator.Builders {
 	public partial class CustomClassBuilder {
@@ -20,17 +18,29 @@ namespace MotionAI.Core.Editor.ModelGenerator.Builders {
 
 
 		public CustomClassBuilder WithReadOnlyField<T>(string name, T initialValue) {
-			CodeMemberField s = new CodeMemberField();
+			CodeMemberProperty s = new CodeMemberProperty();
+
 			CodeTypeReferenceExpression typeRef = new CodeTypeReferenceExpression(initialValue.GetType());
 			bool isEnum = initialValue.GetType().IsEnum;
-			bool isString = (typeof(T) == typeof(String));
+			bool isString = typeof(T) == typeof(string);
 
-			s.Type = new CodeTypeReference(initialValue.GetType());
 			s.Name = name.CleanFromDB();
-			s.Attributes = MemberAttributes.Const | MemberAttributes.Public;
-			s.InitExpression = isEnum
+			CodeExpression fieldReferenceExpression = isEnum
 				? (CodeExpression) new CodeFieldReferenceExpression(typeRef, initialValue.ToString().CleanFromDB())
 				: new CodePrimitiveExpression(isString ? (object) initialValue : Int32.Parse(initialValue.ToString()));
+
+
+			// targetClass.Members.Add(s);
+			// return this;
+
+
+			s.Attributes = MemberAttributes.Public | MemberAttributes.Static | MemberAttributes.Final;
+			s.Name = name.CleanFromDB();
+			s.HasGet = true;
+			s.Type = new CodeTypeReference(initialValue.GetType());
+			s.GetStatements.Add(new CodeMethodReturnStatement(fieldReferenceExpression));
+			// new CodeFieldReferenceExpression(
+			// new CodeThisReferenceExpression(), "heightValue")));
 			targetClass.Members.Add(s);
 			return this;
 		}
@@ -54,8 +64,10 @@ namespace MotionAI.Core.Editor.ModelGenerator.Builders {
 
 
 		public CustomClassBuilder CreateMovement(Movement mv) {
+			MovementEnum val = (MovementEnum) mv.id;
+
 			WithReadOnlyField("name", mv.name);
-			WithReadOnlyField("id", mv.id);
+			WithReadOnlyField("id", val);
 			WithElmos(mv.elmos);
 			return _external;
 		}

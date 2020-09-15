@@ -4,6 +4,7 @@ using MotionAI.Core.POCO;
 using NUnit.Framework;
 using UnityEngine;
 using FluentAssertions;
+using MotionAI.Core.Models.Constants;
 
 namespace MotionAI.Tests.EditTests {
 	public class SerializationTests {
