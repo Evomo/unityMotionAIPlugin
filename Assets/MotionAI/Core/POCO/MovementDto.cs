@@ -4,7 +4,7 @@ using MotionAI.Core.Models.Constants;
 
 namespace MotionAI.Core.POCO {
 	[Serializable]
-	public class Movement {
+	public class MovementDto {
 		public float gVelAmplitudePositive;
 		public float gVelAmplitudeNegative;
 		public float amplitude;

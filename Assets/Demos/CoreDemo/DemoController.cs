@@ -14,7 +14,7 @@ namespace Demos.CoreDemo {
 			mainModule.startColor = Random.ColorHSV();
 		}
 
-		protected override void HandleMovement(Movement msg) {
+		protected override void HandleMovement(MovementDto msg) {
 			var emissionModule = ps.emission;
 			var velocityOverLifetimeModule = ps.velocityOverLifetime;
 			emissionModule.burstCount = (int)msg.amplitude * 7;

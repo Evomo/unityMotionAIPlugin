@@ -1,4 +1,5 @@
 using MotionAI.Core.Models.Constants;
+using MotionAI.Core.Models.Evomodels;
 using MotionAI.Core.POCO;
 
 namespace MotionAI.Core.Controller.Example {
@@ -7,14 +8,17 @@ namespace MotionAI.Core.Controller.Example {
 
 		public OnElmoEvent jump, duck, left, right;
 
-		protected override void HandleMovement(Movement msg) {
+		protected override void HandleMovement(MovementDto msg) {
+			
 			msg.elmos.ForEach(HandleElmo);
 		}
 
 		private void HandleElmo(ElementalMovement elementalMovement) {
+			Subway_Surfer model = new Subway_Surfer();
+			
 			if (!elementalMovement.rejected) {
 				switch (elementalMovement.typeID) {
-				case ElmoEnum.hop_single_up:
+				case (ElmoEnum)Subway_Surfer.Elmos.hop_single_up:
 					jump.Invoke(elementalMovement);
 					break;
 				case ElmoEnum.duck_down:
@@ -33,6 +37,7 @@ namespace MotionAI.Core.Controller.Example {
 				if (lastElmo != null) {
 					if (lastElmo.rejected && elementalMovement.rejected == false) {
 						switch (lastElmo.typeID) {
+
 						case ElmoEnum.duck_down:
 							RecoverElmo(elementalMovement, duck);
 							break;

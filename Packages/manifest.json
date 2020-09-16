@@ -39,6 +39,7 @@
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0",
-    "com.boundfoxstudios.fluentassertions": "git+https://github.com/BoundfoxStudios/fluentassertions-unity#v5.10.3"
+    "com.boundfoxstudios.fluentassertions": "git+https://github.com/BoundfoxStudios/fluentassertions-unity#v5.10.3",
+    "com.solidalloy.type.references": "git+https://github.com/SolidAlloy/ClassTypeReference-for-Unity#Make-type-reference-support-all-types"
   }
 }

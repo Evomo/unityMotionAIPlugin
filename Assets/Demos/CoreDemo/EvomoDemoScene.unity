@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 338928924}
   - component: {fileID: 338928923}
   - component: {fileID: 338928921}
+  - component: {fileID: 338928925}
   m_Layer: 0
   m_Name: Controller (1)
   m_TagString: Untagged
@@ -5011,6 +5012,27 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &338928925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 338928920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4401b1e7aa9cedb4f961b53dd785ae69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chosenModel:
+    GuidAssignmentFailed: 0
+    _typeNameAndAssembly: MotionAI.Core.Models.Evomodels.Bodyweight, MotionAI.Core
+    _GUID: 
+  _modelComponent: {fileID: 0}
+  lastRef:
+    GuidAssignmentFailed: 0
+    _typeNameAndAssembly: 
+    _GUID: 
 --- !u!1 &361701204
 GameObject:
   m_ObjectHideFlags: 0
@@ -5250,17 +5272,13 @@ MonoBehaviour:
   - three
   DebugText: {fileID: 1173423659}
   startTrackingButton: {fileID: 1817138074}
-  lastMovement:
+  lastMovementDto:
     gVelAmplitudePositive: 0
     gVelAmplitudeNegative: 0
     amplitude: 0
     durationPositive: 0
     durationNegative: 0
-    elmos:
-    - typeID: 0
-      typeLabel: 
-      rejected: 0
-      deviceIdent: 
+    elmos: []
     typeID: 0
     typeLabel: 
   maim: {fileID: 0}

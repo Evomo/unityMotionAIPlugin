@@ -85,7 +85,7 @@ namespace MotionAI.Core.Controller {
 			}
 		}
 
-		public void ManageMotion(Movement msg) {
+		public void ManageMotion(MovementDto msg) {
 			// Debug.Log(JsonUtility.ToJson(msg, true));
 			if (unpairedAvailableControllers.Count == 0) {
 				PairingController = false;

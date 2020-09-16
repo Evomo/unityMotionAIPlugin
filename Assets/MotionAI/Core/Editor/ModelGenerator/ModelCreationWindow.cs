@@ -1,7 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using MotionAI.Core.Editor.ModelGenerator.Builders;
+using MotionAI.Core.Models;
+using MotionAI.Core.Models.Constants;
 using MotionAI.Core.Util;
 using UnityEditor;
 using UnityEngine;
@@ -19,22 +22,50 @@ namespace MotionAI.Core.Editor.ModelGenerator {
 
 		void OnGUI() {
 			CreateField("Model JSON", ref modelJsonPath);
-
 			CreateField("Output Path", ref outputPath, true);
 
 			if (GUILayout.Button("Create Enums")) {
 				GenerateEnums();
 			}
 
-			if (GUILayout.Button("Create Movements")) {
-				GenerateMovements();
-			}
-
+			// if (GUILayout.Button("Create Atoms")) {
+			// 	GenerateScriptableObjects();
+			// }
 
 			if (GUILayout.Button("Create Models")) {
 				GenerateModel();
 			}
 		}
+
+		// private void GenerateScriptableObjects() {
+		// 	StreamReader reader = new StreamReader(modelJsonPath);
+		// 	ModelJson mj = JsonUtility.FromJson<ModelJson>(reader.ReadToEnd());
+		//
+		// 	ScriptableObjectBuilder ob = new ScriptableObjectBuilder();
+		// 	
+		// 	foreach (ModelSeries model_series in mj.model_series) {
+		// 		int modelNum = model_series.builds.prod == 0 ? model_series.builds.beta : model_series.builds.prod;
+		//
+		// 		Model foundModel = mj.models.Find(x => x.test_run == modelNum);
+		// 		if (foundModel != null) {
+		// 			foreach (string moveName in foundModel.movement_types) {
+		// 				Movement mv = mj.movement_types.Find(m => m.name == moveName);
+		// 				if (mv != null) {
+		// 					ob = ob.WithMovement(mv);
+		// 				}
+		// 				else {
+		// 					Debug.LogError($"Move {moveName} not found");
+		// 				}
+		// 			}
+		//
+		// 			ob = ob.WithModel(foundModel);
+		// 		}
+		// 		else {
+		// 			Debug.LogError($"Model with {model_series.name} not found");
+		// 		}
+		// 	}
+		// }
+
 
 		private void GenerateModel() {
 			StreamReader reader = new StreamReader(modelJsonPath);
@@ -47,8 +78,11 @@ namespace MotionAI.Core.Editor.ModelGenerator {
 				CustomClassBuilder icb = ccb.WithInternalClass(model_series.name);
 
 				int modelNum = model_series.builds.prod == 0 ? model_series.builds.beta : model_series.builds.prod;
+				List<string> allElmos = new List<string>();
+
 				Model foundModel = mj.models.Find(x => x.test_run == modelNum);
 				icb
+					.WithImport("MotionAI.Core.Models.Constants")
 					.WithReadOnlyField("model_type", model_series.model_type)
 					.WithReadOnlyField("beta_id", model_series.builds.beta)
 					.WithReadOnlyField("prod_id", model_series.builds.prod)
@@ -58,7 +92,10 @@ namespace MotionAI.Core.Editor.ModelGenerator {
 					CustomClassBuilder icb2 = icb.WithInternalClass("Movements");
 					foreach (string moveName in foundModel.movement_types) {
 						Movement mv = mj.movement_types.Find(m => m.name == moveName);
+
 						if (mv != null) {
+							foreach (string mvElmo in mv.elmos) allElmos.Add(mvElmo);
+
 							icb2.WithInternalClass(moveName.CleanFromDB())
 								.CreateMovement(mv);
 						}
@@ -70,28 +107,23 @@ namespace MotionAI.Core.Editor.ModelGenerator {
 				else {
 					Debug.LogError($"Model with {model_series.name} not found");
 				}
+
+				Dictionary<string, ElmoEnum> elmoDict = new Dictionary<string, ElmoEnum>();
+				foreach (string elmo in allElmos) {
+					try {
+						ElmoEnum v = (ElmoEnum) Enum.Parse(typeof(ElmoEnum), elmo.CleanFromDB());
+						elmoDict.Add(elmo, v);
+					}
+					catch (ArgumentException) {
+						Debug.LogError($"Elmo {elmo} not found");
+					}
+				}
+
+				icb.WithEnum<ElmoEnum>("Elmos", elmoDict);
 			}
 
 			ccb.Build();
 		}
-
-		private void GenerateMovements() {
-			StreamReader reader = new StreamReader(modelJsonPath);
-			ModelJson mj = JsonUtility.FromJson<ModelJson>(reader.ReadToEnd());
-
-			CustomClassBuilder ccb = new CustomClassBuilder(outputPath, "Movements");
-
-			List<Movement> filteredMoves = mj.movement_types.DistinctBy(x => x.name).ToList();
-			foreach (Movement mv in filteredMoves) {
-				ccb = ccb
-					.WithInternalClass(mv.name)
-					.CreateMovement(mv);
-			}
-
-
-			ccb.Build();
-		}
-
 
 		private void CreateField(string label, ref string text, bool output = false) {
 			string directory = output ? "Assets/MotionAI/Core/Models" : "Assets/MotionAI/Core/Editor/ModelFiles";
@@ -109,6 +141,7 @@ namespace MotionAI.Core.Editor.ModelGenerator {
 
 			EditorGUILayout.EndHorizontal();
 		}
+
 
 		private void GenerateEnums() {
 			StreamReader reader = new StreamReader(modelJsonPath);

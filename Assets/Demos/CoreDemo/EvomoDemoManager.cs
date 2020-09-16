@@ -17,7 +17,7 @@ namespace Demos.CoreDemo {
 		public Text startTrackingButton;
 
 
-		public Movement lastMovement;
+		public MovementDto lastMovementDto;
 		public MotionAIManager maim;
 
 
@@ -45,7 +45,7 @@ namespace Demos.CoreDemo {
 		public void SendDebugMovementString() {
 			string debugId = fakeDeviceIds[Random.Range(0, fakeDeviceIds.Count)];
 
-			Movement m = new Movement {gVelAmplitudeNegative = Random.Range(0, 10), amplitude = Random.Range(0, 10)};
+			MovementDto m = new MovementDto {gVelAmplitudeNegative = Random.Range(0, 10), amplitude = Random.Range(0, 10)};
 
 
 			int amountOfElmos = Random.Range(0, 5);
@@ -65,9 +65,9 @@ namespace Demos.CoreDemo {
 		}
 
 
-		public void onMovement(Movement mv) {
+		public void onMovement(MovementDto mv) {
 			DebugText.text = JsonUtility.ToJson(mv, true);
-			lastMovement = mv;
+			lastMovementDto = mv;
 		}
 
 		public void OnElmo(ElementalMovement mv) {

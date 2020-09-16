@@ -129,13 +129,13 @@ namespace MotionAI.Core {
 			BridgeMessage msg = JsonUtility.FromJson<BridgeMessage>(movementStr);
 
 
-			if (msg.movement == null) {
-				Movement mv = new Movement();
+			if (msg.movementDto == null) {
+				MovementDto mv = new MovementDto();
 				mv.elmos.Add(msg.elmo);
 				controllerManager.ManageMotion(mv);
 			}
 			else {
-				controllerManager.ManageMotion(msg.movement);
+				controllerManager.ManageMotion(msg.movementDto);
 			}
 		}
 

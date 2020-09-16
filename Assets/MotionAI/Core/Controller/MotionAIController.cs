@@ -21,14 +21,14 @@ namespace MotionAI.Core.Controller {
 			onMovement.AddListener(MovementCallBack);
 		}
 
-		private void MovementCallBack(Movement msg) {
+		private void MovementCallBack(MovementDto msg) {
 			string diD = msg.elmos.First().deviceIdent;
 			if (diD == DeviceId || isGlobal) {
 				HandleMovement(msg);
 			}
 		}
 
-		protected virtual void HandleMovement(Movement msg) {
+		protected virtual void HandleMovement(MovementDto msg) {
 			Debug.Log("MOVEMENT");
 		}
 

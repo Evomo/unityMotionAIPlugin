@@ -64,7 +64,7 @@ namespace MotionAI.Tests.PlayTests {
 			manager.ControlPairing();
 
 
-			dids.ForEach(did => manager.controllerManager.ManageMotion(new Movement {
+			dids.ForEach(did => manager.controllerManager.ManageMotion(new MovementDto {
 				elmos = new List<ElementalMovement> {
 					new ElementalMovement {
 						deviceIdent = did
@@ -103,7 +103,7 @@ namespace MotionAI.Tests.PlayTests {
 			manager.ControlPairing();
 
 
-			dids.ForEach(did => manager.controllerManager.ManageMotion(new Movement {
+			dids.ForEach(did => manager.controllerManager.ManageMotion(new MovementDto {
 				elmos = new List<ElementalMovement> {
 					new ElementalMovement {
 						deviceIdent = did

@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace MotionAI.Core.Editor.ModelGenerator.Builders {
 	public partial class CustomClassBuilder {
-		public CustomClassBuilder(string cname, CustomClassBuilder external) : base(cname) {
+		public CustomClassBuilder(string cname, CustomClassBuilder external) : this(cname) {
 			_external = external;
 			_internalClasses = new List<CustomClassBuilder>();
 
@@ -39,8 +39,6 @@ namespace MotionAI.Core.Editor.ModelGenerator.Builders {
 			s.HasGet = true;
 			s.Type = new CodeTypeReference(initialValue.GetType());
 			s.GetStatements.Add(new CodeMethodReturnStatement(fieldReferenceExpression));
-			// new CodeFieldReferenceExpression(
-			// new CodeThisReferenceExpression(), "heightValue")));
 			targetClass.Members.Add(s);
 			return this;
 		}
@@ -71,5 +69,7 @@ namespace MotionAI.Core.Editor.ModelGenerator.Builders {
 			WithElmos(mv.elmos);
 			return _external;
 		}
+
+
 	}
 }

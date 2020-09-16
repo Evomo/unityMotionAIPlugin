@@ -8,7 +8,7 @@ namespace MotionAI.Core.Controller {
 	}
 
 	[Serializable]
-	public class OnMovementEvent : UnityEvent<Movement> {
+	public class OnMovementEvent : UnityEvent<MovementDto> {
 	}
 
 	[Serializable]
