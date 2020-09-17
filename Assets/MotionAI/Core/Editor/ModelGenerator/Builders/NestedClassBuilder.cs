@@ -1,6 +1,7 @@
 using System;
 using System.CodeDom;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using MotionAI.Core.Models;
 using MotionAI.Core.Models.Generated;
@@ -12,7 +13,7 @@ namespace MotionAI.Core.Editor.ModelGenerator.Builders {
 		public CustomClassBuilder(string cname, CustomClassBuilder external) : this(cname) {
 			_external = external;
 			_internalClasses = new List<CustomClassBuilder>();
-			
+
 			targetClass.TypeAttributes = TypeAttributes.Public | TypeAttributes.Sealed;
 		}
 
@@ -54,10 +55,6 @@ namespace MotionAI.Core.Editor.ModelGenerator.Builders {
 				: new CodePrimitiveExpression(isString ? (object) initialValue : Int32.Parse(initialValue.ToString()));
 
 
-			// targetClass.Members.Add(s);
-			// return this;
-
-
 			s.Attributes = attributes;
 			s.Name = name.CleanFromDB();
 			s.HasGet = true;
@@ -92,15 +89,16 @@ namespace MotionAI.Core.Editor.ModelGenerator.Builders {
 		public CustomClassBuilder CreateMovement(MovementJson mv) {
 			MovementEnum val = (MovementEnum) mv.id;
 
+			string enumSnippet =
+				$"new ElmoEnum[]{{{string.Join(", ", mv.elmos.Select(x => (ElmoEnum) Enum.Parse(typeof(ElmoEnum), x.CleanFromDB())).Select(x => $"(ElmoEnum){(int) x}"))}}}";
+
 			CodeExpression[] p = new CodeExpression[] {
 				new CodePrimitiveExpression(mv.name),
 				new CodeSnippetExpression($"(MovementEnum){mv.id}"),
+				new CodeSnippetExpression(enumSnippet),
 			};
 			var cobe = new CodeObjectCreateExpression(typeof(MoveHolder), p);
-
 			WithObject(mv.name, "MoveHolder", cobe);
-			//TODO 
-			// WithElmos(mv.elmos);
 			return _external;
 		}
 

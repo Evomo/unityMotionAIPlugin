@@ -1,20 +1,24 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using MotionAI.Core.Models.Generated;
 using MotionAI.Core.POCO;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace MotionAI.Core.Models {
 	[Serializable]
 	public class MoveHolder {
-		[HideInInspector] public string name;
-		[HideInInspector] public MovementEnum id;
+		public readonly string name;
+		public readonly MovementEnum id;
 		public OnMovementEvent onMove;
 
-		public MoveHolder(string mvName, MovementEnum val) {
+		public readonly HashSet<ElmoEnum> elmos;
+
+		public MoveHolder(string mvName, MovementEnum val, ElmoEnum[] elmos = null) {
 			name = mvName;
 			id = val;
 			onMove = new OnMovementEvent();
+			this.elmos = new HashSet<ElmoEnum>(elmos ?? Array.Empty<ElmoEnum>());
 		}
 
 		public MoveHolder() {

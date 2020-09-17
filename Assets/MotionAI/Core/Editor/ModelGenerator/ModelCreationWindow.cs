@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -16,7 +17,6 @@ namespace MotionAI.Core.Editor.ModelGenerator {
 
 		[MenuItem("Evomo/Class Generation")]
 		static void Init() {
-			// Get existing open window or if none, make a new one:
 			GetWindow<ModelCreationWindow>("Model Class Creation");
 		}
 

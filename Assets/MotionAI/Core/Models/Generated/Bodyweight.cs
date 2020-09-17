@@ -13,6 +13,7 @@ namespace MotionAI.Core.Models.Generated {
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using MotionAI.Core.POCO;
     
     public class Bodyweight : AbstractModelComponent {
         public Movements moves;
@@ -41,20 +42,20 @@ namespace MotionAI.Core.Models.Generated {
         }
         [Serializable()]
         public class Movements {
-            public MoveHolder bench_dip = new MotionAI.Core.Models.MoveHolder("bench_dip", (MovementEnum)6);
-            public MoveHolder jumping_jack = new MotionAI.Core.Models.MoveHolder("jumping_jack", (MovementEnum)5);
-            public MoveHolder mountain_climbers = new MotionAI.Core.Models.MoveHolder("mountain_climbers", (MovementEnum)10);
-            public MoveHolder lunge = new MotionAI.Core.Models.MoveHolder("lunge", (MovementEnum)12);
-            public MoveHolder burpee = new MotionAI.Core.Models.MoveHolder("burpee", (MovementEnum)24);
-            public MoveHolder squat_jump = new MotionAI.Core.Models.MoveHolder("squat_jump", (MovementEnum)19);
-            public MoveHolder high_knees = new MotionAI.Core.Models.MoveHolder("high_knees", (MovementEnum)26);
-            public MoveHolder hip_raise = new MotionAI.Core.Models.MoveHolder("hip_raise", (MovementEnum)28);
-            public MoveHolder calf_raise = new MotionAI.Core.Models.MoveHolder("calf_raise", (MovementEnum)32);
-            public MoveHolder plank = new MotionAI.Core.Models.MoveHolder("plank", (MovementEnum)33);
-            public MoveHolder climbers = new MotionAI.Core.Models.MoveHolder("climbers", (MovementEnum)34);
-            public MoveHolder plank_jack = new MotionAI.Core.Models.MoveHolder("plank_jack", (MovementEnum)39);
-            public MoveHolder lunge_reverse = new MotionAI.Core.Models.MoveHolder("lunge_reverse", (MovementEnum)41);
-            public MoveHolder good_morning = new MotionAI.Core.Models.MoveHolder("good_morning", (MovementEnum)40);
+            public MoveHolder bench_dip = new MotionAI.Core.Models.MoveHolder("bench_dip", (MovementEnum)6, new ElmoEnum[]{(ElmoEnum)4, (ElmoEnum)3});
+            public MoveHolder jumping_jack = new MotionAI.Core.Models.MoveHolder("jumping_jack", (MovementEnum)5, new ElmoEnum[]{(ElmoEnum)94, (ElmoEnum)95});
+            public MoveHolder mountain_climbers = new MotionAI.Core.Models.MoveHolder("mountain_climbers", (MovementEnum)10, new ElmoEnum[]{(ElmoEnum)121, (ElmoEnum)120});
+            public MoveHolder lunge = new MotionAI.Core.Models.MoveHolder("lunge", (MovementEnum)12, new ElmoEnum[]{(ElmoEnum)119, (ElmoEnum)114});
+            public MoveHolder burpee = new MotionAI.Core.Models.MoveHolder("burpee", (MovementEnum)24, new ElmoEnum[]{(ElmoEnum)7, (ElmoEnum)8, (ElmoEnum)9, (ElmoEnum)10});
+            public MoveHolder squat_jump = new MotionAI.Core.Models.MoveHolder("squat_jump", (MovementEnum)19, new ElmoEnum[]{(ElmoEnum)188, (ElmoEnum)187});
+            public MoveHolder high_knees = new MotionAI.Core.Models.MoveHolder("high_knees", (MovementEnum)26, new ElmoEnum[]{(ElmoEnum)74, (ElmoEnum)75});
+            public MoveHolder hip_raise = new MotionAI.Core.Models.MoveHolder("hip_raise", (MovementEnum)28, new ElmoEnum[]{(ElmoEnum)77, (ElmoEnum)76});
+            public MoveHolder calf_raise = new MotionAI.Core.Models.MoveHolder("calf_raise", (MovementEnum)32, new ElmoEnum[]{(ElmoEnum)14, (ElmoEnum)13});
+            public MoveHolder plank = new MotionAI.Core.Models.MoveHolder("plank", (MovementEnum)33, new ElmoEnum[]{(ElmoEnum)126});
+            public MoveHolder climbers = new MotionAI.Core.Models.MoveHolder("climbers", (MovementEnum)34, new ElmoEnum[]{(ElmoEnum)16, (ElmoEnum)15});
+            public MoveHolder plank_jack = new MotionAI.Core.Models.MoveHolder("plank_jack", (MovementEnum)39, new ElmoEnum[]{(ElmoEnum)127, (ElmoEnum)128});
+            public MoveHolder lunge_reverse = new MotionAI.Core.Models.MoveHolder("lunge_reverse", (MovementEnum)41, new ElmoEnum[]{(ElmoEnum)115, (ElmoEnum)116});
+            public MoveHolder good_morning = new MotionAI.Core.Models.MoveHolder("good_morning", (MovementEnum)40, new ElmoEnum[]{(ElmoEnum)62, (ElmoEnum)63});
         }
     }
 }

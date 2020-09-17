@@ -82,11 +82,12 @@ namespace MotionAI.Core.Editor.ModelGenerator.Builders {
 			return this;
 		}
 
-		public CustomClassBuilder WithInternalClass(string cname) {
-			TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
-
+		public CustomClassBuilder
+			WithInternalClass(string cname, MemberAttributes attributes = MemberAttributes.Public) {
 			CustomClassBuilder icb = new CustomClassBuilder(cname, this);
-			icb.targetClass = new CodeTypeDeclaration(textInfo.ToTitleCase(cname).CleanFromDB());
+			icb.targetClass = new CodeTypeDeclaration(cname.ToClassCase());
+
+			icb.targetClass.Attributes = attributes;
 
 			_internalClasses.Add(icb);
 
@@ -99,7 +100,6 @@ namespace MotionAI.Core.Editor.ModelGenerator.Builders {
 			foreach (CustomClassBuilder internalClass in _internalClasses) {
 				internalClass.AddInternalClasses();
 				if (_external == null) {
-//					codeNamespace.Types.Add(internalClass.targetClass);
 					targetClass.Members.Add(internalClass.targetClass);
 				}
 				else {

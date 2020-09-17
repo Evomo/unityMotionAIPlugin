@@ -16,7 +16,7 @@ namespace Demos.CoreDemo {
 			Debug.Log("Starting inspector controller");
 
 			//Initialize the controller by casting the model to the controller you wish to use
-			_movementModel = modelManager.model as Subway_Surfer;
+			_movementModel = GetComponent<AbstractModelComponent>() as Subway_Surfer;
 
 			//Once initialized you can access its members and events!
 
