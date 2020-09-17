@@ -11,6 +11,8 @@
 namespace MotionAI.Core.Models.Generated {
     using UnityEngine;
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
     
     public class Bodyweight : AbstractModelComponent {
         public Movements moves;
@@ -33,6 +35,9 @@ namespace MotionAI.Core.Models.Generated {
             get {
                 return "bodyweight";
             }
+        }
+        public override System.Collections.Generic.List<MotionAI.Core.Models.MoveHolder> GetMoveHolders() {
+            return moves.GetType().GetFields().Select(x => (MoveHolder)(x.GetValue(moves))).ToList();;
         }
         [Serializable()]
         public class Movements {

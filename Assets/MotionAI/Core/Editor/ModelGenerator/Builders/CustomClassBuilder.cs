@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using MotionAI.Core.Models;
 using MotionAI.Core.Util;
 
 namespace MotionAI.Core.Editor.ModelGenerator.Builders {
@@ -23,7 +24,7 @@ namespace MotionAI.Core.Editor.ModelGenerator.Builders {
 			_internalClasses = new List<CustomClassBuilder>();
 		}
 
-		
+
 		public CustomClassBuilder WithEnum<T>(string enumName, Dictionary<string, T> dictEnum) {
 			CodeTypeDeclaration type = new CodeTypeDeclaration(enumName);
 			type.IsEnum = true;
@@ -46,8 +47,26 @@ namespace MotionAI.Core.Editor.ModelGenerator.Builders {
 				type.Members.Add(f);
 			}
 
-			
+
 			targetClass.Members.Add(type);
+			return this;
+		}
+
+		public CustomClassBuilder WithMethod(string name, string codeSnippet, Type returnType) {
+			CodeMemberMethod method = new CodeMemberMethod();
+			method.Attributes =
+				MemberAttributes.Public | MemberAttributes.Override;
+			method.Name = name;
+			method.ReturnType =
+				new CodeTypeReference(returnType);
+
+			CodeMethodReturnStatement returnStatement =
+				new CodeMethodReturnStatement();
+
+			returnStatement.Expression = new CodeSnippetExpression(codeSnippet);
+
+			method.Statements.Add(returnStatement);
+			targetClass.Members.Add(method);
 			return this;
 		}
 
@@ -82,7 +101,6 @@ namespace MotionAI.Core.Editor.ModelGenerator.Builders {
 				if (_external == null) {
 //					codeNamespace.Types.Add(internalClass.targetClass);
 					targetClass.Members.Add(internalClass.targetClass);
-
 				}
 				else {
 					targetClass.Members.Add(internalClass.targetClass);
@@ -95,9 +113,10 @@ namespace MotionAI.Core.Editor.ModelGenerator.Builders {
 				_external.Build();
 				return;
 			}
+
 			AddInternalClasses();
 
-			
+
 			CodeDomProvider provider = CodeDomProvider.CreateProvider("CSharp");
 			CodeGeneratorOptions options = new CodeGeneratorOptions();
 			options.BracingStyle = "block";

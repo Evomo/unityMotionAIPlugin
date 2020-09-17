@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using MotionAI.Core.Editor.ModelGenerator.Builders;
+using MotionAI.Core.Models;
 using MotionAI.Core.Models.Generated;
 using MotionAI.Core.Util;
 using UnityEditor;
@@ -45,17 +46,23 @@ namespace MotionAI.Core.Editor.ModelGenerator {
 
 
 				ccb.WithImport("UnityEngine")
-					.WithImport("System");
+					.WithImport("System")
+					.WithImport("System.Collections.Generic")
+					.WithImport("System.Linq")
+					.WithImport("MotionAI.Core.POCO");
 
 				int modelNum = model_series.builds.prod == 0 ? model_series.builds.beta : model_series.builds.prod;
 				List<string> allElmos = new List<string>();
 
 				ModelJson foundModelJson = mj.models.Find(x => x.test_run == modelNum);
 
+				string moveHoldersnippet =
+					@"moves.GetType().GetFields().Select(x => (MoveHolder)(x.GetValue(moves))).ToList();";
 
 				if (foundModelJson != null) {
 					ccb
 						.InheritsFrom("AbstractModelComponent")
+						.WithMethod("GetMoveHolders", moveHoldersnippet, typeof(List<MoveHolder>))
 						.WithReadOnlyField("modelType", model_series.model_type)
 						.WithReadOnlyField("betaID", model_series.builds.beta)
 						.WithReadOnlyField("productionID", model_series.builds.prod)

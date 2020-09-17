@@ -1,8 +1,8 @@
 using System;
-using MotionAI.Core.POCO;
+using MotionAI.Core.Controller;
 using UnityEngine.Events;
 
-namespace MotionAI.Core.Controller {
+namespace MotionAI.Core.POCO {
 	[Serializable]
 	public class ControllerPairedEvent : UnityEvent<MotionAIController> {
 	}

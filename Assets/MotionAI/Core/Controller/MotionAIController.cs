@@ -1,6 +1,10 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using MotionAI.Core.Models;
+using MotionAI.Core.Models.Generated;
 using MotionAI.Core.POCO;
 using TypeReferences;
 using UnityEngine;
@@ -9,15 +13,16 @@ namespace MotionAI.Core.Controller {
 	public class MotionAIController : MonoBehaviour {
 		[Serializable]
 		public class ModelManager {
-
 			public AbstractModelComponent model => modelComponent;
+
 			[Inherits(typeof(AbstractModelComponent), ExcludeNone = true),
 			 TypeOptions(Grouping = Grouping.ByNamespaceFlat)]
 			public TypeReference chosenModel;
 
-			private AbstractModelComponent modelComponent;
 
-			
+			[SerializeField] private AbstractModelComponent modelComponent;
+
+
 			private Type _lastRef;
 			public bool IsSameModel => _lastRef == chosenModel;
 
@@ -55,6 +60,22 @@ namespace MotionAI.Core.Controller {
 		}
 
 
+		private Dictionary<MovementEnum, MoveHolder> _moveHolders;
+
+
+		private void FillDictionary() {
+			_moveHolders = new Dictionary<MovementEnum, MoveHolder>();
+			foreach (MoveHolder move in modelManager.model.GetMoveHolders()) {
+				_moveHolders[move.id] = move;
+			}
+
+		}
+
+
+		public virtual void Start() {
+			FillDictionary();
+		}
+
 		public ControllerSettings controllerSettings;
 		public ModelManager modelManager;
 		public string DeviceId => controllerSettings.deviceId;
@@ -75,16 +96,24 @@ namespace MotionAI.Core.Controller {
 		private void MovementCallBack(MovementDto msg) {
 			string diD = msg.elmos.First().deviceIdent;
 			if (diD == DeviceId || IsGlobal) {
+				InvokEvents(msg);
 				HandleMovement(msg);
 			}
 		}
 
+		private void InvokEvents(MovementDto e) {
+			MoveHolder holder = new MoveHolder();
+			if (_moveHolders?.TryGetValue(e.typeID, out holder) ?? false) {
+				holder?.onMove.Invoke(e);
+			}
+		}
+
 		protected virtual void HandleMovement(MovementDto msg) {
-			Debug.Log("MOVEMENT");
 		}
 
 		public void Unpair() {
+			
 			controllerSettings.Unpair();
 		}
 	}
-}
+}	

@@ -1,5 +1,6 @@
 using System;
 using MotionAI.Core.Models.Generated;
+using MotionAI.Core.POCO;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -8,12 +9,15 @@ namespace MotionAI.Core.Models {
 	public class MoveHolder {
 		[HideInInspector] public string name;
 		[HideInInspector] public MovementEnum id;
-		public UnityEvent onMove;
+		public OnMovementEvent onMove;
 
 		public MoveHolder(string mvName, MovementEnum val) {
 			name = mvName;
 			id = val;
-			onMove = new UnityEvent();
+			onMove = new OnMovementEvent();
+		}
+
+		public MoveHolder() {
 		}
 	}
 }
