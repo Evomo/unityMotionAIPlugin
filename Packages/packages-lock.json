@@ -7,13 +7,6 @@
       "dependencies": {},
       "hash": "2c40161561692659ca368d32eb43f946d881764c"
     },
-    "com.brunomikoski.scriptableobjectcollection": {
-      "version": "git+https://github.com/brunomikoski/ScriptableObjectCollection#v1.2.6",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "8958abb9d6c1a91cd74299610d36d39227827cde"
-    },
     "com.coffee.upm-git-extension": {
       "version": "https://github.com/mob-sakai/UpmGitExtension.git",
       "depth": 0,

@@ -34,7 +34,7 @@ namespace MotionAI.Tests.PlayTests {
 			int amountOfControllers = 3;
 			for (int i = 0; i < amountOfControllers; i++) {
 				MotionAIController c = new GameObject().AddComponent<MotionAIController>();
-				c.isGlobal = true;
+				c.IsGlobal = true;
 			}
 
 			manager.ControlPairing();

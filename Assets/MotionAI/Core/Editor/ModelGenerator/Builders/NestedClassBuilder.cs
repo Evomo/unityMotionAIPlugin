@@ -17,7 +17,8 @@ namespace MotionAI.Core.Editor.ModelGenerator.Builders {
 		}
 
 
-		public CustomClassBuilder WithReadOnlyField<T>(string name, T initialValue) {
+		public CustomClassBuilder WithReadOnlyField<T>(string name, T initialValue,
+			MemberAttributes attributes = MemberAttributes.Public | MemberAttributes.Static | MemberAttributes.Final) {
 			CodeMemberProperty s = new CodeMemberProperty();
 
 			CodeTypeReferenceExpression typeRef = new CodeTypeReferenceExpression(initialValue.GetType());
@@ -34,7 +35,7 @@ namespace MotionAI.Core.Editor.ModelGenerator.Builders {
 			// return this;
 
 
-			s.Attributes = MemberAttributes.Public | MemberAttributes.Static | MemberAttributes.Final;
+			s.Attributes = attributes;
 			s.Name = name.CleanFromDB();
 			s.HasGet = true;
 			s.Type = new CodeTypeReference(initialValue.GetType());
@@ -61,15 +62,17 @@ namespace MotionAI.Core.Editor.ModelGenerator.Builders {
 		}
 
 
-		public CustomClassBuilder CreateMovement(Movement mv) {
+		public CustomClassBuilder WithEvents(List<string> eventNames) {
+			return this;
+		}
+
+		public CustomClassBuilder CreateMovement(MovementJson mv) {
 			MovementEnum val = (MovementEnum) mv.id;
 
-			WithReadOnlyField("name", mv.name);
+			WithReadOnlyField("movementName", mv.name);
 			WithReadOnlyField("id", val);
 			WithElmos(mv.elmos);
 			return _external;
 		}
-
-
 	}
 }

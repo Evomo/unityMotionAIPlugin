@@ -37,7 +37,7 @@ namespace MotionAI.Core.Controller {
 
 				unpairedAvailableControllers = availableControllers
 					.Select(c => {
-						if (c.isGlobal) {
+						if (c.IsGlobal) {
 							PairController("global", c);
 						}
 

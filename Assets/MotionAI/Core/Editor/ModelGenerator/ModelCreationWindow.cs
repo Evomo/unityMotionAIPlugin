@@ -5,6 +5,7 @@ using System.Linq;
 using MotionAI.Core.Editor.ModelGenerator.Builders;
 using MotionAI.Core.Models;
 using MotionAI.Core.Models.Constants;
+using MotionAI.Core.Models.Evomodels;
 using MotionAI.Core.Util;
 using UnityEditor;
 using UnityEngine;
@@ -27,71 +28,40 @@ namespace MotionAI.Core.Editor.ModelGenerator {
 			if (GUILayout.Button("Create Enums")) {
 				GenerateEnums();
 			}
-
-			// if (GUILayout.Button("Create Atoms")) {
-			// 	GenerateScriptableObjects();
-			// }
+			
 
 			if (GUILayout.Button("Create Models")) {
 				GenerateModel();
 			}
 		}
 
-		// private void GenerateScriptableObjects() {
-		// 	StreamReader reader = new StreamReader(modelJsonPath);
-		// 	ModelJson mj = JsonUtility.FromJson<ModelJson>(reader.ReadToEnd());
-		//
-		// 	ScriptableObjectBuilder ob = new ScriptableObjectBuilder();
-		// 	
-		// 	foreach (ModelSeries model_series in mj.model_series) {
-		// 		int modelNum = model_series.builds.prod == 0 ? model_series.builds.beta : model_series.builds.prod;
-		//
-		// 		Model foundModel = mj.models.Find(x => x.test_run == modelNum);
-		// 		if (foundModel != null) {
-		// 			foreach (string moveName in foundModel.movement_types) {
-		// 				Movement mv = mj.movement_types.Find(m => m.name == moveName);
-		// 				if (mv != null) {
-		// 					ob = ob.WithMovement(mv);
-		// 				}
-		// 				else {
-		// 					Debug.LogError($"Move {moveName} not found");
-		// 				}
-		// 			}
-		//
-		// 			ob = ob.WithModel(foundModel);
-		// 		}
-		// 		else {
-		// 			Debug.LogError($"Model with {model_series.name} not found");
-		// 		}
-		// 	}
-		// }
-
 
 		private void GenerateModel() {
+			
 			StreamReader reader = new StreamReader(modelJsonPath);
-			ModelJson mj = JsonUtility.FromJson<ModelJson>(reader.ReadToEnd());
+			ModelJsonDump mj = JsonUtility.FromJson<ModelJsonDump>(reader.ReadToEnd());
 
 			CustomClassBuilder ccb = new CustomClassBuilder(outputPath, "Evomodels");
 
 
-			foreach (ModelSeries model_series in mj.model_series) {
+			foreach (ModelSeriesJson model_series in mj.model_series) {
 				CustomClassBuilder icb = ccb.WithInternalClass(model_series.name);
 
 				int modelNum = model_series.builds.prod == 0 ? model_series.builds.beta : model_series.builds.prod;
 				List<string> allElmos = new List<string>();
 
-				Model foundModel = mj.models.Find(x => x.test_run == modelNum);
+				ModelJson foundModelJson = mj.models.Find(x => x.test_run == modelNum);
 				icb
-					.WithImport("MotionAI.Core.Models.Constants")
-					.WithReadOnlyField("model_type", model_series.model_type)
-					.WithReadOnlyField("beta_id", model_series.builds.beta)
-					.WithReadOnlyField("prod_id", model_series.builds.prod)
-					.WithReadOnlyField("name", model_series.name);
+					.WithImport("UnityEngine")
+					.WithReadOnlyField("modelType", model_series.model_type)
+					.WithReadOnlyField("betaID", model_series.builds.beta)
+					.WithReadOnlyField("productionID", model_series.builds.prod)
+					.WithReadOnlyField("modelName", model_series.name);
 
-				if (foundModel != null) {
+				if (foundModelJson != null) {
 					CustomClassBuilder icb2 = icb.WithInternalClass("Movements");
-					foreach (string moveName in foundModel.movement_types) {
-						Movement mv = mj.movement_types.Find(m => m.name == moveName);
+					foreach (string moveName in foundModelJson.movement_types) {
+						MovementJson mv = mj.movement_types.Find(m => m.name == moveName);
 
 						if (mv != null) {
 							foreach (string mvElmo in mv.elmos) allElmos.Add(mvElmo);
@@ -105,7 +75,7 @@ namespace MotionAI.Core.Editor.ModelGenerator {
 					}
 				}
 				else {
-					Debug.LogError($"Model with {model_series.name} not found");
+					Debug.LogError($"Model with name {model_series.name} not found");
 				}
 
 				Dictionary<string, ElmoEnum> elmoDict = new Dictionary<string, ElmoEnum>();
@@ -119,7 +89,6 @@ namespace MotionAI.Core.Editor.ModelGenerator {
 					}
 				}
 
-				icb.WithEnum<ElmoEnum>("Elmos", elmoDict);
 			}
 
 			ccb.Build();
@@ -147,7 +116,7 @@ namespace MotionAI.Core.Editor.ModelGenerator {
 			StreamReader reader = new StreamReader(modelJsonPath);
 
 
-			ModelJson mj = JsonUtility.FromJson<ModelJson>(reader.ReadToEnd());
+			ModelJsonDump mj = JsonUtility.FromJson<ModelJsonDump>(reader.ReadToEnd());
 			List<string> elmos = mj.movement_types
 				.SelectMany(el => el.elmos)
 				.Distinct()

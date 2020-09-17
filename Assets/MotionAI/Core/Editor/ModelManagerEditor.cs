@@ -1,38 +1,29 @@
-using System;
-using System.Linq;
-using System.Reflection;
-using MotionAI.Core.Models;
+using MotionAI.Core.Controller;
 using UnityEditor;
 using UnityEngine;
 
 namespace MotionAI.Core.Editor {
-
-	[CustomEditor(typeof(ModelManager), true)]
+	[CustomEditor(typeof(MotionAIController), true)]
 	public class ModelManagerEditor : UnityEditor.Editor {
-		
 		public override void OnInspectorGUI() {
 			base.OnInspectorGUI();
-			DrawButtonsIfRequested();
-		}
-		
 
-		private void DrawButtonsIfRequested() {
-			// Loop through all methods with no parameters
-			var methods = target.GetType()
-				.GetMethods(BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)
-				.Where(m => m.GetParameters().Length == 0);
+			MotionAIController controller = target as MotionAIController;
 
-			foreach (var method in methods) {
-				// Get the ButtonAttribute on the method (if any)
-				var ba = (ButtonAttribute) Attribute.GetCustomAttribute(method, typeof(ButtonAttribute));
 
-				if (ba == null)
-					continue;
+			if (controller != null) {
+				if (!controller.modelManager.IsSameModel) {
+				
+					if (GUILayout.Button("Change Model")) {
+						if (controller.modelManager?.modelComponent != null ) {
+							if (!EditorUtility.DisplayDialog("Replace Model?",
+								"Are you sure you want to replace the current model? All references will be lost", "Yes",
+								"no")) return;
+						}
 
-				var buttonName = ObjectNames.NicifyVariableName(method.Name);
-
-				if (GUILayout.Button(buttonName))
-					method.Invoke(target, null);
+						controller.modelManager?.ChangeModel(controller.gameObject);
+					}	
+				}
 			}
 		}
 	}
