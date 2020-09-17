@@ -1,10 +1,8 @@
-﻿using System;
-using System.Linq;
-using MotionAI.Core.POCO;
+﻿using MotionAI.Core.POCO;
 using NUnit.Framework;
 using UnityEngine;
 using FluentAssertions;
-using MotionAI.Core.Models.Constants;
+using MotionAI.Core.Models.Generated;
 
 namespace MotionAI.Tests.EditTests {
 	public class SerializationTests {

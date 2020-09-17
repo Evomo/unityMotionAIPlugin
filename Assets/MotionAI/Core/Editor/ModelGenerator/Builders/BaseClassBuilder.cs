@@ -11,15 +11,14 @@ namespace MotionAI.Core.Editor.ModelGenerator.Builders {
 
 
 		protected CustomClassBuilder(string name) {
-			TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
-
-			string cleanName = textInfo.ToTitleCase(name).CleanFromDB();
+			string cleanName = name.ToClassCase();
 			targetUnit = new CodeCompileUnit();
 			targetClass = new CodeTypeDeclaration(cleanName);
 
 
-			
 			codeNamespace = new CodeNamespace("MotionAI.Core.Models.Generated");
+			codeNamespace.Types.Add(targetClass);
+
 			targetUnit.Namespaces.Add(codeNamespace);
 			// codeNamespace.Types.Add(targetClass);
 		}

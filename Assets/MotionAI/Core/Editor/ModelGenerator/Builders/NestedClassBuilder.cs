@@ -2,7 +2,7 @@ using System;
 using System.CodeDom;
 using System.Collections.Generic;
 using System.Reflection;
-using MotionAI.Core.Models.Constants;
+using MotionAI.Core.Models.Generated;
 using MotionAI.Core.Util;
 using UnityEngine;
 

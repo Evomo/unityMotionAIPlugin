@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MotionAI.Core.Models.Constants {
+namespace MotionAI.Core.Models.Generated {
     
         public enum ElmoEnum {
             arm_spin_down,

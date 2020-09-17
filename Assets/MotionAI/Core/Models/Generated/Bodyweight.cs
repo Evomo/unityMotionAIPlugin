@@ -41,20 +41,20 @@ namespace MotionAI.Core.Models.Generated {
                         return "bench_dip";
                     }
                 }
-                public static MotionAI.Core.Models.Constants.MovementEnum id {
+                public static MotionAI.Core.Models.Generated.MovementEnum id {
                     get {
-                        return MotionAI.Core.Models.Constants.MovementEnum.bench_dip;
+                        return MotionAI.Core.Models.Generated.MovementEnum.bench_dip;
                     }
                 }
                 public class Elmos {
-                    public static MotionAI.Core.Models.Constants.ElmoEnum bench_dip_up {
+                    public static MotionAI.Core.Models.Generated.ElmoEnum bench_dip_up {
                         get {
-                            return MotionAI.Core.Models.Constants.ElmoEnum.bench_dip_up;
+                            return MotionAI.Core.Models.Generated.ElmoEnum.bench_dip_up;
                         }
                     }
-                    public static MotionAI.Core.Models.Constants.ElmoEnum bench_dip_down {
+                    public static MotionAI.Core.Models.Generated.ElmoEnum bench_dip_down {
                         get {
-                            return MotionAI.Core.Models.Constants.ElmoEnum.bench_dip_down;
+                            return MotionAI.Core.Models.Generated.ElmoEnum.bench_dip_down;
                         }
                     }
                 }
@@ -66,20 +66,20 @@ namespace MotionAI.Core.Models.Generated {
                         return "jumping_jack";
                     }
                 }
-                public static MotionAI.Core.Models.Constants.MovementEnum id {
+                public static MotionAI.Core.Models.Generated.MovementEnum id {
                     get {
-                        return MotionAI.Core.Models.Constants.MovementEnum.jumping_jack;
+                        return MotionAI.Core.Models.Generated.MovementEnum.jumping_jack;
                     }
                 }
                 public class Elmos {
-                    public static MotionAI.Core.Models.Constants.ElmoEnum jumping_jack_down {
+                    public static MotionAI.Core.Models.Generated.ElmoEnum jumping_jack_down {
                         get {
-                            return MotionAI.Core.Models.Constants.ElmoEnum.jumping_jack_down;
+                            return MotionAI.Core.Models.Generated.ElmoEnum.jumping_jack_down;
                         }
                     }
-                    public static MotionAI.Core.Models.Constants.ElmoEnum jumping_jack_up {
+                    public static MotionAI.Core.Models.Generated.ElmoEnum jumping_jack_up {
                         get {
-                            return MotionAI.Core.Models.Constants.ElmoEnum.jumping_jack_up;
+                            return MotionAI.Core.Models.Generated.ElmoEnum.jumping_jack_up;
                         }
                     }
                 }
@@ -91,20 +91,20 @@ namespace MotionAI.Core.Models.Generated {
                         return "mountain_climbers";
                     }
                 }
-                public static MotionAI.Core.Models.Constants.MovementEnum id {
+                public static MotionAI.Core.Models.Generated.MovementEnum id {
                     get {
-                        return MotionAI.Core.Models.Constants.MovementEnum.mountain_climbers;
+                        return MotionAI.Core.Models.Generated.MovementEnum.mountain_climbers;
                     }
                 }
                 public class Elmos {
-                    public static MotionAI.Core.Models.Constants.ElmoEnum mountain_climber_jump_up {
+                    public static MotionAI.Core.Models.Generated.ElmoEnum mountain_climber_jump_up {
                         get {
-                            return MotionAI.Core.Models.Constants.ElmoEnum.mountain_climber_jump_up;
+                            return MotionAI.Core.Models.Generated.ElmoEnum.mountain_climber_jump_up;
                         }
                     }
-                    public static MotionAI.Core.Models.Constants.ElmoEnum mountain_climber_jump_down {
+                    public static MotionAI.Core.Models.Generated.ElmoEnum mountain_climber_jump_down {
                         get {
-                            return MotionAI.Core.Models.Constants.ElmoEnum.mountain_climber_jump_down;
+                            return MotionAI.Core.Models.Generated.ElmoEnum.mountain_climber_jump_down;
                         }
                     }
                 }
@@ -116,20 +116,20 @@ namespace MotionAI.Core.Models.Generated {
                         return "lunge";
                     }
                 }
-                public static MotionAI.Core.Models.Constants.MovementEnum id {
+                public static MotionAI.Core.Models.Generated.MovementEnum id {
                     get {
-                        return MotionAI.Core.Models.Constants.MovementEnum.lunge;
+                        return MotionAI.Core.Models.Generated.MovementEnum.lunge;
                     }
                 }
                 public class Elmos {
-                    public static MotionAI.Core.Models.Constants.ElmoEnum lunge_up {
+                    public static MotionAI.Core.Models.Generated.ElmoEnum lunge_up {
                         get {
-                            return MotionAI.Core.Models.Constants.ElmoEnum.lunge_up;
+                            return MotionAI.Core.Models.Generated.ElmoEnum.lunge_up;
                         }
                     }
-                    public static MotionAI.Core.Models.Constants.ElmoEnum lunge_down {
+                    public static MotionAI.Core.Models.Generated.ElmoEnum lunge_down {
                         get {
-                            return MotionAI.Core.Models.Constants.ElmoEnum.lunge_down;
+                            return MotionAI.Core.Models.Generated.ElmoEnum.lunge_down;
                         }
                     }
                 }
@@ -141,30 +141,30 @@ namespace MotionAI.Core.Models.Generated {
                         return "burpee";
                     }
                 }
-                public static MotionAI.Core.Models.Constants.MovementEnum id {
+                public static MotionAI.Core.Models.Generated.MovementEnum id {
                     get {
-                        return MotionAI.Core.Models.Constants.MovementEnum.burpee;
+                        return MotionAI.Core.Models.Generated.MovementEnum.burpee;
                     }
                 }
                 public class Elmos {
-                    public static MotionAI.Core.Models.Constants.ElmoEnum burpee_down {
+                    public static MotionAI.Core.Models.Generated.ElmoEnum burpee_down {
                         get {
-                            return MotionAI.Core.Models.Constants.ElmoEnum.burpee_down;
+                            return MotionAI.Core.Models.Generated.ElmoEnum.burpee_down;
                         }
                     }
-                    public static MotionAI.Core.Models.Constants.ElmoEnum burpee_snap_back_pushup_down {
+                    public static MotionAI.Core.Models.Generated.ElmoEnum burpee_snap_back_pushup_down {
                         get {
-                            return MotionAI.Core.Models.Constants.ElmoEnum.burpee_snap_back_pushup_down;
+                            return MotionAI.Core.Models.Generated.ElmoEnum.burpee_snap_back_pushup_down;
                         }
                     }
-                    public static MotionAI.Core.Models.Constants.ElmoEnum burpee_snap_forward_pushup_up {
+                    public static MotionAI.Core.Models.Generated.ElmoEnum burpee_snap_forward_pushup_up {
                         get {
-                            return MotionAI.Core.Models.Constants.ElmoEnum.burpee_snap_forward_pushup_up;
+                            return MotionAI.Core.Models.Generated.ElmoEnum.burpee_snap_forward_pushup_up;
                         }
                     }
-                    public static MotionAI.Core.Models.Constants.ElmoEnum burpee_up {
+                    public static MotionAI.Core.Models.Generated.ElmoEnum burpee_up {
                         get {
-                            return MotionAI.Core.Models.Constants.ElmoEnum.burpee_up;
+                            return MotionAI.Core.Models.Generated.ElmoEnum.burpee_up;
                         }
                     }
                 }
@@ -176,20 +176,20 @@ namespace MotionAI.Core.Models.Generated {
                         return "squat_jump";
                     }
                 }
-                public static MotionAI.Core.Models.Constants.MovementEnum id {
+                public static MotionAI.Core.Models.Generated.MovementEnum id {
                     get {
-                        return MotionAI.Core.Models.Constants.MovementEnum.squat_jump;
+                        return MotionAI.Core.Models.Generated.MovementEnum.squat_jump;
                     }
                 }
                 public class Elmos {
-                    public static MotionAI.Core.Models.Constants.ElmoEnum squat_jump_up {
+                    public static MotionAI.Core.Models.Generated.ElmoEnum squat_jump_up {
                         get {
-                            return MotionAI.Core.Models.Constants.ElmoEnum.squat_jump_up;
+                            return MotionAI.Core.Models.Generated.ElmoEnum.squat_jump_up;
                         }
                     }
-                    public static MotionAI.Core.Models.Constants.ElmoEnum squat_jump_down {
+                    public static MotionAI.Core.Models.Generated.ElmoEnum squat_jump_down {
                         get {
-                            return MotionAI.Core.Models.Constants.ElmoEnum.squat_jump_down;
+                            return MotionAI.Core.Models.Generated.ElmoEnum.squat_jump_down;
                         }
                     }
                 }
@@ -201,20 +201,20 @@ namespace MotionAI.Core.Models.Generated {
                         return "high_knees";
                     }
                 }
-                public static MotionAI.Core.Models.Constants.MovementEnum id {
+                public static MotionAI.Core.Models.Generated.MovementEnum id {
                     get {
-                        return MotionAI.Core.Models.Constants.MovementEnum.high_knees;
+                        return MotionAI.Core.Models.Generated.MovementEnum.high_knees;
                     }
                 }
                 public class Elmos {
-                    public static MotionAI.Core.Models.Constants.ElmoEnum high_knees_down {
+                    public static MotionAI.Core.Models.Generated.ElmoEnum high_knees_down {
                         get {
-                            return MotionAI.Core.Models.Constants.ElmoEnum.high_knees_down;
+                            return MotionAI.Core.Models.Generated.ElmoEnum.high_knees_down;
                         }
                     }
-                    public static MotionAI.Core.Models.Constants.ElmoEnum high_knees_up {
+                    public static MotionAI.Core.Models.Generated.ElmoEnum high_knees_up {
                         get {
-                            return MotionAI.Core.Models.Constants.ElmoEnum.high_knees_up;
+                            return MotionAI.Core.Models.Generated.ElmoEnum.high_knees_up;
                         }
                     }
                 }
@@ -226,20 +226,20 @@ namespace MotionAI.Core.Models.Generated {
                         return "hip_raise";
                     }
                 }
-                public static MotionAI.Core.Models.Constants.MovementEnum id {
+                public static MotionAI.Core.Models.Generated.MovementEnum id {
                     get {
-                        return MotionAI.Core.Models.Constants.MovementEnum.hip_raise;
+                        return MotionAI.Core.Models.Generated.MovementEnum.hip_raise;
                     }
                 }
                 public class Elmos {
-                    public static MotionAI.Core.Models.Constants.ElmoEnum hip_raise_up {
+                    public static MotionAI.Core.Models.Generated.ElmoEnum hip_raise_up {
                         get {
-                            return MotionAI.Core.Models.Constants.ElmoEnum.hip_raise_up;
+                            return MotionAI.Core.Models.Generated.ElmoEnum.hip_raise_up;
                         }
                     }
-                    public static MotionAI.Core.Models.Constants.ElmoEnum hip_raise_down {
+                    public static MotionAI.Core.Models.Generated.ElmoEnum hip_raise_down {
                         get {
-                            return MotionAI.Core.Models.Constants.ElmoEnum.hip_raise_down;
+                            return MotionAI.Core.Models.Generated.ElmoEnum.hip_raise_down;
                         }
                     }
                 }
@@ -251,20 +251,20 @@ namespace MotionAI.Core.Models.Generated {
                         return "calf_raise";
                     }
                 }
-                public static MotionAI.Core.Models.Constants.MovementEnum id {
+                public static MotionAI.Core.Models.Generated.MovementEnum id {
                     get {
-                        return MotionAI.Core.Models.Constants.MovementEnum.calf_raise;
+                        return MotionAI.Core.Models.Generated.MovementEnum.calf_raise;
                     }
                 }
                 public class Elmos {
-                    public static MotionAI.Core.Models.Constants.ElmoEnum calf_raise_up {
+                    public static MotionAI.Core.Models.Generated.ElmoEnum calf_raise_up {
                         get {
-                            return MotionAI.Core.Models.Constants.ElmoEnum.calf_raise_up;
+                            return MotionAI.Core.Models.Generated.ElmoEnum.calf_raise_up;
                         }
                     }
-                    public static MotionAI.Core.Models.Constants.ElmoEnum calf_raise_down {
+                    public static MotionAI.Core.Models.Generated.ElmoEnum calf_raise_down {
                         get {
-                            return MotionAI.Core.Models.Constants.ElmoEnum.calf_raise_down;
+                            return MotionAI.Core.Models.Generated.ElmoEnum.calf_raise_down;
                         }
                     }
                 }
@@ -276,15 +276,15 @@ namespace MotionAI.Core.Models.Generated {
                         return "plank";
                     }
                 }
-                public static MotionAI.Core.Models.Constants.MovementEnum id {
+                public static MotionAI.Core.Models.Generated.MovementEnum id {
                     get {
-                        return MotionAI.Core.Models.Constants.MovementEnum.plank;
+                        return MotionAI.Core.Models.Generated.MovementEnum.plank;
                     }
                 }
                 public class Elmos {
-                    public static MotionAI.Core.Models.Constants.ElmoEnum plank {
+                    public static MotionAI.Core.Models.Generated.ElmoEnum plank {
                         get {
-                            return MotionAI.Core.Models.Constants.ElmoEnum.plank;
+                            return MotionAI.Core.Models.Generated.ElmoEnum.plank;
                         }
                     }
                 }
@@ -296,20 +296,20 @@ namespace MotionAI.Core.Models.Generated {
                         return "climbers";
                     }
                 }
-                public static MotionAI.Core.Models.Constants.MovementEnum id {
+                public static MotionAI.Core.Models.Generated.MovementEnum id {
                     get {
-                        return MotionAI.Core.Models.Constants.MovementEnum.climbers;
+                        return MotionAI.Core.Models.Generated.MovementEnum.climbers;
                     }
                 }
                 public class Elmos {
-                    public static MotionAI.Core.Models.Constants.ElmoEnum climber_up {
+                    public static MotionAI.Core.Models.Generated.ElmoEnum climber_up {
                         get {
-                            return MotionAI.Core.Models.Constants.ElmoEnum.climber_up;
+                            return MotionAI.Core.Models.Generated.ElmoEnum.climber_up;
                         }
                     }
-                    public static MotionAI.Core.Models.Constants.ElmoEnum climber_down {
+                    public static MotionAI.Core.Models.Generated.ElmoEnum climber_down {
                         get {
-                            return MotionAI.Core.Models.Constants.ElmoEnum.climber_down;
+                            return MotionAI.Core.Models.Generated.ElmoEnum.climber_down;
                         }
                     }
                 }
@@ -321,20 +321,20 @@ namespace MotionAI.Core.Models.Generated {
                         return "plank_jack";
                     }
                 }
-                public static MotionAI.Core.Models.Constants.MovementEnum id {
+                public static MotionAI.Core.Models.Generated.MovementEnum id {
                     get {
-                        return MotionAI.Core.Models.Constants.MovementEnum.plank_jack;
+                        return MotionAI.Core.Models.Generated.MovementEnum.plank_jack;
                     }
                 }
                 public class Elmos {
-                    public static MotionAI.Core.Models.Constants.ElmoEnum plank_jack_down {
+                    public static MotionAI.Core.Models.Generated.ElmoEnum plank_jack_down {
                         get {
-                            return MotionAI.Core.Models.Constants.ElmoEnum.plank_jack_down;
+                            return MotionAI.Core.Models.Generated.ElmoEnum.plank_jack_down;
                         }
                     }
-                    public static MotionAI.Core.Models.Constants.ElmoEnum plank_jack_up {
+                    public static MotionAI.Core.Models.Generated.ElmoEnum plank_jack_up {
                         get {
-                            return MotionAI.Core.Models.Constants.ElmoEnum.plank_jack_up;
+                            return MotionAI.Core.Models.Generated.ElmoEnum.plank_jack_up;
                         }
                     }
                 }
@@ -346,20 +346,20 @@ namespace MotionAI.Core.Models.Generated {
                         return "lunge_reverse";
                     }
                 }
-                public static MotionAI.Core.Models.Constants.MovementEnum id {
+                public static MotionAI.Core.Models.Generated.MovementEnum id {
                     get {
-                        return MotionAI.Core.Models.Constants.MovementEnum.lunge_reverse;
+                        return MotionAI.Core.Models.Generated.MovementEnum.lunge_reverse;
                     }
                 }
                 public class Elmos {
-                    public static MotionAI.Core.Models.Constants.ElmoEnum lunge_reverse_down {
+                    public static MotionAI.Core.Models.Generated.ElmoEnum lunge_reverse_down {
                         get {
-                            return MotionAI.Core.Models.Constants.ElmoEnum.lunge_reverse_down;
+                            return MotionAI.Core.Models.Generated.ElmoEnum.lunge_reverse_down;
                         }
                     }
-                    public static MotionAI.Core.Models.Constants.ElmoEnum lunge_reverse_up {
+                    public static MotionAI.Core.Models.Generated.ElmoEnum lunge_reverse_up {
                         get {
-                            return MotionAI.Core.Models.Constants.ElmoEnum.lunge_reverse_up;
+                            return MotionAI.Core.Models.Generated.ElmoEnum.lunge_reverse_up;
                         }
                     }
                 }
@@ -371,20 +371,20 @@ namespace MotionAI.Core.Models.Generated {
                         return "good_morning";
                     }
                 }
-                public static MotionAI.Core.Models.Constants.MovementEnum id {
+                public static MotionAI.Core.Models.Generated.MovementEnum id {
                     get {
-                        return MotionAI.Core.Models.Constants.MovementEnum.good_morning;
+                        return MotionAI.Core.Models.Generated.MovementEnum.good_morning;
                     }
                 }
                 public class Elmos {
-                    public static MotionAI.Core.Models.Constants.ElmoEnum good_morning_down {
+                    public static MotionAI.Core.Models.Generated.ElmoEnum good_morning_down {
                         get {
-                            return MotionAI.Core.Models.Constants.ElmoEnum.good_morning_down;
+                            return MotionAI.Core.Models.Generated.ElmoEnum.good_morning_down;
                         }
                     }
-                    public static MotionAI.Core.Models.Constants.ElmoEnum good_morning_up {
+                    public static MotionAI.Core.Models.Generated.ElmoEnum good_morning_up {
                         get {
-                            return MotionAI.Core.Models.Constants.ElmoEnum.good_morning_up;
+                            return MotionAI.Core.Models.Generated.ElmoEnum.good_morning_up;
                         }
                     }
                 }

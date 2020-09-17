@@ -4,7 +4,7 @@ using AOT;
 using System;
 using System.Linq;
 using MotionAI.Core.Controller;
-using MotionAI.Core.Models.Constants;
+using MotionAI.Core.Models.Generated;
 using MotionAI.Core.POCO;
 using UnityEngine;
 using static MotionAI.UtilHelper;

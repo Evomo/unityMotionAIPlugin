@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using MotionAI.Core.Editor.ModelGenerator.Builders;
-using MotionAI.Core.Models.Constants;
+using MotionAI.Core.Models.Generated;
 using MotionAI.Core.Util;
 using UnityEditor;
 using UnityEngine;
@@ -46,21 +46,23 @@ namespace MotionAI.Core.Editor.ModelGenerator {
 
 				ccb.WithImport("UnityEngine")
 					.WithImport("System");
-				CustomClassBuilder icb = ccb.WithInternalClass(model_series.name);
 
 				int modelNum = model_series.builds.prod == 0 ? model_series.builds.beta : model_series.builds.prod;
 				List<string> allElmos = new List<string>();
 
 				ModelJson foundModelJson = mj.models.Find(x => x.test_run == modelNum);
-				icb
-					.InheritsFrom("AbstractModelComponent")
-					.WithReadOnlyField("modelType", model_series.model_type)
-					.WithReadOnlyField("betaID", model_series.builds.beta)
-					.WithReadOnlyField("productionID", model_series.builds.prod)
-					.WithReadOnlyField("modelName", model_series.name);
+
 
 				if (foundModelJson != null) {
-					CustomClassBuilder icb2 = icb.WithInternalClass("Movements");
+					ccb
+						.InheritsFrom("AbstractModelComponent")
+						.WithReadOnlyField("modelType", model_series.model_type)
+						.WithReadOnlyField("betaID", model_series.builds.beta)
+						.WithReadOnlyField("productionID", model_series.builds.prod)
+						.WithReadOnlyField("modelName", model_series.name);
+
+
+					CustomClassBuilder icb2 = ccb.WithInternalClass("Movements");
 					foreach (string moveName in foundModelJson.movement_types) {
 						MovementJson mv = mj.movement_types.Find(m => m.name == moveName);
 
@@ -96,7 +98,8 @@ namespace MotionAI.Core.Editor.ModelGenerator {
 		}
 
 		private void CreateField(string label, ref string text, bool output = false) {
-			string directory = output ? "Assets/MotionAI/Core/Models" : "Assets/MotionAI/Core/Editor/ModelFiles";
+			string directory =
+				output ? "Assets/MotionAI/Core/Models/Generated" : "Assets/MotionAI/Core/Editor/ModelFiles";
 			EditorGUILayout.BeginHorizontal();
 			{
 				EditorGUILayout.LabelField(label, GUILayout.Width(EditorGUIUtility.labelWidth - 4));
@@ -145,6 +148,25 @@ namespace MotionAI.Core.Editor.ModelGenerator {
 				.WithEnum("MovementEnum", movements)
 				.WithEnum("MovementModel", models)
 				.Build();
+
+			string f = $"{outputPath}/Constants.cs";
+			string[] lines = File.ReadAllLines(f);
+			string[] newLines = RemoveUnnecessaryLine(lines);
+			File.WriteAllLines(f, newLines);
+		}
+
+		private string[] RemoveUnnecessaryLine(string[] lines) {
+			// Hardcoding goes bzzzzzzzzzzzzrt
+			string toCheck = "    public class Constants {";
+			List<string> l = new List<string>();
+			foreach (string line in lines) {
+				if (!line.Equals(toCheck)) {
+					l.Add(line);
+				}
+			}
+
+			l.RemoveAt(l.Count - 1);
+			return l.ToArray();
 		}
 	}
 }

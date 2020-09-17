@@ -2,7 +2,7 @@
 using MotionAI;
 using MotionAI.Core;
 using MotionAI.Core.Controller;
-using MotionAI.Core.Models.Constants;
+using MotionAI.Core.Models.Generated;
 using MotionAI.Core.POCO;
 using UnityEngine;
 using UnityEngine.UI;

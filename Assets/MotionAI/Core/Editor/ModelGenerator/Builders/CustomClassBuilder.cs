@@ -17,7 +17,7 @@ namespace MotionAI.Core.Editor.ModelGenerator.Builders {
 		private readonly List<CustomClassBuilder> _internalClasses;
 
 		public CustomClassBuilder(string folderPath, string className) : this(className) {
-			outputFile = $"{folderPath}/{className}.cs";
+			outputFile = $"{folderPath}/{className.ToClassCase()}.cs";
 			this._folderPath = folderPath;
 
 			_internalClasses = new List<CustomClassBuilder>();
@@ -80,12 +80,11 @@ namespace MotionAI.Core.Editor.ModelGenerator.Builders {
 			foreach (CustomClassBuilder internalClass in _internalClasses) {
 				internalClass.AddInternalClasses();
 				if (_external == null) {
-					codeNamespace.Types.Add(internalClass.targetClass);
+//					codeNamespace.Types.Add(internalClass.targetClass);
 					targetClass.Members.Add(internalClass.targetClass);
 
 				}
 				else {
-					
 					targetClass.Members.Add(internalClass.targetClass);
 				}
 			}
@@ -96,12 +95,13 @@ namespace MotionAI.Core.Editor.ModelGenerator.Builders {
 				_external.Build();
 				return;
 			}
+			AddInternalClasses();
 
+			
 			CodeDomProvider provider = CodeDomProvider.CreateProvider("CSharp");
 			CodeGeneratorOptions options = new CodeGeneratorOptions();
 			options.BracingStyle = "block";
 			options.BlankLinesBetweenMembers = false;
-			AddInternalClasses();
 			using (StreamWriter sourceWriter = new StreamWriter(outputFile)) {
 				provider.GenerateCodeFromCompileUnit(
 					targetUnit, sourceWriter, options);
