@@ -1,7 +1,7 @@
 using UnityEngine;
 
 namespace MotionAI.Core.Models {
-	// [DisallowMultipleComponent]
+	[DisallowMultipleComponent]
 	public class AbstractModelComponent : MonoBehaviour {
 	}
 }

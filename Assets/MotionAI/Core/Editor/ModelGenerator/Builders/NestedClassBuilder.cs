@@ -2,6 +2,7 @@ using System;
 using System.CodeDom;
 using System.Collections.Generic;
 using System.Reflection;
+using MotionAI.Core.Models;
 using MotionAI.Core.Models.Generated;
 using MotionAI.Core.Util;
 using UnityEngine;
@@ -11,11 +12,33 @@ namespace MotionAI.Core.Editor.ModelGenerator.Builders {
 		public CustomClassBuilder(string cname, CustomClassBuilder external) : this(cname) {
 			_external = external;
 			_internalClasses = new List<CustomClassBuilder>();
-
-
+			
 			targetClass.TypeAttributes = TypeAttributes.Public | TypeAttributes.Sealed;
 		}
 
+
+		public CustomClassBuilder WithObject(string name, string typeName, CodeObjectCreateExpression cobe) {
+			CodeMemberProperty s = new CodeMemberProperty();
+
+
+			CodeMemberField objectValueField = new CodeMemberField();
+			objectValueField.Attributes = MemberAttributes.Public;
+
+			objectValueField.Name = name;
+			if (cobe != null) {
+				objectValueField.InitExpression = cobe;
+			}
+
+			objectValueField.Type = new CodeTypeReference(typeName);
+			targetClass.Members.Add(objectValueField);
+
+			return this;
+		}
+
+		public CustomClassBuilder WithObject(string name, string typeName) {
+			WithObject(name, typeName, null);
+			return this;
+		}
 
 		public CustomClassBuilder WithReadOnlyField<T>(string name, T initialValue,
 			MemberAttributes attributes = MemberAttributes.Public | MemberAttributes.Static | MemberAttributes.Final) {
@@ -69,9 +92,15 @@ namespace MotionAI.Core.Editor.ModelGenerator.Builders {
 		public CustomClassBuilder CreateMovement(MovementJson mv) {
 			MovementEnum val = (MovementEnum) mv.id;
 
-			WithReadOnlyField("movementName", mv.name);
-			WithReadOnlyField("id", val);
-			WithElmos(mv.elmos);
+			CodeExpression[] p = new CodeExpression[] {
+				new CodePrimitiveExpression(mv.name),
+				new CodeSnippetExpression($"(MovementEnum){mv.id}"),
+			};
+			var cobe = new CodeObjectCreateExpression(typeof(MoveHolder), p);
+
+			WithObject(mv.name, "MoveHolder", cobe);
+			//TODO 
+			// WithElmos(mv.elmos);
 			return _external;
 		}
 

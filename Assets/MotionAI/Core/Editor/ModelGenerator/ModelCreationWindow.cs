@@ -59,18 +59,15 @@ namespace MotionAI.Core.Editor.ModelGenerator {
 						.WithReadOnlyField("modelType", model_series.model_type)
 						.WithReadOnlyField("betaID", model_series.builds.beta)
 						.WithReadOnlyField("productionID", model_series.builds.prod)
-						.WithReadOnlyField("modelName", model_series.name);
+						.WithReadOnlyField("modelName", model_series.name)
+						.WithObject("moves", "Movements");
 
-
-					CustomClassBuilder icb2 = ccb.WithInternalClass("Movements");
+					CustomClassBuilder icb2 = ccb.WithInternalClass("Movements").WithCustomAttribute("Serializable");
 					foreach (string moveName in foundModelJson.movement_types) {
 						MovementJson mv = mj.movement_types.Find(m => m.name == moveName);
 
 						if (mv != null) {
-							icb2
-								.WithInternalClass(moveName.CleanFromDB())
-								.WithCustomAttribute("Serializable")
-								.CreateMovement(mv);
+							icb2.CreateMovement(mv);
 							foreach (string mvElmo in mv.elmos) allElmos.Add(mvElmo);
 						}
 						else {
