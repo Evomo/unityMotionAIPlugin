@@ -8,210 +8,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MotionAI.Core.Models.Evomodels {
+namespace MotionAI.Core.Models.Generated {
+    using UnityEngine;
+    using System;
     
-    public class Subway_Surfer {
-        public static string modelType {
-            get {
-                return "gaming";
-            }
-        }
-        public static int betaID {
-            get {
-                return 2115;
-            }
-        }
-        public static int productionID {
-            get {
-                return 2129;
-            }
-        }
-        public static string modelName {
-            get {
-                return "subway-surfer";
-            }
-        }
-        public class Movements {
-            public class Duck {
-                public static string movementName {
-                    get {
-                        return "duck";
-                    }
-                }
-                public static MotionAI.Core.Models.Constants.MovementEnum id {
-                    get {
-                        return MotionAI.Core.Models.Constants.MovementEnum.duck;
-                    }
-                }
-                public class Elmos {
-                    public static MotionAI.Core.Models.Constants.ElmoEnum duck_down {
-                        get {
-                            return MotionAI.Core.Models.Constants.ElmoEnum.duck_down;
-                        }
-                    }
-                    public static MotionAI.Core.Models.Constants.ElmoEnum duck_up {
-                        get {
-                            return MotionAI.Core.Models.Constants.ElmoEnum.duck_up;
-                        }
-                    }
-                }
-            }
-            public class Hop_Single {
-                public static string movementName {
-                    get {
-                        return "hop_single";
-                    }
-                }
-                public static MotionAI.Core.Models.Constants.MovementEnum id {
-                    get {
-                        return MotionAI.Core.Models.Constants.MovementEnum.hop_single;
-                    }
-                }
-                public class Elmos {
-                    public static MotionAI.Core.Models.Constants.ElmoEnum hop_single_up {
-                        get {
-                            return MotionAI.Core.Models.Constants.ElmoEnum.hop_single_up;
-                        }
-                    }
-                    public static MotionAI.Core.Models.Constants.ElmoEnum hop_single_down {
-                        get {
-                            return MotionAI.Core.Models.Constants.ElmoEnum.hop_single_down;
-                        }
-                    }
-                }
-            }
-            public class Turn_90_Right {
-                public static string movementName {
-                    get {
-                        return "turn_90_right";
-                    }
-                }
-                public static MotionAI.Core.Models.Constants.MovementEnum id {
-                    get {
-                        return MotionAI.Core.Models.Constants.MovementEnum.turn_90_right;
-                    }
-                }
-                public class Elmos {
-                    public static MotionAI.Core.Models.Constants.ElmoEnum turn_90_right {
-                        get {
-                            return MotionAI.Core.Models.Constants.ElmoEnum.turn_90_right;
-                        }
-                    }
-                }
-            }
-            public class Turn_90_Left {
-                public static string movementName {
-                    get {
-                        return "turn_90_left";
-                    }
-                }
-                public static MotionAI.Core.Models.Constants.MovementEnum id {
-                    get {
-                        return MotionAI.Core.Models.Constants.MovementEnum.turn_90_left;
-                    }
-                }
-                public class Elmos {
-                    public static MotionAI.Core.Models.Constants.ElmoEnum turn_90_left {
-                        get {
-                            return MotionAI.Core.Models.Constants.ElmoEnum.turn_90_left;
-                        }
-                    }
-                }
-            }
-            public class Turn_90 {
-                public static string movementName {
-                    get {
-                        return "turn_90";
-                    }
-                }
-                public static MotionAI.Core.Models.Constants.MovementEnum id {
-                    get {
-                        return MotionAI.Core.Models.Constants.MovementEnum.turn_90;
-                    }
-                }
-                public class Elmos {
-                    public static MotionAI.Core.Models.Constants.ElmoEnum turn_90 {
-                        get {
-                            return MotionAI.Core.Models.Constants.ElmoEnum.turn_90;
-                        }
-                    }
-                }
-            }
-            public class Side_Step {
-                public static string movementName {
-                    get {
-                        return "side_step";
-                    }
-                }
-                public static MotionAI.Core.Models.Constants.MovementEnum id {
-                    get {
-                        return MotionAI.Core.Models.Constants.MovementEnum.side_step;
-                    }
-                }
-                public class Elmos {
-                    public static MotionAI.Core.Models.Constants.ElmoEnum side_step_down {
-                        get {
-                            return MotionAI.Core.Models.Constants.ElmoEnum.side_step_down;
-                        }
-                    }
-                    public static MotionAI.Core.Models.Constants.ElmoEnum side_step_up {
-                        get {
-                            return MotionAI.Core.Models.Constants.ElmoEnum.side_step_up;
-                        }
-                    }
-                }
-            }
-            public class Side_Step_Left {
-                public static string movementName {
-                    get {
-                        return "side_step_left";
-                    }
-                }
-                public static MotionAI.Core.Models.Constants.MovementEnum id {
-                    get {
-                        return MotionAI.Core.Models.Constants.MovementEnum.side_step_left;
-                    }
-                }
-                public class Elmos {
-                    public static MotionAI.Core.Models.Constants.ElmoEnum side_step_left_down {
-                        get {
-                            return MotionAI.Core.Models.Constants.ElmoEnum.side_step_left_down;
-                        }
-                    }
-                    public static MotionAI.Core.Models.Constants.ElmoEnum side_step_left_up {
-                        get {
-                            return MotionAI.Core.Models.Constants.ElmoEnum.side_step_left_up;
-                        }
-                    }
-                }
-            }
-            public class Side_Step_Right {
-                public static string movementName {
-                    get {
-                        return "side_step_right";
-                    }
-                }
-                public static MotionAI.Core.Models.Constants.MovementEnum id {
-                    get {
-                        return MotionAI.Core.Models.Constants.MovementEnum.side_step_right;
-                    }
-                }
-                public class Elmos {
-                    public static MotionAI.Core.Models.Constants.ElmoEnum side_step_right_up {
-                        get {
-                            return MotionAI.Core.Models.Constants.ElmoEnum.side_step_right_up;
-                        }
-                    }
-                    public static MotionAI.Core.Models.Constants.ElmoEnum side_step_right_down {
-                        get {
-                            return MotionAI.Core.Models.Constants.ElmoEnum.side_step_right_down;
-                        }
-                    }
-                }
-            }
-        }
-    }
-    public class Bodyweight {
+    public class Bodyweight : AbstractModelComponent {
         public static string modelType {
             get {
                 return "fitness";
@@ -233,6 +34,7 @@ namespace MotionAI.Core.Models.Evomodels {
             }
         }
         public class Movements {
+            [Serializable()]
             public class Bench_Dip {
                 public static string movementName {
                     get {
@@ -257,6 +59,7 @@ namespace MotionAI.Core.Models.Evomodels {
                     }
                 }
             }
+            [Serializable()]
             public class Jumping_Jack {
                 public static string movementName {
                     get {
@@ -281,6 +84,7 @@ namespace MotionAI.Core.Models.Evomodels {
                     }
                 }
             }
+            [Serializable()]
             public class Mountain_Climbers {
                 public static string movementName {
                     get {
@@ -305,6 +109,7 @@ namespace MotionAI.Core.Models.Evomodels {
                     }
                 }
             }
+            [Serializable()]
             public class Lunge {
                 public static string movementName {
                     get {
@@ -329,6 +134,7 @@ namespace MotionAI.Core.Models.Evomodels {
                     }
                 }
             }
+            [Serializable()]
             public class Burpee {
                 public static string movementName {
                     get {
@@ -363,6 +169,7 @@ namespace MotionAI.Core.Models.Evomodels {
                     }
                 }
             }
+            [Serializable()]
             public class Squat_Jump {
                 public static string movementName {
                     get {
@@ -387,6 +194,7 @@ namespace MotionAI.Core.Models.Evomodels {
                     }
                 }
             }
+            [Serializable()]
             public class High_Knees {
                 public static string movementName {
                     get {
@@ -411,6 +219,7 @@ namespace MotionAI.Core.Models.Evomodels {
                     }
                 }
             }
+            [Serializable()]
             public class Hip_Raise {
                 public static string movementName {
                     get {
@@ -435,6 +244,7 @@ namespace MotionAI.Core.Models.Evomodels {
                     }
                 }
             }
+            [Serializable()]
             public class Calf_Raise {
                 public static string movementName {
                     get {
@@ -459,6 +269,7 @@ namespace MotionAI.Core.Models.Evomodels {
                     }
                 }
             }
+            [Serializable()]
             public class Plank {
                 public static string movementName {
                     get {
@@ -478,6 +289,7 @@ namespace MotionAI.Core.Models.Evomodels {
                     }
                 }
             }
+            [Serializable()]
             public class Climbers {
                 public static string movementName {
                     get {
@@ -502,6 +314,7 @@ namespace MotionAI.Core.Models.Evomodels {
                     }
                 }
             }
+            [Serializable()]
             public class Plank_Jack {
                 public static string movementName {
                     get {
@@ -526,6 +339,7 @@ namespace MotionAI.Core.Models.Evomodels {
                     }
                 }
             }
+            [Serializable()]
             public class Lunge_Reverse {
                 public static string movementName {
                     get {
@@ -550,6 +364,7 @@ namespace MotionAI.Core.Models.Evomodels {
                     }
                 }
             }
+            [Serializable()]
             public class Good_Morning {
                 public static string movementName {
                     get {

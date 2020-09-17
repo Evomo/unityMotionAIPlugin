@@ -1,5 +1,4 @@
 using MotionAI.Core.Models.Constants;
-using MotionAI.Core.Models.Evomodels;
 using MotionAI.Core.POCO;
 
 namespace MotionAI.Core.Controller.Example {

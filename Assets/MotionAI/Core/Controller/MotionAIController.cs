@@ -9,25 +9,26 @@ namespace MotionAI.Core.Controller {
 	public class MotionAIController : MonoBehaviour {
 		[Serializable]
 		public class ModelManager {
+
+			public AbstractModelComponent model => modelComponent;
 			[Inherits(typeof(AbstractModelComponent), ExcludeNone = true),
 			 TypeOptions(Grouping = Grouping.ByNamespaceFlat)]
 			public TypeReference chosenModel;
-			public AbstractModelComponent modelComponent;
 
+			private AbstractModelComponent modelComponent;
+
+			
 			private Type _lastRef;
 			public bool IsSameModel => _lastRef == chosenModel;
 
 
 			public void ChangeModel(GameObject component) {
-
-					if (modelComponent) {
-						DestroyImmediate(modelComponent);
+				if (modelComponent) DestroyImmediate(modelComponent);
 
 
-					var comp = component.AddComponent(chosenModel) as AbstractModelComponent;
-					modelComponent = comp;
-					_lastRef = chosenModel.Type;
-				}
+				var comp = component.AddComponent(chosenModel);
+				modelComponent = (AbstractModelComponent) comp;
+				_lastRef = chosenModel.Type;
 			}
 		}
 

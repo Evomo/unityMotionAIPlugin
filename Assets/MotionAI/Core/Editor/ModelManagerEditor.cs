@@ -11,11 +11,11 @@ namespace MotionAI.Core.Editor {
 			MotionAIController controller = target as MotionAIController;
 
 
+			//I love me some ifs <3 
 			if (controller != null) {
 				if (!controller.modelManager.IsSameModel) {
-				
 					if (GUILayout.Button("Change Model")) {
-						if (controller.modelManager?.modelComponent != null ) {
+						if (controller.modelManager?.model != null ) {
 							if (!EditorUtility.DisplayDialog("Replace Model?",
 								"Are you sure you want to replace the current model? All references will be lost", "Yes",
 								"no")) return;

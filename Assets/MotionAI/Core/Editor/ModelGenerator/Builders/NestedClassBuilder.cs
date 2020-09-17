@@ -74,5 +74,15 @@ namespace MotionAI.Core.Editor.ModelGenerator.Builders {
 			WithElmos(mv.elmos);
 			return _external;
 		}
+
+		public CustomClassBuilder InheritsFrom(String type) {
+			targetClass.BaseTypes.Add(type);
+			return this;
+		}
+
+		public CustomClassBuilder WithCustomAttribute(string attributeName) {
+			targetClass.CustomAttributes.Add(new CodeAttributeDeclaration(attributeName));
+			return this;
+		}
 	}
 }

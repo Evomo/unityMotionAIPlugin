@@ -19,16 +19,11 @@ namespace MotionAI.Core.Editor.ModelGenerator.Builders {
 		public CustomClassBuilder(string folderPath, string className) : this(className) {
 			outputFile = $"{folderPath}/{className}.cs";
 			this._folderPath = folderPath;
-			this.className = className;
 
 			_internalClasses = new List<CustomClassBuilder>();
 		}
 
-
-		public CustomClassBuilder ToParentBuilder() {
-			return _external ?? this;
-		}
-
+		
 		public CustomClassBuilder WithEnum<T>(string enumName, Dictionary<string, T> dictEnum) {
 			CodeTypeDeclaration type = new CodeTypeDeclaration(enumName);
 			type.IsEnum = true;
@@ -46,24 +41,19 @@ namespace MotionAI.Core.Editor.ModelGenerator.Builders {
 				else {
 					CodeTypeReferenceExpression typeRef = new CodeTypeReferenceExpression(keyValuePair.Value.GetType());
 					f.InitExpression = new CodeFieldReferenceExpression(typeRef, keyValuePair.Value.ToString());
-					// new CodePrimitiveExpression(Convert.ChangeType(keyValuePair.Value, typeof(long)));
 				}
-				// else {
-				// 	f.CustomAttributes.Add(new CodeAttributeDeclaration("Description",
-				// 		new CodeAttributeArgument(
-				// 			new CodePrimitiveExpression(keyValuePair.Value.ToString().CleanFromDB()))));
-				//
-				// }
 
 				type.Members.Add(f);
 			}
 
+			
 			targetClass.Members.Add(type);
 			return this;
 		}
 
 		public CustomClassBuilder WithImport(string import) {
-			codeNamespace.Imports.Add(new CodeNamespaceImport(import));
+			CodeNamespaceImport i = new CodeNamespaceImport(import);
+			codeNamespace.Imports.Add(i);
 			return this;
 		}
 
@@ -77,8 +67,8 @@ namespace MotionAI.Core.Editor.ModelGenerator.Builders {
 			TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
 
 			CustomClassBuilder icb = new CustomClassBuilder(cname, this);
-			icb.targetClass = new CodeTypeDeclaration( textInfo.ToTitleCase(cname).CleanFromDB());
-			
+			icb.targetClass = new CodeTypeDeclaration(textInfo.ToTitleCase(cname).CleanFromDB());
+
 			_internalClasses.Add(icb);
 
 
@@ -91,10 +81,12 @@ namespace MotionAI.Core.Editor.ModelGenerator.Builders {
 				internalClass.AddInternalClasses();
 				if (_external == null) {
 					codeNamespace.Types.Add(internalClass.targetClass);
+					targetClass.Members.Add(internalClass.targetClass);
+
 				}
 				else {
-					targetClass.Members.Add(internalClass.targetClass);
 					
+					targetClass.Members.Add(internalClass.targetClass);
 				}
 			}
 		}
