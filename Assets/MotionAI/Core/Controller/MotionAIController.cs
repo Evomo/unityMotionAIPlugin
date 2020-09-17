@@ -23,8 +23,7 @@ namespace MotionAI.Core.Controller {
 			[SerializeField] private AbstractModelComponent modelComponent;
 
 
-			private Type _lastRef;
-			public bool IsSameModel => _lastRef == chosenModel;
+			public bool CanChangeComponent => model == null || modelComponent.GetType() != chosenModel.Type;
 
 
 			public void ChangeModel(GameObject component) {
@@ -33,7 +32,6 @@ namespace MotionAI.Core.Controller {
 
 				var comp = component.AddComponent(chosenModel);
 				modelComponent = (AbstractModelComponent) comp;
-				_lastRef = chosenModel.Type;
 			}
 		}
 

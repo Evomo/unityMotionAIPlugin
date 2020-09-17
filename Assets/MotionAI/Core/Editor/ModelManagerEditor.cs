@@ -13,7 +13,7 @@ namespace MotionAI.Core.Editor {
 
 			//I love me some ifs <3 
 			if (controller != null) {
-				if (!controller.modelManager.IsSameModel) {
+				if (controller.modelManager.CanChangeComponent) {
 					if (GUILayout.Button("Change Model")) {
 						if (controller.modelManager?.model != null ) {
 							if (!EditorUtility.DisplayDialog("Replace Model?",
