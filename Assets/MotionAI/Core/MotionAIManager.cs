@@ -7,7 +7,7 @@ using MotionAI.Core.Controller;
 using MotionAI.Core.Models.Generated;
 using MotionAI.Core.POCO;
 using UnityEngine;
-using static MotionAI.UtilHelper;
+using static MotionAI.Core.POCO.UtilHelper;
 
 namespace MotionAI.Core {
 	public class MotionAIManager : MonoBehaviour {

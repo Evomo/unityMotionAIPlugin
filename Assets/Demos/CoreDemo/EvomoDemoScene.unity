@@ -5173,6 +5173,7 @@ GameObject:
   m_Component:
   - component: {fileID: 513305674}
   - component: {fileID: 513305673}
+  - component: {fileID: 513305675}
   m_Layer: 0
   m_Name: EditorController
   m_TagString: Untagged
@@ -5199,9 +5200,9 @@ MonoBehaviour:
   modelManager:
     chosenModel:
       GuidAssignmentFailed: 0
-      _typeNameAndAssembly: 
+      _typeNameAndAssembly: MotionAI.Core.Models.Generated.Subway_Surfer, MotionAI.Core
       _GUID: 
-    modelComponent: {fileID: 0}
+    modelComponent: {fileID: 513305675}
 --- !u!4 &513305674
 Transform:
   m_ObjectHideFlags: 0
@@ -5216,6 +5217,51 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &513305675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 513305672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19fed6399e9798546836c680840c69af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moves:
+    duck:
+      onMove:
+        m_PersistentCalls:
+          m_Calls: []
+    hop_single:
+      onMove:
+        m_PersistentCalls:
+          m_Calls: []
+    turn_90_right:
+      onMove:
+        m_PersistentCalls:
+          m_Calls: []
+    turn_90_left:
+      onMove:
+        m_PersistentCalls:
+          m_Calls: []
+    turn_90:
+      onMove:
+        m_PersistentCalls:
+          m_Calls: []
+    side_step:
+      onMove:
+        m_PersistentCalls:
+          m_Calls: []
+    side_step_left:
+      onMove:
+        m_PersistentCalls:
+          m_Calls: []
+    side_step_right:
+      onMove:
+        m_PersistentCalls:
+          m_Calls: []
 --- !u!1 &701655731
 GameObject:
   m_ObjectHideFlags: 0

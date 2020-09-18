@@ -1,11 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using MotionAI.Core.Models.Generated;
-using MotionAI.Core.POCO;
-using UnityEngine;
 
-namespace MotionAI.Core.Models {
+namespace MotionAI.Core.POCO {
 	[Serializable]
 	public class MoveHolder {
 		public readonly string name;
@@ -22,6 +19,19 @@ namespace MotionAI.Core.Models {
 		}
 
 		public MoveHolder() {
+		}
+	}
+
+	[Serializable]
+	public class ModelBuildMeta {
+		public readonly int betaID;
+		public readonly int prodID;
+		public readonly DevicePosition devicePosition;
+
+		public ModelBuildMeta(string devicePosition, int prodID, int betaID) {
+			this.devicePosition = (DevicePosition)Enum.Parse(typeof(DevicePosition),devicePosition);
+			this.prodID = prodID;
+			this.betaID = betaID;
 		}
 	}
 }

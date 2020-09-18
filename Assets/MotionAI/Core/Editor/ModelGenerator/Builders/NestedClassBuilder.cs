@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using MotionAI.Core.Models;
 using MotionAI.Core.Models.Generated;
+using MotionAI.Core.POCO;
 using MotionAI.Core.Util;
 using UnityEngine;
 

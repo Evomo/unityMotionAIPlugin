@@ -6,7 +6,9 @@ using System.Linq;
 using MotionAI.Core.Editor.ModelGenerator.Builders;
 using MotionAI.Core.Models;
 using MotionAI.Core.Models.Generated;
+using MotionAI.Core.POCO;
 using MotionAI.Core.Util;
+using NUnit.Framework;
 using UnityEditor;
 using UnityEngine;
 
@@ -14,6 +16,7 @@ namespace MotionAI.Core.Editor.ModelGenerator {
 	public class ModelCreationWindow : EditorWindow {
 		public string modelJsonPath, outputPath;
 
+		#region Unity Gui Stuff
 
 		[MenuItem("Evomo/Class Generation")]
 		static void Init() {
@@ -24,80 +27,13 @@ namespace MotionAI.Core.Editor.ModelGenerator {
 			CreateField("Model JSON", ref modelJsonPath);
 			CreateField("Output Path", ref outputPath, true);
 
-			if (GUILayout.Button("Create Enums")) {
-				GenerateEnums();
+			if (GUILayout.Button("Create Constants")) {
+				GenerateConstants();
 			}
 
 
 			if (GUILayout.Button("Create Models")) {
 				GenerateModel();
-			}
-		}
-
-
-		private void GenerateModel() {
-			StreamReader reader = new StreamReader(modelJsonPath);
-			ModelJsonDump mj = JsonUtility.FromJson<ModelJsonDump>(reader.ReadToEnd());
-
-
-			foreach (ModelSeriesJson model_series in mj.model_series) {
-				CustomClassBuilder ccb =
-					new CustomClassBuilder(outputPath, model_series.name.CleanFromDB());
-
-
-				ccb.WithImport("UnityEngine")
-					.WithImport("System")
-					.WithImport("System.Collections.Generic")
-					.WithImport("System.Linq")
-					.WithImport("MotionAI.Core.POCO");
-
-				int modelNum = model_series.builds.prod == 0 ? model_series.builds.beta : model_series.builds.prod;
-				List<string> allElmos = new List<string>();
-
-				ModelJson foundModelJson = mj.models.Find(x => x.test_run == modelNum);
-
-				string moveHoldersnippet =
-					@"moves.GetType().GetFields().Select(x => (MoveHolder)(x.GetValue(moves))).ToList();";
-
-				if (foundModelJson != null) {
-					ccb
-						.InheritsFrom("AbstractModelComponent")
-						.WithMethod("GetMoveHolders", moveHoldersnippet, typeof(List<MoveHolder>))
-						.WithReadOnlyField("modelType", model_series.model_type)
-						.WithReadOnlyField("betaID", model_series.builds.beta)
-						.WithReadOnlyField("productionID", model_series.builds.prod)
-						.WithReadOnlyField("modelName", model_series.name)
-						.WithObject("moves", "Movements");
-
-					CustomClassBuilder icb2 = ccb.WithInternalClass("Movements").WithCustomAttribute("Serializable");
-					foreach (string moveName in foundModelJson.movement_types) {
-						MovementJson mv = mj.movement_types.Find(m => m.name == moveName);
-
-						if (mv != null) {
-							icb2.CreateMovement(mv);
-							foreach (string mvElmo in mv.elmos) allElmos.Add(mvElmo);
-						}
-						else {
-							Debug.LogError($"Move {moveName} not found");
-						}
-					}
-				}
-				else {
-					Debug.LogError($"Model with name {model_series.name} not found");
-				}
-
-				Dictionary<string, ElmoEnum> elmoDict = new Dictionary<string, ElmoEnum>();
-				foreach (string elmo in allElmos) {
-					try {
-						ElmoEnum v = (ElmoEnum) Enum.Parse(typeof(ElmoEnum), elmo.CleanFromDB());
-						elmoDict.Add(elmo, v);
-					}
-					catch (ArgumentException) {
-						Debug.LogError($"Elmo {elmo} not found");
-					}
-				}
-
-				ccb.Build();
 			}
 		}
 
@@ -119,19 +55,98 @@ namespace MotionAI.Core.Editor.ModelGenerator {
 			EditorGUILayout.EndHorizontal();
 		}
 
+		#endregion
 
-		private void GenerateEnums() {
+
+		#region Generators
+
+		private void GenerateModel() {
 			StreamReader reader = new StreamReader(modelJsonPath);
-
-
 			ModelJsonDump mj = JsonUtility.FromJson<ModelJsonDump>(reader.ReadToEnd());
+
+
+			HashSet<string> checkedModels = new HashSet<string>();
+			foreach (ModelSeriesJson modelSeries in mj.model_series) {
+				if (checkedModels.Contains(modelSeries.name)) continue;
+
+				checkedModels.Add(modelSeries.name);
+
+				CustomClassBuilder ccb =
+					new CustomClassBuilder(outputPath, modelSeries.name.CleanFromDB());
+
+
+				List<ModelBuildMeta> fullBuilds = mj.model_series
+					.FindAll(x => x.name == modelSeries.name)
+					.Select(x => new ModelBuildMeta(x.device_position, x.builds.prod, x.builds.beta))
+					.ToList();
+
+				ccb.WithImport("UnityEngine")
+					.WithImport("System")
+					.WithImport("System.Collections.Generic")
+					.WithImport("System.Linq")
+					.WithImport("MotionAI.Core.POCO");
+
+				int modelNum = modelSeries.builds.prod == 0 ? modelSeries.builds.beta : modelSeries.builds.prod;
+				List<string> allElmos = new List<string>();
+
+				ModelJson foundModelJson = mj.models.Find(x => x.test_run == modelNum);
+
+				string moveHoldersnippet =
+					@"moves.GetType().GetFields().Select(x => (MoveHolder)(x.GetValue(moves))).ToList();";
+
+				if (foundModelJson != null) {
+					ccb
+						.InheritsFrom("AbstractModelComponent")
+						.WithMethod("GetMoveHolders", moveHoldersnippet, typeof(List<MoveHolder>))
+						.WithReadOnlyField("modelType", modelSeries.model_type)
+						.WithReadOnlyField("betaID", modelSeries.builds.beta)
+						.WithReadOnlyField("productionID", modelSeries.builds.prod)
+						.WithReadOnlyField("modelName", modelSeries.name)
+						.WithObject("moves", "Movements");
+
+					CustomClassBuilder icb2 = ccb.WithInternalClass("Movements").WithCustomAttribute("Serializable");
+					foreach (string moveName in foundModelJson.movement_types) {
+						MovementJson mv = mj.movement_types.Find(m => m.name == moveName);
+
+						if (mv != null) {
+							icb2.CreateMovement(mv);
+							foreach (string mvElmo in mv.elmos) allElmos.Add(mvElmo);
+						}
+						else {
+							Debug.LogError($"Move {moveName} not found");
+						}
+					}
+				}
+				else {
+					Debug.LogError($"Model with name {modelSeries.name} not found");
+				}
+
+				Dictionary<string, ElmoEnum> elmoDict = new Dictionary<string, ElmoEnum>();
+				foreach (string elmo in allElmos) {
+					try {
+						ElmoEnum v = (ElmoEnum) Enum.Parse(typeof(ElmoEnum), elmo.CleanFromDB());
+						elmoDict.Add(elmo, v);
+					}
+					catch (ArgumentException) {
+						Debug.LogError($"Elmo {elmo} not found");
+					}
+				}
+
+				ccb.Build();
+			}
+		}
+
+
+		private void GenerateConstants() {
+			StreamReader reader = new StreamReader(modelJsonPath);
+			ModelJsonDump mj = JsonUtility.FromJson<ModelJsonDump>(reader.ReadToEnd());
+
 			List<string> elmos = mj.movement_types
 				.SelectMany(el => el.elmos)
 				.Distinct()
 				.OrderBy(e => e)
 				.Select(elmo => elmo.Replace(" ", "_").Replace("-", "_"))
 				.ToList();
-
 
 			List<string> device_positions = mj.models
 				.Select(ms => ms.device_position)
@@ -144,24 +159,29 @@ namespace MotionAI.Core.Editor.ModelGenerator {
 				.DistinctBy(x => x.name)
 				.ToDictionary(x => x.name, x => x.id);
 
-
 			List<string> models = mj.model_series.Select(x => x.name).Distinct().ToList();
+
 			new CustomClassBuilder(outputPath, "Constants")
 				.WithEnum("ElmoEnum", elmos)
 				.WithEnum("DevicePosition", device_positions)
 				.WithEnum("MovementEnum", movements)
-				.WithEnum("MovementModel", models)
+				// .WithEnum("MovementModel", models)
 				.Build();
-
 			string f = $"{outputPath}/Constants.cs";
 			string[] lines = File.ReadAllLines(f);
 			string[] newLines = RemoveUnnecessaryLine(lines);
 			File.WriteAllLines(f, newLines);
 		}
 
+		#endregion
+
+		#region Stuff I'm ashamed of
+
+		//  I swear I didn't find a way for codedom to do this :( 
 		private string[] RemoveUnnecessaryLine(string[] lines) {
 			// Hardcoding goes bzzzzzzzzzzzzrt
 			string toCheck = "    public class Constants {";
+
 			List<string> l = new List<string>();
 			foreach (string line in lines) {
 				if (!line.Equals(toCheck)) {
@@ -172,5 +192,7 @@ namespace MotionAI.Core.Editor.ModelGenerator {
 			l.RemoveAt(l.Count - 1);
 			return l.ToArray();
 		}
+
+		#endregion
 	}
 }
