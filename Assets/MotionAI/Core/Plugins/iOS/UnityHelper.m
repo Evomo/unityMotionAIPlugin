@@ -7,6 +7,8 @@
 #endif
 #import "EvomounityBridge.h"
 
+# note: c method declations executes objective-c function
+
 EvomounityBridge *bridge;
 
 NSString* CreateNSString (const char* string)
@@ -17,15 +19,15 @@ NSString* CreateNSString (const char* string)
         return [NSString stringWithUTF8String: ""];
 }
 
-void InitEvomoBridge(UnityCallback testCallback, const char* licenseID)
+void InitEvomoBridge(UnityCallback evomoCallback, const char* licenseID, const char* debugging)
 {
     bridge = [EvomounityBridge alloc];
-    [bridge licenseID:CreateNSString(licenseID)];
+    [bridge Init:evomoCallback licenseID:CreateNSString(licenseID) debugging:CreateNSString(debugging)];
 }
 
-void StartEvomoBridge(const char* deviceOrientation, const char* classificationModel)
+void StartEvomoBridge(const char* deviceOrientation, const char* classificationModel, const char* gaming)
 {
-    [bridge Start:CreateNSString(deviceOrientation) classificationModel:CreateNSString(classificationModel)];
+    [bridge Start:CreateNSString(deviceOrientation) classificationModel:CreateNSString(classificationModel) gaming:CreateNSString(gaming)];
 }
 
 void StopEvomoBridge()
