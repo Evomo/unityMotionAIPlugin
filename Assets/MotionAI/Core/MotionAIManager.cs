@@ -3,6 +3,9 @@ using AOT;
 #endif
 using System;
 using System.Linq;
+using System.Collections;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using MotionAI.Core.Controller;
 using MotionAI.Core.Models.Generated;
 using MotionAI.Core.POCO;
@@ -12,15 +15,17 @@ using static MotionAI.Core.POCO.UtilHelper;
 namespace MotionAI.Core {
 	public class MotionAIManager : MonoBehaviour {
 		
+		public delegate void UnityCallback(string value);
+
 		public static OnSDKMessage onSDKMessage = new OnSDKMessage();
 		#region Internal Load
 
 #if UNITY_IOS && !UNITY_EDITOR
     [DllImport("__Internal")]
-    private static extern void InitEvomoBridge(string licenseID);
+    private static extern void InitEvomoBridge(UnityCallback callback, string licenseID, string debugging);
 
     [DllImport("__Internal")]
-    private static extern void StartEvomoBridge(string deviceOrientation, string classificationModel);
+    private static extern void StartEvomoBridge(string deviceOrientation, string classificationModel, string gaming);
 
     [DllImport("__Internal")]
     private static extern void StopEvomoBridge();
@@ -54,18 +59,25 @@ namespace MotionAI.Core {
 #endif
 
 
-		public void StartTracking() {
+		public void StartTracking()
+		{
+			
 #if UNITY_IOS && !UNITY_EDITOR
-        StartEvomoBridge(UtilHelper.ToCustomOrientation(Input.deviceOrientation), mySDKConfig.classificationModel.ToString;
+// TODO: Add third parameter gaming - if model_type == gaming -> input_string = "true"
+// TODO: Input classificationModel as string
+
+        StartEvomoBridge("buttonDown", "1234", "true");
 #endif
 			IsTracking = true;
 			ControlPairing();
 		}
 
-		public void StopTracking() {
+		public void StopTracking()
+		{
 #if UNITY_IOS && !UNITY_EDITOR
         StopEvomoBridge();
 #endif
+
 			IsTracking = false;
 		}
 
@@ -115,8 +127,10 @@ namespace MotionAI.Core {
 		}
 
 		private void OnEnable() {
-#if UNITY_IOS && !UNITY_EDITORz
-        InitEvomoBridge(mySDKConfig.licenseID);
+#if UNITY_IOS && !UNITY_EDITOR
+				// TODO add parameter to global Manager to define if debuggin is active (sdk will send some debugging and raw measurement data to the server)
+				// Enter the boolean as string like "true" and "false"
+        InitEvomoBridge(MessageRecived, mySDKConfig.licenseID, "true");
 #endif
 		}
 
