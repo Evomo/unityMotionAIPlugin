@@ -11,6 +11,8 @@ using static MotionAI.Core.POCO.UtilHelper;
 
 namespace MotionAI.Core {
 	public class MotionAIManager : MonoBehaviour {
+		
+		public static OnSDKMessage onSDKMessage = new OnSDKMessage();
 		#region Internal Load
 
 #if UNITY_IOS && !UNITY_EDITOR
@@ -109,6 +111,7 @@ namespace MotionAI.Core {
         SetUsernameBridge(mySDKConfig.username);
 #endif
 			controllerManager = new ControllerManager();
+			MotionAIManager.onSDKMessage.AddListener(ProcessMotionMessage);
 		}
 
 		private void OnEnable() {
@@ -125,7 +128,11 @@ namespace MotionAI.Core {
 		#endregion
 
 
-		public void ManageMotion(string movementStr) {
+		public static void ManageMotion(string message) {
+			MotionAIManager.onSDKMessage.Invoke(message);
+		}
+		
+		private void ProcessMotionMessage(string movementStr) {
 			BridgeMessage msg = JsonUtility.FromJson<BridgeMessage>(movementStr);
 
 

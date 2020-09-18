@@ -7,6 +7,10 @@ namespace MotionAI.Core.POCO {
 	public class ControllerPairedEvent : UnityEvent<MotionAIController> {
 	}
 
+
+	public class OnSDKMessage : UnityEvent<string> {
+	}
+
 	[Serializable]
 	public class OnMovementEvent : UnityEvent<MovementDto> {
 	}
