@@ -4,29 +4,23 @@ using System.Globalization;
 using MotionAI.Core.Util;
 
 namespace MotionAI.Core.Editor.ModelGenerator.Builders {
-	public abstract class BaseClassBuilder {
-		protected CodeTypeDeclaration targetClass;
+	public partial class CustomClassBuilder {
+		public CodeTypeDeclaration targetClass;
 		protected CodeCompileUnit targetUnit;
-		private CodeNamespace codeNamespace;
-		protected string className;
+		protected CodeNamespace codeNamespace;
 
-		public CodeTypeDeclaration TargetClass => targetClass;
 
-		protected BaseClassBuilder(string name) {
-			TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
-
-			string cleanName = textInfo.ToTitleCase(name).CleanFromDB();
-			this.className = cleanName;
+		protected CustomClassBuilder(string name) {
+			string cleanName = name.ToClassCase();
 			targetUnit = new CodeCompileUnit();
 			targetClass = new CodeTypeDeclaration(cleanName);
 
 
-			codeNamespace = new CodeNamespace($"MotionAI.Core.Models.{cleanName}");
+			codeNamespace = new CodeNamespace("MotionAI.Core.Models.Generated");
+			codeNamespace.Types.Add(targetClass);
+
 			targetUnit.Namespaces.Add(codeNamespace);
-				codeNamespace.Types.Add(targetClass);
+			// codeNamespace.Types.Add(targetClass);
 		}
-
-
-		public abstract void Build();
 	}
 }

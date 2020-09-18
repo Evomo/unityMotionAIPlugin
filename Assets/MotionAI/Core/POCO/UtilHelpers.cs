@@ -1,7 +1,4 @@
-using System;
-using UnityEngine;
-
-namespace MotionAI {
+namespace MotionAI.Core.POCO {
 	
 	public class UtilHelper {
 		
@@ -14,20 +11,6 @@ namespace MotionAI {
 		public enum FailureType {
 			toLess,
 			toMuch
-		}
-
-
-		
-		public static string ToCustomOrientation(DeviceOrientation dvO) {
-			switch (dvO) {
-				case DeviceOrientation.LandscapeLeft:
-					return "buttonLeft";
-				case DeviceOrientation.LandscapeRight:
-					return "buttonRight";
-
-				default:
-					return "buttonDown";
-			}
 		}
 	}
 }

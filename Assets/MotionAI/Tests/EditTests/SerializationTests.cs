@@ -1,10 +1,8 @@
-﻿using System;
-using System.Linq;
-using MotionAI.Core.POCO;
+﻿using MotionAI.Core.POCO;
 using NUnit.Framework;
 using UnityEngine;
 using FluentAssertions;
-using MotionAI.Core.Models.Constants;
+using MotionAI.Core.Models.Generated;
 
 namespace MotionAI.Tests.EditTests {
 	public class SerializationTests {
@@ -46,9 +44,9 @@ namespace MotionAI.Tests.EditTests {
 }";
 
 
-			Movement serialized = JsonUtility.FromJson<Movement>(debugText);
+			MovementDto serialized = JsonUtility.FromJson<MovementDto>(debugText);
 
-			Movement actual = new Movement {
+			MovementDto actual = new MovementDto {
 				gVelAmplitudePositive = 0.29999999999999999f,
 				amplitude = 0.10000000000000001f,
 				durationPositive = 0.20000000000000001f,
@@ -93,9 +91,9 @@ namespace MotionAI.Tests.EditTests {
 			""gVelAmplitudeNegative"" : 0.29999999999999999
 		}";
 
-			Movement serialized = JsonUtility.FromJson<Movement>(s);
+			MovementDto serialized = JsonUtility.FromJson<MovementDto>(s);
 
-			Movement actual = new Movement {
+			MovementDto actual = new MovementDto {
 				gVelAmplitudePositive = 0.29999999999999999f,
 				amplitude = 0.10000000000000001f,
 				durationPositive = 0.20000000000000001f,
@@ -126,7 +124,7 @@ namespace MotionAI.Tests.EditTests {
 
 		[Test]
 		public void DeserializationContainsElmos() {
-			Movement actual = new Movement {
+			MovementDto actual = new MovementDto {
 				gVelAmplitudePositive = 0.29999999999999999f,
 				amplitude = 0.10000000000000001f,
 				durationPositive = 0.20000000000000001f,
@@ -153,7 +151,7 @@ namespace MotionAI.Tests.EditTests {
 
 			string s = JsonUtility.ToJson(actual);
 
-			Movement m = JsonUtility.FromJson<Movement>(s);
+			MovementDto m = JsonUtility.FromJson<MovementDto>(s);
 			
 			Assert.IsTrue(m.elmos.Count == 2);
 			actual.Should().BeEquivalentTo(m);

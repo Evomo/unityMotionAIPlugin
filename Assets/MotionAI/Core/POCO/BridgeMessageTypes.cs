@@ -1,10 +1,28 @@
 using System;
 using System.Collections.Generic;
-using MotionAI.Core.Models.Constants;
+using JetBrains.Annotations;
+using MotionAI.Core.Models.Generated;
 
 namespace MotionAI.Core.POCO {
 	[Serializable]
-	public class Movement {
+	public class BridgeMessage {
+		[CanBeNull] public MovementDto movementDto;
+		[CanBeNull] public ElementalMovement elmo; 
+	}
+	
+	[Serializable]
+	public class ElementalMovement {
+		public ElmoEnum typeID;
+		public string typeLabel;
+		public bool rejected;
+		// public DateTime start;
+		// public DateTime end;
+		public string deviceIdent;
+	}
+	
+	
+	[Serializable]
+	public class MovementDto {
 		public float gVelAmplitudePositive;
 		public float gVelAmplitudeNegative;
 		public float amplitude;

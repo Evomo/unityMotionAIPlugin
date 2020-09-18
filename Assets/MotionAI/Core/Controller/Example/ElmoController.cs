@@ -1,4 +1,4 @@
-using MotionAI.Core.Models.Constants;
+using MotionAI.Core.Models.Generated;
 using MotionAI.Core.POCO;
 
 namespace MotionAI.Core.Controller.Example {
@@ -7,7 +7,7 @@ namespace MotionAI.Core.Controller.Example {
 
 		public OnElmoEvent jump, duck, left, right;
 
-		protected override void HandleMovement(Movement msg) {
+		protected override void HandleMovement(MovementDto msg) {
 			msg.elmos.ForEach(HandleElmo);
 		}
 

@@ -2,22 +2,22 @@ using System;
 using System.Collections.Generic;
 
 namespace MotionAI.Core.Editor.ModelGenerator {
-	public class ModelJson {
-		public List<Model> models;
-		public List<ModelSeries> model_series;
-		public List<Movement> movement_types;
+	public class ModelJsonDump {
+		public List<ModelJson> models;
+		public List<ModelSeriesJson> model_series;
+		public List<MovementJson> movement_types;
 	}
 
 
 	[Serializable]
-	public class Movement {
+	public class MovementJson {
 		public int id;
 		public string name;
 		public List<string> elmos;
 		
 	}
 	[Serializable]
-	public class Model {
+	public class ModelJson {
 		public string device_position;
 		public List<string> movement_types;
 		public int test_run;
@@ -26,15 +26,15 @@ namespace MotionAI.Core.Editor.ModelGenerator {
 	
 	
 	[Serializable]
-	public class ModelSeries {
+	public class ModelSeriesJson {
 		public string device_position;
 		public string model_type;
 		public string name;
-		public Build builds;
+		public BuildJson builds;
 	}
 
 	[Serializable]
-	public class Build {
+	public class BuildJson {
 		public int prod;
 		public int beta;
 	}

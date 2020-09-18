@@ -34,7 +34,7 @@ namespace MotionAI.Tests.PlayTests {
 			int amountOfControllers = 3;
 			for (int i = 0; i < amountOfControllers; i++) {
 				MotionAIController c = new GameObject().AddComponent<MotionAIController>();
-				c.isGlobal = true;
+				c.IsGlobal = true;
 			}
 
 			manager.ControlPairing();
@@ -64,7 +64,7 @@ namespace MotionAI.Tests.PlayTests {
 			manager.ControlPairing();
 
 
-			dids.ForEach(did => manager.controllerManager.ManageMotion(new Movement {
+			dids.ForEach(did => manager.controllerManager.ManageMotion(new MovementDto {
 				elmos = new List<ElementalMovement> {
 					new ElementalMovement {
 						deviceIdent = did
@@ -103,7 +103,7 @@ namespace MotionAI.Tests.PlayTests {
 			manager.ControlPairing();
 
 
-			dids.ForEach(did => manager.controllerManager.ManageMotion(new Movement {
+			dids.ForEach(did => manager.controllerManager.ManageMotion(new MovementDto {
 				elmos = new List<ElementalMovement> {
 					new ElementalMovement {
 						deviceIdent = did

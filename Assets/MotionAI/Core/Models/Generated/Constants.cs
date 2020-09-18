@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MotionAI.Core.Models.Constants {
+namespace MotionAI.Core.Models.Generated {
     
         public enum ElmoEnum {
             arm_spin_down,
@@ -323,8 +323,8 @@ namespace MotionAI.Core.Models.Constants {
             turn_90_left = 102,
             turn_90_right = 101,
         }
-        public enum MovementModel {
-            subway_surfer,
-            bodyweight,
+        public enum ModelType {
+            gaming,
+            fitness,
         }
     }

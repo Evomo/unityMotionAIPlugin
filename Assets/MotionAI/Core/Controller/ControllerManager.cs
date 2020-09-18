@@ -37,7 +37,7 @@ namespace MotionAI.Core.Controller {
 
 				unpairedAvailableControllers = availableControllers
 					.Select(c => {
-						if (c.isGlobal) {
+						if (c.IsGlobal) {
 							PairController("global", c);
 						}
 
@@ -85,7 +85,7 @@ namespace MotionAI.Core.Controller {
 			}
 		}
 
-		public void ManageMotion(Movement msg) {
+		public void ManageMotion(MovementDto msg) {
 			// Debug.Log(JsonUtility.ToJson(msg, true));
 			if (unpairedAvailableControllers.Count == 0) {
 				PairingController = false;

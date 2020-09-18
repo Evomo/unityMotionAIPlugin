@@ -1,14 +1,14 @@
 using System;
-using MotionAI.Core.POCO;
+using MotionAI.Core.Controller;
 using UnityEngine.Events;
 
-namespace MotionAI.Core.Controller {
+namespace MotionAI.Core.POCO {
 	[Serializable]
 	public class ControllerPairedEvent : UnityEvent<MotionAIController> {
 	}
 
 	[Serializable]
-	public class OnMovementEvent : UnityEvent<Movement> {
+	public class OnMovementEvent : UnityEvent<MovementDto> {
 	}
 
 	[Serializable]
