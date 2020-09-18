@@ -1,6 +1,5 @@
 ﻿using System;
 using UnityEditor;
-using UnityEditor.Compilation;
 using UnityEngine;
 
 namespace MotionAI.GameHub {
@@ -20,6 +19,18 @@ namespace MotionAI.GameHub {
 		public string developerName;
 
 
+#if UNITY_EDITOR
+		
+		[MenuItem("Evomo/Create Game Asset")]
+		public static void CreateSceneObjects() {
+			GameHubGame gs = ScriptableObject.CreateInstance<GameHubGame>();
+			gs.gameName = Application.productName;
+
+			AssetDatabase.CreateAsset(gs, $"Assets/{gs.gameName}.asset");
+
+			AssetDatabase.SaveAssets();
+			AssetDatabase.Refresh();
+		}
 		private void OnEnable() {
 			try {
 				TextureImporter ti = (TextureImporter) AssetImporter.GetAtPath(AssetDatabase.GetAssetPath(image));
@@ -31,6 +42,7 @@ namespace MotionAI.GameHub {
 				
 			}
 		}
+#endif
 
 		public GameLauncherData GetGameLauncherData() {
 			GameLauncherData gld = new GameLauncherData();
