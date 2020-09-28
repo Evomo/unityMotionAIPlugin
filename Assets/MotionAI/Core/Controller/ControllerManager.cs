@@ -20,7 +20,6 @@ namespace MotionAI.Core.Controller {
 
 		[HideInInspector] public ControllerPairedEvent pairedEvent;
 		[HideInInspector] public ControllerPairedEvent unpairedEvent;
-
 		[HideInInspector] public OnMovementEvent onMovement;
 
 		public ControllerManager() {

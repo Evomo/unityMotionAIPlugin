@@ -4,18 +4,15 @@ using UnityEngine.Events;
 
 namespace MotionAI.Core.POCO {
 	[Serializable]
-	public class ControllerPairedEvent : UnityEvent<MotionAIController> {
-	}
+	public class ControllerPairedEvent : UnityEvent<MotionAIController> { }
 
-
-	public class OnSDKMessage : UnityEvent<string> {
-	}
 
 	[Serializable]
-	public class OnMovementEvent : UnityEvent<MovementDto> {
-	}
+	public class OnSDKMessage : UnityEvent<string> { }
 
 	[Serializable]
-	public class OnElmoEvent : UnityEvent<ElementalMovement> {
-	}
+	public class OnMovementEvent : UnityEvent<MovementDto> { }
+
+	[Serializable]
+	public class OnElmoEvent : UnityEvent<ElementalMovement> { }
 }

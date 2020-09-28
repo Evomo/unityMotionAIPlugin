@@ -3,7 +3,7 @@ using MotionAI.Core.POCO;
 
 namespace MotionAI.Core.Controller.Example {
 	public class ElmoController : MotionAIController {
-		private ElementalMovement lastElmo;
+		private ElementalMovement _lastElmo;
 
 		public OnElmoEvent jump, duck, left, right;
 
@@ -30,9 +30,9 @@ namespace MotionAI.Core.Controller.Example {
 
 
 				// rescue rejected elmo
-				if (lastElmo != null) {
-					if (lastElmo.rejected && elementalMovement.rejected == false) {
-						switch (lastElmo.typeID) {
+				if (_lastElmo != null) {
+					if (_lastElmo.rejected && elementalMovement.rejected == false) {
+						switch (_lastElmo.typeID) {
 						case ElmoEnum.duck_down:
 							RecoverElmo(elementalMovement, duck);
 							break;
@@ -50,11 +50,11 @@ namespace MotionAI.Core.Controller.Example {
 				}
 			}
 
-			lastElmo = elementalMovement;
+			_lastElmo = elementalMovement;
 		}
 
 		private void RecoverElmo(ElementalMovement elementalMovement, OnElmoEvent callback) {
-			ElmoEnum lastOpposite = DownOpposite(lastElmo.typeID);
+			ElmoEnum lastOpposite = DownOpposite(_lastElmo.typeID);
 			if (elementalMovement.typeID == lastOpposite) {
 				callback.Invoke(elementalMovement);
 			}

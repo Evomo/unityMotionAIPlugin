@@ -18,9 +18,9 @@ namespace MotionAI.Core.Editor.ModelGenerator {
 
 		public ModelJsonDump mj;
 
-		#region Unity Gui Stuff
+		#region Unity GUI
 
-		[MenuItem("Evomo/Class Generation")]
+		[MenuItem("Evomo/Tools/Class Generation")]
 		static void Init() {
 			GetWindow<ModelCreationWindow>("Model Class Creation");
 		}

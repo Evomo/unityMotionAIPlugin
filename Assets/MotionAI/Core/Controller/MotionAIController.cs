@@ -11,6 +11,8 @@ using UnityEngine;
 
 namespace MotionAI.Core.Controller {
 	public class MotionAIController : MonoBehaviour {
+		#region Internal Classes
+
 		[Serializable]
 		public class ModelManager {
 			public AbstractModelComponent model => modelComponent;
@@ -42,7 +44,7 @@ namespace MotionAI.Core.Controller {
 			public string deviceId;
 
 			[Tooltip(
-				"Does this controller react to every movement or does it only subscribes to movements with the corresponding device ID?")]
+				"Does this controller react to every movement or does it only subscribe to movements with the corresponding device ID?")]
 			public bool isGlobal;
 
 			public void Pair(string id) {
@@ -57,23 +59,11 @@ namespace MotionAI.Core.Controller {
 			}
 		}
 
+		#endregion
+
+		#region Fields
 
 		private Dictionary<MovementEnum, MoveHolder> _moveHolders;
-
-
-		private void FillDictionary() {
-			_moveHolders = new Dictionary<MovementEnum, MoveHolder>();
-			foreach (MoveHolder move in modelManager.model.GetMoveHolders()) {
-				_moveHolders[move.id] = move;
-			}
-
-		}
-
-
-		public virtual void Start() {
-			FillDictionary();
-		}
-
 		public ControllerSettings controllerSettings;
 		public ModelManager modelManager;
 		public string DeviceId => controllerSettings.deviceId;
@@ -84,11 +74,33 @@ namespace MotionAI.Core.Controller {
 			set => controllerSettings.isGlobal = value;
 		}
 
+		#endregion
+
+		#region Init
+
+		private void FillDictionary() {
+			_moveHolders = new Dictionary<MovementEnum, MoveHolder>();
+			foreach (MoveHolder move in modelManager.model.GetMoveHolders()) {
+				_moveHolders[move.id] = move;
+			}
+		}
+
+
+		public virtual void Start() {
+			FillDictionary();
+		}
 
 		public void SetDevice(string id, OnMovementEvent onMovement) {
 			controllerSettings.Pair(id);
 			onMovement.AddListener(MovementCallBack);
 		}
+
+
+		public void Unpair() {
+			controllerSettings.Unpair();
+		}
+
+		#endregion
 
 
 		private void MovementCallBack(MovementDto msg) {
@@ -108,10 +120,5 @@ namespace MotionAI.Core.Controller {
 
 		protected virtual void HandleMovement(MovementDto msg) {
 		}
-
-		public void Unpair() {
-			
-			controllerSettings.Unpair();
-		}
 	}
-}	
+}

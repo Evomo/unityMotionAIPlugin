@@ -21,7 +21,7 @@ namespace MotionAI.GameHub {
 
 #if UNITY_EDITOR
 		
-		[MenuItem("Evomo/Create Game Asset")]
+		[MenuItem("Evomo/Gamehub/Create Game Asset")]
 		public static void CreateSceneObjects() {
 			GameHubGame gs = ScriptableObject.CreateInstance<GameHubGame>();
 			gs.gameName = Application.productName;
