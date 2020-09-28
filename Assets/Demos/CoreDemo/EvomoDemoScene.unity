@@ -5262,6 +5262,7 @@ MonoBehaviour:
       onMove:
         m_PersistentCalls:
           m_Calls: []
+  meta: {}
 --- !u!1 &701655731
 GameObject:
   m_ObjectHideFlags: 0
@@ -5334,10 +5335,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e073381bf237b42b69fd7dbc3cebb8b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mySDKConfig:
-    licenseID: 
-    username: 
-    classificationModel: 0
+  mySDKConfig: {fileID: 11400000, guid: 37421fad8d1aae74ea6a1a025c7fd302, type: 2}
   controllerManager:
     unpairedAvailableControllers: []
     pairedEvent:
