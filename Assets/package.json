@@ -6,7 +6,7 @@
   "unity": "2019.1",
   "repository": {
     "type": "git",
-    "url": "https://github.com/DanAmador/unityMotionAIPlugin.git"
+    "url": "https://github.com/Evomo/unityMotionAIPlugin.git"
   },
   "dependencies": {
   },
@@ -20,12 +20,6 @@
       "displayName": "Tracking Demo",
       "description": "Demo to test the tracking API",
       "path": "Demos/CoreDemo"
-    } ,
-
-    {
-      "displayName": "GameHub Game Demo",
-      "description": "Demo to show off how to change scenes in the Gamehub",
-      "path": "Demos/GameLaunchDemo"
     }
   ]
 }
