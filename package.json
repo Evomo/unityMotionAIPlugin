@@ -1,11 +1,17 @@
 {
   "name": "com.evomo.motionai",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "displayName": "Evomo MotionAI",
   "description": "Plugin to classify complex movements used in exergames",
   "unity": "2019.1",
-  "unityRelease": "0b5",
-  "type": "Plugin",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Evomo/unityMotionAIPlugin.git"
+  },
+  "dependencies": {
+    "com.solidalloy.type.references": "git+https://github.com/SolidAlloy/ClassTypeReference-for-Unity#Make-type-reference-support-all-types"
+
+  },
   "author": {
     "name": "Evomo",
     "email": "jakob.wowy@evomo.de",
@@ -13,9 +19,9 @@
   },
   "samples": [
     {
-      "displayName": "Demo",
+      "displayName": "Tracking Demo",
       "description": "Demo to test the tracking API",
-      "path": "EvomoDemo"
-    } 
+      "path": "Demos/CoreDemo"
+    }
   ]
 }
