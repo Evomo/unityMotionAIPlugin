@@ -28,6 +28,13 @@ namespace MotionAI.Core.Models.Generated {
                 return "bodyweight";
             }
         }
+
+
+        private void Start() {
+            moves = new Movements();
+            meta = new Metadata();
+        }
+
         public override System.Collections.Generic.List<MotionAI.Core.POCO.MoveHolder> GetMoveHolders() {
             return moves.GetType().GetFields().Select(x => (MoveHolder)(x.GetValue(moves))).ToList();;
         }

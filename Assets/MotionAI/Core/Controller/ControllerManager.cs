@@ -12,7 +12,7 @@ namespace MotionAI.Core.Controller {
 		public List<MotionAIController> unpairedAvailableControllers;
 
 
-		public int AmountOfPairedControllers {
+		public int amountOfPairedControllers {
 			get { return controllers.Values.Aggregate(0, (total, cList) => total + cList.Count()); }
 		}
 

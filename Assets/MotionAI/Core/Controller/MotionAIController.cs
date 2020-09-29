@@ -45,7 +45,7 @@ namespace MotionAI.Core.Controller {
 
 			[Tooltip(
 				"Does this controller react to every movement or does it only subscribe to movements with the corresponding device ID?")]
-			public bool isGlobal;
+			public bool isGlobal = true;
 
 			public void Pair(string id) {
 				deviceId = id;
@@ -106,12 +106,12 @@ namespace MotionAI.Core.Controller {
 		private void MovementCallBack(MovementDto msg) {
 			string diD = msg.elmos.First().deviceIdent;
 			if (diD == DeviceId || IsGlobal) {
-				InvokEvents(msg);
+				InvokeEvents(msg);
 				HandleMovement(msg);
 			}
 		}
 
-		private void InvokEvents(MovementDto e) {
+		private void InvokeEvents(MovementDto e) {
 			MoveHolder holder = new MoveHolder();
 			if (_moveHolders?.TryGetValue(e.typeID, out holder) ?? false) {
 				holder?.onMove.Invoke(e);

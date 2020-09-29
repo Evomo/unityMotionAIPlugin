@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c305fd86cef4d55af0e24232ca15345, type: 3}
   m_Name: SdkSettings
   m_EditorClassIdentifier: 
-  licenseID: 
+  licenseID: Enter your key
   username: 

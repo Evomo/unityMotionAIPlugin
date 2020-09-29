@@ -9,7 +9,6 @@
     "url": "https://github.com/Evomo/unityMotionAIPlugin.git"
   },
   "dependencies": {
-    "com.solidalloy.type.references": "git+https://github.com/SolidAlloy/ClassTypeReference-for-Unity#Make-type-reference-support-all-types"
 
   },
   "author": {
