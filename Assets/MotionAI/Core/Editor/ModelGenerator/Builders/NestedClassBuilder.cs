@@ -20,7 +20,8 @@ namespace MotionAI.Core.Editor.ModelGenerator.Builders {
 		}
 
 
-		public CustomClassBuilder WithObject(string name, string typeName, CodeObjectCreateExpression cobe) {
+		public CustomClassBuilder WithObject(string name, string typeName, CodeObjectCreateExpression cobe,
+			CodeAttributeDeclaration cad = null) {
 			CodeMemberProperty s = new CodeMemberProperty();
 
 
@@ -32,19 +33,29 @@ namespace MotionAI.Core.Editor.ModelGenerator.Builders {
 				objectValueField.InitExpression = cobe;
 			}
 
+			if (cad != null) {
+				objectValueField.CustomAttributes.Add(cad);
+			}
+
 			objectValueField.Type = new CodeTypeReference(typeName);
 			targetClass.Members.Add(objectValueField);
 
 			return this;
 		}
 
-		public CustomClassBuilder WithObject(string name, string typeName, bool fieldInit = true) {
+		public CustomClassBuilder WithObject(string name, string typeName, bool fieldInit = true, bool hidden = false) {
 			CodeObjectCreateExpression cobe = null;
-
+			CodeAttributeDeclaration cad = null;
 			if (fieldInit) {
 				cobe = new CodeObjectCreateExpression(typeName);
 			}
-			WithObject(name, typeName, cobe);
+
+			if (hidden) {
+				cad = new CodeAttributeDeclaration("HideInInspector");
+			}
+
+
+			WithObject(name, typeName, cobe, cad);
 			return this;
 		}
 

@@ -17,6 +17,7 @@ namespace MotionAI.Core.Models.Generated {
     
     public class Bodyweight : AbstractModelComponent {
         public Movements moves = new Movements();
+        [HideInInspector()]
         public Metadata meta = new Metadata();
         public static MotionAI.Core.Models.Generated.ModelType modelType {
             get {

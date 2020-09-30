@@ -1,6 +1,7 @@
 ﻿using System;
 using System.CodeDom;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using MotionAI.Core.Editor.ModelGenerator.Builders;
@@ -11,6 +12,7 @@ using MotionAI.Core.Util;
 using NUnit.Framework;
 using UnityEditor;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
 
 namespace MotionAI.Core.Editor.ModelGenerator {
 	public class ModelCreationWindow : EditorWindow {
@@ -110,7 +112,7 @@ namespace MotionAI.Core.Editor.ModelGenerator {
 					.WithReadOnlyField("modelType", (ModelType) Enum.Parse(typeof(ModelType), modelSeries.model_type))
 					.WithReadOnlyField("modelName", modelSeries.name)
 					.WithObject("moves", "Movements")
-					.WithObject("meta", "Metadata");
+					.WithObject("meta", "Metadata", hidden: true);
 
 				CreateMovementClass(ccb, modelSeries);
 				CreateMetaDataClasses(ccb, modelSeries.name);
