@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
-using MotionAI;
+using System.Linq;
 using MotionAI.Core;
 using MotionAI.Core.Controller;
 using MotionAI.Core.Models.Generated;
 using MotionAI.Core.POCO;
+using MotionAI.Core.Util;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -43,20 +44,20 @@ namespace Demos.CoreDemo {
 		}
 
 		public void SendDebugMovementString() {
-			string debugId = fakeDeviceIds[Random.Range(0, fakeDeviceIds.Count)];
+			string fakeId = fakeDeviceIds.RandomElement();
+			MotionAIController maic = maim.controllerManager.controllers[fakeId].First();
 
-			MovementDto m = new MovementDto {gVelAmplitudeNegative = Random.Range(0, 10), amplitude = Random.Range(0, 10)};
+			MoveHolder mv = maic.modelManager.model.GetMoveHolders().RandomElement();
 
+			MovementDto dto = new MovementDto();
+			ElementalMovement elmo = new ElementalMovement();
 
-			int amountOfElmos = Random.Range(0, 5);
-			List<ElementalMovement> fakeElmos = new List<ElementalMovement>();
-			for (int i = 0; i < amountOfElmos; i++) {
-				ElementalMovement e = new ElementalMovement {deviceIdent = debugId};
-				fakeElmos.Add(e);
-			}
+			dto.typeID = mv.id;
+			dto.elmos.Add(elmo);
+			elmo.deviceIdent = fakeId;
 
-			m.elmos = fakeElmos;
-			maim.controllerManager.ManageMotion(m);
+			Debug.Log(mv.id.ToString());
+			maim.controllerManager.ManageMotion(dto);
 		}
 
 
