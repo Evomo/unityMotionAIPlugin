@@ -6,6 +6,7 @@ using System.Reflection;
 using MotionAI.Core.Models;
 using MotionAI.Core.Models.Generated;
 using MotionAI.Core.POCO;
+using MotionAI.Core.Util;
 using TypeReferences;
 using UnityEngine;
 
@@ -40,8 +41,8 @@ namespace MotionAI.Core.Controller {
 
 		[Serializable]
 		public class ControllerSettings {
-			public bool isPaired;
-			public string deviceId;
+			[ShowOnly] public bool isPaired;
+			[ShowOnly] public string deviceId;
 
 			[Tooltip(
 				"Does this controller react to every movement or does it only subscribe to movements with the corresponding device ID?")]
@@ -118,7 +119,6 @@ namespace MotionAI.Core.Controller {
 			}
 		}
 
-		protected virtual void HandleMovement(MovementDto msg) {
-		}
+		protected virtual void HandleMovement(MovementDto msg) { }
 	}
 }
