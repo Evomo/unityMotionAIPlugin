@@ -7,6 +7,7 @@ using MotionAI.Core.Models;
 using MotionAI.Core.Models.Generated;
 using MotionAI.Core.POCO;
 using MotionAI.Core.Util;
+using NUnit.Framework.Interfaces;
 using UnityEngine;
 
 namespace MotionAI.Core.Editor.ModelGenerator.Builders {
@@ -37,8 +38,13 @@ namespace MotionAI.Core.Editor.ModelGenerator.Builders {
 			return this;
 		}
 
-		public CustomClassBuilder WithObject(string name, string typeName) {
-			WithObject(name, typeName, null);
+		public CustomClassBuilder WithObject(string name, string typeName, bool fieldInit = true) {
+			CodeObjectCreateExpression cobe = null;
+
+			if (fieldInit) {
+				cobe = new CodeObjectCreateExpression(typeName);
+			}
+			WithObject(name, typeName, cobe);
 			return this;
 		}
 

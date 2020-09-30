@@ -16,8 +16,8 @@ namespace MotionAI.Core.Models.Generated {
     using MotionAI.Core.POCO;
     
     public class Subway_Surfer : AbstractModelComponent {
-        public Movements moves;
-        public Metadata meta;
+        public Movements moves = new Movements();
+        public Metadata meta = new Metadata();
         public static MotionAI.Core.Models.Generated.ModelType modelType {
             get {
                 return MotionAI.Core.Models.Generated.ModelType.gaming;
@@ -28,11 +28,6 @@ namespace MotionAI.Core.Models.Generated {
                 return "subway-surfer";
             }
         }
-        private void Start() {
-            moves = new Movements();
-            meta = new Metadata();
-        }
-        
         public override System.Collections.Generic.List<MotionAI.Core.POCO.MoveHolder> GetMoveHolders() {
             return moves.GetType().GetFields().Select(x => (MoveHolder)(x.GetValue(moves))).ToList();;
         }
