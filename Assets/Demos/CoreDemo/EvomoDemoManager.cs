@@ -61,7 +61,7 @@ namespace Demos.CoreDemo {
 
 
 		public void StartPairController() {
-			maim.ControlPairing();
+			maim.StartControlPairing();
 		}
 
 
