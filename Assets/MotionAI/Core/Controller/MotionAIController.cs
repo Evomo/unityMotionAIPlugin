@@ -6,11 +6,14 @@ using System.Reflection;
 using MotionAI.Core.Models;
 using MotionAI.Core.Models.Generated;
 using MotionAI.Core.POCO;
+using MotionAI.Core.Util;
 using TypeReferences;
 using UnityEngine;
 
 namespace MotionAI.Core.Controller {
 	public class MotionAIController : MonoBehaviour {
+		#region Internal Classes
+
 		[Serializable]
 		public class ModelManager {
 			public AbstractModelComponent model => modelComponent;
@@ -38,12 +41,12 @@ namespace MotionAI.Core.Controller {
 
 		[Serializable]
 		public class ControllerSettings {
-			public bool isPaired;
-			public string deviceId;
+			[ShowOnly] public bool isPaired;
+			[ShowOnly] public string deviceId;
 
 			[Tooltip(
-				"Does this controller react to every movement or does it only subscribes to movements with the corresponding device ID?")]
-			public bool isGlobal;
+				"Does this controller react to every movement or does it only subscribe to movements with the corresponding device ID?")]
+			public bool isGlobal = true;
 
 			public void Pair(string id) {
 				deviceId = id;
@@ -57,23 +60,11 @@ namespace MotionAI.Core.Controller {
 			}
 		}
 
+		#endregion
+
+		#region Fields
 
 		private Dictionary<MovementEnum, MoveHolder> _moveHolders;
-
-
-		private void FillDictionary() {
-			_moveHolders = new Dictionary<MovementEnum, MoveHolder>();
-			foreach (MoveHolder move in modelManager.model.GetMoveHolders()) {
-				_moveHolders[move.id] = move;
-			}
-
-		}
-
-
-		public virtual void Start() {
-			FillDictionary();
-		}
-
 		public ControllerSettings controllerSettings;
 		public ModelManager modelManager;
 		public string DeviceId => controllerSettings.deviceId;
@@ -84,6 +75,21 @@ namespace MotionAI.Core.Controller {
 			set => controllerSettings.isGlobal = value;
 		}
 
+		#endregion
+
+		#region Init
+
+		private void FillDictionary() {
+			_moveHolders = new Dictionary<MovementEnum, MoveHolder>();
+			foreach (MoveHolder move in modelManager.model.GetMoveHolders()) {
+				_moveHolders[move.id] = move;
+			}
+		}
+
+
+		public virtual void Start() {
+			FillDictionary();
+		}
 
 		public void SetDevice(string id, OnMovementEvent onMovement) {
 			controllerSettings.Pair(id);
@@ -91,27 +97,28 @@ namespace MotionAI.Core.Controller {
 		}
 
 
+		public void Unpair() {
+			controllerSettings.Unpair();
+		}
+
+		#endregion
+
+
 		private void MovementCallBack(MovementDto msg) {
 			string diD = msg.elmos.First().deviceIdent;
 			if (diD == DeviceId || IsGlobal) {
-				InvokEvents(msg);
+				InvokeEvents(msg);
 				HandleMovement(msg);
 			}
 		}
 
-		private void InvokEvents(MovementDto e) {
+		private void InvokeEvents(MovementDto e) {
 			MoveHolder holder = new MoveHolder();
 			if (_moveHolders?.TryGetValue(e.typeID, out holder) ?? false) {
 				holder?.onMove.Invoke(e);
 			}
 		}
 
-		protected virtual void HandleMovement(MovementDto msg) {
-		}
-
-		public void Unpair() {
-			
-			controllerSettings.Unpair();
-		}
+		protected virtual void HandleMovement(MovementDto msg) { }
 	}
-}	
+}

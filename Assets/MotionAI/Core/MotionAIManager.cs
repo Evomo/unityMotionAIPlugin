@@ -14,10 +14,11 @@ using static MotionAI.Core.POCO.UtilHelper;
 
 namespace MotionAI.Core {
 	public class MotionAIManager : MonoBehaviour {
+
 		public delegate void UnityCallback(string value);
 
 		public static OnSDKMessage onSDKMessage = new OnSDKMessage();
-
+		
 		#region Internal Load
 
 #if UNITY_IOS && !UNITY_EDITOR
@@ -59,9 +60,7 @@ namespace MotionAI.Core {
 #endif
 
 
-		public void StartTracking()
-		{
-			
+		public void StartTracking() {
 #if UNITY_IOS && !UNITY_EDITOR
 // TODO: Add third parameter gaming - if model_type == gaming -> input_string = "true"
 // TODO: Input classificationModel as string
@@ -69,11 +68,10 @@ namespace MotionAI.Core {
         StartEvomoBridge("buttonDown", "subway-surfer", "true");
 #endif
 			IsTracking = true;
-			ControlPairing();
+			StartControlPairing();
 		}
 
-		public void StopTracking()
-		{
+		public void StopTracking() {
 #if UNITY_IOS && !UNITY_EDITOR
         StopEvomoBridge();
 #endif
@@ -109,11 +107,15 @@ namespace MotionAI.Core {
 		#endregion
 
 
-		#region Unity 
+		#region Unity
 
+		public delegate void UnityCallback(string value);
+
+		public static OnSDKMessage onSDKMessage = new OnSDKMessage();
 		public SDKConfig mySDKConfig;
 		public ControllerManager controllerManager;
 
+		public bool automaticPairing = true;
 		public bool IsTracking { get; private set; }
 
 		#region Lifecycle
@@ -123,7 +125,12 @@ namespace MotionAI.Core {
         SetUsernameBridge(mySDKConfig.username);
 #endif
 			controllerManager = new ControllerManager();
-			MotionAIManager.onSDKMessage.AddListener(ProcessMotionMessage);
+			onSDKMessage.AddListener(ProcessMotionMessage);
+
+
+			if (automaticPairing) {
+				StartTracking();
+			}
 		}
 
 		private void OnEnable() {
@@ -144,9 +151,9 @@ namespace MotionAI.Core {
 
 
 		public static void ManageMotion(string message) {
-			MotionAIManager.onSDKMessage.Invoke(message);
+			onSDKMessage.Invoke(message);
 		}
-		
+
 		private void ProcessMotionMessage(string movementStr) {
 			BridgeMessage msg = JsonUtility.FromJson<BridgeMessage>(movementStr);
 
@@ -165,7 +172,7 @@ namespace MotionAI.Core {
 		}
 
 
-		public void ControlPairing() {
+		public void StartControlPairing() {
 			controllerManager.PairController(FindObjectsOfType<MotionAIController>().ToList());
 		}
 

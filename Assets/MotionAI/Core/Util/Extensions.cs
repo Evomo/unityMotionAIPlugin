@@ -2,9 +2,17 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
+using Random = UnityEngine.Random;
 
 namespace MotionAI.Core.Util {
 	public static class Extensions {
+		// Return a random item from a list.
+		public static T RandomElement<T>(this List<T> items) {
+			// Return a random item.
+			return items[Random.Range(0, items.Count)];
+		}
+
+
 		public static string ToDescriptionString(this Enum val) {
 			DescriptionAttribute[] attributes = (DescriptionAttribute[]) val
 				.GetType()

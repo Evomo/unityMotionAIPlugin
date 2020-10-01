@@ -9,13 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c16bd77948ec854b9f2896609ccb112, type: 3}
-  m_Name: EvomoUnitySDK
+  m_Script: {fileID: 11500000, guid: 2c305fd86cef4d55af0e24232ca15345, type: 3}
+  m_Name: SdkSettings
   m_EditorClassIdentifier: 
-  mainSceneReference:
-    sceneAsset: {fileID: 0}
-    scenePath: 
-  gameName: EvomoUnitySDK
-  image: {fileID: 0}
-  description: 
-  developerName: 
+  licenseID: Enter your key
+  username: 
