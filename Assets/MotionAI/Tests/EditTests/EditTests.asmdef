@@ -1,10 +1,10 @@
 {
     "name": "EditTests",
     "references": [
-        "UnityEngine.TestRunner",
-        "UnityEditor.TestRunner",
-        "MotionAI.Core",
-        "BoundfoxStudios.FluentAssertions.Editor"
+        "GUID:27619889b8ba8c24980f49ee34dbb44a",
+        "GUID:0acc523941302664db1f4e527237feb3",
+        "GUID:d6c83174c9952c944b4f431cc951f36f",
+        "GUID:e372c541aba5148868e12aa078ca7c20"
     ],
     "includePlatforms": [
         "Editor"

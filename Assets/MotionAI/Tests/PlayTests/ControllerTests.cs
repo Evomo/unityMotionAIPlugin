@@ -20,7 +20,7 @@ namespace MotionAI.Tests.PlayTests {
 				// c.isGlobal = true;
 			}
 
-			manager.ControlPairing();
+			manager.StartControlPairing();
 
 			amountOfControllers.Should().Be(manager.controllerManager.unpairedAvailableControllers.Count);
 			yield return null;
@@ -34,12 +34,12 @@ namespace MotionAI.Tests.PlayTests {
 			int amountOfControllers = 3;
 			for (int i = 0; i < amountOfControllers; i++) {
 				MotionAIController c = new GameObject().AddComponent<MotionAIController>();
-				c.isGlobal = true;
+				c.IsGlobal = true;
 			}
 
-			manager.ControlPairing();
+			manager.StartControlPairing();
 
-			amountOfControllers.Should().Be(manager.controllerManager.AmountOfPairedControllers);
+			amountOfControllers.Should().Be(manager.controllerManager.amountOfPairedControllers);
 			yield return null;
 		}
 
@@ -61,10 +61,10 @@ namespace MotionAI.Tests.PlayTests {
 					.Select(s => s[Random.Range(0, s.Length)]).ToArray()));
 			}
 
-			manager.ControlPairing();
+			manager.StartControlPairing();
 
 
-			dids.ForEach(did => manager.controllerManager.ManageMotion(new Movement {
+			dids.ForEach(did => manager.controllerManager.ManageMotion(new MovementDto {
 				elmos = new List<ElementalMovement> {
 					new ElementalMovement {
 						deviceIdent = did
@@ -100,10 +100,10 @@ namespace MotionAI.Tests.PlayTests {
 					.Select(s => s[Random.Range(0, s.Length)]).ToArray()));
 			}
 
-			manager.ControlPairing();
+			manager.StartControlPairing();
 
 
-			dids.ForEach(did => manager.controllerManager.ManageMotion(new Movement {
+			dids.ForEach(did => manager.controllerManager.ManageMotion(new MovementDto {
 				elmos = new List<ElementalMovement> {
 					new ElementalMovement {
 						deviceIdent = did
@@ -112,7 +112,7 @@ namespace MotionAI.Tests.PlayTests {
 			}));
 
 			manager.controllerManager.UnpairControllers();
-			manager.controllerManager.AmountOfPairedControllers.Should().Be(0);
+			manager.controllerManager.amountOfPairedControllers.Should().Be(0);
 			yield return null;
 		}
 	}

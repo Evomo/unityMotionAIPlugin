@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 338928923}
   - component: {fileID: 338928921}
   m_Layer: 0
-  m_Name: Controller (1)
+  m_Name: InspectorController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -155,9 +155,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d23b13478de9650429c47f7d083cd3ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isPaired: 0
-  _deviceID: 
-  isGlobal: 1
+  controllerSettings:
+    isPaired: 0
+    deviceId: 
+    isGlobal: 0
+  modelManager:
+    chosenModel:
+      GuidAssignmentFailed: 0
+      _typeNameAndAssembly: 
+      _GUID: 
+    modelComponent: {fileID: 0}
   ps: {fileID: 338928924}
 --- !u!4 &338928922
 Transform:
@@ -5166,8 +5173,9 @@ GameObject:
   m_Component:
   - component: {fileID: 513305674}
   - component: {fileID: 513305673}
+  - component: {fileID: 513305675}
   m_Layer: 0
-  m_Name: Controller
+  m_Name: EditorController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5182,24 +5190,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 513305672}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a2afdcb5b124e1289c1d0dbec3a476c, type: 3}
+  m_Script: {fileID: 11500000, guid: fc06450a03b563d45825f17b62ba236e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isPaired: 0
-  _deviceID: 
-  isGlobal: 0
-  jump:
-    m_PersistentCalls:
-      m_Calls: []
-  duck:
-    m_PersistentCalls:
-      m_Calls: []
-  left:
-    m_PersistentCalls:
-      m_Calls: []
-  right:
-    m_PersistentCalls:
-      m_Calls: []
+  controllerSettings:
+    isPaired: 0
+    deviceId: 
+    isGlobal: 0
+  modelManager:
+    chosenModel:
+      GuidAssignmentFailed: 0
+      _typeNameAndAssembly: MotionAI.Core.Models.Generated.Subway_Surfer, MotionAI.Core
+      _GUID: 
+    modelComponent: {fileID: 513305675}
 --- !u!4 &513305674
 Transform:
   m_ObjectHideFlags: 0
@@ -5214,6 +5217,52 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &513305675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 513305672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19fed6399e9798546836c680840c69af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moves:
+    duck:
+      onMove:
+        m_PersistentCalls:
+          m_Calls: []
+    hop_single:
+      onMove:
+        m_PersistentCalls:
+          m_Calls: []
+    turn_90_right:
+      onMove:
+        m_PersistentCalls:
+          m_Calls: []
+    turn_90_left:
+      onMove:
+        m_PersistentCalls:
+          m_Calls: []
+    turn_90:
+      onMove:
+        m_PersistentCalls:
+          m_Calls: []
+    side_step:
+      onMove:
+        m_PersistentCalls:
+          m_Calls: []
+    side_step_left:
+      onMove:
+        m_PersistentCalls:
+          m_Calls: []
+    side_step_right:
+      onMove:
+        m_PersistentCalls:
+          m_Calls: []
+  meta: {}
 --- !u!1 &701655731
 GameObject:
   m_ObjectHideFlags: 0
@@ -5250,17 +5299,13 @@ MonoBehaviour:
   - three
   DebugText: {fileID: 1173423659}
   startTrackingButton: {fileID: 1817138074}
-  lastMovement:
+  lastMovementDto:
     gVelAmplitudePositive: 0
     gVelAmplitudeNegative: 0
     amplitude: 0
     durationPositive: 0
     durationNegative: 0
-    elmos:
-    - typeID: 0
-      typeLabel: 
-      rejected: 0
-      deviceIdent: 
+    elmos: []
     typeID: 0
     typeLabel: 
   maim: {fileID: 0}
@@ -5290,10 +5335,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e073381bf237b42b69fd7dbc3cebb8b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mySDKConfig:
-    licenseID: 
-    username: 
-    classificationModel: 0
+  mySDKConfig: {fileID: 11400000, guid: 37421fad8d1aae74ea6a1a025c7fd302, type: 2}
   controllerManager:
     unpairedAvailableControllers: []
     pairedEvent:

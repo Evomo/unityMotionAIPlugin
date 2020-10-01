@@ -1,13 +1,13 @@
-using MotionAI.Core.Controller;
+using MotionAI.Core.Models.Generated;
 using MotionAI.Core.POCO;
 
-namespace Demos.CoreDemo {
+namespace MotionAI.Core.Controller.Example {
 	public class ElmoController : MotionAIController {
-		private ElementalMovement lastElmo;
+		private ElementalMovement _lastElmo;
 
 		public OnElmoEvent jump, duck, left, right;
 
-		protected override void HandleMovement(Movement msg) {
+		protected override void HandleMovement(MovementDto msg) {
 			msg.elmos.ForEach(HandleElmo);
 		}
 
@@ -30,9 +30,9 @@ namespace Demos.CoreDemo {
 
 
 				// rescue rejected elmo
-				if (lastElmo != null) {
-					if (lastElmo.rejected && elementalMovement.rejected == false) {
-						switch (lastElmo.typeID) {
+				if (_lastElmo != null) {
+					if (_lastElmo.rejected && elementalMovement.rejected == false) {
+						switch (_lastElmo.typeID) {
 						case ElmoEnum.duck_down:
 							RecoverElmo(elementalMovement, duck);
 							break;
@@ -50,11 +50,11 @@ namespace Demos.CoreDemo {
 				}
 			}
 
-			lastElmo = elementalMovement;
+			_lastElmo = elementalMovement;
 		}
 
 		private void RecoverElmo(ElementalMovement elementalMovement, OnElmoEvent callback) {
-			ElmoEnum lastOpposite = DownOpposite(lastElmo.typeID);
+			ElmoEnum lastOpposite = DownOpposite(_lastElmo.typeID);
 			if (elementalMovement.typeID == lastOpposite) {
 				callback.Invoke(elementalMovement);
 			}
@@ -71,7 +71,7 @@ namespace Demos.CoreDemo {
 			case ElmoEnum.side_step_right_down:
 				return ElmoEnum.side_step_right_up;
 			default:
-				return ElmoEnum.none;
+				return ElmoEnum.heartUp;
 			}
 		}
 	}

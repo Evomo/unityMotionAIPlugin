@@ -1,0 +1,1382 @@
+{
+  "models": [
+    {
+      "device_position": "Belly",
+      "filename": "elmo_classification_model_tr-1415_epoch-22_dp-belly_32-32-32.evomodel",
+      "movement_types": [
+        "burpee",
+        "calf_raise",
+        "chin-up",
+        "climbers",
+        "good_morning",
+        "high_knees",
+        "hip_raise",
+        "jumping_jack",
+        "lunge",
+        "mountain_climbers",
+        "plank_jack",
+        "pull-up",
+        "push-up_classic",
+        "push-up_freeletics",
+        "push-up_on_fists",
+        "push-up_on_knees",
+        "sit-up_moving_arms",
+        "sit-up_static_arms",
+        "split_lunge",
+        "sprawl",
+        "squat_jump",
+        "squat_moving_arms",
+        "squat_static_arms"
+      ],
+      "test_run": 1415
+    },
+    {
+      "device_position": "UpperArm",
+      "filename": "elmo_classification_model_tr-1883_epoch-21_dp-left_upper_arm_32-40-48.evomodel",
+      "movement_types": [
+        "squat_moving_arms",
+        "push-up_on_fists",
+        "squat_static_arms",
+        "jumping_jack",
+        "lunge_walking",
+        "push-up_classic",
+        "mountain_climbers",
+        "lunge",
+        "burpee",
+        "sit-up_moving_arms",
+        "rope_jump",
+        "squat_jump",
+        "push-up_on_knees",
+        "high_knees",
+        "split_lunge",
+        "good_morning"
+      ],
+      "test_run": 1883
+    },
+    {
+      "device_position": "Belly",
+      "filename": "elmo_classification_model_tr-1915_epoch-28_dp-belly_32-40-48.evomodel",
+      "movement_types": [
+        "squat_moving_arms",
+        "push-up_on_fists",
+        "pull-up",
+        "chin-up",
+        "bench_dip",
+        "jumping_jack",
+        "push-up_classic",
+        "lunge_walking",
+        "mountain_climbers",
+        "lunge",
+        "burpee",
+        "sit-up_moving_arms",
+        "squat_jump",
+        "push-up_on_knees",
+        "high_knees",
+        "hip_raise",
+        "sprawl",
+        "calf_raise",
+        "plank",
+        "climbers",
+        "plank_jack",
+        "lunge_reverse",
+        "good_morning"
+      ],
+      "test_run": 1915
+    },
+    {
+      "device_position": "Chest",
+      "filename": "elmo_classification_model_tr-1921_epoch-17_dp-chest_32-40-48.evomodel",
+      "movement_types": [
+        "squat_moving_arms",
+        "push-up_on_fists",
+        "chin-up",
+        "bench_dip",
+        "jumping_jack",
+        "lunge_walking",
+        "push-up_classic",
+        "mountain_climbers",
+        "lunge",
+        "burpee",
+        "sit-up_moving_arms",
+        "squat_jump",
+        "push-up_on_knees",
+        "high_knees",
+        "split_lunge",
+        "hip_raise",
+        "calf_raise",
+        "climbers",
+        "plank_jack",
+        "lunge_reverse",
+        "good_morning"
+      ],
+      "test_run": 1921
+    },
+    {
+      "device_position": "Chest",
+      "filename": "elmo_classification_model_tr-1922_epoch-19_dp-chest_32-40-48.evomodel",
+      "movement_types": [
+        "squat_moving_arms",
+        "push-up_on_fists",
+        "chin-up",
+        "jumping_jack",
+        "lunge_walking",
+        "push-up_classic",
+        "mountain_climbers",
+        "lunge",
+        "burpee",
+        "sit-up_moving_arms",
+        "squat_jump",
+        "push-up_on_knees",
+        "high_knees",
+        "split_lunge",
+        "hip_raise",
+        "calf_raise",
+        "climbers",
+        "plank_jack",
+        "lunge_reverse",
+        "good_morning"
+      ],
+      "test_run": 1922
+    },
+    {
+      "device_position": "Hand",
+      "filename": "elmo_classification_model_tr-1984_epoch-30_dp-right_hand_32-32-32.evomodel",
+      "movement_types": [
+        "heart",
+        "hands_in_the_air_bounce",
+        "hands_in_the_air_wink"
+      ],
+      "test_run": 1984
+    },
+    {
+      "device_position": "Hand",
+      "filename": "elmo_classification_model_tr-1989_epoch-23_dp-right_hand_32-32-32.evomodel",
+      "movement_types": [
+        "heart",
+        "gesture_large_q",
+        "hands_in_the_air_bounce",
+        "hands_in_the_air_wink",
+        "gesture_large_m"
+      ],
+      "test_run": 1989
+    },
+    {
+      "device_position": "Hand",
+      "filename": "elmo_classification_model_tr-2019_epoch-26_dp-hand_32-32-32.evomodel",
+      "movement_types": [
+        "duck",
+        "turn_90_right",
+        "turn_90_left",
+        "turn_90",
+        "side_step",
+        "side_step_left",
+        "side_step_right",
+        "hop_group"
+      ],
+      "test_run": 2019
+    },
+    {
+      "device_position": "Hand",
+      "filename": "elmo_classification_model_tr-2021_epoch-26_dp-hand_32-32-32.evomodel",
+      "movement_types": [
+        "duck",
+        "turn_90_right",
+        "turn_90_left",
+        "turn_90",
+        "side_step",
+        "side_step_left",
+        "side_step_right",
+        "hop_group"
+      ],
+      "test_run": 2021
+    },
+    {
+      "device_position": "Hand",
+      "filename": "elmo_classification_model_tr-2048_epoch-29_dp-hand_32-32-32.evomodel",
+      "movement_types": [
+        "duck",
+        "side_step",
+        "side_step_right",
+        "side_step_left",
+        "hop_group"
+      ],
+      "test_run": 2048
+    },
+    {
+      "device_position": "Hand",
+      "filename": "elmo_classification_model_tr-2049_epoch-25_dp-hand_32-32-32.evomodel",
+      "movement_types": [
+        "duck",
+        "turn_90_right",
+        "turn_90_left",
+        "turn_90",
+        "side_step",
+        "side_step_left",
+        "side_step_right",
+        "hop_group"
+      ],
+      "test_run": 2049
+    },
+    {
+      "device_position": "Hand",
+      "filename": "elmo_classification_model_tr-2057_epoch-23_dp-hand_32-32-32.evomodel",
+      "movement_types": [
+        "duck",
+        "turn_90_right",
+        "turn_90_left",
+        "turn_90",
+        "side_step",
+        "side_step_left",
+        "side_step_right",
+        "hop_single_straight"
+      ],
+      "test_run": 2057
+    },
+    {
+      "device_position": "Hand",
+      "filename": "elmo_classification_model_tr-2092_epoch-26_dp-hand_32-32-32.evomodel",
+      "movement_types": [
+        "duck",
+        "hop_single",
+        "turn_90_right",
+        "turn_90_left",
+        "turn_90",
+        "side_step",
+        "side_step_left",
+        "side_step_right"
+      ],
+      "test_run": 2092
+    },
+    {
+      "device_position": "Hand",
+      "filename": "elmo_classification_model_tr-2097_epoch-32_dp-hand_32-32-32.evomodel",
+      "movement_types": [
+        "duck",
+        "hop_single",
+        "turn_90_right",
+        "turn_90_left",
+        "turn_90",
+        "side_step",
+        "side_step_left",
+        "side_step_right"
+      ],
+      "test_run": 2097
+    },
+    {
+      "device_position": "Hand",
+      "filename": "elmo_classification_model_tr-2098_epoch-32_dp-hand_32-32-32.evomodel",
+      "movement_types": [
+        "duck",
+        "hop_single",
+        "turn_90_right",
+        "turn_90_left",
+        "turn_90",
+        "side_step",
+        "side_step_left",
+        "side_step_right"
+      ],
+      "test_run": 2098
+    },
+    {
+      "device_position": "Hand",
+      "filename": "elmo_classification_model_tr-2098_epoch-36_dp-hand_32-32-32.evomodel",
+      "movement_types": [
+        "duck",
+        "hop_single",
+        "turn_90_right",
+        "turn_90_left",
+        "turn_90",
+        "side_step",
+        "side_step_left",
+        "side_step_right"
+      ],
+      "test_run": 2098
+    },
+    {
+      "device_position": "Hand",
+      "filename": "elmo_classification_model_tr-2102_epoch-28_dp-hand_32-32-32.evomodel",
+      "movement_types": [
+        "duck",
+        "hop_single",
+        "turn_90_right",
+        "turn_90_left",
+        "turn_90",
+        "side_step",
+        "side_step_left",
+        "side_step_right"
+      ],
+      "test_run": 2102
+    },
+    {
+      "device_position": "Hand",
+      "filename": "elmo_classification_model_tr-2107_epoch-9_dp-hand_32-32-32.evomodel",
+      "movement_types": [
+        "duck",
+        "hop_single",
+        "turn_90_right",
+        "turn_90_left",
+        "turn_90",
+        "side_step",
+        "side_step_left",
+        "side_step_right"
+      ],
+      "test_run": 2107
+    },
+    {
+      "device_position": "Hand",
+      "filename": "elmo_classification_model_tr-2113_epoch-19_dp-hand_32-32-32.evomodel",
+      "movement_types": [
+        "duck",
+        "hop_single",
+        "turn_90_right",
+        "turn_90_left",
+        "turn_90",
+        "side_step",
+        "side_step_left",
+        "side_step_right"
+      ],
+      "test_run": 2113
+    },
+    {
+      "device_position": "Hand",
+      "filename": "elmo_classification_model_tr-2113_epoch-22_dp-hand_32-32-32.evomodel",
+      "movement_types": [
+        "duck",
+        "hop_single",
+        "turn_90_right",
+        "turn_90_left",
+        "turn_90",
+        "side_step",
+        "side_step_left",
+        "side_step_right"
+      ],
+      "test_run": 2113
+    },
+    {
+      "device_position": "Hand",
+      "filename": "elmo_classification_model_tr-2114_epoch-19_dp-hand_32-32-32.evomodel",
+      "movement_types": [
+        "duck",
+        "hop_single",
+        "turn_90_right",
+        "turn_90_left",
+        "turn_90",
+        "side_step",
+        "side_step_left",
+        "side_step_right"
+      ],
+      "test_run": 2114
+    },
+    {
+      "device_position": "Hand",
+      "filename": "elmo_classification_model_tr-2115_epoch-16_dp-hand_32-32-32.evomodel",
+      "movement_types": [
+        "duck",
+        "hop_single",
+        "turn_90_right",
+        "turn_90_left",
+        "turn_90",
+        "side_step",
+        "side_step_left",
+        "side_step_right"
+      ],
+      "test_run": 2115
+    },
+    {
+      "device_position": "Hand",
+      "filename": "elmo_classification_model_tr-2128_epoch-24_dp-hand_32-32-32.evomodel",
+      "movement_types": [
+        "duck",
+        "hop_single",
+        "turn_90_right",
+        "turn_90_left",
+        "turn_90",
+        "side_step",
+        "side_step_left",
+        "side_step_right"
+      ],
+      "test_run": 2128
+    },
+    {
+      "device_position": "Hand",
+      "filename": "elmo_classification_model_tr-2129_epoch-24_dp-hand_32-32-32.evomodel",
+      "movement_types": [
+        "duck",
+        "hop_single",
+        "turn_90_right",
+        "turn_90_left",
+        "turn_90",
+        "side_step",
+        "side_step_left",
+        "side_step_right"
+      ],
+      "test_run": 2129
+    },
+    {
+      "device_position": "Hand",
+      "filename": "elmo_classification_model_tr-2129_epoch-24_dp-hand_32-32-32.evotfmod",
+      "movement_types": [
+        "duck",
+        "hop_single",
+        "turn_90_right",
+        "turn_90_left",
+        "turn_90",
+        "side_step",
+        "side_step_left",
+        "side_step_right"
+      ],
+      "test_run": 2129
+    },
+    {
+      "device_position": "Hand",
+      "filename": "elmo_classification_model_tr-2129_epoch-24_dp-hand_32-32-32.model_weights",
+      "movement_types": [
+        "duck",
+        "hop_single",
+        "turn_90_right",
+        "turn_90_left",
+        "turn_90",
+        "side_step",
+        "side_step_left",
+        "side_step_right"
+      ],
+      "test_run": 2129
+    },
+    {
+      "device_position": "Hand",
+      "filename": "elmo_classification_model_tr-2129_epoch-24_dp-hand_32-32-32.tflite",
+      "movement_types": [
+        "duck",
+        "hop_single",
+        "turn_90_right",
+        "turn_90_left",
+        "turn_90",
+        "side_step",
+        "side_step_left",
+        "side_step_right"
+      ],
+      "test_run": 2129
+    }
+  ],
+  "model_series": [
+    {
+      "device_position": "Hand",
+      "model_type": "gaming",
+      "name": "subway-surfer",
+      "builds": {
+        "beta": 2115,
+        "prod": 2129
+      }
+    },
+    {
+      "device_position": "Belly",
+      "model_type": "fitness",
+      "name": "bodyweight",
+      "builds": {
+        "beta": 1915,
+        "prod": null
+      }
+    }
+  ],
+  "movement_types": [
+    {
+      "id": 86,
+      "name": "arm_spin",
+      "elmos": [
+        "arm_spin_up",
+        "arm_spin_down"
+      ]
+    },
+    {
+      "id": 86,
+      "name": "arm_spin",
+      "elmos": [
+        "arm_spin_up",
+        "arm_spin_down"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "bench_dip",
+      "elmos": [
+        "bench_dip_up",
+        "bench_dip_down"
+      ]
+    },
+    {
+      "id": 68,
+      "name": "bench_press",
+      "elmos": [
+        "bench_press_up",
+        "bench_press_down"
+      ]
+    },
+    {
+      "id": 72,
+      "name": "benchpress_pullup",
+      "elmos": [
+        "pp-pu up",
+        "bb-pu down"
+      ]
+    },
+    {
+      "id": 24,
+      "name": "burpee",
+      "elmos": [
+        "burpee_down",
+        "burpee_snap_back_pushup_down",
+        "burpee_snap_forward_pushup_up",
+        "burpee_up"
+      ]
+    },
+    {
+      "id": 73,
+      "name": "butterfly",
+      "elmos": [
+        "butterfly_open",
+        "butterfly_close"
+      ]
+    },
+    {
+      "id": 75,
+      "name": "butterfly_reverse",
+      "elmos": [
+        "butterfly_open",
+        "butterfly_close"
+      ]
+    },
+    {
+      "id": 32,
+      "name": "calf_raise",
+      "elmos": [
+        "calf_raise_up",
+        "calf_raise_down"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "pullup",
+      "elmos": [
+        "pullup_down",
+        "pullup_up"
+      ]
+    },
+    {
+      "id": 34,
+      "name": "climbers",
+      "elmos": [
+        "climber_up",
+        "climber_down"
+      ]
+    },
+    {
+      "id": 15,
+      "name": "crunch",
+      "elmos": [
+        "crunch_up",
+        "cruch_down"
+      ]
+    },
+    {
+      "id": 42,
+      "name": "curl",
+      "elmos": [
+        "curl_down",
+        "curl_up"
+      ]
+    },
+    {
+      "id": 120,
+      "name": "db_bench_press",
+      "elmos": [
+        "db_bench_press_down",
+        "db_bench_press_up"
+      ]
+    },
+    {
+      "id": 118,
+      "name": "db_curl",
+      "elmos": [
+        "db_curl_up",
+        "db_curl_down"
+      ]
+    },
+    {
+      "id": 127,
+      "name": "db_deadlift",
+      "elmos": [
+        "db_deadlift_down",
+        "db_deadlift_up"
+      ]
+    },
+    {
+      "id": 121,
+      "name": "db_fly",
+      "elmos": [
+        "db_fly_down",
+        "db_fly__up"
+      ]
+    },
+    {
+      "id": 126,
+      "name": "db_front_raise",
+      "elmos": [
+        "db_front_raise_down",
+        "db_front_raise_up"
+      ]
+    },
+    {
+      "id": 122,
+      "name": "db_lateral_raise",
+      "elmos": [
+        "db_lateral_raise_up",
+        "db_lateral_raise_down"
+      ]
+    },
+    {
+      "id": 124,
+      "name": "db_overhead_tricep_extension",
+      "elmos": [
+        "db_overhead_tricep_extension_down",
+        "db_overhead_tricep_extension_up"
+      ]
+    },
+    {
+      "id": 119,
+      "name": "db_shoulder_press",
+      "elmos": [
+        "db_shoulder_press_up",
+        "db_shoulder_press_down"
+      ]
+    },
+    {
+      "id": 123,
+      "name": "db_tricep_kickback",
+      "elmos": [
+        "db_tricep_kickback_down",
+        "db_tricep_kickback_up"
+      ]
+    },
+    {
+      "id": 125,
+      "name": "db_upright_row",
+      "elmos": [
+        "db_upright_row_up",
+        "db_upright_row_down"
+      ]
+    },
+    {
+      "id": 44,
+      "name": "dead_lift",
+      "elmos": [
+        "dead_lift_up",
+        "dead_lift_down"
+      ]
+    },
+    {
+      "id": 90,
+      "name": "duck",
+      "elmos": [
+        "duck down",
+        "duck up"
+      ]
+    },
+    {
+      "id": 84,
+      "name": "fell_a_tree",
+      "elmos": [
+        "fell_a_tree_up",
+        "fell_a_tree_down"
+      ]
+    },
+    {
+      "id": 20,
+      "name": "freestyle",
+      "elmos": [
+        "freestyle_down",
+        "freestyle_up"
+      ]
+    },
+    {
+      "id": 46,
+      "name": "frogger",
+      "elmos": [
+        "frogger_down",
+        "frogger_up"
+      ]
+    },
+    {
+      "id": 117,
+      "name": "gaming_movements",
+      "elmos": [
+        "dummy_gaming_elmo_down",
+        "dummy_gaming_elmo_up"
+      ]
+    },
+    {
+      "id": 117,
+      "name": "gaming_movements",
+      "elmos": [
+        "dummy_gaming_down",
+        "dummy_gaming_up"
+      ]
+    },
+    {
+      "id": 117,
+      "name": "gaming_movements",
+      "elmos": [
+        "gaming_movements_hdtt_down",
+        "gaming_movements_hdtt_up"
+      ]
+    },
+    {
+      "id": 117,
+      "name": "gaming_movements",
+      "elmos": [
+        "gaming_movements_lll_down",
+        "gaming_movements_lll_up"
+      ]
+    },
+    {
+      "id": 97,
+      "name": "gesture_large_b",
+      "elmos": [
+        "gesture_large_b"
+      ]
+    },
+    {
+      "id": 95,
+      "name": "gesture_large_m",
+      "elmos": [
+        "gesture_large_m"
+      ]
+    },
+    {
+      "id": 98,
+      "name": "gesture_large_q",
+      "elmos": [
+        "gesture_large_q"
+      ]
+    },
+    {
+      "id": 40,
+      "name": "good_morning",
+      "elmos": [
+        "good_morning_down",
+        "good_morning_up"
+      ]
+    },
+    {
+      "id": 81,
+      "name": "hammer",
+      "elmos": [
+        "hammer_down",
+        "hammer_up"
+      ]
+    },
+    {
+      "id": 93,
+      "name": "hands_in_the_air_bounce",
+      "elmos": [
+        "hands_in_the_air_bounce down",
+        "hands_in_the_air_bounce up"
+      ]
+    },
+    {
+      "id": 94,
+      "name": "hands_in_the_air_wink",
+      "elmos": [
+        "hands_in_the_air_wink left",
+        "hands_in_the_air_wink right"
+      ]
+    },
+    {
+      "id": 57,
+      "name": "handwalk",
+      "elmos": [
+        "handwalk_down",
+        "handwalk_up"
+      ]
+    },
+    {
+      "id": 85,
+      "name": "heart",
+      "elmos": [
+        "heart_down",
+        "heartUp"
+      ]
+    },
+    {
+      "id": 26,
+      "name": "high_knees",
+      "elmos": [
+        "high_knees_down",
+        "high_knees_up"
+      ]
+    },
+    {
+      "id": 28,
+      "name": "hip_raise",
+      "elmos": [
+        "hip_raise_up",
+        "hip_raise_down"
+      ]
+    },
+    {
+      "id": 58,
+      "name": "hockstrecksprung",
+      "elmos": [
+        "hockstrecksprung_down",
+        "hockstrecksprung_up"
+      ]
+    },
+    {
+      "id": 87,
+      "name": "hop",
+      "elmos": [
+        "hop_jump_down",
+        "hop_jump_up"
+      ]
+    },
+    {
+      "id": 112,
+      "name": "hop_group",
+      "elmos": [
+        "hop_group_down",
+        "hop_group_up"
+      ]
+    },
+    {
+      "id": 115,
+      "name": "hop_single",
+      "elmos": [
+        "hop_single_up",
+        "hop_single_down"
+      ]
+    },
+    {
+      "id": 104,
+      "name": "hop_single_left",
+      "elmos": [
+        "hop_single_left_up",
+        "hop_single_left_down"
+      ]
+    },
+    {
+      "id": 105,
+      "name": "hop_single_right",
+      "elmos": [
+        "hop_single_right_down",
+        "hop_single_right_up"
+      ]
+    },
+    {
+      "id": 116,
+      "name": "hop_single_straight",
+      "elmos": [
+        "hop_single_straight_down",
+        "hop_single_straight_up"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "jumping_jack",
+      "elmos": [
+        "jumping_jack_down",
+        "jumping_jack_up"
+      ]
+    },
+    {
+      "id": 38,
+      "name": "jump_tucked",
+      "elmos": [
+        "jump_tucked_down",
+        "jump_tucked_up"
+      ]
+    },
+    {
+      "id": 49,
+      "name": "la_fugga",
+      "elmos": [
+        "la_fugga_Backward",
+        "la_fugga_Forward"
+      ]
+    },
+    {
+      "id": 52,
+      "name": "lateral_raise",
+      "elmos": [
+        "lateral_raise_up",
+        "lateral_raise_down"
+      ]
+    },
+    {
+      "id": 129,
+      "name": "lean_backward",
+      "elmos": [
+        "lean_backward_down",
+        "lean_backward_up"
+      ]
+    },
+    {
+      "id": 128,
+      "name": "lean_forward",
+      "elmos": [
+        "lean_forward_down",
+        "lean_forward_up"
+      ]
+    },
+    {
+      "id": 107,
+      "name": "lean_side",
+      "elmos": [
+        "lean_side_up",
+        "lean_side_down"
+      ]
+    },
+    {
+      "id": 108,
+      "name": "lean_side_left",
+      "elmos": [
+        "lean_side_left_up",
+        "lean_side_left_down"
+      ]
+    },
+    {
+      "id": 109,
+      "name": "lean_side_right",
+      "elmos": [
+        "lean_side_right_down",
+        "lean_side_right_up"
+      ]
+    },
+    {
+      "id": 113,
+      "name": "left",
+      "elmos": [
+        "left_down",
+        "left_up"
+      ]
+    },
+    {
+      "id": 91,
+      "name": "luftkuss",
+      "elmos": [
+        "luft_kuss_forward",
+        "luft_kuss_back"
+      ]
+    },
+    {
+      "id": 12,
+      "name": "lunge",
+      "elmos": [
+        "lunge_up",
+        "lunge_down"
+      ]
+    },
+    {
+      "id": 41,
+      "name": "lunge_reverse",
+      "elmos": [
+        "lunge_reverse_down",
+        "lunge_reverse_up"
+      ]
+    },
+    {
+      "id": 48,
+      "name": "lunge_side",
+      "elmos": [
+        "lunge_side_down",
+        "lunge_side_up"
+      ]
+    },
+    {
+      "id": 12,
+      "name": "lunge",
+      "elmos": [
+        "lunge_up",
+        "lunge_down"
+      ]
+    },
+    {
+      "id": 10,
+      "name": "mountain_climbers",
+      "elmos": [
+        "mountain_climber_jump_up",
+        "mountain_climber_jump_down"
+      ]
+    },
+    {
+      "id": 69,
+      "name": "new_movement",
+      "elmos": [
+        "nd",
+        "new_movement"
+      ]
+    },
+    {
+      "id": 9,
+      "name": "overhead_press",
+      "elmos": [
+        "overhead_press_up",
+        "overhead_press_down"
+      ]
+    },
+    {
+      "id": 33,
+      "name": "plank",
+      "elmos": [
+        "plank"
+      ]
+    },
+    {
+      "id": 39,
+      "name": "plank_jack",
+      "elmos": [
+        "plank_jack_down",
+        "plank_jack_up"
+      ]
+    },
+    {
+      "id": 51,
+      "name": "plank_side",
+      "elmos": [
+        "plank_side"
+      ]
+    },
+    {
+      "id": 50,
+      "name": "plank_to_pushup",
+      "elmos": [
+        "plank_to_pushup_Upward",
+        "plank_to_pushup_Downward"
+      ]
+    },
+    {
+      "id": 77,
+      "name": "pulldown_lat",
+      "elmos": [
+        "pulldown_down",
+        "pulldown_up"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "pullup",
+      "elmos": [
+        "pullup_up",
+        "pullup_down"
+      ]
+    },
+    {
+      "id": 89,
+      "name": "punch slow",
+      "elmos": [
+        "punch_slow_foward",
+        "punch slow backward"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "pushup",
+      "elmos": [
+        "pushup_up",
+        "pushup_down"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "pushup",
+      "elmos": [
+        "pushup_up",
+        "pushup_down"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "pushup",
+      "elmos": [
+        "pushup_down",
+        "pushup_up"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "pushup",
+      "elmos": [
+        "pushup_up",
+        "pushup_down"
+      ]
+    },
+    {
+      "id": 114,
+      "name": "right",
+      "elmos": [
+        "right_down",
+        "right_up"
+      ]
+    },
+    {
+      "id": 18,
+      "name": "rope_jump",
+      "elmos": [
+        "rope_jump_down",
+        "rope_jump_up"
+      ]
+    },
+    {
+      "id": 36,
+      "name": "rope_jump_alternating_feeds",
+      "elmos": [
+        "rope_jump_alternating_feeds_down",
+        "rope_jump_alternating_feeds_up"
+      ]
+    },
+    {
+      "id": 53,
+      "name": "row_hanging",
+      "elmos": [
+        "row_hanging_Upward",
+        "row_hanging_Downward"
+      ]
+    },
+    {
+      "id": 45,
+      "name": "rowing_ergometer",
+      "elmos": [
+        "rowing_ergometer_back",
+        "rowing_ergometer_forward"
+      ]
+    },
+    {
+      "id": 43,
+      "name": "row_trx",
+      "elmos": [
+        "row_trx_down",
+        "row_trx_up"
+      ]
+    },
+    {
+      "id": 30,
+      "name": "run",
+      "elmos": [
+        "run_up",
+        "run_down"
+      ]
+    },
+    {
+      "id": 21,
+      "name": "russian_twist",
+      "elmos": [
+        "russian_twist_left",
+        "russian_twist_right"
+      ]
+    },
+    {
+      "id": 96,
+      "name": "santana twist",
+      "elmos": [
+        "Santana turn hand up",
+        "Santana turn hand down"
+      ]
+    },
+    {
+      "id": 82,
+      "name": "sawing",
+      "elmos": [
+        "sawing_forward",
+        "sawing_back"
+      ]
+    },
+    {
+      "id": 83,
+      "name": "screwing",
+      "elmos": [
+        "screwing_right",
+        "screwing_left"
+      ]
+    },
+    {
+      "id": 80,
+      "name": "seated_dip",
+      "elmos": [
+        "seated_dip_backward",
+        "seated_dip_forward"
+      ]
+    },
+    {
+      "id": 76,
+      "name": "seated_press",
+      "elmos": [
+        "vertical_push_forward",
+        "vertical_push_backward"
+      ]
+    },
+    {
+      "id": 78,
+      "name": "seated_row",
+      "elmos": [
+        "seated_row_back",
+        "seated_row_forward"
+      ]
+    },
+    {
+      "id": 79,
+      "name": "shoulder_press",
+      "elmos": [
+        "shoulder_press_up",
+        "shoulder_press_down"
+      ]
+    },
+    {
+      "id": 106,
+      "name": "side_step",
+      "elmos": [
+        "side_step_down",
+        "side_step_up"
+      ]
+    },
+    {
+      "id": 110,
+      "name": "side_step_left",
+      "elmos": [
+        "side_step_left_down",
+        "side_step_left_up"
+      ]
+    },
+    {
+      "id": 111,
+      "name": "side_step_right",
+      "elmos": [
+        "side_step_right_up",
+        "side_step_right_down"
+      ]
+    },
+    {
+      "id": 7,
+      "name": "situp",
+      "elmos": [
+        "situp_down",
+        "situp_up"
+      ]
+    },
+    {
+      "id": 47,
+      "name": "skater",
+      "elmos": [
+        "skater_up",
+        "skater_down"
+      ]
+    },
+    {
+      "id": 56,
+      "name": "skipping",
+      "elmos": [
+        "skipping_down",
+        "skipping_up"
+      ]
+    },
+    {
+      "id": 92,
+      "name": "spell_spiral",
+      "elmos": [
+        "spell_spiral"
+      ]
+    },
+    {
+      "id": 27,
+      "name": "split_lunge",
+      "elmos": [
+        "split_lunge_up",
+        "split_lunge_down"
+      ]
+    },
+    {
+      "id": 24,
+      "name": "burpee",
+      "elmos": [
+        "burpee_down",
+        "burpee_snap_back_pushup_down",
+        "burpee_snap_forward_pushup_up",
+        "burpee_up"
+      ]
+    },
+    {
+      "id": 31,
+      "name": "sprint",
+      "elmos": [
+        "sprint_down",
+        "sprint_up"
+      ]
+    },
+    {
+      "id": 19,
+      "name": "squat_jump",
+      "elmos": [
+        "squat_jump_up",
+        "squat_jump_down"
+      ]
+    },
+    {
+      "id": 1,
+      "name": "squat",
+      "elmos": [
+        "squat_down",
+        "squat_up"
+      ]
+    },
+    {
+      "id": 1,
+      "name": "squat",
+      "elmos": [
+        "squat_down",
+        "squat_up"
+      ]
+    },
+    {
+      "id": 55,
+      "name": "stand_up",
+      "elmos": [
+        "stand_up_up",
+        "stand_up_down"
+      ]
+    },
+    {
+      "id": 71,
+      "name": "superman",
+      "elmos": [
+        "superman up",
+        "superman down"
+      ]
+    },
+    {
+      "id": 70,
+      "name": "swimmer",
+      "elmos": [
+        "swimmer_down",
+        "swimmer_up"
+      ]
+    },
+    {
+      "id": 103,
+      "name": "turn_90",
+      "elmos": [
+        "turn_90"
+      ]
+    },
+    {
+      "id": 102,
+      "name": "turn_90_left",
+      "elmos": [
+        "turn_90_left"
+      ]
+    },
+    {
+      "id": 101,
+      "name": "turn_90_right",
+      "elmos": [
+        "turn_90_right"
+      ]
+    }
+  ]
+}

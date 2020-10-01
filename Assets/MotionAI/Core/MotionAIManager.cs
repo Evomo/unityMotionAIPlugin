@@ -3,10 +3,14 @@ using AOT;
 #endif
 using System;
 using System.Linq;
+using System.Collections;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using MotionAI.Core.Controller;
+using MotionAI.Core.Models.Generated;
 using MotionAI.Core.POCO;
 using UnityEngine;
-using static MotionAI.UtilHelper;
+using static MotionAI.Core.POCO.UtilHelper;
 
 namespace MotionAI.Core {
 	public class MotionAIManager : MonoBehaviour {
@@ -14,10 +18,10 @@ namespace MotionAI.Core {
 
 #if UNITY_IOS && !UNITY_EDITOR
     [DllImport("__Internal")]
-    private static extern void InitEvomoBridge(string licenseID);
+    private static extern void InitEvomoBridge(UnityCallback callback, string licenseID, string debugging);
 
     [DllImport("__Internal")]
-    private static extern void StartEvomoBridge(string deviceOrientation, string classificationModel);
+    private static extern void StartEvomoBridge(string deviceOrientation, string classificationModel, string gaming);
 
     [DllImport("__Internal")]
     private static extern void StopEvomoBridge();
@@ -53,16 +57,20 @@ namespace MotionAI.Core {
 
 		public void StartTracking() {
 #if UNITY_IOS && !UNITY_EDITOR
-        StartEvomoBridge(UtilHelper.ToCustomOrientation(Input.deviceOrientation), mySDKConfig.classificationModel.ToString;
+// TODO: Add third parameter gaming - if model_type == gaming -> input_string = "true"
+// TODO: Input classificationModel as string
+
+        StartEvomoBridge("buttonDown", "1234", "true");
 #endif
 			IsTracking = true;
-			ControlPairing();
+			StartControlPairing();
 		}
 
 		public void StopTracking() {
 #if UNITY_IOS && !UNITY_EDITOR
         StopEvomoBridge();
 #endif
+
 			IsTracking = false;
 		}
 
@@ -94,11 +102,15 @@ namespace MotionAI.Core {
 		#endregion
 
 
-		#region Unity 
+		#region Unity
 
+		public delegate void UnityCallback(string value);
+
+		public static OnSDKMessage onSDKMessage = new OnSDKMessage();
 		public SDKConfig mySDKConfig;
 		public ControllerManager controllerManager;
 
+		public bool automaticPairing = true;
 		public bool IsTracking { get; private set; }
 
 		#region Lifecycle
@@ -108,11 +120,19 @@ namespace MotionAI.Core {
         SetUsernameBridge(mySDKConfig.username);
 #endif
 			controllerManager = new ControllerManager();
+			onSDKMessage.AddListener(ProcessMotionMessage);
+
+
+			if (automaticPairing) {
+				StartTracking();
+			}
 		}
 
 		private void OnEnable() {
-#if UNITY_IOS && !UNITY_EDITORz
-        InitEvomoBridge(mySDKConfig.licenseID);
+#if UNITY_IOS && !UNITY_EDITOR
+				// TODO add parameter to global Manager to define if debuggin is active (sdk will send some debugging and raw measurement data to the server)
+				// Enter the boolean as string like "true" and "false"
+        InitEvomoBridge(MessageRecived, mySDKConfig.licenseID, "true");
 #endif
 		}
 
@@ -124,22 +144,26 @@ namespace MotionAI.Core {
 		#endregion
 
 
-		public void ManageMotion(string movementStr) {
+		public static void ManageMotion(string message) {
+			onSDKMessage.Invoke(message);
+		}
+
+		private void ProcessMotionMessage(string movementStr) {
 			BridgeMessage msg = JsonUtility.FromJson<BridgeMessage>(movementStr);
 
 
-			if (msg.movement == null) {
-				Movement mv = new Movement();
+			if (msg.movementDto == null) {
+				MovementDto mv = new MovementDto();
 				mv.elmos.Add(msg.elmo);
 				controllerManager.ManageMotion(mv);
 			}
 			else {
-				controllerManager.ManageMotion(msg.movement);
+				controllerManager.ManageMotion(msg.movementDto);
 			}
 		}
 
 
-		public void ControlPairing() {
+		public void StartControlPairing() {
 			controllerManager.PairController(FindObjectsOfType<MotionAIController>().ToList());
 		}
 

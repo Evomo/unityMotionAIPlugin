@@ -12,7 +12,7 @@ namespace MotionAI.Core.Controller {
 		public List<MotionAIController> unpairedAvailableControllers;
 
 
-		public int AmountOfPairedControllers {
+		public int amountOfPairedControllers {
 			get { return controllers.Values.Aggregate(0, (total, cList) => total + cList.Count()); }
 		}
 
@@ -20,7 +20,6 @@ namespace MotionAI.Core.Controller {
 
 		[HideInInspector] public ControllerPairedEvent pairedEvent;
 		[HideInInspector] public ControllerPairedEvent unpairedEvent;
-
 		[HideInInspector] public OnMovementEvent onMovement;
 
 		public ControllerManager() {
@@ -37,7 +36,7 @@ namespace MotionAI.Core.Controller {
 
 				unpairedAvailableControllers = availableControllers
 					.Select(c => {
-						if (c.isGlobal) {
+						if (c.IsGlobal) {
 							PairController("global", c);
 						}
 
@@ -85,7 +84,7 @@ namespace MotionAI.Core.Controller {
 			}
 		}
 
-		public void ManageMotion(Movement msg) {
+		public void ManageMotion(MovementDto msg) {
 			// Debug.Log(JsonUtility.ToJson(msg, true));
 			if (unpairedAvailableControllers.Count == 0) {
 				PairingController = false;
