@@ -580,6 +580,7 @@ PlayerSettings:
   webGLDecompressionFallback: 0
   scriptingDefineSymbols:
     1: NETSTANDARD2_0
+    4: NETSTANDARD2_0
     7: NETSTANDARD2_0
   platformArchitecture:
     iPhone: 1

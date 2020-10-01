@@ -7,7 +7,7 @@
 #endif
 #import "EvomounityBridge.h"
 
-# note: c method declations executes objective-c function
+// note: c method declations executes objective-c function
 
 EvomounityBridge *bridge;
 

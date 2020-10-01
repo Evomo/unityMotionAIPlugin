@@ -14,10 +14,10 @@ using static MotionAI.Core.POCO.UtilHelper;
 
 namespace MotionAI.Core {
 	public class MotionAIManager : MonoBehaviour {
-		
 		public delegate void UnityCallback(string value);
 
 		public static OnSDKMessage onSDKMessage = new OnSDKMessage();
+
 		#region Internal Load
 
 #if UNITY_IOS && !UNITY_EDITOR
@@ -45,15 +45,15 @@ namespace MotionAI.Core {
 #endif
 
 		#endregion
-
-
+		
 		#region Bridge Methods
-
+		
 #if UNITY_IOS && !UNITY_EDITOR
     [MonoPInvokeCallback(typeof(UnityCallback))]
     private static void MessageRecived(string message)
     {
-        ManageMotion(message);
+        Debug.Log($"Message: {message}");
+		ManageMotion(message);
     }
 
 #endif
@@ -66,7 +66,7 @@ namespace MotionAI.Core {
 // TODO: Add third parameter gaming - if model_type == gaming -> input_string = "true"
 // TODO: Input classificationModel as string
 
-        StartEvomoBridge("buttonDown", "1234", "true");
+        StartEvomoBridge("buttonDown", "subway-surfer", "true");
 #endif
 			IsTracking = true;
 			ControlPairing();
@@ -130,6 +130,7 @@ namespace MotionAI.Core {
 #if UNITY_IOS && !UNITY_EDITOR
 				// TODO add parameter to global Manager to define if debuggin is active (sdk will send some debugging and raw measurement data to the server)
 				// Enter the boolean as string like "true" and "false"
+		Debug.Log("EvomoUnitySDK: InitBridge");
         InitEvomoBridge(MessageRecived, mySDKConfig.licenseID, "true");
 #endif
 		}
@@ -149,11 +150,14 @@ namespace MotionAI.Core {
 		private void ProcessMotionMessage(string movementStr) {
 			BridgeMessage msg = JsonUtility.FromJson<BridgeMessage>(movementStr);
 
-
 			if (msg.movementDto == null) {
 				MovementDto mv = new MovementDto();
 				mv.elmos.Add(msg.elmo);
 				controllerManager.ManageMotion(mv);
+			} 
+			else if (msg.message != null) 
+			{
+				Debug.Log($"{msg.message.statusCode} - {msg.message.data}");
 			}
 			else {
 				controllerManager.ManageMotion(msg.movementDto);
