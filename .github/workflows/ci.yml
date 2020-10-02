@@ -4,6 +4,7 @@ on:
     branches:
     - master
 jobs:
+
   release:
     name: release
     runs-on: ubuntu-latest
@@ -36,6 +37,12 @@ jobs:
         git push -f -u origin upm
       env:
         PKG_ROOT: Assets/MotionAI
+    - name: Clean Editor Folder
+      run: |
+        rm -rf MotionAI/Core/Editor/ModelFiles
+        rm -rf MotionAI/Core/Editor/ModelGenerator
+        rm  MotionAI/Core/Editor/ModelGenerator.meta
+        rm  MotionAI/Core/Editor/ModelFiles.meta
     - name: Create upm git tag
       if: steps.semantic.outputs.new_release_published == 'true'
       run: |
