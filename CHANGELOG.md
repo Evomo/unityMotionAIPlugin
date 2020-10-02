@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/Evomo/unityMotionAIPlugin/compare/v1.0.3...v1.0.4) (2020-10-02)
+
+
+### Bug Fixes
+
+* new folder structure? ([9cddd82](https://github.com/Evomo/unityMotionAIPlugin/commit/9cddd827b1a850cbeaacaeb8746e5f76d5b5aca1))
+
 ## [1.0.3](https://github.com/Evomo/unityMotionAIPlugin/compare/v1.0.2...v1.0.3) (2020-10-02)
 
 
