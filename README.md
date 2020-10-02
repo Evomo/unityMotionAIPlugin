@@ -11,12 +11,35 @@
 
 
 ## Install 
+We recommend using the OpenUPM to install it by running:
+```
+openupm add com.evomo.motionai
+```
 
-We recommend installing using the [UpmGitExtensions](https://github.com/mob-sakai/UpmGitExtension). 
 
-But you can also install it by adding the following line in the package.json: 
+But if you wish to use it without  installing an external dependency you can add the scope and dependencies using: 
 
-      "com.evomo.motionai": "git+https://github.com/Evomo/unityMotionAIPlugin?path=Assets#master"
+
+```
+
+{
+  "scopedRegistries": [
+    {
+      "name": "package.openupm.com",
+      "url": "https://package.openupm.com",
+      "scopes": [
+        "com.solidalloy.type.references",
+        "com.evomo.motionai",
+        "com.openupm"
+      ]
+    }
+  ],
+  "dependencies": {
+    "com.evomo.motionai": "1.0.3"
+}
+}
+```
+
 
 ## Docu
 
