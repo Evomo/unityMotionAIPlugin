@@ -27,10 +27,16 @@ jobs:
         git branch -d upm &> /dev/null || echo upm branch not found
         git subtree split -P "$PKG_ROOT" -b upm
         git checkout upm
-        rm -rf MotionAI/Core/Editor/ModelFiles
-        rm -rf MotionAI/Core/Editor/ModelGenerator
-        rm  MotionAI/Core/Editor/ModelGenerator.meta
-        rm  MotionAI/Core/Editor/ModelFiles.meta
+        if [[-d "MotionAI/Core/Editor/ModelFiles"]]; then
+          rm -rf MotionAI/Core/Editor/ModelFiles
+          rm -rf MotionAI/Core/Editor/ModelGenerator
+          rm -f MotionAI/Core/Editor/ModelGenerator.meta
+          rm -f MotionAI/Core/Editor/ModelFiles.meta
+          
+          git config --global user.name 'github-bot'
+          git config --global user.email 'github-bot@users.noreply.github.com'
+          git commit -am "fix: Deleted editor files"
+        fi
         if [[ -d "Samples" ]]; then
           git mv Samples Samples~
           rm -f Samples.meta
@@ -41,6 +47,9 @@ jobs:
         git push -f -u origin upm
       env:
         PKG_ROOT: Assets/MotionAI
+    - name: Clean Editor Folder
+      run: |
+
     - name: Create upm git tag
       if: steps.semantic.outputs.new_release_published == 'true'
       run: |
