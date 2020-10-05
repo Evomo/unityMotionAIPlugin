@@ -3,16 +3,12 @@ using AOT;
 #endif
 using System;
 using System.Linq;
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using MotionAI.Core.Controller;
 using MotionAI.Core.Models.Generated;
 using MotionAI.Core.POCO;
 using UnityEngine;
 using static MotionAI.Core.POCO.UtilHelper;
 
-namespace MotionAI.Core {
+namespace MotionAI.Core.Controller {
 	public class MotionAIManager : MonoBehaviour {
 		#region Internal Load
 

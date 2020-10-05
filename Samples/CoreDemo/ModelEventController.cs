@@ -1,12 +1,10 @@
-﻿using System.Collections;
-using MotionAI.Core.Controller;
+﻿using MotionAI.Core.Controller;
 using MotionAI.Core.Models;
 using MotionAI.Core.Models.Generated;
 using MotionAI.Core.POCO;
-using UnityEditor;
 using UnityEngine;
 
-namespace Demos.CoreDemo {
+namespace MotionAI.Samples.CoreDemo {
 	public class ModelEventController : MotionAIController {
 		private Subway_Surfer _movementModel;
 
@@ -24,9 +22,11 @@ namespace Demos.CoreDemo {
 				_movementModel.moves?.duck.onMove.AddListener(DuckCallBack);
 			}
 
-			//In this particular example I want to subscribe to ALL events
+			//In this particular example I want to subscribe to ALL events except duck!
 			foreach (MoveHolder moveHolder in modelManager.model.GetMoveHolders()) {
-				moveHolder.onMove.AddListener(AllEventsCallback);
+				if (moveHolder.id != MovementEnum.duck) {
+					moveHolder.onMove.AddListener(AllEventsCallback);
+				}
 			}
 		}
 
