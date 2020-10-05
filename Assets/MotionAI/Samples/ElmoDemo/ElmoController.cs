@@ -1,7 +1,8 @@
+using MotionAI.Core.Controller;
 using MotionAI.Core.Models.Generated;
 using MotionAI.Core.POCO;
 
-namespace MotionAI.Core.Controller.Example {
+namespace MotionAI.Samples.ElmoDemo {
 	public class ElmoController : MotionAIController {
 		private ElementalMovement _lastElmo;
 
