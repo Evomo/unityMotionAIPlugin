@@ -58,11 +58,11 @@ public class IosPostprocess : IPostprocessBuildWithReport // Will execute after 
     private static void CopyPodfile(string pathToBuiltProject)
     {
 
-        var podfilePath = Application.dataPath + "/EvomoSDK/BuildFiles/Podfile2019";
+        var podfilePath = Application.dataPath + "/MotionAI/Core/Editor/BuildFiles/Podfile2019";
 
         if (Application.unityVersion.Contains("2020") || Application.unityVersion.Contains("2019.3"))
         {
-            podfilePath = Application.dataPath + "/EvomoSDK/BuildFiles/Podfile2020";
+            podfilePath = Application.dataPath + "/MotionAI/Core/Editor/BuildFiles/Podfile2020";
         }
 
         var destPodfilePath = pathToBuiltProject + "/Podfile";

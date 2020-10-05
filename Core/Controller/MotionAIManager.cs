@@ -41,15 +41,15 @@ namespace MotionAI.Core {
 #endif
 
 		#endregion
-
-
+		
 		#region Bridge Methods
-
+		
 #if UNITY_IOS && !UNITY_EDITOR
     [MonoPInvokeCallback(typeof(UnityCallback))]
     private static void MessageRecived(string message)
     {
-        ManageMotion(message);
+        Debug.Log($"Message: {message}");
+		ManageMotion(message);
     }
 
 #endif
@@ -59,8 +59,8 @@ namespace MotionAI.Core {
 #if UNITY_IOS && !UNITY_EDITOR
 // TODO: Add third parameter gaming - if model_type == gaming -> input_string = "true"
 // TODO: Input classificationModel as string
-
-        StartEvomoBridge("buttonDown", "1234", "true");
+		
+        StartEvomoBridge("buttonDown", "subway-surfer", "true");
 #endif
 			IsTracking = true;
 			StartControlPairing();
@@ -116,28 +116,21 @@ namespace MotionAI.Core {
 		#region Lifecycle
 
 		private void Awake() {
-#if UNITY_IOS && !UNITY_EDITOR
+#if UNITY_IOS && !UNITY_EDITOR 
+// TODO add parameter to global Manager to define if debuggin is active (sdk will send some debugging and raw measurement data to the server)
+// Enter the boolean as string like "true" and "false"
+        InitEvomoBridge(MessageRecived, mySDKConfig.licenseID, "true");
         SetUsernameBridge(mySDKConfig.username);
 #endif
 			controllerManager = new ControllerManager();
 			onSDKMessage.AddListener(ProcessMotionMessage);
-
-
+			
 			if (automaticPairing) {
 				StartTracking();
 			}
 		}
-
-		private void OnEnable() {
-#if UNITY_IOS && !UNITY_EDITOR
-				// TODO add parameter to global Manager to define if debuggin is active (sdk will send some debugging and raw measurement data to the server)
-				// Enter the boolean as string like "true" and "false"
-        InitEvomoBridge(MessageRecived, mySDKConfig.licenseID, "true");
-#endif
-		}
-
-
-		private void OnDisable() {
+		
+		private void OnDestroy() {
 			StopTracking();
 		}
 
@@ -156,6 +149,10 @@ namespace MotionAI.Core {
 				MovementDto mv = new MovementDto();
 				mv.elmos.Add(msg.elmo);
 				controllerManager.ManageMotion(mv);
+			} 
+			else if (msg.message != null) 
+			{
+				Debug.Log($"{msg.message.statusCode} - {msg.message.data}");
 			}
 			else {
 				controllerManager.ManageMotion(msg.movementDto);
