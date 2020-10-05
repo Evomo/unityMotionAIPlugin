@@ -27,11 +27,12 @@ namespace MotionAI.Core.POCO {
 		public readonly int betaID;
 		public readonly int prodID;
 		public readonly DevicePosition devicePosition;
-
-		public ModelBuildMeta(string devicePosition, int prodID, int betaID) {
+		public readonly string modelName;
+		public ModelBuildMeta(string devicePosition, int prodID, int betaID, string name) {
 			this.devicePosition = (DevicePosition)Enum.Parse(typeof(DevicePosition),devicePosition);
 			this.prodID = prodID;
 			this.betaID = betaID;
+			modelName = name;
 		}
 	}
 }

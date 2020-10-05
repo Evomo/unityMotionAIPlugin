@@ -37,21 +37,27 @@ namespace MotionAI.Core.Controller {
 #endif
 
 		#endregion
-		
+
 		#region Bridge Methods
-		
+
 #if UNITY_IOS && !UNITY_EDITOR
     [MonoPInvokeCallback(typeof(UnityCallback))]
-    private static void MessageRecived(string message)
+    private static void MessageReceived(string message)
     {
-        Debug.Log($"Message: {message}");
-		ManageMotion(message);
+        ManageMotion(message);
     }
 
 #endif
 
 
 		public void StartTracking() {
+		//TODO use multiple controllers
+		// It currently sends the first one back
+		MotionAIController c = controllerManager.pairedcontrollers.First();
+		// c.modelManager.model.
+		//TODO continue this
+		// string isGaming = c.modelManager.model
+		// StartEvomoBridge(c.deviceOrientation,c.modelManager.model.chosenBuild.modelName, )
 #if UNITY_IOS && !UNITY_EDITOR
 // TODO: Add third parameter gaming - if model_type == gaming -> input_string = "true"
 // TODO: Input classificationModel as string
@@ -109,14 +115,15 @@ namespace MotionAI.Core.Controller {
 		public bool automaticPairing = true;
 		public bool IsTracking { get; private set; }
 
+		[Tooltip("SDK will send some Debugging and Raw measurements to the server")]
+		public bool isDebug = true;
 		#region Lifecycle
 
 		private void Awake() {
-#if UNITY_IOS && !UNITY_EDITOR 
-// TODO add parameter to global Manager to define if debuggin is active (sdk will send some debugging and raw measurement data to the server)
-// Enter the boolean as string like "true" and "false"
-        InitEvomoBridge(MessageRecived, mySDKConfig.licenseID, "true");
-        SetUsernameBridge(mySDKConfig.username);
+
+			Debug.unityLogger.logEnabled = isDebug;
+#if UNITY_IOS && !UNITY_EDITOR
+        InitEvomoBridge(MessageReceived, mySDKConfig.licenseID, isDebug.ToString().ToLower());
 #endif
 			controllerManager = new ControllerManager();
 			onSDKMessage.AddListener(ProcessMotionMessage);
@@ -125,7 +132,7 @@ namespace MotionAI.Core.Controller {
 				StartTracking();
 			}
 		}
-		
+
 		private void OnDestroy() {
 			StopTracking();
 		}
@@ -140,15 +147,14 @@ namespace MotionAI.Core.Controller {
 		private void ProcessMotionMessage(string movementStr) {
 			BridgeMessage msg = JsonUtility.FromJson<BridgeMessage>(movementStr);
 
+			if (msg.message != null) {
+				Debug.Log($"{msg.message.statusCode} - {msg.message.data}");
+			}
 
 			if (msg.movementDto == null) {
 				MovementDto mv = new MovementDto();
 				mv.elmos.Add(msg.elmo);
 				controllerManager.ManageMotion(mv);
-			} 
-			else if (msg.message != null) 
-			{
-				Debug.Log($"{msg.message.statusCode} - {msg.message.data}");
 			}
 			else {
 				controllerManager.ManageMotion(msg.movementDto);
