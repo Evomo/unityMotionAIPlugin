@@ -5,8 +5,17 @@ using MotionAI.Core.Models.Generated;
 namespace MotionAI.Core.POCO {
 	[Serializable]
 	public class BridgeMessage {
+
+		public string deviceID;
 		public MovementDto movementDto;
-		public ElementalMovement elmo;
+		public ElementalMovement elmo; 
+		public Message message; 
+	}
+	
+	[Serializable]
+	public class Message {
+		public int statusCode;
+		public string data;
 	}
 
 	[Serializable]
