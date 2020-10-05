@@ -48,7 +48,7 @@ namespace MotionAI.Core {
     [MonoPInvokeCallback(typeof(UnityCallback))]
     private static void MessageRecived(string message)
     {
-        Debug.Log($"Message: {message}");
+        // Debug.Log($"Message: {message}");
 		ManageMotion(message);
     }
 
@@ -141,21 +141,27 @@ namespace MotionAI.Core {
 			onSDKMessage.Invoke(message);
 		}
 
-		private void ProcessMotionMessage(string movementStr) {
+		private void ProcessMotionMessage(string movementStr)
+		{
+			Debug.Log($"EvomoUnitySDK-Json: {movementStr}");
 			BridgeMessage msg = JsonUtility.FromJson<BridgeMessage>(movementStr);
-
-
-			if (msg.movementDto == null) {
-				MovementDto mv = new MovementDto();
-				mv.elmos.Add(msg.elmo);
-				controllerManager.ManageMotion(mv);
-			} 
-			else if (msg.message != null) 
+			if (msg.elmo.typeLabel != null)
 			{
-				Debug.Log($"{msg.message.statusCode} - {msg.message.data}");
+				Debug.Log($"EvomoUnitySDK-Elmo: {msg.elmo.typeLabel}");
+				MovementDto mv = new MovementDto();
+				Debug.Log($"Movement: {mv.typeLabel} {mv.typeID.ToString()}");
+				mv.elmos.Add(msg.elmo);
+				Debug.Log($"AddElmo: {msg.elmo.typeLabel} {msg.elmo.typeID.ToString()}");
+				controllerManager.ManageMotion(mv);
 			}
-			else {
+			else if (msg.movementDto.typeLabel != null)
+			{
+				Debug.Log($"EvomoUnitySDK-Movement: {msg.movementDto.typeLabel}");
 				controllerManager.ManageMotion(msg.movementDto);
+			}
+			else
+			{
+				Debug.Log($"EvomoUnitySDK-Message: {msg.message.statusCode} - {msg.message.data}");
 			}
 		}
 
