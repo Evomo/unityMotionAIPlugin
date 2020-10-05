@@ -91,6 +91,7 @@ namespace MotionAI.Core.Controller {
 			}
 			if (msg.elmos?.Count > 0) {
 				string dID = msg.elmos.First().deviceIdent;
+				Debug.Log($"Pair Controller: {msg.elmos.First().deviceIdent}");
 				if (PairingController || unpairedAvailableControllers.Count > 0) {
 					PairController(dID);
 				}
