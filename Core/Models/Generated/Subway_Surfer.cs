@@ -48,7 +48,7 @@ namespace MotionAI.Core.Models.Generated {
         }
         [Serializable()]
         public class Metadata {
-            public ModelBuildMeta Hand = new MotionAI.Core.POCO.ModelBuildMeta("Hand", 2129, 2115);
+            public ModelBuildMeta Hand = new MotionAI.Core.POCO.ModelBuildMeta("Hand", 2129, 2115, "subway-surfer");
         }
     }
 }

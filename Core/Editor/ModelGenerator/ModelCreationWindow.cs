@@ -124,7 +124,7 @@ namespace MotionAI.Core.Editor.ModelGenerator {
 		private void CreateMetaDataClasses(CustomClassBuilder ccb, string modelName) {
 			List<ModelBuildMeta> fullBuilds = mj.model_series
 				.FindAll(x => x.name == modelName)
-				.Select(x => new ModelBuildMeta(x.device_position, x.builds.prod, x.builds.beta))
+				.Select(x => new ModelBuildMeta(x.device_position, x.builds.prod, x.builds.beta, x.name))
 				.ToList();
 
 			CustomClassBuilder icb2 = ccb.WithInternalClass("Metadata").WithCustomAttribute("Serializable");
@@ -133,6 +133,7 @@ namespace MotionAI.Core.Editor.ModelGenerator {
 					new CodePrimitiveExpression(mbm.devicePosition.ToString()),
 					new CodePrimitiveExpression(mbm.prodID),
 					new CodePrimitiveExpression(mbm.betaID),
+					new CodePrimitiveExpression(mbm.modelName),
 				};
 				var cobe = new CodeObjectCreateExpression(typeof(ModelBuildMeta), p);
 				icb2.WithObject(mbm.devicePosition.ToString().ToClassCase(), "ModelBuildMeta", cobe);

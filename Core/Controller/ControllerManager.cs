@@ -11,6 +11,17 @@ namespace MotionAI.Core.Controller {
 
 		public List<MotionAIController> unpairedAvailableControllers;
 
+		public List<MotionAIController> pairedcontrollers {
+			get {
+				List<MotionAIController> c = new List<MotionAIController>();
+
+				foreach (HashSet<MotionAIController> hashController in controllers.Values) {
+					c.AddRange(hashController);
+				}
+
+				return c;
+			}
+		}
 
 		public int amountOfPairedControllers {
 			get { return controllers.Values.Aggregate(0, (total, cList) => total + cList.Count()); }
@@ -89,6 +100,7 @@ namespace MotionAI.Core.Controller {
 			if (unpairedAvailableControllers.Count == 0) {
 				PairingController = false;
 			}
+
 			if (msg.elmos?.Count > 0) {
 				string dID = msg.elmos.First().deviceIdent;
 				if (PairingController || unpairedAvailableControllers.Count > 0) {

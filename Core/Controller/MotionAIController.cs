@@ -65,6 +65,7 @@ namespace MotionAI.Core.Controller {
 		#region Fields
 
 		private Dictionary<MovementEnum, MoveHolder> _moveHolders;
+		public UtilHelper.EvomoDeviceOrientation deviceOrientation;
 		public ControllerSettings controllerSettings;
 		public ModelManager modelManager;
 		public string DeviceId => controllerSettings.deviceId;
