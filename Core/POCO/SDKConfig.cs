@@ -6,7 +6,6 @@ namespace MotionAI.Core.POCO {
 	[Serializable]
 	public class SDKConfig : ScriptableObject {
 		public string licenseID;
-		public string username;
 
 #if UNITY_EDITOR
 		
