@@ -105,21 +105,20 @@ namespace MotionAI.Core.Controller {
 		#endregion
 
 
-		private void MovementCallBack(MovementDto msg) {
-			string diD = msg.elmos.First().deviceIdent;
-			if (diD == DeviceId || IsGlobal) {
+		private void MovementCallBack(EvoMovement msg) {
+			if (msg.deviceID == DeviceId || IsGlobal) {
 				InvokeEvents(msg);
 				HandleMovement(msg);
 			}
 		}
 
-		private void InvokeEvents(MovementDto e) {
+		private void InvokeEvents(EvoMovement e) {
 			MoveHolder holder = new MoveHolder();
 			if (_moveHolders?.TryGetValue(e.typeID, out holder) ?? false) {
 				holder?.onMove.Invoke(e);
 			}
 		}
 
-		protected virtual void HandleMovement(MovementDto msg) { }
+		protected virtual void HandleMovement(EvoMovement msg) { }
 	}
 }

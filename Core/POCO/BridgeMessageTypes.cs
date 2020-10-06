@@ -7,9 +7,9 @@ namespace MotionAI.Core.POCO {
 	public class BridgeMessage {
 
 		public string deviceID;
-		public MovementDto movementDto;
+		public EvoMovement movement;
 		public ElementalMovement elmo; 
-		public Message message; 
+		public Message message;
 	}
 	
 	[Serializable]
@@ -30,13 +30,13 @@ namespace MotionAI.Core.POCO {
 
 
 	[Serializable]
-	public class MovementDto {
+	public class EvoMovement {
 		public float gVelAmplitudePositive;
 		public float gVelAmplitudeNegative;
 		public float amplitude;
 		public float durationPositive;
 		public float durationNegative;
-
+		public string deviceID;
 
 		public List<ElementalMovement> elmos = new List<ElementalMovement>();
 		public MovementEnum typeID;

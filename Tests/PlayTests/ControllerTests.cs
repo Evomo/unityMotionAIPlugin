@@ -39,7 +39,7 @@ namespace MotionAI.Tests.PlayTests {
 
 			manager.StartControlPairing();
 
-			amountOfControllers.Should().Be(manager.controllerManager.amountOfPairedControllers);
+			amountOfControllers.Should().Be(manager.controllerManager.PairedControllers.Count);
 			yield return null;
 		}
 
@@ -64,25 +64,21 @@ namespace MotionAI.Tests.PlayTests {
 			manager.StartControlPairing();
 
 
-			dids.ForEach(did => manager.controllerManager.ManageMotion(new MovementDto {
-				elmos = new List<ElementalMovement> {
-					new ElementalMovement {
-						deviceIdent = did
-					}
-				}
+			dids.ForEach(did => manager.controllerManager.ManageMotion(new EvoMovement {
+				deviceID = did
 			}));
 
 			for (int i = 0; i < amountOfControllers; i++) {
 				string did = dids[i];
-				MotionAIController c =  manager.controllerManager.controllers[did].First();
+				MotionAIController c = manager.controllerManager.controllers[did].First();
 				c.DeviceId.Should().Be(did);
 				c.IsPaired.Should().BeTrue();
 			}
 
 			yield return null;
 		}
-		
-		
+
+
 		[UnityTest]
 		public IEnumerator ControllersGetUnpaired() {
 			const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -103,7 +99,7 @@ namespace MotionAI.Tests.PlayTests {
 			manager.StartControlPairing();
 
 
-			dids.ForEach(did => manager.controllerManager.ManageMotion(new MovementDto {
+			dids.ForEach(did => manager.controllerManager.ManageMotion(new EvoMovement {
 				elmos = new List<ElementalMovement> {
 					new ElementalMovement {
 						deviceIdent = did
@@ -112,7 +108,7 @@ namespace MotionAI.Tests.PlayTests {
 			}));
 
 			manager.controllerManager.UnpairControllers();
-			manager.controllerManager.amountOfPairedControllers.Should().Be(0);
+			manager.controllerManager.PairedControllers.Count.Should().Be(0);
 			yield return null;
 		}
 	}

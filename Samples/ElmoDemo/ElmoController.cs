@@ -8,7 +8,7 @@ namespace MotionAI.Samples.ElmoDemo {
 
 		public OnElmoEvent jump, duck, left, right;
 
-		protected override void HandleMovement(MovementDto msg) {
+		protected override void HandleMovement(EvoMovement msg) {
 			msg.elmos.ForEach(HandleElmo);
 		}
 
