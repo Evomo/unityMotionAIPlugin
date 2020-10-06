@@ -1,6 +1,9 @@
 #if UNITY_IOS && !UNITY_EDITOR
 using AOT;
+using System.Runtime.InteropServices;
+
 #endif
+
 using System;
 using System.Linq;
 using MotionAI.Core.Models.Generated;
