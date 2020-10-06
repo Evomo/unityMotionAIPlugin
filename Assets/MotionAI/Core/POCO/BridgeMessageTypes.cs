@@ -25,7 +25,6 @@ namespace MotionAI.Core.POCO {
 		public bool rejected;
 		// public DateTime start;
 		// public DateTime end;
-		public string deviceIdent;
 	}
 
 
