@@ -1,24 +1,20 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using MotionAI.Core;
+﻿using System.Linq;
 using MotionAI.Core.Controller;
 using MotionAI.Core.Models.Generated;
 using MotionAI.Core.POCO;
 using MotionAI.Core.Util;
 using UnityEngine;
 using UnityEngine.UI;
-using Random = UnityEngine.Random;
 
-namespace Demos.CoreDemo {
+namespace MotionAI.Samples.CoreDemo {
 	[RequireComponent(typeof(MotionAIManager))]
 	public class EvomoDemoManager : MonoBehaviour {
-		public List<string> fakeDeviceIds;
 		public Text DebugText;
 
 		public Text startTrackingButton;
 
 
-		public EvoMovement lastEvoMovement;
+		private EvoMovement lastEvoMovement;
 		[HideInInspector] public MotionAIManager maim;
 
 		public InputField textField;
@@ -46,8 +42,7 @@ namespace Demos.CoreDemo {
 		}
 
 		public void SendDebugMovementString() {
-			string fakeId = fakeDeviceIds.RandomElement();
-			MotionAIController maic = maim.controllerManager.controllers[fakeId].First();
+			MotionAIController maic = maim.controllerManager.PairedControllers.First();
 
 			MoveHolder mv = maic.modelManager.model.GetMoveHolders().RandomElement();
 
@@ -56,7 +51,7 @@ namespace Demos.CoreDemo {
 
 			dto.typeID = mv.id;
 			dto.elmos.Add(elmo);
-			elmo.deviceIdent = fakeId;
+			elmo.deviceIdent = "global";
 
 			Debug.Log(mv.id.ToString());
 			maim.controllerManager.ManageMotion(dto);

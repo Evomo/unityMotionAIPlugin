@@ -100,7 +100,7 @@ namespace MotionAI.Core.Controller {
 				PairController(msg.deviceID);
 			}
 
-			onMovement.Invoke(msg);
+			onMovement?.Invoke(msg);
 		}
 	}
 }
