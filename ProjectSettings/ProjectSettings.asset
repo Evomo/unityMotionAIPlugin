@@ -583,7 +583,8 @@ PlayerSettings:
     7: NETSTANDARD2_0
   platformArchitecture:
     iPhone: 1
-  scriptingBackend: {}
+  scriptingBackend:
+    Standalone: 1
   il2cppCompilerConfiguration: {}
   managedStrippingLevel: {}
   incrementalIl2cppBuild: {}

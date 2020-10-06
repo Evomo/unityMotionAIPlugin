@@ -149,6 +149,8 @@ namespace MotionAI.Core.Controller {
 		}
 
 		private void ProcessMotionMessage(string movementStr) {
+			if (string.IsNullOrEmpty(movementStr)) return;
+			
 			BridgeMessage msg = JsonUtility.FromJson<BridgeMessage>(movementStr);
 
 			if (msg.elmo.typeLabel != null) {
@@ -168,28 +170,6 @@ namespace MotionAI.Core.Controller {
 			else {
 				Debug.Log($"EvomoUnitySDK-Message: {msg.message.statusCode} - {msg.message.data}");
 			}
-
-			//
-			// if (msg.message != null) {
-			// 	Debug.Log($"EvomoUnitySDK-Message:{msg.message.statusCode} - {msg.message.data}");
-			// }
-			//
-			// 	if (msg.evoMovement.typeLabel == null) {
-			// 		if (msg.elmo.typeLabel != null) {
-			// 			
-			// 			Debug.Log($"EvomoUnitySDK-Elmo: {msg.elmo.typeLabel}");
-			// 			EvoMovement mv = new EvoMovement();
-			// 			mv.deviceID = msg.deviceID;
-			// 			Debug.Log($"Movement: {mv.typeLabel} {mv.typeID.ToString()}");
-			// 			mv.elmos.Add(msg.elmo);
-			// 			Debug.Log($"AddElmo: {msg.elmo.typeLabel} {msg.elmo.typeID.ToString()}");
-			// 			controllerManager.ManageMotion(mv);
-			// 		}
-			// 	}
-			// 	else {
-			// 		msg.deviceID = msg.deviceID;
-			// 		controllerManager.ManageMotion(msg.evoMovement);
-			// 	}
 		}
 
 
