@@ -11,7 +11,7 @@ namespace MotionAI.Core.Controller {
 
 		public List<MotionAIController> unpairedAvailableControllers;
 
-		public List<MotionAIController> pairedcontrollers {
+		public List<MotionAIController> PairedControllers {
 			get {
 				List<MotionAIController> c = new List<MotionAIController>();
 
@@ -21,10 +21,6 @@ namespace MotionAI.Core.Controller {
 
 				return c;
 			}
-		}
-
-		public int amountOfPairedControllers {
-			get { return controllers.Values.Aggregate(0, (total, cList) => total + cList.Count()); }
 		}
 
 		public bool PairingController { get; private set; }
@@ -95,21 +91,16 @@ namespace MotionAI.Core.Controller {
 			}
 		}
 
-		public void ManageMotion(MovementDto msg) {
-			// Debug.Log(JsonUtility.ToJson(msg, true));
+		public void ManageMotion(EvoMovement msg) {
 			if (unpairedAvailableControllers.Count == 0) {
 				PairingController = false;
 			}
 
-			if (msg.elmos?.Count > 0) {
-				string dID = msg.elmos.First().deviceIdent;
-				Debug.Log($"Pair Controller: {msg.elmos.First().deviceIdent}");
-				if (PairingController || unpairedAvailableControllers.Count > 0) {
-					PairController(dID);
-				}
-
-				onMovement.Invoke(msg);
+			if ((PairingController || unpairedAvailableControllers.Count > 0) && msg.deviceID != null) {
+				PairController(msg.deviceID);
 			}
+
+			onMovement.Invoke(msg);
 		}
 	}
 }

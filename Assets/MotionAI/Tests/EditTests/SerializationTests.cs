@@ -44,9 +44,9 @@ namespace MotionAI.Tests.EditTests {
 }";
 
 
-			MovementDto serialized = JsonUtility.FromJson<MovementDto>(debugText);
+			EvoMovement serialized = JsonUtility.FromJson<EvoMovement>(debugText);
 
-			MovementDto actual = new MovementDto {
+			EvoMovement actual = new EvoMovement {
 				gVelAmplitudePositive = 0.29999999999999999f,
 				amplitude = 0.10000000000000001f,
 				durationPositive = 0.20000000000000001f,
@@ -91,9 +91,9 @@ namespace MotionAI.Tests.EditTests {
 			""gVelAmplitudeNegative"" : 0.29999999999999999
 		}";
 
-			MovementDto serialized = JsonUtility.FromJson<MovementDto>(s);
+			EvoMovement serialized = JsonUtility.FromJson<EvoMovement>(s);
 
-			MovementDto actual = new MovementDto {
+			EvoMovement actual = new EvoMovement {
 				gVelAmplitudePositive = 0.29999999999999999f,
 				amplitude = 0.10000000000000001f,
 				durationPositive = 0.20000000000000001f,
@@ -124,7 +124,7 @@ namespace MotionAI.Tests.EditTests {
 
 		[Test]
 		public void DeserializationContainsElmos() {
-			MovementDto actual = new MovementDto {
+			EvoMovement actual = new EvoMovement {
 				gVelAmplitudePositive = 0.29999999999999999f,
 				amplitude = 0.10000000000000001f,
 				durationPositive = 0.20000000000000001f,
@@ -151,7 +151,7 @@ namespace MotionAI.Tests.EditTests {
 
 			string s = JsonUtility.ToJson(actual);
 
-			MovementDto m = JsonUtility.FromJson<MovementDto>(s);
+			EvoMovement m = JsonUtility.FromJson<EvoMovement>(s);
 			
 			Assert.IsTrue(m.elmos.Count == 2);
 			actual.Should().BeEquivalentTo(m);

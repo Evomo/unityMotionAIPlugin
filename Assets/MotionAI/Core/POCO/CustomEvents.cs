@@ -11,7 +11,7 @@ namespace MotionAI.Core.POCO {
 	public class OnSDKMessage : UnityEvent<string> { }
 
 	[Serializable]
-	public class OnMovementEvent : UnityEvent<MovementDto> { }
+	public class OnMovementEvent : UnityEvent<EvoMovement> { }
 
 	[Serializable]
 	public class OnElmoEvent : UnityEvent<ElementalMovement> { }

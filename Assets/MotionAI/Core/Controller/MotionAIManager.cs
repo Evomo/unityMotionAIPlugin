@@ -54,7 +54,7 @@ namespace MotionAI.Core.Controller {
 		public void StartTracking() {
 			//TODO use multiple controllers
 			// It currently sends the first one back
-			MotionAIController c = controllerManager.pairedcontrollers.First();
+			// MotionAIController c = controllerManager.PairedControllers.First();
 			// c.modelManager.model.
 			//TODO continue this
 			// string isGaming = c.modelManager.model
@@ -148,29 +148,52 @@ namespace MotionAI.Core.Controller {
 		private void ProcessMotionMessage(string movementStr) {
 			BridgeMessage msg = JsonUtility.FromJson<BridgeMessage>(movementStr);
 
-			if (msg.message != null) {
-				Debug.Log($"EvomoUnitySDK-Message:{msg.message.statusCode} - {msg.message.data}");
+			if (msg.elmo.typeLabel != null) {
+				Debug.Log($"EvomoUnitySDK-Elmo: {msg.elmo.typeLabel}");
+				EvoMovement mv = new EvoMovement();
+				mv.deviceID = msg.deviceID;
+				Debug.Log($"Movement: {mv.typeLabel} {mv.typeID.ToString()}");
+				mv.elmos.Add(msg.elmo);
+				Debug.Log($"AddElmo: {msg.elmo.typeLabel} {msg.elmo.typeID.ToString()}");
+				controllerManager.ManageMotion(mv);
+			}
+			else if (msg.movement.typeLabel != null) {
+				Debug.Log($"EvomoUnitySDK-Movement: {msg.movement.typeLabel}");
+				msg.movement.deviceID = msg.deviceID;
+				controllerManager.ManageMotion(msg.movement);
+			}
+			else {
+				Debug.Log($"EvomoUnitySDK-Message: {msg.message.statusCode} - {msg.message.data}");
 			}
 
-			if (msg.movementDto == null) {
-				if (msg.elmo.typeLabel != null) {
-					Debug.Log($"EvomoUnitySDK-Elmo: {msg.elmo.typeLabel}");
-					MovementDto mv = new MovementDto();
-					Debug.Log($"Movement: {mv.typeLabel} {mv.typeID.ToString()}");
-					mv.elmos.Add(msg.elmo);
-					Debug.Log($"AddElmo: {msg.elmo.typeLabel} {msg.elmo.typeID.ToString()}");
-					controllerManager.ManageMotion(mv);
-				}
-				else {
-					controllerManager.ManageMotion(msg.movementDto);
-				}
-			}
-
-
-			public void StartControlPairing() {
-				controllerManager.PairController(FindObjectsOfType<MotionAIController>().ToList());
-			}
-
-			#endregion
+			//
+			// if (msg.message != null) {
+			// 	Debug.Log($"EvomoUnitySDK-Message:{msg.message.statusCode} - {msg.message.data}");
+			// }
+			//
+			// 	if (msg.evoMovement.typeLabel == null) {
+			// 		if (msg.elmo.typeLabel != null) {
+			// 			
+			// 			Debug.Log($"EvomoUnitySDK-Elmo: {msg.elmo.typeLabel}");
+			// 			EvoMovement mv = new EvoMovement();
+			// 			mv.deviceID = msg.deviceID;
+			// 			Debug.Log($"Movement: {mv.typeLabel} {mv.typeID.ToString()}");
+			// 			mv.elmos.Add(msg.elmo);
+			// 			Debug.Log($"AddElmo: {msg.elmo.typeLabel} {msg.elmo.typeID.ToString()}");
+			// 			controllerManager.ManageMotion(mv);
+			// 		}
+			// 	}
+			// 	else {
+			// 		msg.deviceID = msg.deviceID;
+			// 		controllerManager.ManageMotion(msg.evoMovement);
+			// 	}
 		}
+
+
+		public void StartControlPairing() {
+			controllerManager.PairController(FindObjectsOfType<MotionAIController>().ToList());
+		}
+
+		#endregion
 	}
+}

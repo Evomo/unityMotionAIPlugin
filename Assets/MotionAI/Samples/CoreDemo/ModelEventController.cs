@@ -30,15 +30,15 @@ namespace MotionAI.Samples.CoreDemo {
 			}
 		}
 
-		private void AllEventsCallback(MovementDto e) {
+		private void AllEventsCallback(EvoMovement e) {
 			Debug.Log("I'M RECEIVING EVERY SINGLE EVENT");
 		}
 
-		private void DuckCallBack(MovementDto mov) {
+		private void DuckCallBack(EvoMovement mov) {
 			Debug.Log($"Got event {mov.typeLabel} in the inspector controller!");
 		}
 
-		protected override void HandleMovement(MovementDto msg) {
+		protected override void HandleMovement(EvoMovement msg) {
 			//You can also override this method present in the MotionAIController base class and filter check each movement individually
 
 			Debug.Log("Got a movement in the override!");

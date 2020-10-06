@@ -16,7 +16,7 @@ namespace Demos.CoreDemo {
 			mainModule.startColor = Random.ColorHSV();
 		}
 
-		protected override void HandleMovement(MovementDto msg) {
+		protected override void HandleMovement(EvoMovement msg) {
 			var velocityOverLifetimeModule = ps.velocityOverLifetime;
 			velocityOverLifetimeModule.xMultiplier = msg.elmos.Count;
 			velocityOverLifetimeModule.yMultiplier = msg.elmos.Count;

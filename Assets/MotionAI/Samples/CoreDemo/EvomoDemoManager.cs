@@ -18,11 +18,13 @@ namespace Demos.CoreDemo {
 		public Text startTrackingButton;
 
 
-		public MovementDto lastMovementDto;
-		public MotionAIManager maim;
+		public EvoMovement lastEvoMovement;
+		[HideInInspector] public MotionAIManager maim;
 
+		public InputField textField;
 
 		private void Start() {
+			textField.onEndEdit.AddListener(MotionAIManager.ManageMotion);
 			maim = GetComponent<MotionAIManager>();
 			maim.LogFailure(UtilHelper.EventSource.app, UtilHelper.FailureType.toLess, ElmoEnum.duck_down,
 				"abc");
@@ -49,7 +51,7 @@ namespace Demos.CoreDemo {
 
 			MoveHolder mv = maic.modelManager.model.GetMoveHolders().RandomElement();
 
-			MovementDto dto = new MovementDto();
+			EvoMovement dto = new EvoMovement();
 			ElementalMovement elmo = new ElementalMovement();
 
 			dto.typeID = mv.id;
@@ -66,9 +68,9 @@ namespace Demos.CoreDemo {
 		}
 
 
-		public void onMovement(MovementDto mv) {
+		public void onMovement(EvoMovement mv) {
 			DebugText.text = JsonUtility.ToJson(mv, true);
-			lastMovementDto = mv;
+			lastEvoMovement = mv;
 		}
 
 		public void OnElmo(ElementalMovement mv) {
