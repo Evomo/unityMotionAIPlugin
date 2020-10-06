@@ -44,20 +44,21 @@ namespace MotionAI.Core.Controller {
     [MonoPInvokeCallback(typeof(UnityCallback))]
     private static void MessageReceived(string message)
     {
-        ManageMotion(message);
+        // Debug.Log($"Message: {message}");
+		ManageMotion(message);
     }
 
 #endif
 
 
 		public void StartTracking() {
-		//TODO use multiple controllers
-		// It currently sends the first one back
-		MotionAIController c = controllerManager.pairedcontrollers.First();
-		// c.modelManager.model.
-		//TODO continue this
-		// string isGaming = c.modelManager.model
-		// StartEvomoBridge(c.deviceOrientation,c.modelManager.model.chosenBuild.modelName, )
+			//TODO use multiple controllers
+			// It currently sends the first one back
+			MotionAIController c = controllerManager.pairedcontrollers.First();
+			// c.modelManager.model.
+			//TODO continue this
+			// string isGaming = c.modelManager.model
+			// StartEvomoBridge(c.deviceOrientation,c.modelManager.model.chosenBuild.modelName, )
 #if UNITY_IOS && !UNITY_EDITOR
 // TODO: Add third parameter gaming - if model_type == gaming -> input_string = "true"
 // TODO: Input classificationModel as string
@@ -117,17 +118,17 @@ namespace MotionAI.Core.Controller {
 
 		[Tooltip("SDK will send some Debugging and Raw measurements to the server")]
 		public bool isDebug = true;
+
 		#region Lifecycle
 
 		private void Awake() {
-
 			Debug.unityLogger.logEnabled = isDebug;
 #if UNITY_IOS && !UNITY_EDITOR
         InitEvomoBridge(MessageReceived, mySDKConfig.licenseID, isDebug.ToString().ToLower());
 #endif
 			controllerManager = new ControllerManager();
 			onSDKMessage.AddListener(ProcessMotionMessage);
-			
+
 			if (automaticPairing) {
 				StartTracking();
 			}
@@ -148,24 +149,28 @@ namespace MotionAI.Core.Controller {
 			BridgeMessage msg = JsonUtility.FromJson<BridgeMessage>(movementStr);
 
 			if (msg.message != null) {
-				Debug.Log($"{msg.message.statusCode} - {msg.message.data}");
+				Debug.Log($"EvomoUnitySDK-Message:{msg.message.statusCode} - {msg.message.data}");
 			}
 
 			if (msg.movementDto == null) {
-				MovementDto mv = new MovementDto();
-				mv.elmos.Add(msg.elmo);
-				controllerManager.ManageMotion(mv);
+				if (msg.elmo.typeLabel != null) {
+					Debug.Log($"EvomoUnitySDK-Elmo: {msg.elmo.typeLabel}");
+					MovementDto mv = new MovementDto();
+					Debug.Log($"Movement: {mv.typeLabel} {mv.typeID.ToString()}");
+					mv.elmos.Add(msg.elmo);
+					Debug.Log($"AddElmo: {msg.elmo.typeLabel} {msg.elmo.typeID.ToString()}");
+					controllerManager.ManageMotion(mv);
+				}
+				else {
+					controllerManager.ManageMotion(msg.movementDto);
+				}
 			}
-			else {
-				controllerManager.ManageMotion(msg.movementDto);
+
+
+			public void StartControlPairing() {
+				controllerManager.PairController(FindObjectsOfType<MotionAIController>().ToList());
 			}
+
+			#endregion
 		}
-
-
-		public void StartControlPairing() {
-			controllerManager.PairController(FindObjectsOfType<MotionAIController>().ToList());
-		}
-
-		#endregion
 	}
-}
