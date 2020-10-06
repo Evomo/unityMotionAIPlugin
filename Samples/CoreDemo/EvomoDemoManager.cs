@@ -51,10 +51,13 @@ namespace MotionAI.Samples.CoreDemo {
 
 			dto.typeID = mv.id;
 			dto.elmos.Add(elmo);
-			elmo.deviceIdent = "global";
+			// elmo.deviceIdent = "global";
 
-			Debug.Log(mv.id.ToString());
-			maim.controllerManager.ManageMotion(dto);
+			// Debug.Log(mv.id.ToString());
+			BridgeMessage bm = new BridgeMessage();
+			bm.movement = dto;
+			MotionAIManager.ManageMotion(JsonUtility.ToJson(bm));
+			// maim.controllerManager.ManageMotion(dto);
 		}
 
 
