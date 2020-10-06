@@ -71,6 +71,7 @@ namespace MotionAI.Samples.CoreDemo {
 		}
 
 		public void OnElmo(ElementalMovement mv) {
+			
 			DebugText.text = JsonUtility.ToJson(mv, true);
 		}
 
