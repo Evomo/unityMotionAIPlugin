@@ -53,7 +53,6 @@ namespace MotionAI.Samples.CoreDemo {
 			dto.elmos.Add(elmo);
 			// elmo.deviceIdent = "global";
 
-			// Debug.Log(mv.id.ToString());
 			BridgeMessage bm = new BridgeMessage();
 			bm.movement = dto;
 			MotionAIManager.ManageMotion(JsonUtility.ToJson(bm));
@@ -67,7 +66,7 @@ namespace MotionAI.Samples.CoreDemo {
 
 
 		public void onMovement(EvoMovement mv) {
-			DebugText.text = JsonUtility.ToJson(mv, true);
+			// DebugText.text = JsonUtility.ToJson(mv, true);
 			lastEvoMovement = mv;
 		}
 

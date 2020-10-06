@@ -150,20 +150,15 @@ namespace MotionAI.Core.Controller {
 
 		private void ProcessMotionMessage(string movementStr) {
 			if (string.IsNullOrEmpty(movementStr)) return;
-			
 			BridgeMessage msg = JsonUtility.FromJson<BridgeMessage>(movementStr);
 
 			if (msg.elmo.typeLabel != null) {
-				Debug.Log($"EvomoUnitySDK-Elmo: {msg.elmo.typeLabel}");
 				EvoMovement mv = new EvoMovement();
 				mv.deviceID = msg.deviceID;
-				Debug.Log($"Movement: {mv.typeLabel} {mv.typeID.ToString()}");
 				mv.elmos.Add(msg.elmo);
-				Debug.Log($"AddElmo: {msg.elmo.typeLabel} {msg.elmo.typeID.ToString()}");
 				controllerManager.ManageMotion(mv);
 			}
 			else if (msg.movement.typeLabel != null) {
-				Debug.Log($"EvomoUnitySDK-Movement: {msg.movement.typeLabel}");
 				msg.movement.deviceID = msg.deviceID;
 				controllerManager.ManageMotion(msg.movement);
 			}
