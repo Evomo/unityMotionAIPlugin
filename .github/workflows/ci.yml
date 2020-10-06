@@ -47,9 +47,6 @@ jobs:
         git push -f -u origin upm
       env:
         PKG_ROOT: Assets/MotionAI
-    - name: Clean Editor Folder
-      run: |
-
     - name: Create upm git tag
       if: steps.semantic.outputs.new_release_published == 'true'
       run: |
