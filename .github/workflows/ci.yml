@@ -18,6 +18,11 @@ jobs:
         git subtree split -P "$PKG_ROOT" -b upm
         git checkout upm
         if [ -d "Core/Editor/ModelFiles"]; then
+          git rm -rf Core/Editor/ModelFiles
+          git rm -rf Core/Editor/ModelGenerator
+          git rm -f Core/Editor/ModelGenerator.meta
+          git rm -f Core/Editor/ModelFiles.meta
+
           rm -rf Core/Editor/ModelFiles
           rm -rf Core/Editor/ModelGenerator
           rm -f Core/Editor/ModelGenerator.meta
