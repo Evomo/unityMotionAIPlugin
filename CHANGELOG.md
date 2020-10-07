@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/Evomo/unityMotionAIPlugin/compare/v1.0.0...v1.1.0) (2020-10-07)
+
+
+### Features
+
+* first actual release ([1398e00](https://github.com/Evomo/unityMotionAIPlugin/commit/1398e004348ab05da0af2072f3f8d2abab41d70e))
+
 # 1.0.0 (2020-10-07)
 
 
