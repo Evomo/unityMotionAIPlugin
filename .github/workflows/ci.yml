@@ -17,11 +17,11 @@ jobs:
         git branch -d upm &> /dev/null || echo upm branch not found
         git subtree split -P "$PKG_ROOT" -b upm
         git checkout upm
-        if [[-d "MotionAI/Core/Editor/ModelFiles"]]; then
-          rm -rf MotionAI/Core/Editor/ModelFiles
-          rm -rf MotionAI/Core/Editor/ModelGenerator
-          rm -f MotionAI/Core/Editor/ModelGenerator.meta
-          rm -f MotionAI/Core/Editor/ModelFiles.meta
+        if [[ -d "Core/Editor/ModelFiles"]]; then
+          rm -rf Core/Editor/ModelFiles
+          rm -rf Core/Editor/ModelGenerator
+          rm -f Core/Editor/ModelGenerator.meta
+          rm -f Core/Editor/ModelFiles.meta
           
           git config --global user.name 'github-bot'
           git config --global user.email 'github-bot@users.noreply.github.com'
