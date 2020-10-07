@@ -5,14 +5,16 @@ using System.Runtime.InteropServices;
 #endif
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using MotionAI.Core.Models.Generated;
 using MotionAI.Core.POCO;
+using MotionAI.Core.Util;
 using UnityEngine;
 using static MotionAI.Core.POCO.UtilHelper;
 
 namespace MotionAI.Core.Controller {
-	public class MotionAIManager : MonoBehaviour {
+	public class MotionAIManager : Singleton<MotionAIManager> {
 		#region Internal Load
 
 #if UNITY_IOS && !UNITY_EDITOR
@@ -112,7 +114,7 @@ namespace MotionAI.Core.Controller {
 
 		public delegate void UnityCallback(string value);
 
-		public static OnSDKMessage onSDKMessage = new OnSDKMessage();
+		private static readonly Queue<BridgeMessage> _executionQueue = new Queue<BridgeMessage>();
 		public SDKConfig mySDKConfig;
 		public ControllerManager controllerManager;
 
@@ -130,7 +132,6 @@ namespace MotionAI.Core.Controller {
         InitEvomoBridge(MessageReceived, mySDKConfig.licenseID, isDebug.ToString().ToLower());
 #endif
 			controllerManager = new ControllerManager();
-			onSDKMessage.AddListener(ProcessMotionMessage);
 
 			if (automaticPairing) {
 				StartTracking();
@@ -141,18 +142,30 @@ namespace MotionAI.Core.Controller {
 			StopTracking();
 		}
 
+		public void Update() {
+			lock (_executionQueue) {
+				while (_executionQueue.Count > 0) {
+					ProcessMotionMessage(_executionQueue.Dequeue());
+				}
+			}
+		}
+
 		#endregion
 
 
-		public static void ManageMotion(string message) {
-			onSDKMessage.Invoke(message);
+		public void Enqueue(BridgeMessage msg) {
+			lock (_executionQueue) {
+				_executionQueue.Enqueue(msg);
+			}
 		}
 
-		private void ProcessMotionMessage(string movementStr) {
-			if (string.IsNullOrEmpty(movementStr)) return;
-			
-			BridgeMessage msg = JsonUtility.FromJson<BridgeMessage>(movementStr);
+		public static void ManageMotion(string message) {
+			if (string.IsNullOrEmpty(message)) return;
+			BridgeMessage msg = JsonUtility.FromJson<BridgeMessage>(message);
+			MotionAIManager.Instance.Enqueue(msg);
+		}
 
+		private void ProcessMotionMessage(BridgeMessage msg) {
 			if (msg.elmo.typeLabel != null) {
 				Debug.Log($"EvomoUnitySDK-Elmo: {msg.elmo.typeLabel}");
 				EvoMovement mv = new EvoMovement();
@@ -162,11 +175,13 @@ namespace MotionAI.Core.Controller {
 				Debug.Log($"AddElmo: {msg.elmo.typeLabel} {msg.elmo.typeID.ToString()}");
 				controllerManager.ManageMotion(mv);
 			}
+
 			else if (msg.movement.typeLabel != null) {
 				Debug.Log($"EvomoUnitySDK-Movement: {msg.movement.typeLabel}");
 				msg.movement.deviceID = msg.deviceID;
 				controllerManager.ManageMotion(msg.movement);
 			}
+
 			else {
 				Debug.Log($"EvomoUnitySDK-Message: {msg.message.statusCode} - {msg.message.data}");
 			}
