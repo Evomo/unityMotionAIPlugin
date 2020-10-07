@@ -17,7 +17,7 @@ jobs:
         git branch -d upm &> /dev/null || echo upm branch not found
         git subtree split -P "$PKG_ROOT" -b upm
         git checkout upm
-        if [[ -d "Core/Editor/ModelFiles"]]; then
+        if [ -d "Core/Editor/ModelFiles"]; then
           rm -rf Core/Editor/ModelFiles
           rm -rf Core/Editor/ModelGenerator
           rm -f Core/Editor/ModelGenerator.meta
@@ -27,7 +27,7 @@ jobs:
           git config --global user.email 'github-bot@users.noreply.github.com'
           git commit -am "fix: Deleted editor files"
         fi 
-        if [[ -d "Samples" ]]; then
+        if [ -d "Samples" ]; then
           git mv Samples Samples~
           rm -f Samples.meta
           git config --global user.name 'github-bot'
