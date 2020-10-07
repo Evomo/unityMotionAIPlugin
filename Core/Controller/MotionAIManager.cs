@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 #endif
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using MotionAI.Core.Models.Generated;
@@ -145,7 +146,8 @@ namespace MotionAI.Core.Controller {
 		public void Update() {
 			lock (_executionQueue) {
 				while (_executionQueue.Count > 0) {
-					ProcessMotionMessage(_executionQueue.Dequeue());
+					StartCoroutine("ProcessMotionMessage",_executionQueue.Dequeue());
+
 				}
 			}
 		}
@@ -165,7 +167,7 @@ namespace MotionAI.Core.Controller {
 			MotionAIManager.Instance.Enqueue(msg);
 		}
 
-		private void ProcessMotionMessage(BridgeMessage msg) {
+		private IEnumerator ProcessMotionMessage(BridgeMessage msg) {
 			if (msg.elmo.typeLabel != null) {
 				EvoMovement mv = new EvoMovement();
 				mv.deviceID = msg.deviceID;
@@ -181,6 +183,8 @@ namespace MotionAI.Core.Controller {
 			else {
 				Debug.Log($"EvomoUnitySDK-Message: {msg.message.statusCode} - {msg.message.data}");
 			}
+
+			return null;
 		}
 
 

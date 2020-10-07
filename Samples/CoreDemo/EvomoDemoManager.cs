@@ -66,7 +66,7 @@ namespace MotionAI.Samples.CoreDemo {
 
 
 		public void onMovement(EvoMovement mv) {
-			// DebugText.text = JsonUtility.ToJson(mv, true);
+			DebugText.text = JsonUtility.ToJson(mv, true);
 			lastEvoMovement = mv;
 		}
 
