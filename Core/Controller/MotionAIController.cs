@@ -106,6 +106,7 @@ namespace MotionAI.Core.Controller {
 
 
 		private void MovementCallBack(EvoMovement msg) {
+			
 			if (msg.deviceID == DeviceId || IsGlobal) {
 				InvokeEvents(msg);
 				HandleMovement(msg);
@@ -114,11 +115,18 @@ namespace MotionAI.Core.Controller {
 
 		private void InvokeEvents(EvoMovement e) {
 			MoveHolder holder = new MoveHolder();
-			if (_moveHolders?.TryGetValue(e.typeID, out holder) ?? false) {
-				holder?.onMove.Invoke(e);
+			if (!string.IsNullOrEmpty(e.typeLabel))
+			{
+				if (_moveHolders?.TryGetValue(e.typeID, out holder) ?? false)
+				{
+					holder?.onMove.Invoke(e);
+				}
 			}
 		}
 
-		protected virtual void HandleMovement(EvoMovement msg) { }
+		protected virtual void HandleMovement(EvoMovement msg)
+		{
+			Debug.Log($"evomoooHandleMovementOverwrite");
+		}
 	}
 }
