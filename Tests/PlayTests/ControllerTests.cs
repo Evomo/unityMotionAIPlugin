@@ -101,9 +101,7 @@ namespace MotionAI.Tests.PlayTests {
 
 			dids.ForEach(did => manager.controllerManager.ManageMotion(new EvoMovement {
 				elmos = new List<ElementalMovement> {
-					new ElementalMovement {
-						deviceIdent = did
-					}
+					new ElementalMovement()
 				}
 			}));
 

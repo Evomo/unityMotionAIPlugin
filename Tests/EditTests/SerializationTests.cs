@@ -23,7 +23,7 @@ namespace MotionAI.Tests.EditTests {
 				typeID = (ElmoEnum) 1,
 				rejected = false,
 				typeLabel = "test",
-				deviceIdent = "3DF671DD-47D6-4F21-ADE2-6C2AB52A9875"
+				// deviceIdent = "3DF671DD-47D6-4F21-ADE2-6C2AB52A9875"
 			};
 
 			actual.Should().BeEquivalentTo(serialized);
@@ -108,14 +108,14 @@ namespace MotionAI.Tests.EditTests {
 				typeID = (ElmoEnum) 1,
 				rejected = false,
 				typeLabel = "test",
-				deviceIdent = "3DF671DD-47D6-4F21-ADE2-6C2AB52A9875"
+				// deviceIdent = "3DF671DD-47D6-4F21-ADE2-6C2AB52A9875"
 			});
 
 			actual.elmos.Add(new ElementalMovement {
 				typeID = (ElmoEnum) 1,
 				rejected = true,
 				typeLabel = "test",
-				deviceIdent = "3DF671DD-47D6-4F21-ADE2-6C2AB52A9875"
+				// deviceIdent = "3DF671DD-47D6-4F21-ADE2-6C2AB52A9875"
 			});
 
 
@@ -139,14 +139,14 @@ namespace MotionAI.Tests.EditTests {
 				typeID = (ElmoEnum) 1,
 				rejected = false,
 				typeLabel = "test",
-				deviceIdent = "3DF671DD-47D6-4F21-ADE2-6C2AB52A9875"
+				// deviceIdent = "3DF671DD-47D6-4F21-ADE2-6C2AB52A9875"
 			});
 
 			actual.elmos.Add(new ElementalMovement {
 				typeID = (ElmoEnum) 1,
 				rejected = true,
 				typeLabel = "test",
-				deviceIdent = "3DF671DD-47D6-4F21-ADE2-6C2AB52A9875"
+				// deviceIdent = "3DF671DD-47D6-4F21-ADE2-6C2AB52A9875"
 			});
 
 			string s = JsonUtility.ToJson(actual);
