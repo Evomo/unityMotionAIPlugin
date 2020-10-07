@@ -1,3 +1,13 @@
+## [1.0.5](https://github.com/Evomo/unityMotionAIPlugin/compare/v1.0.4...v1.0.5) (2020-10-07)
+
+
+### Bug Fixes
+
+* eh? ([1c68ebb](https://github.com/Evomo/unityMotionAIPlugin/commit/1c68ebb5d20b3d1d9fbb6a8b4e14ededfd54b79f))
+* trying to fix ci ([f685fd7](https://github.com/Evomo/unityMotionAIPlugin/commit/f685fd7dfb11c598c4493e9b314690f67c8c5f10))
+* use upm branch ([aa127d5](https://github.com/Evomo/unityMotionAIPlugin/commit/aa127d5f299e7a271b35c6b1906b61a9f899b0d2))
+* using coroutines when processing messages ([ae76fb3](https://github.com/Evomo/unityMotionAIPlugin/commit/ae76fb354838fe673b824fd9edaa4b7c9afb3c65))
+
 ## [1.0.4](https://github.com/Evomo/unityMotionAIPlugin/compare/v1.0.3...v1.0.4) (2020-10-02)
 
 
