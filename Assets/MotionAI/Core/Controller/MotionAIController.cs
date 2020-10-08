@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using MotionAI.Core.Controller.DebugMovement;
 using MotionAI.Core.Models;
 using MotionAI.Core.Models.Generated;
 using MotionAI.Core.POCO;
@@ -64,13 +65,17 @@ namespace MotionAI.Core.Controller {
 
 		#region Fields
 
+		
 		private Dictionary<MovementEnum, MoveHolder> _moveHolders;
+		
 		public UtilHelper.EvomoDeviceOrientation deviceOrientation;
 		public ControllerSettings controllerSettings;
 		public ModelManager modelManager;
+		[Header("Optional asset used to debug with a keyboard, only works in the editor")]
+		public EvoInputDebugAsset debugAsset;
+		
 		public string DeviceId => controllerSettings.deviceId;
 		public bool IsPaired => controllerSettings.isPaired;
-
 		public bool IsGlobal {
 			get => controllerSettings.isGlobal;
 			set => controllerSettings.isGlobal = value;
@@ -106,7 +111,6 @@ namespace MotionAI.Core.Controller {
 
 
 		private void MovementCallBack(EvoMovement msg) {
-			
 			if (msg.deviceID == DeviceId || IsGlobal) {
 				InvokeEvents(msg);
 				HandleMovement(msg);
@@ -115,18 +119,19 @@ namespace MotionAI.Core.Controller {
 
 		private void InvokeEvents(EvoMovement e) {
 			MoveHolder holder = new MoveHolder();
-			if (!string.IsNullOrEmpty(e.typeLabel))
-			{
-				if (_moveHolders?.TryGetValue(e.typeID, out holder) ?? false)
-				{
+			if (!string.IsNullOrEmpty(e.typeLabel)) {
+				if (_moveHolders?.TryGetValue(e.typeID, out holder) ?? false) {
 					holder?.onMove.Invoke(e);
 				}
 			}
 		}
 
-		protected virtual void HandleMovement(EvoMovement msg)
-		{
-			Debug.Log($"evomoooHandleMovementOverwrite");
+		private void Update() {
+			if (debugAsset != null) {
+				debugAsset.CheckInput();
+			}	
 		}
+
+		protected virtual void HandleMovement(EvoMovement msg) { }
 	}
 }
