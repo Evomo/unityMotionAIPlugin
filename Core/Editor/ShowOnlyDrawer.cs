@@ -3,6 +3,7 @@ using UnityEditor;
 using UnityEngine;
 
 namespace MotionAI.Core.Editor {
+	
 	[CustomPropertyDrawer(typeof(ShowOnlyAttribute))]
 	public class ShowOnlyDrawer : PropertyDrawer
 	{

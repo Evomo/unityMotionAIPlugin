@@ -49,13 +49,22 @@ namespace MotionAI.Samples.CoreDemo {
 			EvoMovement dto = new EvoMovement();
 			ElementalMovement elmo = new ElementalMovement();
 
+			dto.amplitude = Random.Range(1, 10);
+			dto.durationNegative = Random.Range(1, 10);
+			dto.gVelAmplitudeNegative = Random.Range(1, 10);
+			dto.gVelAmplitudePositive = Random.Range(1, 10);
+			dto.durationPositive = Random.Range(1, 10);
+			
 			dto.typeID = mv.id;
 			dto.elmos.Add(elmo);
-			// elmo.deviceIdent = "global";
+			dto.typeLabel = "debug";
 
 			BridgeMessage bm = new BridgeMessage();
+			
+			bm.elmo = new ElementalMovement();
 			bm.movement = dto;
-			MotionAIManager.ManageMotion(JsonUtility.ToJson(bm));
+			bm.message = new Message();
+			MotionAIManager.Instance.Enqueue(bm);
 			// maim.controllerManager.ManageMotion(dto);
 		}
 

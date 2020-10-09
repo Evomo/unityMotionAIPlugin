@@ -24,7 +24,7 @@ namespace MotionAI.Core.Controller {
 			public TypeReference chosenModel;
 
 
-			[SerializeField] private AbstractModelComponent modelComponent;
+			[SerializeField]private AbstractModelComponent modelComponent;
 
 
 			public bool CanChangeComponent => model == null || modelComponent.GetType() != chosenModel.Type;
@@ -65,17 +65,15 @@ namespace MotionAI.Core.Controller {
 
 		#region Fields
 
-		
 		private Dictionary<MovementEnum, MoveHolder> _moveHolders;
-		
+
 		public UtilHelper.EvomoDeviceOrientation deviceOrientation;
 		public ControllerSettings controllerSettings;
 		public ModelManager modelManager;
-		[Header("Optional asset used to debug with a keyboard, only works in the editor")]
-		public EvoInputDebugAsset debugAsset;
-		
+
 		public string DeviceId => controllerSettings.deviceId;
 		public bool IsPaired => controllerSettings.isPaired;
+
 		public bool IsGlobal {
 			get => controllerSettings.isGlobal;
 			set => controllerSettings.isGlobal = value;
@@ -94,6 +92,7 @@ namespace MotionAI.Core.Controller {
 
 
 		public virtual void Start() {
+			if (modelManager.model == null) throw new NullReferenceException("MotionAIController requires a model");
 			FillDictionary();
 		}
 
@@ -126,11 +125,6 @@ namespace MotionAI.Core.Controller {
 			}
 		}
 
-		private void Update() {
-			if (debugAsset != null) {
-				debugAsset.CheckInput();
-			}	
-		}
 
 		protected virtual void HandleMovement(EvoMovement msg) { }
 	}

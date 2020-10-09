@@ -7,7 +7,7 @@ using UnityEditor;
 using UnityEngine;
 
 namespace MotionAI.Core.Editor {
-	[CustomEditor(typeof(MotionAIController), true)]
+	[UnityEditor.CustomEditor(typeof(MotionAIController), true)]
 	public class MotionAIControllerEditor : UnityEditor.Editor {
 		public int index = 0;
 
