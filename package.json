@@ -21,6 +21,16 @@
       "displayName": "Tracking Demo",
       "description": "Demo to test the tracking API",
       "path": "Samples~/CoreDemo"
+    },
+    {
+      "displayName": "Elemental Movement Controller",
+      "description": "Example used to show how to override the MotionAIController and use a quick Elmo controller",
+      "path": "Samples~/ElmoDemo"
+    },
+    {
+      "displayName": "Input Debugger Demo",
+      "description": "Shows how to use the provided input debugger to quickly simulate the delay a a movement would take to accomplish and be classified",
+      "path": "Samples~/InputDebugger"
     }
   ]
 }
