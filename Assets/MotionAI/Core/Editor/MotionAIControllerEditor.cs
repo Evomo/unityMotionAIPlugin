@@ -22,13 +22,6 @@ namespace MotionAI.Core.Editor {
 				if (controller.modelManager.model != null) {
 					List<ModelBuildMeta> choices = controller.modelManager.model.GetAvailableTypes();
 					if (choices != null) {
-						//TODO
-						// EditorGUILayout.BeginHorizontal();
-						// EditorGUILayout.LabelField("Model", GUILayout.Width(EditorGUIUtility.labelWidth - 4));
-						// EditorGUILayout.ObjectField(controller.modelManager.chosenModel,typeof(TypedReference));
-						//
-						// EditorGUILayout.EndHorizontal();
-						
 						
 						EditorGUILayout.BeginHorizontal();
 						EditorGUILayout.LabelField("Device Position", GUILayout.Width(EditorGUIUtility.labelWidth - 4));
