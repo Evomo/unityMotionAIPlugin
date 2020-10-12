@@ -47,10 +47,6 @@ MonoBehaviour:
     delay: 0.5
     val: 111
   debugElmo:
-  - name: duck_down
-    keycode: 32
-    delay: 0.5
-    val: 43
   - name: duck_up
     keycode: 0
     delay: 0.5
@@ -99,3 +95,8 @@ MonoBehaviour:
     keycode: 0
     delay: 0.5
     val: 172
+  - name: duck_down
+    keycode: 32
+    delay: 1.749
+    val: 43
+  lastSuccesfulInput: 12.383476
