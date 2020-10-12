@@ -7,7 +7,7 @@ using UnityEditor;
 using UnityEngine;
 
 namespace MotionAI.Core.Editor {
-	[CustomEditor(typeof(MotionAIController), true)]
+	[UnityEditor.CustomEditor(typeof(MotionAIController), true)]
 	public class MotionAIControllerEditor : UnityEditor.Editor {
 		public int index = 0;
 
@@ -22,13 +22,6 @@ namespace MotionAI.Core.Editor {
 				if (controller.modelManager.model != null) {
 					List<ModelBuildMeta> choices = controller.modelManager.model.GetAvailableTypes();
 					if (choices != null) {
-						//TODO
-						// EditorGUILayout.BeginHorizontal();
-						// EditorGUILayout.LabelField("Model", GUILayout.Width(EditorGUIUtility.labelWidth - 4));
-						// EditorGUILayout.ObjectField(controller.modelManager.chosenModel,typeof(TypedReference));
-						//
-						// EditorGUILayout.EndHorizontal();
-						
 						
 						EditorGUILayout.BeginHorizontal();
 						EditorGUILayout.LabelField("Device Position", GUILayout.Width(EditorGUIUtility.labelWidth - 4));

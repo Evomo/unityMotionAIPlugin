@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using MotionAI.Core.Controller.DebugMovement;
 using MotionAI.Core.Models;
 using MotionAI.Core.Models.Generated;
 using MotionAI.Core.POCO;
@@ -36,6 +37,12 @@ namespace MotionAI.Core.Controller {
 				var comp = component.AddComponent(chosenModel);
 				modelComponent = (AbstractModelComponent) comp;
 			}
+
+
+			public void SetFoundModel(AbstractModelComponent activeModel) {
+				this.chosenModel = model.GetType();
+				this.modelComponent = activeModel;
+			}
 		}
 
 
@@ -65,9 +72,12 @@ namespace MotionAI.Core.Controller {
 		#region Fields
 
 		private Dictionary<MovementEnum, MoveHolder> _moveHolders;
+
 		public UtilHelper.EvomoDeviceOrientation deviceOrientation;
 		public ControllerSettings controllerSettings;
 		public ModelManager modelManager;
+		public OnMovementEvent OnEvoMovement;
+		
 		public string DeviceId => controllerSettings.deviceId;
 		public bool IsPaired => controllerSettings.isPaired;
 
@@ -89,6 +99,16 @@ namespace MotionAI.Core.Controller {
 
 
 		public virtual void Start() {
+			if (modelManager.model == null) {
+				AbstractModelComponent activeModel = gameObject.GetComponent<AbstractModelComponent>();
+				if (activeModel != null) {
+					modelManager.SetFoundModel(activeModel);
+				}
+				else {
+					throw new NullReferenceException("MotionAIController requires a model");
+				}
+			}
+
 			FillDictionary();
 		}
 
@@ -106,27 +126,24 @@ namespace MotionAI.Core.Controller {
 
 
 		private void MovementCallBack(EvoMovement msg) {
-			
 			if (msg.deviceID == DeviceId || IsGlobal) {
 				InvokeEvents(msg);
+				
 				HandleMovement(msg);
 			}
 		}
 
 		private void InvokeEvents(EvoMovement e) {
+			OnEvoMovement.Invoke(e);
 			MoveHolder holder = new MoveHolder();
-			if (!string.IsNullOrEmpty(e.typeLabel))
-			{
-				if (_moveHolders?.TryGetValue(e.typeID, out holder) ?? false)
-				{
+			if (!string.IsNullOrEmpty(e.typeLabel)) {
+				if (_moveHolders?.TryGetValue(e.typeID, out holder) ?? false) {
 					holder?.onMove.Invoke(e);
 				}
 			}
 		}
 
-		protected virtual void HandleMovement(EvoMovement msg)
-		{
-			Debug.Log($"evomoooHandleMovementOverwrite");
-		}
+
+		protected virtual void HandleMovement(EvoMovement msg) { }
 	}
 }

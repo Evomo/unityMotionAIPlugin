@@ -1,0 +1,102 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca46052d51bd44a48a5d65e313b47b77, type: 3}
+  m_Name: EvomoUnitySDK-debugger
+  m_EditorClassIdentifier: 
+  fakeDeviceId: input_debugger
+  debugMovement:
+  - name: duck
+    keycode: 274
+    delay: 0.5
+    val: 90
+  - name: hop_single
+    keycode: 273
+    delay: 0.5
+    val: 115
+  - name: turn_90_right
+    keycode: 275
+    delay: 0.5
+    val: 101
+  - name: turn_90_left
+    keycode: 276
+    delay: 0.5
+    val: 102
+  - name: turn_90
+    keycode: 0
+    delay: 0.5
+    val: 103
+  - name: side_step
+    keycode: 0
+    delay: 0.5
+    val: 106
+  - name: side_step_left
+    keycode: 0
+    delay: 0.5
+    val: 110
+  - name: side_step_right
+    keycode: 0
+    delay: 0.5
+    val: 111
+  debugElmo:
+  - name: duck_up
+    keycode: 0
+    delay: 0.5
+    val: 44
+  - name: hop_single_up
+    keycode: 0
+    delay: 0.5
+    val: 91
+  - name: hop_single_down
+    keycode: 0
+    delay: 0.5
+    val: 84
+  - name: turn_90_right
+    keycode: 0
+    delay: 0.5
+    val: 198
+  - name: turn_90_left
+    keycode: 0
+    delay: 0.5
+    val: 197
+  - name: turn_90
+    keycode: 0
+    delay: 0.5
+    val: 196
+  - name: side_step_down
+    keycode: 0
+    delay: 0.5
+    val: 169
+  - name: side_step_up
+    keycode: 0
+    delay: 0.5
+    val: 174
+  - name: side_step_left_down
+    keycode: 0
+    delay: 0.5
+    val: 170
+  - name: side_step_left_up
+    keycode: 0
+    delay: 0.5
+    val: 171
+  - name: side_step_right_up
+    keycode: 0
+    delay: 0.5
+    val: 173
+  - name: side_step_right_down
+    keycode: 0
+    delay: 0.5
+    val: 172
+  - name: duck_down
+    keycode: 32
+    delay: 1.749
+    val: 43
+  lastSuccesfulInput: 12.383476
