@@ -24,7 +24,7 @@ namespace MotionAI.Core.Controller {
 			public TypeReference chosenModel;
 
 
-			[SerializeField]private AbstractModelComponent modelComponent;
+			[SerializeField] private AbstractModelComponent modelComponent;
 
 
 			public bool CanChangeComponent => model == null || modelComponent.GetType() != chosenModel.Type;
@@ -36,6 +36,12 @@ namespace MotionAI.Core.Controller {
 
 				var comp = component.AddComponent(chosenModel);
 				modelComponent = (AbstractModelComponent) comp;
+			}
+
+
+			public void SetFoundModel(AbstractModelComponent activeModel) {
+				this.chosenModel = model.GetType();
+				this.modelComponent = activeModel;
 			}
 		}
 
@@ -92,7 +98,16 @@ namespace MotionAI.Core.Controller {
 
 
 		public virtual void Start() {
-			if (modelManager.model == null) throw new NullReferenceException("MotionAIController requires a model");
+			if (modelManager.model == null) {
+				AbstractModelComponent activeModel = gameObject.GetComponent<AbstractModelComponent>();
+				if (activeModel != null) {
+					modelManager.SetFoundModel(activeModel);
+				}
+				else {
+					throw new NullReferenceException("MotionAIController requires a model");
+				}
+			}
+
 			FillDictionary();
 		}
 
