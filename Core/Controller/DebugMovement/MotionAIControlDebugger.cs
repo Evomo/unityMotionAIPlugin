@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using MotionAI.Core.Models;
@@ -31,10 +32,26 @@ namespace MotionAI.Core.Controller.DebugMovement {
 			}
 		}
 
+
+		private void Awake() {
+			debugAsset.Init();
+		}
+
 		private void Update() {
 			if (debugAsset != null) {
-				debugAsset.CheckInput();
+				if (debugAsset.CanPerform) {
+					(BridgeMessage msg, float delay) = debugAsset.CheckInput();
+					if (msg != null) {
+						StartCoroutine(SendMovement(msg, delay));
+					}
+				}
+
 			}
+		}
+
+		private IEnumerator SendMovement(BridgeMessage msg, float delay) {
+			yield return new WaitForSeconds(delay);
+			MotionAIManager.Instance.Enqueue(msg);
 		}
 	}
 }

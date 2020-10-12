@@ -16,7 +16,7 @@ namespace MotionAI.Core.POCO {
 			val = v;
 		}
 
-		public override BridgeMessage InvokeMovement(string fakeDeviceId) {
+		public override BridgeMessage PrepareMessage(string fakeDeviceId) {
 			BridgeMessage msg = StartDebugMessage();
 			msg.elmo = new ElementalMovement {
 				typeID = val,
@@ -37,7 +37,7 @@ namespace MotionAI.Core.POCO {
 			val = m;
 		}
 
-		public override BridgeMessage InvokeMovement(string deviceId) {
+		public override BridgeMessage PrepareMessage(string deviceId) {
 			BridgeMessage msg = StartDebugMessage();
 			msg.movement = new EvoMovement {
 				typeID = val,
@@ -52,7 +52,6 @@ namespace MotionAI.Core.POCO {
 		[HideInInspector] public string name;
 		public KeyCode keycode;
 		[Range(0, 3)] public float delay = .5f;
-		public bool CanUseInput(float timeSinceLastInput) => timeSinceLastInput >= delay;
 
 		protected BridgeMessage StartDebugMessage() {
 			return new BridgeMessage {
@@ -62,16 +61,9 @@ namespace MotionAI.Core.POCO {
 			};
 		}
 
-		public abstract BridgeMessage InvokeMovement(string fakeDeviceId);
+		public abstract BridgeMessage PrepareMessage(string fakeDeviceId);
 
-		public bool TryInvoke(string fakeDeviceId) {
-			bool canInvoke = Input.GetKeyDown(keycode);
-			if (canInvoke) {
-				MotionAIManager.Instance.Enqueue(InvokeMovement(fakeDeviceId));
-			}
-
-			return canInvoke;
-		}
+		public bool CheckKeycode => Input.GetKeyDown(keycode);
 	}
 
 	#endregion

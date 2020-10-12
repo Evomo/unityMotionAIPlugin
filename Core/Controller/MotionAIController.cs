@@ -76,7 +76,8 @@ namespace MotionAI.Core.Controller {
 		public UtilHelper.EvomoDeviceOrientation deviceOrientation;
 		public ControllerSettings controllerSettings;
 		public ModelManager modelManager;
-
+		public OnMovementEvent OnEvoMovement;
+		
 		public string DeviceId => controllerSettings.deviceId;
 		public bool IsPaired => controllerSettings.isPaired;
 
@@ -127,11 +128,13 @@ namespace MotionAI.Core.Controller {
 		private void MovementCallBack(EvoMovement msg) {
 			if (msg.deviceID == DeviceId || IsGlobal) {
 				InvokeEvents(msg);
+				
 				HandleMovement(msg);
 			}
 		}
 
 		private void InvokeEvents(EvoMovement e) {
+			OnEvoMovement.Invoke(e);
 			MoveHolder holder = new MoveHolder();
 			if (!string.IsNullOrEmpty(e.typeLabel)) {
 				if (_moveHolders?.TryGetValue(e.typeID, out holder) ?? false) {

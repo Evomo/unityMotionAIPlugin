@@ -1,5 +1,8 @@
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using MotionAI.Core.Models.Generated;
 using MotionAI.Core.POCO;
 using UnityEngine;
 #if UNITY_EDITOR
@@ -17,35 +20,55 @@ namespace MotionAI.Core.Controller.DebugMovement {
 		public List<InputDebugElmoContainer> debugElmo;
 
 
-		private float _lastSuccesfulInput;
-		private float TimeSinceLastInput => Time.timeSinceLevelLoad - _lastSuccesfulInput;
+		public float lastSuccesfulInput;
+		public Dictionary<KeyCode, FakeEvoInput> fakeEvoInputs;
 
 
-		private void Awake() {
-			_lastSuccesfulInput = 0;
-			debugMovement = debugMovement == null
-				? new List<InputDebugMoveContainer>()
-				: debugMovement
-					.OrderBy(x => x.delay).ToList();
-			debugElmo = debugElmo == null
-				? new List<InputDebugElmoContainer>()
-				: debugElmo.OrderBy(x => x.delay).ToList();
+		private float _canPerformUntil;
+
+		public float CanPerformUntil {
+			get => this._canPerformUntil;
+			set => _canPerformUntil = Time.timeSinceLevelLoad + value;
 		}
 
-		public void CheckInput() {
-			Debug.Log(TimeSinceLastInput);
+
+		public bool CanPerform => Time.timeSinceLevelLoad >= CanPerformUntil;
+
+
+		private void SetDict(FakeEvoInput x) {
+			if (fakeEvoInputs.ContainsKey(x.keycode)) {
+				throw new DuplicateNameException($"Keycode {x.keycode.ToString()} was used in multiple movements");
+			}
+
+			if (x.keycode != KeyCode.None) {
+				fakeEvoInputs[x.keycode] = x;
+			}
+		}
+
+		public void Init() {
+			fakeEvoInputs = new Dictionary<KeyCode, FakeEvoInput>();
+			lastSuccesfulInput = Time.timeSinceLevelLoad;
+			CanPerformUntil = 0;
+			debugElmo.ForEach(x => SetDict(x));
+			debugMovement.ForEach(x => SetDict(x));
+		}
+
+
+		public Tuple<BridgeMessage, float> CheckInput() {
 #if UNITY_EDITOR
-			foreach (FakeEvoInput fei in debugMovement.Concat<FakeEvoInput>(debugElmo)) {
-				if (TimeSinceLastInput < fei.delay) break;
-				if (fei.CanUseInput(TimeSinceLastInput)) {
-					bool wasInvoked = fei.TryInvoke(fakeDeviceId);
-					if (wasInvoked) {
-						_lastSuccesfulInput = Time.timeSinceLevelLoad;
-						break;
+			if (CanPerform) {
+				foreach (FakeEvoInput fei in fakeEvoInputs.Values) {
+					if (fei.CheckKeycode) {
+						BridgeMessage msg = fei.PrepareMessage(fakeDeviceId);
+						lastSuccesfulInput = Time.timeSinceLevelLoad;
+						CanPerformUntil = fei.delay;
+						return new Tuple<BridgeMessage, float>(msg, fei.delay);
 					}
 				}
 			}
+
 #endif
+			return new Tuple<BridgeMessage, float>(null, 0);
 		}
 
 
