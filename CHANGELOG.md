@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/Evomo/unityMotionAIPlugin/compare/v1.2.0...v1.2.1) (2020-10-20)
+
+
+### Bug Fixes
+
+* new build path ([9aa768a](https://github.com/Evomo/unityMotionAIPlugin/commit/9aa768a0a4a65e986385a61b602e5c88c4b32b01))
+
 # [1.2.0](https://github.com/Evomo/unityMotionAIPlugin/compare/v1.1.0...v1.2.0) (2020-10-12)
 
 
