@@ -30,7 +30,7 @@
     {
       "displayName": "Input Debugger Demo",
       "description": "Shows how to use the provided input debugger to quickly simulate the delay a a movement would take to accomplish and be classified",
-      "path": "Samples~/InputDebugger"
+      "path": "Samples~/InputDebugger" 
     }
   ]
 }
