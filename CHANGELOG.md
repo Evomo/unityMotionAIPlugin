@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/Evomo/unityMotionAIPlugin/compare/v1.2.1...v1.2.2) (2020-10-20)
+
+
+### Bug Fixes
+
+* change präfix for path of podfile for package ([d97fbb8](https://github.com/Evomo/unityMotionAIPlugin/commit/d97fbb85ba44926ab2f625ac419a2ba0c94ca731))
+
 ## [1.2.1](https://github.com/Evomo/unityMotionAIPlugin/compare/v1.2.0...v1.2.1) (2020-10-20)
 
 
