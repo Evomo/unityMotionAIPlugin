@@ -61,11 +61,11 @@ namespace MotionAI.Core.Editor {
 
 		private static void CopyPodfile(string pathToBuiltProject) {
 			string prefix = PlayerSettings.productName == "unityMotionAIPlugin"
-				? Application.dataPath
+				? Application.dataPath + "/MotionAI"
 				: Path.GetFullPath("Packages/com.evomo.motionai");
 
 			bool is2020 = Application.unityVersion.Contains("2020") || Application.unityVersion.Contains("2019.3");
-			string suffix = $"/MotionAI/Core/Editor/BuildFiles/Podfile{(is2020 ? "2020" : "2019")}";
+			string suffix = $"/Core/Editor/BuildFiles/Podfile{(is2020 ? "2020" : "2019")}";
 			string podfilePath = $"{prefix}{suffix}";
 
 
