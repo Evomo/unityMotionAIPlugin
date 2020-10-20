@@ -1,83 +1,84 @@
-﻿using UnityEngine;
+﻿using System.IO;
+using UnityEditor;
 using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
-using UnityEditor;
-using System.IO;
+using UnityEngine;
 
-#if UNITY_EDITOR_OSX	
-
+#if UNITY_EDITOR_OSX
 using UnityEditor.iOS.Xcode;
+#endif
+namespace MotionAI.Core.Editor {
+	public class IosPostprocess : IPostprocessBuildWithReport // Will execute after XCode project is built
+	{
+		public int callbackOrder {
+			get { return 0; }
+		}
 
-public class IosPostprocess : IPostprocessBuildWithReport // Will execute after XCode project is built
-{
-    public int callbackOrder { get { return 0; } }
+		public void OnPostprocessBuild(BuildReport report) {
+#if UNITY_EDITOR_OSX
+			if (report.summary.platform == BuildTarget.iOS) // Check if the build is for iOS 
+			{
+				// --- configure plist
+				string plistPath = report.summary.outputPath + "/Info.plist";
 
-    public void OnPostprocessBuild(BuildReport report)
-    {
-        if (report.summary.platform == BuildTarget.iOS) // Check if the build is for iOS 
-        {
+				PlistDocument plist = new PlistDocument(); // Read Info.plist file into memory
+				plist.ReadFromString(File.ReadAllText(plistPath));
 
-            // --- configure plist
-            string plistPath = report.summary.outputPath + "/Info.plist";
+				PlistElementDict rootDict = plist.root;
 
-            PlistDocument plist = new PlistDocument(); // Read Info.plist file into memory
-            plist.ReadFromString(File.ReadAllText(plistPath));
+				// set encryption usage for appstore upload
+				rootDict.SetBoolean("ITSAppUsesNonExemptEncryption", false);
 
-            PlistElementDict rootDict = plist.root;
+				File.WriteAllText(plistPath, plist.WriteToString()); // Override Info.plist
 
-            // set encryption usage for appstore upload
-            rootDict.SetBoolean("ITSAppUsesNonExemptEncryption", false);
+				// ---- configure build settings
 
-            File.WriteAllText(plistPath, plist.WriteToString()); // Override Info.plist
+				// Initialize PbxProject
+				var projectPath = report.summary.outputPath + "/Unity-iPhone.xcodeproj/project.pbxproj";
+				PBXProject pbxProject = new PBXProject();
+				pbxProject.ReadFromFile(projectPath);
 
-            // ---- configure build settings
-
-            // Initialize PbxProject
-            var projectPath = report.summary.outputPath + "/Unity-iPhone.xcodeproj/project.pbxproj";
-            PBXProject pbxProject = new PBXProject();
-            pbxProject.ReadFromFile(projectPath);
-
-            // for 2019
-            //tring[] targets = {pbxProject.TargetGuidByName("Unity-iPhone")};
-            // for 2020
-            string[] targets = { pbxProject.GetUnityMainTargetGuid(), pbxProject.GetUnityMainTargetGuid() };
-
-
-            // set swift version for cocoapod install
-            pbxProject.SetBuildProperty(targets, "SWIFT_VERSION", "5");
-
-            // Apply settings
-            File.WriteAllText(projectPath, pbxProject.WriteToString());
+				// for 2019
+				//tring[] targets = {pbxProject.TargetGuidByName("Unity-iPhone")};
+				// for 2020
+				string[] targets = {pbxProject.GetUnityMainTargetGuid(), pbxProject.GetUnityMainTargetGuid()};
 
 
-            // --- copy podfile to project folder
-            CopyPodfile(report.summary.outputPath);
-        }
-    }
+				// set swift version for cocoapod install
+				pbxProject.SetBuildProperty(targets, "SWIFT_VERSION", "5");
 
-    private static void CopyPodfile(string pathToBuiltProject)
-    {
+				// Apply settings
+				File.WriteAllText(projectPath, pbxProject.WriteToString());
 
-        var podfilePath = Application.dataPath + "/MotionAI/Core/Editor/BuildFiles/Podfile2019";
 
-        if (Application.unityVersion.Contains("2020") || Application.unityVersion.Contains("2019.3"))
-        {
-            podfilePath = Application.dataPath + "/MotionAI/Core/Editor/BuildFiles/Podfile2020";
-        }
+				// --- copy podfile to project folder
+				CopyPodfile(report.summary.outputPath);
 
-        var destPodfilePath = pathToBuiltProject + "/Podfile";
+			}
+#endif
+		}
 
-        Debug.Log(string.Format("Copying Podfile from {0} to {1}", podfilePath, destPodfilePath));
 
-        if (!File.Exists(destPodfilePath))
-        {
-            FileUtil.CopyFileOrDirectory(podfilePath, destPodfilePath);
-        }
-        else
-        {
-            Debug.Log("Podfile already exists");
-        }
-    }
+		private static void CopyPodfile(string pathToBuiltProject) {
+			string prefix = PlayerSettings.productName == "unityMotionAIPlugin"
+				? Application.dataPath
+				: Path.GetFullPath("Packages/com.evomo.motionai");
+
+			bool is2020 = Application.unityVersion.Contains("2020") || Application.unityVersion.Contains("2019.3");
+			string suffix = $"/MotionAI/Core/Editor/BuildFiles/Podfile{(is2020 ? "2020" : "2019")}";
+			string podfilePath = $"{prefix}{suffix}";
+
+
+			var destPodfilePath = pathToBuiltProject + "/Podfile";
+
+			Debug.Log(string.Format("Copying Podfile from {0} to {1}", podfilePath, destPodfilePath));
+
+			if (!File.Exists(destPodfilePath)) {
+				FileUtil.CopyFileOrDirectory(podfilePath, destPodfilePath);
+			}
+			else {
+				Debug.Log("Podfile already exists");
+			}
+		}
+	}
 }
-
-#endif 
