@@ -58,6 +58,7 @@ namespace MotionAI.Core.Controller {
 
 
 		public void StartTracking() {
+<<<<<<< Updated upstream
 			//TODO use multiple controllers
 			// It currently sends the first one back
 			// MotionAIController c = controllerManager.PairedControllers.First();
@@ -65,6 +66,12 @@ namespace MotionAI.Core.Controller {
 			//TODO continue this
 			// string isGaming = c.modelManager.model
 			// StartEvomoBridge(c.deviceOrientation,c.modelManager.model.chosenBuild.modelName, )
+=======
+			if (controllerManager?.unpairedAvailableControllers?.Count == 0) {
+				foreach (MotionAIController c in controllerManager.PairedControllers) {
+
+					AbstractModelComponent model = c.modelManager.model;
+>>>>>>> Stashed changes
 #if UNITY_IOS && !UNITY_EDITOR
 // TODO: Add third parameter gaming - if model_type == gaming -> input_string = "true"
 // TODO: Input classificationModel as string
@@ -135,6 +142,10 @@ namespace MotionAI.Core.Controller {
 			controllerManager = new ControllerManager();
 
 			if (automaticPairing) {
+<<<<<<< Updated upstream
+=======
+				StartControlPairing();
+>>>>>>> Stashed changes
 				StartTracking();
 			}
 		}
