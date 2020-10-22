@@ -6,6 +6,8 @@ using Random = UnityEngine.Random;
 
 namespace MotionAI.Core.Util {
 	public static class Extensions {
+		public static TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
+
 		// Return a random item from a list.
 		public static T RandomElement<T>(this List<T> items) {
 			// Return a random item.
@@ -26,9 +28,6 @@ namespace MotionAI.Core.Util {
 		}
 
 		public static string ToClassCase(this string str) {
-			//TODO fix this 
-			TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
-
 			return textInfo.ToTitleCase(str).CleanFromDB();
 		}
 

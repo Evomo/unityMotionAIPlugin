@@ -1,18 +1,26 @@
+using System;
 using MotionAI.Core.Util;
 using UnityEditor;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace MotionAI.Core.Editor {
-	
 	[CustomPropertyDrawer(typeof(ShowOnlyAttribute))]
-	public class ShowOnlyDrawer : PropertyDrawer
-	{
-		public override void OnGUI(Rect position, SerializedProperty prop, GUIContent label)
-		{
+	public class ShowOnlyDrawer : PropertyDrawer {
+
+		public static string CheckAllowedTyped(SerializedProperty prop) {
+			Object o = prop.objectReferenceValue;
+
+			if (o is Controller.MotionAIController mai) {
+				return $"{mai.name} - {mai.DeviceId} - {mai.deviceOrientation.ToString()}";
+			}
+			Debug.Log(prop);
+			return "Not Allowed";
+		}
+		public override void OnGUI(Rect position, SerializedProperty prop, GUIContent label) {
 			string valueStr;
- 
-			switch (prop.propertyType)
-			{
+
+			switch (prop.propertyType) {
 				case SerializedPropertyType.Integer:
 					valueStr = prop.intValue.ToString();
 					break;
@@ -26,11 +34,11 @@ namespace MotionAI.Core.Editor {
 					valueStr = prop.stringValue;
 					break;
 				default:
-					valueStr = "(not supported)";
+					valueStr = CheckAllowedTyped(prop);
 					break;
 			}
- 
-			EditorGUI.LabelField(position,label.text, valueStr);
+
+			EditorGUI.LabelField(position, label.text, valueStr);
 		}
 	}
 }
