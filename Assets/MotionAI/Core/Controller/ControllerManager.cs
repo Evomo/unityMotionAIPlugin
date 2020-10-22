@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using MotionAI.Core.POCO;
+using MotionAI.Core.Util;
 using UnityEngine;
 
 namespace MotionAI.Core.Controller {
@@ -9,19 +10,11 @@ namespace MotionAI.Core.Controller {
 	public class ControllerManager {
 		public Dictionary<string, HashSet<MotionAIController>> controllers;
 
-		public List<MotionAIController> unpairedAvailableControllers;
 
-		public List<MotionAIController> PairedControllers {
-			get {
-				List<MotionAIController> c = new List<MotionAIController>();
+		[ShowOnly] public List<MotionAIController> unpairedAvailableControllers;
+		[SerializeField, ShowOnly] private List<MotionAIController> pairedControllers;
 
-				foreach (HashSet<MotionAIController> hashController in controllers.Values) {
-					c.AddRange(hashController);
-				}
-
-				return c;
-			}
-		}
+		public List<MotionAIController> PairedControllers => pairedControllers;
 
 		public bool PairingController { get; private set; }
 
@@ -37,6 +30,14 @@ namespace MotionAI.Core.Controller {
 		}
 
 
+		private void UpdatePairedControllerList() {
+			pairedControllers = new List<MotionAIController>();
+
+			foreach (HashSet<MotionAIController> hashController in controllers.Values) {
+				pairedControllers.AddRange(hashController);
+			}
+		}
+
 		public void PairController(List<MotionAIController> availableControllers) {
 			if (!PairingController) {
 				controllers = new Dictionary<string, HashSet<MotionAIController>>();
@@ -50,6 +51,7 @@ namespace MotionAI.Core.Controller {
 						return c;
 					})
 					.Where(controller => controller.IsPaired == false).ToList();
+				UpdatePairedControllerList();
 			}
 
 			PairingController = !PairingController;
@@ -61,6 +63,7 @@ namespace MotionAI.Core.Controller {
 				MotionAIController controller = unpairedAvailableControllers.First();
 				unpairedAvailableControllers.Remove(controller);
 				PairController(deviceId, controller);
+				UpdatePairedControllerList();
 			}
 		}
 

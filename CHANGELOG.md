@@ -1,3 +1,10 @@
+## [1.2.3](https://github.com/Evomo/unityMotionAIPlugin/compare/v1.2.2...v1.2.3) (2020-10-22)
+
+
+### Bug Fixes
+
+* issues ([dfdb302](https://github.com/Evomo/unityMotionAIPlugin/commit/dfdb3020dc89ab28363b28b6ab82b20a4242d067))
+
 ## [1.2.2](https://github.com/Evomo/unityMotionAIPlugin/compare/v1.2.1...v1.2.2) (2020-10-20)
 
 

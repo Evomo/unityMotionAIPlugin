@@ -11,6 +11,9 @@ namespace MotionAI.Core.Models {
 		[HideInInspector] public ModelBuildMeta chosenBuild;
 
 
+		[Tooltip("Gaming models react automatically to each Elemental Movement, Fitness only classifies complete movements")]
+		public ModelType modelType;
+
 		public abstract List<MoveHolder> GetMoveHolders();
 		public abstract List<ModelBuildMeta> GetAvailableTypes();
 	}
