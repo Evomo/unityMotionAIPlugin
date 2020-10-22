@@ -19,11 +19,6 @@ namespace MotionAI.Core.Models.Generated {
         public Movements moves = new Movements();
         [HideInInspector()]
         public Metadata meta = new Metadata();
-        public static MotionAI.Core.Models.Generated.ModelType modelType {
-            get {
-                return MotionAI.Core.Models.Generated.ModelType.gaming;
-            }
-        }
         public static string modelName {
             get {
                 return "subway-surfer";
