@@ -1,3 +1,10 @@
+## [1.2.5](https://github.com/Evomo/unityMotionAIPlugin/compare/v1.2.4...v1.2.5) (2020-10-22)
+
+
+### Bug Fixes
+
+* whoops ([2749a4f](https://github.com/Evomo/unityMotionAIPlugin/commit/2749a4f7ceb3da1bf3d0fe17bd23c84332a4a03e))
+
 ## [1.2.4](https://github.com/Evomo/unityMotionAIPlugin/compare/v1.2.3...v1.2.4) (2020-10-22)
 
 
