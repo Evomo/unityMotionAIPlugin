@@ -109,7 +109,7 @@ namespace MotionAI.Core.Editor.ModelGenerator {
 					.InheritsFrom("AbstractModelComponent")
 					.WithMethod("GetMoveHolders", moveHoldersnippet, typeof(List<MoveHolder>))
 					.WithMethod("GetAvailableTypes", availableTypes, typeof(List<ModelBuildMeta>))
-					.WithReadOnlyField("modelType", (ModelType) Enum.Parse(typeof(ModelType), modelSeries.model_type))
+					// .WithReadOnlyField("modelType", (ModelType) Enum.Parse(typeof(ModelType), modelSeries.model_type))
 					.WithReadOnlyField("modelName", modelSeries.name)
 					.WithObject("moves", "Movements")
 					.WithObject("meta", "Metadata", hidden: true);

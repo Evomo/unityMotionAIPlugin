@@ -8,6 +8,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using MotionAI.Core.Models;
 using MotionAI.Core.Models.Generated;
 using MotionAI.Core.POCO;
 using MotionAI.Core.Util;
@@ -16,6 +17,8 @@ using static MotionAI.Core.POCO.UtilHelper;
 
 namespace MotionAI.Core.Controller {
 	public class MotionAIManager : Singleton<MotionAIManager> {
+		#region Bridge Methods
+
 		#region Internal Load
 
 #if UNITY_IOS && !UNITY_EDITOR
@@ -58,28 +61,16 @@ namespace MotionAI.Core.Controller {
 
 
 		public void StartTracking() {
-<<<<<<< Updated upstream
-			//TODO use multiple controllers
-			// It currently sends the first one back
-			// MotionAIController c = controllerManager.PairedControllers.First();
-			// c.modelManager.model.
-			//TODO continue this
-			// string isGaming = c.modelManager.model
-			// StartEvomoBridge(c.deviceOrientation,c.modelManager.model.chosenBuild.modelName, )
-=======
-			if (controllerManager?.unpairedAvailableControllers?.Count == 0) {
+			if (controllerManager.unpairedAvailableControllers.Count == 0) {
 				foreach (MotionAIController c in controllerManager.PairedControllers) {
-
 					AbstractModelComponent model = c.modelManager.model;
->>>>>>> Stashed changes
+
 #if UNITY_IOS && !UNITY_EDITOR
-// TODO: Add third parameter gaming - if model_type == gaming -> input_string = "true"
-// TODO: Input classificationModel as string
-		
-        StartEvomoBridge("buttonDown", "subway-surfer", "true");
+					StartEvomoBridge(c.deviceOrientation.ToString(), model.chosenBuild.modelName,  (model.modelType == ModelType.gaming).ToString())
 #endif
-			IsTracking = true;
-			StartControlPairing();
+					IsTracking = true;
+				}
+			}
 		}
 
 		public void StopTracking() {
@@ -142,10 +133,8 @@ namespace MotionAI.Core.Controller {
 			controllerManager = new ControllerManager();
 
 			if (automaticPairing) {
-<<<<<<< Updated upstream
-=======
+
 				StartControlPairing();
->>>>>>> Stashed changes
 				StartTracking();
 			}
 		}
@@ -157,8 +146,7 @@ namespace MotionAI.Core.Controller {
 		public void Update() {
 			lock (_executionQueue) {
 				while (_executionQueue.Count > 0) {
-					StartCoroutine("ProcessMotionMessage",_executionQueue.Dequeue());
-
+					StartCoroutine("ProcessMotionMessage", _executionQueue.Dequeue());
 				}
 			}
 		}
