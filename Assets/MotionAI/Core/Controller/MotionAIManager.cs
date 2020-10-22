@@ -47,6 +47,8 @@ namespace MotionAI.Core.Controller {
 
 		#endregion
 
+		#endregion
+
 		#region Bridge Methods
 
 #if UNITY_IOS && !UNITY_EDITOR
@@ -133,7 +135,6 @@ namespace MotionAI.Core.Controller {
 			controllerManager = new ControllerManager();
 
 			if (automaticPairing) {
-
 				StartControlPairing();
 				StartTracking();
 			}
