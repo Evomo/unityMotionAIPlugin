@@ -33,7 +33,7 @@ namespace MotionAI.Samples.CoreDemo {
 
 
 		public void TrackHandle() {
-			if (!maim.IsTracking) {
+			if (!maim.isTracking) {
 				maim.StartTracking();
 				startTrackingButton.text = "Stop Tracking";
 			}
