@@ -1,3 +1,10 @@
+## [1.2.6](https://github.com/Evomo/unityMotionAIPlugin/compare/v1.2.5...v1.2.6) (2020-10-23)
+
+
+### Bug Fixes
+
+* made elmo type id dependent on the label ([137d047](https://github.com/Evomo/unityMotionAIPlugin/commit/137d0470539449239effa8f7354dec7685443bbd))
+
 ## [1.2.5](https://github.com/Evomo/unityMotionAIPlugin/compare/v1.2.4...v1.2.5) (2020-10-22)
 
 
