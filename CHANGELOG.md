@@ -1,3 +1,10 @@
+## [1.2.7](https://github.com/Evomo/unityMotionAIPlugin/compare/v1.2.6...v1.2.7) (2020-10-23)
+
+
+### Bug Fixes
+
+* handle pause ([4ccf515](https://github.com/Evomo/unityMotionAIPlugin/commit/4ccf5157686b85ed38e42349d4f2e13fc4880067))
+
 ## [1.2.6](https://github.com/Evomo/unityMotionAIPlugin/compare/v1.2.5...v1.2.6) (2020-10-23)
 
 
