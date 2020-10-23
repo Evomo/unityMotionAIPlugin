@@ -70,7 +70,7 @@ namespace MotionAI.Core.Controller {
 #if UNITY_IOS && !UNITY_EDITOR
 					StartEvomoBridge(c.deviceOrientation.ToString(), model.chosenBuild.modelName,  (model.modelType == ModelType.gaming).ToString())
 #endif
-					IsTracking = true;
+					isTracking = true;
 				}
 			}
 		}
@@ -80,7 +80,7 @@ namespace MotionAI.Core.Controller {
         StopEvomoBridge();
 #endif
 
-			IsTracking = false;
+			isTracking = false;
 		}
 
 		public static void LogEvent(string eventType, string note = "") {
@@ -120,7 +120,7 @@ namespace MotionAI.Core.Controller {
 		public ControllerManager controllerManager;
 
 		public bool automaticPairing = true;
-		public bool IsTracking { get; private set; }
+		public bool isTracking;
 
 		[Tooltip("SDK will send some Debugging and Raw measurements to the server")]
 		public bool isDebug = true;
@@ -147,8 +147,10 @@ namespace MotionAI.Core.Controller {
 		public void Update() {
 			lock (_executionQueue) {
 				while (_executionQueue.Count > 0) {
-					BridgeMessage msg = _executionQueue.Dequeue();
-					StartCoroutine("ProcessMotionMessage", msg);
+					if (isTracking) {
+						BridgeMessage msg = _executionQueue.Dequeue();
+						StartCoroutine("ProcessMotionMessage", msg);
+					}
 				}
 			}
 		}
