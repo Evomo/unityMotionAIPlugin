@@ -5,13 +5,12 @@ using MotionAI.Core.Models.Generated;
 namespace MotionAI.Core.POCO {
 	[Serializable]
 	public class BridgeMessage {
-
 		public string deviceID;
 		public EvoMovement movement;
-		public ElementalMovement elmo; 
+		public ElementalMovement elmo;
 		public Message message;
 	}
-	
+
 	[Serializable]
 	public class Message {
 		public int statusCode;
@@ -20,8 +19,24 @@ namespace MotionAI.Core.POCO {
 
 	[Serializable]
 	public class ElementalMovement {
-		public ElmoEnum typeID;
+		public ElmoEnum typeID {
+			get {
+				ElmoEnum t;
+				if (Enum.TryParse(typeLabel, true, out t)) return t;
+				if (Enum.TryParse($"{typeLabel}up", true, out t)) return t;
+				if (Enum.TryParse($"{typeLabel}_down", true, out t)) return t;
+
+				return t;
+			}
+			set {
+				if (Enum.IsDefined(typeof(ElmoEnum), value) && typeLabel == null) {
+					typeLabel = Enum.GetName(typeof(ElmoEnum), value);
+				}
+			}
+		}
+
 		public string typeLabel;
+
 		public bool rejected;
 		// public DateTime start;
 		// public DateTime end;
