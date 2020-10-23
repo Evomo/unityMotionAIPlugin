@@ -19,7 +19,7 @@ namespace MotionAI.Core.POCO {
 		public override BridgeMessage PrepareMessage(string fakeDeviceId) {
 			BridgeMessage msg = StartDebugMessage();
 			msg.elmo = new ElementalMovement {
-				typeID = val,
+				// typeID = val,
 				typeLabel = val.ToString()
 			};
 			msg.deviceID = fakeDeviceId;

@@ -15,25 +15,24 @@ namespace MotionAI.Samples.ElmoDemo {
 		private void HandleElmo(ElementalMovement elementalMovement) {
 			if (!elementalMovement.rejected) {
 				switch (elementalMovement.typeID) {
-				case ElmoEnum.hop_single_up:
-					jump.Invoke(elementalMovement);
-					break;
-				case ElmoEnum.duck_down:
-					duck.Invoke(elementalMovement);
-					break;
-				case ElmoEnum.side_step_left_up:
-					left.Invoke(elementalMovement);
-					break;
-				case ElmoEnum.side_step_right_up:
-					right.Invoke(elementalMovement);
-					break;
+					case ElmoEnum.hop_single_up:
+						jump.Invoke(elementalMovement);
+						break;
+					case ElmoEnum.duck_up:
+						duck.Invoke(elementalMovement);
+						break;
+					case ElmoEnum.side_step_left_up:
+						left.Invoke(elementalMovement);
+						break;
+					case ElmoEnum.side_step_right_up:
+						right.Invoke(elementalMovement);
+						break;
 				}
 
 
 				// rescue rejected elmo
-				if (_lastElmo != null) {
-					if (_lastElmo.rejected && elementalMovement.rejected == false) {
-						switch (_lastElmo.typeID) {
+				if (_lastElmo.rejected) {
+					switch (_lastElmo.typeID) {
 						case ElmoEnum.duck_down:
 							RecoverElmo(elementalMovement, duck);
 							break;
@@ -46,7 +45,6 @@ namespace MotionAI.Samples.ElmoDemo {
 						case ElmoEnum.hop_single_down:
 							RecoverElmo(elementalMovement, jump);
 							break;
-						}
 					}
 				}
 			}
@@ -63,16 +61,16 @@ namespace MotionAI.Samples.ElmoDemo {
 
 		private ElmoEnum DownOpposite(ElmoEnum e) {
 			switch (e) {
-			case ElmoEnum.duck_down:
-				return ElmoEnum.duck_up;
-			case ElmoEnum.hop_single_down:
-				return ElmoEnum.hop_single_up;
-			case ElmoEnum.side_step_left_down:
-				return ElmoEnum.side_step_left_up;
-			case ElmoEnum.side_step_right_down:
-				return ElmoEnum.side_step_right_up;
-			default:
-				return ElmoEnum.heartUp;
+				case ElmoEnum.duck_down:
+					return ElmoEnum.duck_up;
+				case ElmoEnum.hop_single_down:
+					return ElmoEnum.hop_single_up;
+				case ElmoEnum.side_step_left_down:
+					return ElmoEnum.side_step_left_up;
+				case ElmoEnum.side_step_right_down:
+					return ElmoEnum.side_step_right_up;
+				default:
+					return ElmoEnum.heartUp;
 			}
 		}
 	}

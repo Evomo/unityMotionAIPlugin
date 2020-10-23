@@ -147,7 +147,8 @@ namespace MotionAI.Core.Controller {
 		public void Update() {
 			lock (_executionQueue) {
 				while (_executionQueue.Count > 0) {
-					StartCoroutine("ProcessMotionMessage", _executionQueue.Dequeue());
+					BridgeMessage msg = _executionQueue.Dequeue();
+					StartCoroutine("ProcessMotionMessage", msg);
 				}
 			}
 		}
@@ -173,18 +174,16 @@ namespace MotionAI.Core.Controller {
 				mv.deviceID = msg.deviceID;
 				mv.elmos.Add(msg.elmo);
 				controllerManager.ManageMotion(mv);
+				yield break;
 			}
 
-			else if (msg.movement.typeLabel != null) {
+			if (msg.movement.typeLabel != null) {
 				msg.movement.deviceID = msg.deviceID;
 				controllerManager.ManageMotion(msg.movement);
+				yield break;
 			}
 
-			else {
-				Debug.Log($"EvomoUnitySDK-Message: {msg.message.statusCode} - {msg.message.data}");
-			}
-
-			return null;
+			Debug.Log($"EvomoUnitySDK-Message: {msg.message.statusCode} - {msg.message.data}");
 		}
 
 

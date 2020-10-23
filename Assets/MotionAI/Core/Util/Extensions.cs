@@ -5,8 +5,10 @@ using System.Globalization;
 using Random = UnityEngine.Random;
 
 namespace MotionAI.Core.Util {
+
 	public static class Extensions {
 		public static TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
+
 
 		// Return a random item from a list.
 		public static T RandomElement<T>(this List<T> items) {

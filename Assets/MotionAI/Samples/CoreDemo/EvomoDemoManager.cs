@@ -1,10 +1,12 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using MotionAI.Core.Controller;
 using MotionAI.Core.Models.Generated;
 using MotionAI.Core.POCO;
 using MotionAI.Core.Util;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 namespace MotionAI.Samples.CoreDemo {
 	[RequireComponent(typeof(MotionAIManager))]
@@ -54,16 +56,17 @@ namespace MotionAI.Samples.CoreDemo {
 			dto.gVelAmplitudeNegative = Random.Range(1, 10);
 			dto.gVelAmplitudePositive = Random.Range(1, 10);
 			dto.durationPositive = Random.Range(1, 10);
-			
-			dto.typeID = mv.id;
+
+			dto.typeLabel = Enum.GetNames(typeof(MovementEnum)).ToList().RandomElement();
+			dto.typeID = (MovementEnum) Enum.Parse(typeof(MovementEnum), dto.typeLabel);
 			dto.elmos.Add(elmo);
-			dto.typeLabel = "debug";
 
 			BridgeMessage bm = new BridgeMessage();
 			
 			bm.elmo = new ElementalMovement();
 			bm.movement = dto;
 			bm.message = new Message();
+			textField.SetTextWithoutNotify(JsonUtility.ToJson(bm,true));
 			MotionAIManager.Instance.Enqueue(bm);
 			// maim.controllerManager.ManageMotion(dto);
 		}
