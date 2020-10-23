@@ -147,8 +147,8 @@ namespace MotionAI.Core.Controller {
 		public void Update() {
 			lock (_executionQueue) {
 				while (_executionQueue.Count > 0) {
+					BridgeMessage msg = _executionQueue.Dequeue();
 					if (isTracking) {
-						BridgeMessage msg = _executionQueue.Dequeue();
 						StartCoroutine("ProcessMotionMessage", msg);
 					}
 				}
