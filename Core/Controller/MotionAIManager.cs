@@ -68,7 +68,7 @@ namespace MotionAI.Core.Controller {
 					AbstractModelComponent model = c.modelManager.model;
 
 #if UNITY_IOS && !UNITY_EDITOR
-					StartEvomoBridge(c.deviceOrientation.ToString(), model.chosenBuild.modelName,  (model.modelType == ModelType.gaming).ToString())
+					StartEvomoBridge(c.deviceOrientation.ToString(), model.chosenBuild.modelName,  (model.modelType == ModelType.gaming).ToString());
 #endif
 					isTracking = true;
 				}
