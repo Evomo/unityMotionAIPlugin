@@ -1,3 +1,10 @@
+## [1.2.9](https://github.com/Evomo/unityMotionAIPlugin/compare/v1.2.8...v1.2.9) (2020-10-25)
+
+
+### Bug Fixes
+
+* Missing Semilicon ([fd07dbc](https://github.com/Evomo/unityMotionAIPlugin/commit/fd07dbc462ee45bc265c48f29bdaab20281a1257))
+
 ## [1.2.8](https://github.com/Evomo/unityMotionAIPlugin/compare/v1.2.7...v1.2.8) (2020-10-23)
 
 
