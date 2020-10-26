@@ -16,10 +16,10 @@ using UnityEngine;
 using static MotionAI.Core.POCO.UtilHelper;
 
 namespace MotionAI.Core.Controller {
-	public class MotionAIManager : Singleton<MotionAIManager> {
-		#region Bridge Methods
+    public class MotionAIManager : Singleton<MotionAIManager> {
+        #region Bridge Methods
 
-		#region Internal Load
+        #region Internal Load
 
 #if UNITY_IOS && !UNITY_EDITOR
     [DllImport("__Internal")]
@@ -45,11 +45,11 @@ namespace MotionAI.Core.Controller {
 
 #endif
 
-		#endregion
+        #endregion
 
-		#endregion
+        #endregion
 
-		#region Bridge Methods
+        #region Bridge Methods
 
 #if UNITY_IOS && !UNITY_EDITOR
     [MonoPInvokeCallback(typeof(UnityCallback))]
@@ -62,137 +62,137 @@ namespace MotionAI.Core.Controller {
 #endif
 
 
-		public void StartTracking() {
-			if (controllerManager.unpairedAvailableControllers.Count == 0) {
-				foreach (MotionAIController c in controllerManager.PairedControllers) {
-					AbstractModelComponent model = c.modelManager.model;
+        public void StartTracking() {
+            if (controllerManager.unpairedAvailableControllers.Count == 0) {
+                foreach (MotionAIController c in controllerManager.PairedControllers) {
+                    AbstractModelComponent model = c.modelManager.model;
 
 #if UNITY_IOS && !UNITY_EDITOR
 					StartEvomoBridge(c.deviceOrientation.ToString(), model.chosenBuild.modelName,  (model.modelType == ModelType.gaming).ToString());
 #endif
-					isTracking = true;
-				}
-			}
-		}
+                    isTracking = true;
+                }
+            }
+        }
 
-		public void StopTracking() {
+        public void StopTracking() {
 #if UNITY_IOS && !UNITY_EDITOR
         StopEvomoBridge();
 #endif
 
-			isTracking = false;
-		}
+            isTracking = false;
+        }
 
-		public static void LogEvent(string eventType, string note = "") {
+        public static void LogEvent(string eventType, string note = "") {
 #if UNITY_IOS && !UNITY_EDITOR
         LogEventBridge(eventType, note);
 #endif
-		}
+        }
 
-		public static void LogTargetMovement(ElmoEnum movementType, string note = "") {
+        public static void LogTargetMovement(ElmoEnum movementType, string note = "") {
 #if UNITY_IOS && !UNITY_EDITOR
         LogTargetMovementBridge(movementType.ToString(), note);
 #endif
-		}
+        }
 
-		public void LogFailure(EventSource source, FailureType failureType, ElmoEnum movementType,
-			string note = "") {
+        public void LogFailure(EventSource source, FailureType failureType, ElmoEnum movementType,
+            string note = "") {
 #if UNITY_IOS && !UNITY_EDITOR
         LogFailureBridge(source.ToString(), failureType.ToString(), movementType.ToString(), note);
 #endif
-		}
+        }
 
-		public void SetUsername(String username) {
+        public void SetUsername(String username) {
 #if UNITY_IOS && !UNITY_EDITOR
         SetUsernameBridge(username);
 #endif
-		}
+        }
 
-		#endregion
+        #endregion
 
 
-		#region Unity
+        #region Unity
 
-		public delegate void UnityCallback(string value);
+        public delegate void UnityCallback(string value);
 
-		private static readonly Queue<BridgeMessage> _executionQueue = new Queue<BridgeMessage>();
-		public SDKConfig mySDKConfig;
-		public ControllerManager controllerManager;
+        private static readonly Queue<BridgeMessage> _executionQueue = new Queue<BridgeMessage>();
+        public SDKConfig mySDKConfig;
+        public ControllerManager controllerManager;
 
-		public bool automaticPairing = true;
-		public bool isTracking;
+        public bool automaticPairing = true;
+        public bool isTracking;
 
-		[Tooltip("SDK will send some Debugging and Raw measurements to the server")]
-		public bool isDebug = true;
+        [Tooltip("SDK will send some Debugging and Raw measurements to the server")]
+        public bool isDebug = true;
 
-		#region Lifecycle
+        #region Lifecycle
 
-		private void Awake() {
-			Debug.unityLogger.logEnabled = isDebug;
+        private void Awake() {
+            Debug.unityLogger.logEnabled = isDebug;
 #if UNITY_IOS && !UNITY_EDITOR
         InitEvomoBridge(MessageReceived, mySDKConfig.licenseID, isDebug.ToString().ToLower());
 #endif
-			controllerManager = new ControllerManager();
+            controllerManager = new ControllerManager();
 
-			if (automaticPairing) {
-				StartControlPairing();
-				StartTracking();
-			}
-		}
+            if (automaticPairing) {
+                StartControlPairing();
+                StartTracking();
+            }
+        }
 
-		private void OnDestroy() {
-			StopTracking();
-		}
+        private void OnDestroy() {
+            StopTracking();
+        }
 
-		public void Update() {
-			lock (_executionQueue) {
-				while (_executionQueue.Count > 0) {
-					BridgeMessage msg = _executionQueue.Dequeue();
-					if (isTracking) {
-						StartCoroutine("ProcessMotionMessage", msg);
-					}
-				}
-			}
-		}
+        public void Update() {
+            lock (_executionQueue) {
+                while (_executionQueue.Count > 0) {
+                    BridgeMessage msg = _executionQueue.Dequeue();
+                    if (isTracking) {
+                        StartCoroutine("ProcessMotionMessage", msg);
+                    }
+                }
+            }
+        }
 
-		#endregion
-
-
-		public void Enqueue(BridgeMessage msg) {
-			lock (_executionQueue) {
-				_executionQueue.Enqueue(msg);
-			}
-		}
-
-		public static void ManageMotion(string message) {
-			if (string.IsNullOrEmpty(message)) return;
-			BridgeMessage msg = JsonUtility.FromJson<BridgeMessage>(message);
-			MotionAIManager.Instance.Enqueue(msg);
-		}
-
-		private IEnumerator ProcessMotionMessage(BridgeMessage msg) {
-			if (msg.elmo.typeLabel != null) {
-				EvoMovement mv = new EvoMovement();
-				mv.deviceID = msg.deviceID;
-				mv.elmos.Add(msg.elmo);
-				controllerManager.ManageMotion(mv);
-				yield break;
-			}
-
-			if (msg.movement.typeLabel != null) {
-				msg.movement.deviceID = msg.deviceID;
-				controllerManager.ManageMotion(msg.movement);
-				yield break;
-			}
-
-			Debug.Log($"EvomoUnitySDK-Message: {msg.message.statusCode} - {msg.message.data}");
-		}
+        #endregion
 
 
-		public void StartControlPairing() {
-			controllerManager.PairController(FindObjectsOfType<MotionAIController>().ToList());
-		}
+        public void Enqueue(BridgeMessage msg) {
+            lock (_executionQueue) {
+                _executionQueue.Enqueue(msg);
+            }
+        }
 
-		#endregion
-	}
+        public static void ManageMotion(string message) {
+            if (string.IsNullOrEmpty(message)) return;
+            BridgeMessage msg = JsonUtility.FromJson<BridgeMessage>(message);
+            MotionAIManager.Instance.Enqueue(msg);
+        }
+
+        private IEnumerator ProcessMotionMessage(BridgeMessage msg) {
+            if (msg.elmo.typeLabel != null) {
+                EvoMovement mv = new EvoMovement();
+                mv.deviceID = msg.deviceID;
+                mv.elmos.Add(msg.elmo);
+                controllerManager.ManageMotion(mv);
+                yield break;
+            }
+
+            if (msg.movement.typeLabel != null) {
+                msg.movement.deviceID = msg.deviceID;
+                controllerManager.ManageMotion(msg.movement);
+                yield break;
+            }
+
+            Debug.Log($"EvomoUnitySDK-Message: {msg.message.statusCode} - {msg.message.data}");
+        }
+
+
+        public void StartControlPairing() {
+            controllerManager.PairController(FindObjectsOfType<MotionAIController>().ToList());
+        }
+
+        #endregion
+    }
 }
