@@ -1,3 +1,10 @@
+## [1.2.10](https://github.com/Evomo/unityMotionAIPlugin/compare/v1.2.9...v1.2.10) (2020-10-26)
+
+
+### Bug Fixes
+
+* is tracking flag ([d4276f7](https://github.com/Evomo/unityMotionAIPlugin/commit/d4276f75bca2ca2f9f860b7d9b6fe5ff8ad9eddd))
+
 ## [1.2.9](https://github.com/Evomo/unityMotionAIPlugin/compare/v1.2.8...v1.2.9) (2020-10-25)
 
 
