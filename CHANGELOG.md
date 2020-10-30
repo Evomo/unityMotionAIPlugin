@@ -1,3 +1,10 @@
+## [1.2.11](https://github.com/Evomo/unityMotionAIPlugin/compare/v1.2.10...v1.2.11) (2020-10-30)
+
+
+### Bug Fixes
+
+* input debug creation bug ([a1badcf](https://github.com/Evomo/unityMotionAIPlugin/commit/a1badcf795bb29ae8cafbb44884096780bbd3543))
+
 ## [1.2.10](https://github.com/Evomo/unityMotionAIPlugin/compare/v1.2.9...v1.2.10) (2020-10-26)
 
 
