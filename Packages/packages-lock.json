@@ -7,13 +7,6 @@
       "dependencies": {},
       "hash": "2c40161561692659ca368d32eb43f946d881764c"
     },
-    "com.coffee.upm-git-extension": {
-      "version": "https://github.com/mob-sakai/UpmGitExtension.git",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "ecf4c7d1b03d9cb4ce3b5fc784ec46ccc1bcbdfd"
-    },
     "com.solidalloy.type.references": {
       "version": "2.1.0",
       "depth": 0,

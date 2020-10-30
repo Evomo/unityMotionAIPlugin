@@ -31,9 +31,7 @@ namespace MotionAI.Core.Controller.DebugMovement {
 			set => _canPerformUntil = Time.timeSinceLevelLoad + value;
 		}
 
-
 		public bool CanPerform => Time.timeSinceLevelLoad >= CanPerformUntil;
-
 
 		private void SetDict(FakeEvoInput x) {
 			if (fakeEvoInputs.ContainsKey(x.keycode)) {

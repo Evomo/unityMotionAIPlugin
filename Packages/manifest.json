@@ -1,7 +1,6 @@
 {
   "dependencies": {
     "com.boundfoxstudios.fluentassertions": "git+https://github.com/BoundfoxStudios/fluentassertions-unity#v5.10.3",
-    "com.coffee.upm-git-extension": "https://github.com/mob-sakai/UpmGitExtension.git",
     "com.solidalloy.type.references": "2.1.0",
     "com.unity.collab-proxy": "1.3.9",
     "com.unity.ide.rider": "1.2.1",
