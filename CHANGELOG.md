@@ -1,3 +1,10 @@
+## [1.2.12](https://github.com/Evomo/unityMotionAIPlugin/compare/v1.2.11...v1.2.12) (2020-11-03)
+
+
+### Bug Fixes
+
+* Add SendGameHubMessage bridge method ([5073be0](https://github.com/Evomo/unityMotionAIPlugin/commit/5073be05c4285af13d4c51b44ed4a66d8523e05f))
+
 ## [1.2.11](https://github.com/Evomo/unityMotionAIPlugin/compare/v1.2.10...v1.2.11) (2020-10-30)
 
 
