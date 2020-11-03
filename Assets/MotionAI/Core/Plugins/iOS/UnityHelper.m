@@ -54,3 +54,8 @@ void SetUsernameBridge(const char* username)
 {
     [bridge SetUsername:CreateNSString(username)];
 }
+
+void SendGameHubMessageBridge(const char* message)
+{
+    [bridge SendGameHubMessage:CreateNSString(message)];
+}
