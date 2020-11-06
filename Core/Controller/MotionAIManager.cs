@@ -43,7 +43,10 @@ namespace MotionAI.Core.Controller {
     [DllImport("__Internal")]
     private static extern void SetUsernameBridge(string username);
 
-#endif
+    [DllImport("__Internal")]
+    private static extern void SendGameHubMessageBridge(string message);
+
+#endif    
 
         #endregion
 
