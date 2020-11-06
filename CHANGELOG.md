@@ -1,3 +1,10 @@
+## [1.2.13](https://github.com/Evomo/unityMotionAIPlugin/compare/v1.2.12...v1.2.13) (2020-11-06)
+
+
+### Bug Fixes
+
+* Add import of SendGamehubMessageBrdige method ([b03e263](https://github.com/Evomo/unityMotionAIPlugin/commit/b03e263fab2ed8c10aa1fbba2f5025e5e4d82d1f))
+
 ## [1.2.12](https://github.com/Evomo/unityMotionAIPlugin/compare/v1.2.11...v1.2.12) (2020-11-03)
 
 
