@@ -24,7 +24,7 @@ namespace MotionAI.Core.Controller {
 			public TypeReference chosenModel;
 
 
-			[SerializeField] private AbstractModelComponent modelComponent;
+			[SerializeField, ShowOnly] private AbstractModelComponent modelComponent;
 
 
 			public bool CanChangeComponent => model == null || modelComponent.GetType() != chosenModel.Type;
@@ -76,6 +76,8 @@ namespace MotionAI.Core.Controller {
 		public UtilHelper.EvomoDeviceOrientation deviceOrientation;
 		public ControllerSettings controllerSettings;
 		public ModelManager modelManager;
+		
+		[HideInInspector]
 		public OnMovementEvent OnEvoMovement;
 		
 		public string DeviceId => controllerSettings.deviceId;

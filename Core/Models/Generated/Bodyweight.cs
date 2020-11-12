@@ -16,6 +16,7 @@ namespace MotionAI.Core.Models.Generated {
     using MotionAI.Core.POCO;
     
     public class Bodyweight : AbstractModelComponent {
+        [HideInInspector()]
         public Movements moves = new Movements();
         [HideInInspector()]
         public Metadata meta = new Metadata();
