@@ -1,9 +1,11 @@
-using MotionAI.Core.Controller;
 using MotionAI.Core.Models.Generated;
 using MotionAI.Core.POCO;
 
-namespace MotionAI.Samples.ElmoDemo {
-	public class ElmoController : MotionAIController {
+namespace MotionAI.Core.Controller.Examples {
+	/// <summary>
+	/// Example controller used to show how to create custom controllers, and gives you a quick way to create 4 way movement controllers
+	/// </summary>
+	public class HopDuckSideStepController : MotionAIController {
 		private ElementalMovement _lastElmo;
 
 		public OnElmoEvent jump, duck, left, right;
