@@ -1,4 +1,5 @@
 using System;
+using MotionAI.Core.Models;
 using MotionAI.Core.Util;
 using UnityEditor;
 using UnityEngine;
@@ -14,7 +15,10 @@ namespace MotionAI.Core.Editor {
 			if (o is Controller.MotionAIController mai) {
 				return $"{mai.name} - {mai.DeviceId} - {mai.deviceOrientation.ToString()}";
 			}
-			Debug.Log(prop);
+			
+			if (o is AbstractModelComponent model) {
+				return $"{model.chosenBuild.modelName}";
+			}
 			return "Not Allowed";
 		}
 		public override void OnGUI(Rect position, SerializedProperty prop, GUIContent label) {
