@@ -1,3 +1,10 @@
+## [1.2.15](https://github.com/Evomo/unityMotionAIPlugin/compare/v1.2.14...v1.2.15) (2020-11-12)
+
+
+### Bug Fixes
+
+* model creation changed ([7a43dc8](https://github.com/Evomo/unityMotionAIPlugin/commit/7a43dc8d79f4ee21ea3483550e9f89e1670bf027))
+
 ## [1.2.14](https://github.com/Evomo/unityMotionAIPlugin/compare/v1.2.13...v1.2.14) (2020-11-12)
 
 
