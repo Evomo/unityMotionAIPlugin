@@ -112,9 +112,10 @@ namespace MotionAI.Core.Controller {
         }
 
         public void SendGameHubMessage(String message) {
-#if UNITY_IOS && !UNITY_EDITOR
+#if UNITY_IOS
         SendGameHubMessageBridge(message);
 #endif
+            Debug.Log(message);
         }
         
         #endregion
