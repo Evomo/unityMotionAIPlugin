@@ -1,3 +1,10 @@
+## [1.2.16](https://github.com/Evomo/unityMotionAIPlugin/compare/v1.2.15...v1.2.16) (2020-11-16)
+
+
+### Bug Fixes
+
+* EditorHandling SendGameHubMessageBridge ([114ea04](https://github.com/Evomo/unityMotionAIPlugin/commit/114ea049ebc28266894ef8f62bbaef9a71fd4d83))
+
 ## [1.2.15](https://github.com/Evomo/unityMotionAIPlugin/compare/v1.2.14...v1.2.15) (2020-11-12)
 
 
