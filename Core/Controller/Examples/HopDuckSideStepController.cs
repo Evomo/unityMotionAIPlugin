@@ -26,7 +26,7 @@ namespace MotionAI.Core.Controller.Examples {
                     case ElmoEnum.hop_single_up:
                         movements.jump.Invoke(elementalMovement);
                         break;
-                    case ElmoEnum.duck_up:
+                    case ElmoEnum.duck_down:
                         movements.duck.Invoke(elementalMovement);
                         break;
                     case ElmoEnum.side_step_left_up:
@@ -41,7 +41,7 @@ namespace MotionAI.Core.Controller.Examples {
                 // rescue rejected elmo
                 if (_lastElmo?.rejected ?? false) {
                     switch (_lastElmo.typeID) {
-                        case ElmoEnum.duck_down:
+                        case ElmoEnum.duck_up:
                             RecoverElmo(elementalMovement, movements.duck);
                             break;
                         case ElmoEnum.side_step_left_down:
@@ -69,8 +69,8 @@ namespace MotionAI.Core.Controller.Examples {
 
         private ElmoEnum DownOpposite(ElmoEnum e) {
             switch (e) {
-                case ElmoEnum.duck_down:
-                    return ElmoEnum.duck_up;
+                case ElmoEnum.duck_up:
+                    return ElmoEnum.duck_down;
                 case ElmoEnum.hop_single_down:
                     return ElmoEnum.hop_single_up;
                 case ElmoEnum.side_step_left_down:
