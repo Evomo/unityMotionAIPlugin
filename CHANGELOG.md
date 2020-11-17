@@ -1,3 +1,10 @@
+## [1.2.17](https://github.com/Evomo/unityMotionAIPlugin/compare/v1.2.16...v1.2.17) (2020-11-17)
+
+
+### Bug Fixes
+
+* changed from static property to object field ([af24f89](https://github.com/Evomo/unityMotionAIPlugin/commit/af24f89e4725ae835e1acc307e3a1c620d9660cc))
+
 ## [1.2.16](https://github.com/Evomo/unityMotionAIPlugin/compare/v1.2.15...v1.2.16) (2020-11-16)
 
 
