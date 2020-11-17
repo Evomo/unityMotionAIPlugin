@@ -60,7 +60,7 @@ namespace MotionAI.Core.Editor.ModelGenerator.Builders {
 		}
 
 		public CustomClassBuilder WithReadOnlyField<T>(string name, T initialValue,
-			MemberAttributes attributes = MemberAttributes.Public | MemberAttributes.Static | MemberAttributes.Final) {
+			MemberAttributes attributes = MemberAttributes.Public | MemberAttributes.Override) {
 			CodeMemberProperty s = new CodeMemberProperty();
 
 			CodeTypeReferenceExpression typeRef = new CodeTypeReferenceExpression(initialValue.GetType());
@@ -75,7 +75,7 @@ namespace MotionAI.Core.Editor.ModelGenerator.Builders {
 
 			s.Attributes = attributes;
 			s.Name = name.CleanFromDB();
-			s.HasGet = true;
+			// s.HasGet = true;
 			s.Type = new CodeTypeReference(initialValue.GetType());
 			s.GetStatements.Add(new CodeMethodReturnStatement(fieldReferenceExpression));
 			targetClass.Members.Add(s);
