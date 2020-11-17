@@ -46,7 +46,7 @@ namespace MotionAI.Core.Controller {
     [DllImport("__Internal")]
     private static extern void SendGameHubMessageBridge(string message);
 
-#endif    
+#endif
 
         #endregion
 
@@ -70,8 +70,15 @@ namespace MotionAI.Core.Controller {
                 foreach (MotionAIController c in controllerManager.PairedControllers) {
                     AbstractModelComponent model = c.modelManager.model;
 
+
 #if UNITY_IOS && !UNITY_EDITOR
-					StartEvomoBridge(c.deviceOrientation.ToString(), model.chosenBuild.modelName,  (model.modelType == ModelType.gaming).ToString());
+					StartEvomoBridge(c.deviceOrientation.ToString(), model.modelName,  (model.modelType == ModelType.gaming).ToString());
+#endif
+
+#if UNITY_EDITOR
+                    Debug.Log(
+                        $"StartEvomoBridge({c.deviceOrientation.ToString()}, {model.modelName},  {(model.modelType == ModelType.gaming).ToString()})");
+
 #endif
                     isTracking = true;
                 }
@@ -117,7 +124,7 @@ namespace MotionAI.Core.Controller {
 #endif
             Debug.Log(message);
         }
-        
+
         #endregion
 
         #region Unity
@@ -194,7 +201,10 @@ namespace MotionAI.Core.Controller {
                 yield break;
             }
 
+#if UNITY_EDITOR
             Debug.Log($"EvomoUnitySDK-Message: {msg.message.statusCode} - {msg.message.data}");
+
+#endif
         }
 
 
