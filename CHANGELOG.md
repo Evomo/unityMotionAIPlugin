@@ -1,3 +1,10 @@
+## [1.2.18](https://github.com/Evomo/unityMotionAIPlugin/compare/v1.2.17...v1.2.18) (2020-11-17)
+
+
+### Bug Fixes
+
+* updated controller init ([8555ef2](https://github.com/Evomo/unityMotionAIPlugin/commit/8555ef2e4d4c26ecf1cff30309eacdf8527b0a72))
+
 ## [1.2.17](https://github.com/Evomo/unityMotionAIPlugin/compare/v1.2.16...v1.2.17) (2020-11-17)
 
 
