@@ -1,3 +1,10 @@
+## [1.2.19](https://github.com/Evomo/unityMotionAIPlugin/compare/v1.2.18...v1.2.19) (2020-11-17)
+
+
+### Bug Fixes
+
+* switch duck_up with duck_down ([c4a1453](https://github.com/Evomo/unityMotionAIPlugin/commit/c4a145396951fbd2c780f4e936dc5ea75e10dca4))
+
 ## [1.2.18](https://github.com/Evomo/unityMotionAIPlugin/compare/v1.2.17...v1.2.18) (2020-11-17)
 
 
