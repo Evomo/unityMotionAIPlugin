@@ -10,7 +10,7 @@ namespace MotionAI.Core.Models {
 	public abstract class AbstractModelComponent : MonoBehaviour {
 		[HideInInspector] public ModelBuildMeta chosenBuild;
 
-		public static string modelName => "Abstract model";
+		public virtual string modelName => "Abstract model";
 
 		[Tooltip("Gaming models react automatically to each Elemental Movement, Fitness only classifies complete movements")]
 		public ModelType modelType;

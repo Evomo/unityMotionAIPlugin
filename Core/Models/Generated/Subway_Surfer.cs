@@ -20,7 +20,7 @@ namespace MotionAI.Core.Models.Generated {
         public Movements moves = new Movements();
         [HideInInspector()]
         public Metadata meta = new Metadata();
-        public static string modelName {
+        public override string modelName {
             get {
                 return "subway-surfer";
             }
