@@ -145,8 +145,20 @@ namespace MotionAI.Core.Controller {
 
         private void Awake() {
             Debug.unityLogger.logEnabled = isDebug;
+
+            var licenseID = "empty";
+            if (mySDKConfig != null)
+            {
+                licenseID = mySDKConfig.licenseID;
+            }
+            else
+            {
+                Debug.LogError("UnityMotionAIManager: LicenseID-Unknown");
+            }
+
 #if UNITY_IOS && !UNITY_EDITOR
-        InitEvomoBridge(MessageReceived, mySDKConfig.licenseID, isDebug.ToString().ToLower());
+        
+        InitEvomoBridge(MessageReceived, licenseID, isDebug.ToString().ToLower());
 #endif
             controllerManager = new ControllerManager();
 
@@ -181,6 +193,7 @@ namespace MotionAI.Core.Controller {
         }
 
         public static void ManageMotion(string message) {
+            Debug.Log($"UnityMotionAIManager Send Message to Bridge {message}");
             if (string.IsNullOrEmpty(message)) return;
             BridgeMessage msg = JsonUtility.FromJson<BridgeMessage>(message);
             MotionAIManager.Instance.Enqueue(msg);
