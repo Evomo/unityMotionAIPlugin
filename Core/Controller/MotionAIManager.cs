@@ -150,8 +150,7 @@ namespace MotionAI.Core.Controller {
             if (mySDKConfig != null)
             {
                 licenseID = mySDKConfig.licenseID;
-            }
-            else
+            } else
             {
                 Debug.LogError("UnityMotionAIManager: LicenseID-Unknown");
             }
