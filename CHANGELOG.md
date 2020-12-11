@@ -1,3 +1,10 @@
+## [1.2.22](https://github.com/Evomo/unityMotionAIPlugin/compare/v1.2.21...v1.2.22) (2020-12-11)
+
+
+### Bug Fixes
+
+* new logs ([6ec45ec](https://github.com/Evomo/unityMotionAIPlugin/commit/6ec45ec71d69aedfde3b6c1be0d61405782b653c))
+
 ## [1.2.21](https://github.com/Evomo/unityMotionAIPlugin/compare/v1.2.20...v1.2.21) (2020-12-11)
 
 
