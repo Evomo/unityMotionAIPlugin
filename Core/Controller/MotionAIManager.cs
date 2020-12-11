@@ -58,7 +58,7 @@ namespace MotionAI.Core.Controller {
     [MonoPInvokeCallback(typeof(UnityCallback))]
     private static void MessageReceived(string message)
     {
-        // Debug.Log($"Message: {message}");
+        // MAIHelper.Log($"Message: {message}");
 		ManageMotion(message);
     }
 
@@ -76,7 +76,8 @@ namespace MotionAI.Core.Controller {
 #endif
 
 #if UNITY_EDITOR
-                    Debug.Log(
+
+                    MAIHelper.Log(
                         $"StartEvomoBridge({c.deviceOrientation.ToString()}, {model.modelName},  {(model.modelType == ModelType.gaming).ToString()})");
 
 #endif
@@ -122,7 +123,7 @@ namespace MotionAI.Core.Controller {
 #if UNITY_IOS && !UNITY_EDITOR
         SendGameHubMessageBridge(message);
 #endif
-            Debug.Log(message);
+            MAIHelper.Log(message);
         }
 
         #endregion
@@ -147,16 +148,14 @@ namespace MotionAI.Core.Controller {
             Debug.unityLogger.logEnabled = isDebug;
 
             var licenseID = "empty";
-            if (mySDKConfig != null)
-            {
+            if (mySDKConfig != null) {
                 licenseID = mySDKConfig.licenseID;
-            } else
-            {
-                Debug.LogError("UnityMotionAIManager: LicenseID-Unknown");
+            }
+            else {
+                MAIHelper.Log($"LicenseID- {licenseID}-Unknown");
             }
 
 #if UNITY_IOS && !UNITY_EDITOR
-        
         InitEvomoBridge(MessageReceived, licenseID, isDebug.ToString().ToLower());
 #endif
             controllerManager = new ControllerManager();
@@ -192,7 +191,7 @@ namespace MotionAI.Core.Controller {
         }
 
         public static void ManageMotion(string message) {
-            Debug.Log($"UnityMotionAIManager Send Message to Bridge {message}");
+            MAIHelper.Log($"UnityMotionAIManager Send Message to Bridge {message}");
             if (string.IsNullOrEmpty(message)) return;
             BridgeMessage msg = JsonUtility.FromJson<BridgeMessage>(message);
             MotionAIManager.Instance.Enqueue(msg);
@@ -214,7 +213,7 @@ namespace MotionAI.Core.Controller {
             }
 
 #if UNITY_EDITOR
-            Debug.Log($"EvomoUnitySDK-Message: {msg.message.statusCode} - {msg.message.data}");
+            MAIHelper.Log($"{msg.message.statusCode} - {msg.message.data}");
 
 #endif
         }

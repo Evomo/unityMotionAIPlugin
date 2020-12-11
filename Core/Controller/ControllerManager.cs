@@ -59,6 +59,7 @@ namespace MotionAI.Core.Controller {
 
 
 		private void PairController(string deviceId) {
+			MAIHelper.Log($"Pairing controller with deviceID: {deviceId}");
 			if (!controllers.ContainsKey(deviceId)) {
 				MotionAIController controller = unpairedAvailableControllers.First();
 				unpairedAvailableControllers.Remove(controller);
@@ -84,6 +85,8 @@ namespace MotionAI.Core.Controller {
 		}
 
 		public void UnpairControllers() {
+			MAIHelper.Log($"Unpairing Controllers");
+
 			foreach (KeyValuePair<string, HashSet<MotionAIController>> entry in controllers) {
 				List<MotionAIController> copy = entry.Value.ToList();
 				foreach (MotionAIController c in copy) {

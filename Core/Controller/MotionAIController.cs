@@ -101,10 +101,12 @@ namespace MotionAI.Core.Controller {
 
 
 		public virtual void Start() {
+			MAIHelper.Log($"Starting MotionAIController {transform.gameObject.name}");
 			if (modelManager.model == null) {
 				AbstractModelComponent activeModel = gameObject.GetComponent<AbstractModelComponent>();
 				if (activeModel != null) {
 					modelManager.SetFoundModel(activeModel);
+					MAIHelper.Log($"Set model {activeModel.modelName}");
 				}
 				else {
 					throw new NullReferenceException("MotionAIController requires a model");
@@ -128,6 +130,7 @@ namespace MotionAI.Core.Controller {
 
 
 		private void MovementCallBack(EvoMovement msg) {
+			
 			if (msg.deviceID == DeviceId || IsGlobal) {
 				InvokeEvents(msg);
 				
