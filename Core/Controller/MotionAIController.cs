@@ -117,6 +117,7 @@ namespace MotionAI.Core.Controller {
 		}
 
 		public void SetDevice(string id, OnMovementEvent onMovement) {
+			MAIHelper.Log($"Pair Controller - deviceID {id}");
 			controllerSettings.Pair(id);
 			onMovement.AddListener(MovementCallBack);
 		}
@@ -130,7 +131,7 @@ namespace MotionAI.Core.Controller {
 
 
 		private void MovementCallBack(EvoMovement msg) {
-			
+			MAIHelper.Log($"MovementCallBack {msg.typeLabel}");
 			if (msg.deviceID == DeviceId || IsGlobal) {
 				InvokeEvents(msg);
 				
@@ -149,6 +150,9 @@ namespace MotionAI.Core.Controller {
 		}
 
 
-		protected virtual void HandleMovement(EvoMovement msg) { }
+		protected virtual void HandleMovement(EvoMovement msg)
+		{
+			MAIHelper.Log("HandleMovement must be overwritten!");
+		}
 	}
 }
