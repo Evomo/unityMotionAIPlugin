@@ -123,7 +123,7 @@ namespace MotionAI.Core.Controller {
 #if UNITY_IOS && !UNITY_EDITOR
         SendGameHubMessageBridge(message);
 #endif
-            MAIHelper.Log(message);
+            MAIHelper.Log($"GameHubMessage: {message}");
         }
 
         #endregion
@@ -191,7 +191,9 @@ namespace MotionAI.Core.Controller {
         }
 
         public static void ManageMotion(string message) {
-            MAIHelper.Log($"UnityMotionAIManager Send Message to Bridge {message}");
+            var oneLineMessageString = message.Replace(System.Environment.NewLine, ""); 
+            MAIHelper.Log($"BridgeMessage {oneLineMessageString}");
+
             if (string.IsNullOrEmpty(message)) return;
             BridgeMessage msg = JsonUtility.FromJson<BridgeMessage>(message);
             MotionAIManager.Instance.Enqueue(msg);
