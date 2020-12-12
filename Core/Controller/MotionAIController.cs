@@ -117,9 +117,17 @@ namespace MotionAI.Core.Controller {
 		}
 
 		public void SetDevice(string id, OnMovementEvent onMovement) {
-			MAIHelper.Log($"Pair Controller - deviceID {id}");
+			MAIHelper.Log($"Pair Controller - deviceID {id} OnMovementIsNotNUll: {onMovement != null}");
 			controllerSettings.Pair(id);
-			onMovement.AddListener(MovementCallBack);
+			if (onMovement != null)
+			{
+				onMovement.AddListener(MovementCallBack);
+				
+			}
+			else
+			{
+				MAIHelper.Log($"Pair Controller - failed - onMovement is null {id}");
+			}
 		}
 
 
@@ -131,7 +139,7 @@ namespace MotionAI.Core.Controller {
 
 
 		private void MovementCallBack(EvoMovement msg) {
-			MAIHelper.Log($"MovementCallBack {msg.typeLabel}");
+			MAIHelper.Log($"MovementCallBack");
 			if (msg.deviceID == DeviceId || IsGlobal) {
 				InvokeEvents(msg);
 				
