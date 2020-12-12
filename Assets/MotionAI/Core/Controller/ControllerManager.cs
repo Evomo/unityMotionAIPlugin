@@ -36,6 +36,11 @@ namespace MotionAI.Core.Controller {
 			foreach (HashSet<MotionAIController> hashController in controllers.Values) {
 				pairedControllers.AddRange(hashController);
 			}
+
+			foreach (MotionAIController controller in pairedControllers)
+			{
+				MAIHelper.Log($"pairedControllersList: {controller.DeviceId}, {controller.deviceOrientation}");
+			}
 		}
 
 		public void PairController(List<MotionAIController> availableControllers) {
@@ -59,7 +64,7 @@ namespace MotionAI.Core.Controller {
 
 
 		private void PairController(string deviceId) {
-			MAIHelper.Log($"Pairing controller with deviceID: {deviceId}");
+			MAIHelper.Log($"Try to Pairing controller with deviceID: {deviceId} {unpairedAvailableControllers.Count}");
 			if (!controllers.ContainsKey(deviceId)) {
 				MotionAIController controller = unpairedAvailableControllers.First();
 				unpairedAvailableControllers.Remove(controller);
@@ -71,16 +76,18 @@ namespace MotionAI.Core.Controller {
 		private void PairController(string deviceId, MotionAIController controller) {
 			HashSet<MotionAIController> cSet;
 			if (controllers.ContainsKey(deviceId)) {
+				MAIHelper.Log($"Pairing (reuse controller) deviceID: {deviceId}");
 				cSet = controllers[deviceId];
 			}
 			else {
+				MAIHelper.Log($"Pairing (create new controller) deviceID: {deviceId}");
 				cSet = new HashSet<MotionAIController>();
 				controllers.Add(deviceId, cSet);
 			}
 
 			cSet?.Add(controller);
 			controller.SetDevice(deviceId, onMovement);
-
+			
 			pairedEvent?.Invoke(controller);
 		}
 
@@ -106,6 +113,7 @@ namespace MotionAI.Core.Controller {
 				PairController(msg.deviceID);
 			}
 
+			// MAIHelper.Log($"ControlManager - ManageMotion {msg.typeLabel} onMovementNotNull{onMovement != null}");
 			onMovement?.Invoke(msg);
 		}
 	}

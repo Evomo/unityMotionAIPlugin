@@ -23,7 +23,7 @@ namespace MotionAI.Core.Util {
 			{
 				if (m_ShuttingDown)
 				{
-					Debug.LogWarning("[Singleton] Instance '" + typeof(T) +
+					MAIHelper.Log("[Singleton] Instance '" + typeof(T) +
 					                 "' already destroyed. Returning null.");
 					return null;
 				}

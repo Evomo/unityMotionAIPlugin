@@ -65,10 +65,16 @@ namespace MotionAI.Core.Controller {
 #endif
 
 
-        public void StartTracking() {
-            if (controllerManager.unpairedAvailableControllers.Count == 0) {
+        public void StartTracking()
+        {
+            MAIHelper.Log("Try StartTracking");
+            if (controllerManager.unpairedAvailableControllers.Count == 0)
+            {
+                MAIHelper.Log($"StartTracking Pairing");
                 foreach (MotionAIController c in controllerManager.PairedControllers) {
                     AbstractModelComponent model = c.modelManager.model;
+                    
+                    MAIHelper.Log($"StartTracking StartTracking ({c.deviceOrientation.ToString()}, {model.modelName},  {(model.modelType == ModelType.gaming).ToString()})");
 
 
 #if UNITY_IOS && !UNITY_EDITOR
@@ -77,13 +83,14 @@ namespace MotionAI.Core.Controller {
 
 #if UNITY_EDITOR
 
-                    MAIHelper.Log(
-                        $"StartEvomoBridge({c.deviceOrientation.ToString()}, {model.modelName},  {(model.modelType == ModelType.gaming).ToString()})");
+                    // Simulate Receiving data from Bridge
+                    // ManageMotion('{  "deviceID" : "50DC138D-C000-4C76-B13B-3FF3C771BAFC",  "elmo" : {    "typeLabel" : "hop_single_up",    "deviceIdent" : "50DC138D-C000-4C76-B13B-3FF3C771BAFC",    "rejected" : false,    "end" : "2020-12-11T13:28:29.989",    "typeID" : 645,    "start" : "2020-12-11T13:28:29.808"  }}');
 
 #endif
                     isTracking = true;
                 }
             }
+            isTracking = true;
         }
 
         public void StopTracking() {
@@ -92,6 +99,7 @@ namespace MotionAI.Core.Controller {
 #endif
 
             isTracking = false;
+            MAIHelper.Log("StopTracking");
         }
 
         public static void LogEvent(string eventType, string note = "") {
@@ -145,6 +153,8 @@ namespace MotionAI.Core.Controller {
         #region Lifecycle
 
         private void Awake() {
+            
+            MAIHelper.Log("Awake MotionAIManager");
             Debug.unityLogger.logEnabled = isDebug;
 
             var licenseID = "empty";
@@ -167,6 +177,7 @@ namespace MotionAI.Core.Controller {
         }
 
         private void OnDestroy() {
+            MAIHelper.Log("MotionAIManager Destroy");
             StopTracking();
         }
 
@@ -174,6 +185,7 @@ namespace MotionAI.Core.Controller {
             lock (_executionQueue) {
                 while (_executionQueue.Count > 0) {
                     BridgeMessage msg = _executionQueue.Dequeue();
+                    // MAIHelper.Log($"Update - isTracking: {isTracking}");
                     if (isTracking) {
                         StartCoroutine("ProcessMotionMessage", msg);
                     }
@@ -191,33 +203,35 @@ namespace MotionAI.Core.Controller {
         }
 
         public static void ManageMotion(string message) {
-            var oneLineMessageString = message.Replace(System.Environment.NewLine, ""); 
-            MAIHelper.Log($"BridgeMessage {oneLineMessageString}");
+            // MAIHelper.Log($"BridgeMessage {message}");
 
             if (string.IsNullOrEmpty(message)) return;
             BridgeMessage msg = JsonUtility.FromJson<BridgeMessage>(message);
+            // MAIHelper.Log($"BridgeMessage {msg.deviceID}");
             MotionAIManager.Instance.Enqueue(msg);
         }
 
         private IEnumerator ProcessMotionMessage(BridgeMessage msg) {
+            
             if (msg.elmo.typeLabel != null) {
+                MAIHelper.Log($"ProcessMotionMessage Elmo {msg.deviceID}");
                 EvoMovement mv = new EvoMovement();
                 mv.deviceID = msg.deviceID;
+                mv.typeLabel = msg.elmo.typeLabel;
                 mv.elmos.Add(msg.elmo);
                 controllerManager.ManageMotion(mv);
                 yield break;
             }
 
             if (msg.movement.typeLabel != null) {
+                MAIHelper.Log($"ProcessMotionMessage Movement {msg.deviceID}");
                 msg.movement.deviceID = msg.deviceID;
                 controllerManager.ManageMotion(msg.movement);
                 yield break;
             }
-
-#if UNITY_EDITOR
-            MAIHelper.Log($"{msg.message.statusCode} - {msg.message.data}");
-
-#endif
+            
+            if (msg.message != null) MAIHelper.Log($"{msg.message.statusCode} - {msg.message.data}");
+            
         }
 
 
