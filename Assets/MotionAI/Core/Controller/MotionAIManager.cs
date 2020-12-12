@@ -214,7 +214,6 @@ namespace MotionAI.Core.Controller {
         private IEnumerator ProcessMotionMessage(BridgeMessage msg) {
             
             if (msg.elmo.typeLabel != null) {
-                MAIHelper.Log($"ProcessMotionMessage Elmo {msg.deviceID}");
                 EvoMovement mv = new EvoMovement();
                 mv.deviceID = msg.deviceID;
                 mv.typeLabel = msg.elmo.typeLabel;
@@ -224,7 +223,6 @@ namespace MotionAI.Core.Controller {
             }
 
             if (msg.movement.typeLabel != null) {
-                MAIHelper.Log($"ProcessMotionMessage Movement {msg.deviceID}");
                 msg.movement.deviceID = msg.deviceID;
                 controllerManager.ManageMotion(msg.movement);
                 yield break;
