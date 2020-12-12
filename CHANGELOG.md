@@ -1,3 +1,10 @@
+## [1.2.23](https://github.com/Evomo/unityMotionAIPlugin/compare/v1.2.22...v1.2.23) (2020-12-12)
+
+
+### Bug Fixes
+
+* handle isTracking, extend Logging ([c8cb797](https://github.com/Evomo/unityMotionAIPlugin/commit/c8cb797b8e5d31c3a143a5d9788684350758e985))
+
 ## [1.2.22](https://github.com/Evomo/unityMotionAIPlugin/compare/v1.2.21...v1.2.22) (2020-12-11)
 
 
