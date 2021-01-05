@@ -15,14 +15,14 @@ namespace MotionAI.Core.Models.Generated {
     using System.Linq;
     using MotionAI.Core.POCO;
     
-    public class Subway_Surfer : AbstractModelComponent {
+    public class Hdll : AbstractModelComponent {
         [HideInInspector()]
         public Movements moves = new Movements();
         [HideInInspector()]
         public Metadata meta = new Metadata();
         public override string modelName {
             get {
-                return "subway-surfer";
+                return "hdll";
             }
         }
         public override System.Collections.Generic.List<MotionAI.Core.POCO.MoveHolder> GetMoveHolders() {
@@ -34,17 +34,14 @@ namespace MotionAI.Core.Models.Generated {
         [Serializable()]
         public class Movements {
             public MoveHolder duck = new MotionAI.Core.POCO.MoveHolder("duck", (MovementEnum)90, new ElmoEnum[]{(ElmoEnum)43, (ElmoEnum)44});
+            public MoveHolder lean_side = new MotionAI.Core.POCO.MoveHolder("lean_side", (MovementEnum)107, new ElmoEnum[]{(ElmoEnum)104, (ElmoEnum)109});
+            public MoveHolder lean_side_left = new MotionAI.Core.POCO.MoveHolder("lean_side_left", (MovementEnum)108, new ElmoEnum[]{(ElmoEnum)105, (ElmoEnum)106});
+            public MoveHolder lean_side_right = new MotionAI.Core.POCO.MoveHolder("lean_side_right", (MovementEnum)109, new ElmoEnum[]{(ElmoEnum)107, (ElmoEnum)108});
             public MoveHolder hop_single = new MotionAI.Core.POCO.MoveHolder("hop_single", (MovementEnum)115, new ElmoEnum[]{(ElmoEnum)84, (ElmoEnum)91});
-            public MoveHolder turn_90_right = new MotionAI.Core.POCO.MoveHolder("turn_90_right", (MovementEnum)101, new ElmoEnum[]{(ElmoEnum)198});
-            public MoveHolder turn_90_left = new MotionAI.Core.POCO.MoveHolder("turn_90_left", (MovementEnum)102, new ElmoEnum[]{(ElmoEnum)197});
-            public MoveHolder turn_90 = new MotionAI.Core.POCO.MoveHolder("turn_90", (MovementEnum)103, new ElmoEnum[]{(ElmoEnum)196});
-            public MoveHolder side_step = new MotionAI.Core.POCO.MoveHolder("side_step", (MovementEnum)106, new ElmoEnum[]{(ElmoEnum)169, (ElmoEnum)174});
-            public MoveHolder side_step_left = new MotionAI.Core.POCO.MoveHolder("side_step_left", (MovementEnum)110, new ElmoEnum[]{(ElmoEnum)171, (ElmoEnum)170});
-            public MoveHolder side_step_right = new MotionAI.Core.POCO.MoveHolder("side_step_right", (MovementEnum)111, new ElmoEnum[]{(ElmoEnum)172, (ElmoEnum)173});
         }
         [Serializable()]
         public class Metadata {
-            public ModelBuildMeta Hand = new MotionAI.Core.POCO.ModelBuildMeta("Hand", 2129, 2115, "subway-surfer");
+            public ModelBuildMeta Hand = new MotionAI.Core.POCO.ModelBuildMeta("Hand", 0, 2171, "hdll");
         }
     }
 }
