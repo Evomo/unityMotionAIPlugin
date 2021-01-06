@@ -35,7 +35,7 @@ namespace MotionAI.Samples.CoreDemo {
 		}
 
 		private void DuckCallBack(EvoMovement mov) {
-			Debug.Log($"Got event {mov.typeLabel} in the inspector controller!");
+			Debug.Log($"Got a duck!");
 		}
 
 		protected override void HandleMovement(EvoMovement msg) {

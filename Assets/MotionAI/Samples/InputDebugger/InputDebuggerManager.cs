@@ -18,7 +18,7 @@ namespace MotionAI.Samples.InputDebugger {
 			debugController = FindObjectOfType<MotionAIController>();
 			debugger = FindObjectOfType<MotionAIControlDebugger>();
 
-			debugController.OnEvoMovement.AddListener(movement => _lastMove = movement);
+			debugController.onEvoMovement.AddListener(movement => _lastMove = movement);
 		}
 
 		private void Update() {
