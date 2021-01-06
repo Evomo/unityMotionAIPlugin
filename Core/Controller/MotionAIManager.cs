@@ -74,7 +74,7 @@ namespace MotionAI.Core.Controller {
                 foreach (MotionAIController c in controllerManager.PairedControllers) {
                     AbstractModelComponent model = c.modelManager.model;
                     
-                    MAIHelper.Log($"StartTracking StartTracking ({c.deviceOrientation.ToString()}, {model.modelName},  {(model.modelType == ModelType.gaming).ToString()})");
+                    MAIHelper.Log($"StartTracking StartTracking ({c.DeviceOrientation.ToString()}, {model.modelName},  {(model.modelType == ModelType.gaming).ToString()})");
 
 
 #if UNITY_IOS && !UNITY_EDITOR

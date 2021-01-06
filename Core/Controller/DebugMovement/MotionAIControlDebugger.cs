@@ -23,7 +23,7 @@ namespace MotionAI.Core.Controller.DebugMovement {
                     HashSet<MovementEnum> moves = new HashSet<MovementEnum>();
                     foreach (MoveHolder mh in model.GetMoveHolders()) {
                         moves.Add(mh.id);
-                        elmos.UnionWith(mh.elmos);
+                        elmos.UnionWith(mh.Elmos);
                     }
 
                     debugAsset.debugElmo = elmos.Select(e => new InputDebugElmoContainer(e)).ToList();

@@ -42,7 +42,7 @@ namespace MotionAI.Core.Editor {
 								"no")) return;
 						}
 
-						controller.modelManager?.ChangeModel(controller.gameObject);
+						controller.ChangeModel(controller.gameObject);
 					}
 				}
 			}
