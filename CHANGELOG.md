@@ -1,3 +1,10 @@
+## [1.2.26](https://github.com/Evomo/unityMotionAIPlugin/compare/v1.2.25...v1.2.26) (2021-01-06)
+
+
+### Bug Fixes
+
+* small bug ([a9a3bba](https://github.com/Evomo/unityMotionAIPlugin/commit/a9a3bbab6a138187344eb2bddb0d8c3ccaa614c9))
+
 ## [1.2.25](https://github.com/Evomo/unityMotionAIPlugin/compare/v1.2.24...v1.2.25) (2021-01-06)
 
 
