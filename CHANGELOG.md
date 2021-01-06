@@ -1,3 +1,10 @@
+## [1.2.25](https://github.com/Evomo/unityMotionAIPlugin/compare/v1.2.24...v1.2.25) (2021-01-06)
+
+
+### Bug Fixes
+
+* movement track ([7f01179](https://github.com/Evomo/unityMotionAIPlugin/commit/7f0117934eccf95186a3e5292cd07a7edd7b00ba))
+
 ## [1.2.24](https://github.com/Evomo/unityMotionAIPlugin/compare/v1.2.23...v1.2.24) (2021-01-05)
 
 
