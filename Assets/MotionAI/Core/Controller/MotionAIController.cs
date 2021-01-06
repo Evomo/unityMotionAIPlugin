@@ -114,14 +114,14 @@ namespace MotionAI.Core.Controller {
                         trackedMoves = new List<MoveHolder>();
                     }
 
-                    onEvoMovement.AddListener(msg => HandleMovement(msg));
+                    
                     MAIHelper.Log($"Set model {activeModel.modelName}");
                 }
                 else {
                     throw new NullReferenceException("MotionAIController requires a model");
                 }
             }
-
+            onEvoMovement.AddListener(msg => HandleMovement(msg));
             FillDictionary();
         }
 
