@@ -1,3 +1,10 @@
+## [1.2.27](https://github.com/Evomo/unityMotionAIPlugin/compare/v1.2.26...v1.2.27) (2021-01-27)
+
+
+### Bug Fixes
+
+* DeviceOrientation misspelling ([fc520c0](https://github.com/Evomo/unityMotionAIPlugin/commit/fc520c0b665363530b69a63914459f1314264c0d))
+
 ## [1.2.26](https://github.com/Evomo/unityMotionAIPlugin/compare/v1.2.25...v1.2.26) (2021-01-06)
 
 
