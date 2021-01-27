@@ -78,7 +78,7 @@ namespace MotionAI.Core.Controller {
 
 
 #if UNITY_IOS && !UNITY_EDITOR
-					StartEvomoBridge(c.deviceOrientation.ToString(), model.modelName,  (model.modelType == ModelType.gaming).ToString());
+					StartEvomoBridge(c.DeviceOrientation.ToString(), model.modelName,  (model.modelType == ModelType.gaming).ToString());
 #endif
 
 #if UNITY_EDITOR
