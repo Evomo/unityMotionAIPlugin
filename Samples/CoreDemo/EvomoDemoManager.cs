@@ -28,9 +28,7 @@ namespace MotionAI.Samples.CoreDemo {
 				"abc");
 			maim.SetUsername("testUser");
 			maim.controllerManager.pairedEvent.AddListener(onControllerPaired);
-			foreach (MotionAIController maic in maim.controllerManager.PairedControllers) {
-				maic.onEvoMovement.AddListener(onMovement);
-			}
+			maim.controllerManager.onMovement.AddListener(onMovement);
 		}
 
 
