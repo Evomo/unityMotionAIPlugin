@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿#if UNITY_EDITOR && !UNITY_IOS 
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
@@ -111,3 +112,4 @@ namespace MotionAI.Tests.PlayTests {
 		}
 	}
 }
+#endif

@@ -73,12 +73,12 @@ namespace MotionAI.Core.Controller {
                 MAIHelper.Log($"StartTracking Pairing");
                 foreach (MotionAIController c in controllerManager.PairedControllers) {
                     AbstractModelComponent model = c.modelManager.model;
-                    
-                    MAIHelper.Log($"StartTracking StartTracking ({c.DeviceOrientation.ToString()}, {model.modelName},  {(model.modelType == ModelType.gaming).ToString()})");
+
+                    MAIHelper.Log($"StartTracking StartTracking ({c.deviceOrientation.ToString()}, {model.modelName},  {(model.modelType == ModelType.gaming).ToString()})");
 
 
 #if UNITY_IOS && !UNITY_EDITOR
-					StartEvomoBridge(c.DeviceOrientation.ToString(), model.modelName,  (model.modelType == ModelType.gaming).ToString());
+					StartEvomoBridge(c.deviceOrientation.ToString(), model.modelName,  (model.modelType == ModelType.gaming).ToString());
 #endif
 
 #if UNITY_EDITOR
@@ -145,7 +145,6 @@ namespace MotionAI.Core.Controller {
         public ControllerManager controllerManager;
 
         public bool automaticPairing = true;
-        [ShowOnly]
         public bool isTracking;
 
         [Tooltip("SDK will send some Debugging and Raw measurements to the server")]
@@ -154,7 +153,7 @@ namespace MotionAI.Core.Controller {
         #region Lifecycle
 
         private void Awake() {
-            
+
             MAIHelper.Log("Awake MotionAIManager");
             Debug.unityLogger.logEnabled = isDebug;
 
@@ -213,7 +212,7 @@ namespace MotionAI.Core.Controller {
         }
 
         private IEnumerator ProcessMotionMessage(BridgeMessage msg) {
-            
+
             if (msg.elmo.typeLabel != null) {
                 EvoMovement mv = new EvoMovement();
                 mv.deviceID = msg.deviceID;
@@ -228,9 +227,9 @@ namespace MotionAI.Core.Controller {
                 controllerManager.ManageMotion(msg.movement);
                 yield break;
             }
-            
+
             if (msg.message != null) MAIHelper.Log($"{msg.message.statusCode} - {msg.message.data}");
-            
+
         }
 
 

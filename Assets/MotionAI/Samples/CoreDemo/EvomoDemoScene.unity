@@ -136,7 +136,6 @@ GameObject:
   - component: {fileID: 338928924}
   - component: {fileID: 338928923}
   - component: {fileID: 338928921}
-  - component: {fileID: 338928926}
   - component: {fileID: 338928925}
   m_Layer: 0
   m_Name: InspectorController
@@ -157,63 +156,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d23b13478de9650429c47f7d083cd3ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trackedMoves:
-  - name: duck
-    id: 90
-    onMove:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 338928924}
-          m_TargetAssemblyTypeName: UnityEngine.ParticleSystem, UnityEngine
-          m_MethodName: Play
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 1
-    Elmos: 2b0000002c000000
-  - name: hop_single
-    id: 115
-    onMove:
-      m_PersistentCalls:
-        m_Calls: []
-    Elmos: 540000005b000000
-  - name: turn_90_right
-    id: 101
-    onMove:
-      m_PersistentCalls:
-        m_Calls: []
-    Elmos: c6000000
-  - name: turn_90_left
-    id: 102
-    onMove:
-      m_PersistentCalls:
-        m_Calls: []
-    Elmos: c5000000
-  - name: turn_90
-    id: 103
-    onMove:
-      m_PersistentCalls:
-        m_Calls: []
-    Elmos: c4000000
+  deviceOrientation: 0
   controllerSettings:
     isPaired: 0
     deviceId: 
     isGlobal: 1
-    deviceOrientation: 0
   modelManager:
     chosenModel:
       GuidAssignmentFailed: 0
-      GUID: 938234cb1e99b7f4480b31e8c16e6aaf
-      _typeNameAndAssembly: MotionAI.Core.Models.Generated.Hdtt, MotionAI.Core
+      GUID: 19fed6399e9798546836c680840c69af
+      _typeNameAndAssembly: MotionAI.Core.Models.Generated.Subway_Surfer, MotionAI.Core
     modelComponent: {fileID: 338928925}
-  onEvoMovement:
-    m_PersistentCalls:
-      m_Calls: []
   ps: {fileID: 338928924}
 --- !u!4 &338928922
 Transform:
@@ -5076,60 +5029,43 @@ MonoBehaviour:
   m_GameObject: {fileID: 338928920}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 938234cb1e99b7f4480b31e8c16e6aaf, type: 3}
+  m_Script: {fileID: 11500000, guid: 19fed6399e9798546836c680840c69af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modelType: 0
   moves:
     duck:
-      name: duck
-      id: 90
       onMove:
         m_PersistentCalls:
           m_Calls: []
-      Elmos: 2b0000002c000000
     hop_single:
-      name: hop_single
-      id: 115
       onMove:
         m_PersistentCalls:
           m_Calls: []
-      Elmos: 540000005b000000
     turn_90_right:
-      name: turn_90_right
-      id: 101
       onMove:
         m_PersistentCalls:
           m_Calls: []
-      Elmos: c6000000
     turn_90_left:
-      name: turn_90_left
-      id: 102
       onMove:
         m_PersistentCalls:
           m_Calls: []
-      Elmos: c5000000
     turn_90:
-      name: turn_90
-      id: 103
       onMove:
         m_PersistentCalls:
           m_Calls: []
-      Elmos: c4000000
+    side_step:
+      onMove:
+        m_PersistentCalls:
+          m_Calls: []
+    side_step_left:
+      onMove:
+        m_PersistentCalls:
+          m_Calls: []
+    side_step_right:
+      onMove:
+        m_PersistentCalls:
+          m_Calls: []
   meta: {}
---- !u!114 &338928926
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 338928920}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7047afc873cb7304699330f03a781572, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  debugAsset: {fileID: 11400000, guid: f844b07f9595d23458558088cea3e8c6, type: 2}
 --- !u!1 &361701204
 GameObject:
   m_ObjectHideFlags: 0
@@ -5287,7 +5223,7 @@ GameObject:
   - component: {fileID: 513305673}
   - component: {fileID: 513305675}
   m_Layer: 0
-  m_Name: Code Controller
+  m_Name: EditorController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5305,51 +5241,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc06450a03b563d45825f17b62ba236e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trackedMoves:
-  - name: duck
-    id: 90
-    onMove:
-      m_PersistentCalls:
-        m_Calls: []
-    Elmos: 2b0000002c000000
-  - name: lean_side
-    id: 107
-    onMove:
-      m_PersistentCalls:
-        m_Calls: []
-    Elmos: 680000006d000000
-  - name: lean_side_left
-    id: 108
-    onMove:
-      m_PersistentCalls:
-        m_Calls: []
-    Elmos: 690000006a000000
-  - name: lean_side_right
-    id: 109
-    onMove:
-      m_PersistentCalls:
-        m_Calls: []
-    Elmos: 6b0000006c000000
-  - name: hop_single
-    id: 115
-    onMove:
-      m_PersistentCalls:
-        m_Calls: []
-    Elmos: 540000005b000000
+  deviceOrientation: 0
   controllerSettings:
     isPaired: 0
     deviceId: 
     isGlobal: 1
-    deviceOrientation: 0
   modelManager:
     chosenModel:
       GuidAssignmentFailed: 0
-      GUID: e141fe1fc83afd5439b4b1e699d075cc
-      _typeNameAndAssembly: MotionAI.Core.Models.Generated.Hdll, MotionAI.Core
+      GUID: 
+      _typeNameAndAssembly: MotionAI.Core.Models.Generated.Subway_Surfer, MotionAI.Core
     modelComponent: {fileID: 513305675}
-  onEvoMovement:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!4 &513305674
 Transform:
   m_ObjectHideFlags: 0
@@ -5373,46 +5275,42 @@ MonoBehaviour:
   m_GameObject: {fileID: 513305672}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e141fe1fc83afd5439b4b1e699d075cc, type: 3}
+  m_Script: {fileID: 11500000, guid: 19fed6399e9798546836c680840c69af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modelType: 0
   moves:
     duck:
-      name: duck
-      id: 90
       onMove:
         m_PersistentCalls:
           m_Calls: []
-      Elmos: 2b0000002c000000
-    lean_side:
-      name: lean_side
-      id: 107
-      onMove:
-        m_PersistentCalls:
-          m_Calls: []
-      Elmos: 680000006d000000
-    lean_side_left:
-      name: lean_side_left
-      id: 108
-      onMove:
-        m_PersistentCalls:
-          m_Calls: []
-      Elmos: 690000006a000000
-    lean_side_right:
-      name: lean_side_right
-      id: 109
-      onMove:
-        m_PersistentCalls:
-          m_Calls: []
-      Elmos: 6b0000006c000000
     hop_single:
-      name: hop_single
-      id: 115
       onMove:
         m_PersistentCalls:
           m_Calls: []
-      Elmos: 540000005b000000
+    turn_90_right:
+      onMove:
+        m_PersistentCalls:
+          m_Calls: []
+    turn_90_left:
+      onMove:
+        m_PersistentCalls:
+          m_Calls: []
+    turn_90:
+      onMove:
+        m_PersistentCalls:
+          m_Calls: []
+    side_step:
+      onMove:
+        m_PersistentCalls:
+          m_Calls: []
+    side_step_left:
+      onMove:
+        m_PersistentCalls:
+          m_Calls: []
+    side_step_right:
+      onMove:
+        m_PersistentCalls:
+          m_Calls: []
   meta: {}
 --- !u!1 &701655731
 GameObject:
@@ -5477,15 +5375,16 @@ MonoBehaviour:
   mySDKConfig: {fileID: 11400000, guid: 37421fad8d1aae74ea6a1a025c7fd302, type: 2}
   controllerManager:
     unpairedAvailableControllers: []
-    pairedControllers: []
     pairedEvent:
       m_PersistentCalls:
         m_Calls: []
     unpairedEvent:
       m_PersistentCalls:
         m_Calls: []
+    onMovement:
+      m_PersistentCalls:
+        m_Calls: []
   automaticPairing: 1
-  isTracking: 0
   isDebug: 1
 --- !u!1 &824901536
 GameObject:
