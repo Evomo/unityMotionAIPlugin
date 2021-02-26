@@ -145,6 +145,7 @@ namespace MotionAI.Core.Controller {
         public ControllerManager controllerManager;
 
         public bool automaticPairing = true;
+        [ShowOnly]
         public bool isTracking;
 
         [Tooltip("SDK will send some Debugging and Raw measurements to the server")]

@@ -98,7 +98,6 @@ namespace MotionAI.Core.Controller {
         private void FillDictionary() {
             _moveHolders = new Dictionary<MovementEnum, MoveHolder>();
             foreach (MoveHolder move in trackedMoves) {
-                Debug.Log(move.id);
                 _moveHolders.Add(move.id, move);
             }
         }
