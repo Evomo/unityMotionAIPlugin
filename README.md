@@ -83,7 +83,7 @@ There are multiple ways to react to the events. You can directly reference the u
 
 
 
-![img](../static/img/PlayerController.png)
+
 
 
 ## **Models** 
