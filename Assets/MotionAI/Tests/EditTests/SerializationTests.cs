@@ -1,4 +1,5 @@
-﻿using MotionAI.Core.POCO;
+﻿#if UNITY_EDITOR && !UNITY_IOS
+using MotionAI.Core.POCO;
 using NUnit.Framework;
 using UnityEngine;
 using FluentAssertions;
@@ -156,3 +157,4 @@ namespace MotionAI.Tests.EditTests {
 		}
 	}
 }
+#endif
