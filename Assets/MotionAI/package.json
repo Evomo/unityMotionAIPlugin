@@ -9,7 +9,7 @@
     "url": "https://github.com/Evomo/unityMotionAIPlugin.git"
   },
   "dependencies": {
-    "com.solidalloy.type.references": "2.1.0"
+    "com.solidalloy.type.references": "2.7.0"
   },
   "author": {
     "name": "Evomo",

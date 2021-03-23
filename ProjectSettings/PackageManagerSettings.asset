@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EnablePreviewPackages: 0
-  m_EnablePackageDependencies: 0
+  m_EnablePackageDependencies: 1
   m_AdvancedSettingsExpanded: 1
   m_ScopedRegistriesSettingsExpanded: 1
   oneTimeWarningShown: 0
@@ -28,8 +28,9 @@ MonoBehaviour:
     m_Name: package.openupm.com
     m_Url: https://package.openupm.com
     m_Scopes:
-    - com.solidalloy.type.references
     - com.openupm
+    - com.solidalloy.type.references
+    - com.solidalloy.util
     m_IsDefault: 0
     m_Capabilities: 0
   m_UserSelectedRegistryName: 
@@ -41,14 +42,16 @@ MonoBehaviour:
       m_Name: package.openupm.com
       m_Url: https://package.openupm.com
       m_Scopes:
-      - com.solidalloy.type.references
       - com.openupm
+      - com.solidalloy.type.references
+      - com.solidalloy.util
       m_IsDefault: 0
       m_Capabilities: 0
     m_Modified: 0
     m_Name: package.openupm.com
     m_Url: https://package.openupm.com
     m_Scopes:
-    - com.solidalloy.type.references
     - com.openupm
+    - com.solidalloy.type.references
+    - com.solidalloy.util
     m_SelectedScopeIndex: 0

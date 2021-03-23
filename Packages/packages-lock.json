@@ -8,8 +8,17 @@
       "hash": "2c40161561692659ca368d32eb43f946d881764c"
     },
     "com.solidalloy.type.references": {
-      "version": "2.1.0",
+      "version": "2.7.0",
       "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.solidalloy.util": "1.20.1"
+      },
+      "url": "https://package.openupm.com"
+    },
+    "com.solidalloy.util": {
+      "version": "1.20.1",
+      "depth": 1,
       "source": "registry",
       "dependencies": {},
       "url": "https://package.openupm.com"
