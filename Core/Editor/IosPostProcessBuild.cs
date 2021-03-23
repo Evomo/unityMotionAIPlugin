@@ -1,9 +1,13 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using MotionAI.Core.Controller;
 using UnityEditor;
 using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
+using UnityEditor.SceneManagement;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 #if UNITY_EDITOR_OSX
 using UnityEditor.iOS.Xcode;
 #endif
@@ -39,7 +43,7 @@ namespace MotionAI.Core.Editor {
 				pbxProject.ReadFromFile(projectPath);
 
 				// for 2019
-				//tring[] targets = {pbxProject.TargetGuidByName("Unity-iPhone")};
+				//string[] targets = {pbxProject.TargetGuidByName("Unity-iPhone")};
 				// for 2020
 				string[] targets = {pbxProject.GetUnityMainTargetGuid(), pbxProject.GetUnityMainTargetGuid()};
 
@@ -59,7 +63,26 @@ namespace MotionAI.Core.Editor {
 		}
 
 
-		private static void CopyPodfile(string pathToBuiltProject) {
+		private static void CopyPodfile(string pathToBuiltProject)
+		{
+
+			EditorBuildSettingsScene[] scenes = EditorBuildSettings.scenes;
+			
+			for (int i = 0; i < scenes.Length; i++)
+			{
+				EditorBuildSettingsScene scene = scenes[i];
+
+				Debug.Log(scene.path);
+			}
+
+			Debug.Log("sdfs2222dfsdf");
+			GameObject motionManagerGO = GameObject.Find("MotionAIManager");
+			Debug.Log(motionManagerGO.ToString());
+			//MotionAIManager manager = motionManagerGO.GetComponent<MotionAIManager>();
+			//Debug.Log(manager.deviceType.ToString());
+			
+			
+			
 			string prefix = PlayerSettings.productName == "unityMotionAIPlugin"
 				? Application.dataPath + "/MotionAI"
 				: Path.GetFullPath("Packages/com.evomo.motionai");
