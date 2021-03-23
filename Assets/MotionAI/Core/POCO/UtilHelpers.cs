@@ -28,5 +28,10 @@ namespace MotionAI.Core.POCO {
 			buttonDown,
 			buttonUp
 		}
+		
+		public enum EvomoDeviceType {
+			smartPhone,
+			moveSense
+		}
 	}
 }

@@ -147,6 +147,9 @@ namespace MotionAI.Core.Controller {
         public bool automaticPairing = true;
         public bool isTracking;
 
+        // Movesense-DeviceType
+        public UtilHelper.EvomoDeviceType deviceType = EvomoDeviceType.smartPhone;
+        
         [Tooltip("SDK will send some Debugging and Raw measurements to the server")]
         public bool isDebug = true;
 
