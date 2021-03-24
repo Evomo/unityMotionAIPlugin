@@ -1,3 +1,10 @@
+## [1.2.29](https://github.com/Evomo/unityMotionAIPlugin/compare/v1.2.28...v1.2.29) (2021-03-23)
+
+
+### Bug Fixes
+
+* update solidaly type references ([61b51d3](https://github.com/Evomo/unityMotionAIPlugin/commit/61b51d37c8dd3018e5c0cc39e65e3a579830105b))
+
 ## [1.2.28](https://github.com/Evomo/unityMotionAIPlugin/compare/v1.2.27...v1.2.28) (2021-02-26)
 
 
