@@ -1,3 +1,10 @@
+## [1.2.30](https://github.com/Evomo/unityMotionAIPlugin/compare/v1.2.29...v1.2.30) (2021-03-24)
+
+
+### Bug Fixes
+
+* comment tests of postprocessing ([e8cb6d3](https://github.com/Evomo/unityMotionAIPlugin/commit/e8cb6d3d7705b1b658ed3adecbdcbd4d23c254c5))
+
 ## [1.2.29](https://github.com/Evomo/unityMotionAIPlugin/compare/v1.2.28...v1.2.29) (2021-03-23)
 
 
