@@ -8,6 +8,8 @@ using UnityEditor.Build.Reporting;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.WSA;
+using Application = UnityEngine.Application;
 #if UNITY_EDITOR_OSX
 using UnityEditor.iOS.Xcode;
 #endif
@@ -66,18 +68,18 @@ namespace MotionAI.Core.Editor {
 		private static void CopyPodfile(string pathToBuiltProject)
 		{
 
-			EditorBuildSettingsScene[] scenes = EditorBuildSettings.scenes;
+			//EditorBuildSettingsScene[] scenes = EditorBuildSettings.scenes;
 			
-			for (int i = 0; i < scenes.Length; i++)
-			{
-				EditorBuildSettingsScene scene = scenes[i];
-
-				Debug.Log(scene.path);
-			}
-
-			Debug.Log("sdfs2222dfsdf");
-			GameObject motionManagerGO = GameObject.Find("MotionAIManager");
-			Debug.Log(motionManagerGO.ToString());
+			// for (int i = 0; i < scenes.Length; i++)
+			// {
+			// 	EditorBuildSettingsScene scene = scenes[i];
+			//
+			// 	Debug.Log(scene.path);
+			// }
+			//
+			// Debug.Log("sdfs2222dfsdf");
+			// GameObject motionManagerGO = GameObject.Find("MotionAIManager");
+			// Debug.Log(motionManagerGO.ToString());
 			//MotionAIManager manager = motionManagerGO.GetComponent<MotionAIManager>();
 			//Debug.Log(manager.deviceType.ToString());
 			
@@ -87,11 +89,18 @@ namespace MotionAI.Core.Editor {
 				? Application.dataPath + "/MotionAI"
 				: Path.GetFullPath("Packages/com.evomo.motionai");
 
+			// if (!Directory.Exists(prefix))
+			// {
+			// 	prefix = PlayerSettings.productName == "unityMotionAIPlugin"
+			// 		? Application.dataPath + "/MotionAI"
+			// 		: Path.GetFullPath("Packages/com.evomo.motionai");
+			// }
+			//Packages/com.evomo.motionai
+			
 			bool is2020 = Application.unityVersion.Contains("2020") || Application.unityVersion.Contains("2019.3");
 			string suffix = $"/Core/Editor/BuildFiles/Podfile{(is2020 ? "2020" : "2019")}";
 			string podfilePath = $"{prefix}{suffix}";
-
-
+			
 			var destPodfilePath = pathToBuiltProject + "/Podfile";
 
 			Debug.Log(string.Format("Copying Podfile from {0} to {1}", podfilePath, destPodfilePath));
