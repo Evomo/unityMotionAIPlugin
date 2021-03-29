@@ -167,6 +167,9 @@ MonoBehaviour:
       GUID: 19fed6399e9798546836c680840c69af
       _typeNameAndAssembly: MotionAI.Core.Models.Generated.Subway_Surfer, MotionAI.Core
     modelComponent: {fileID: 338928925}
+  OnEvoMovement:
+    m_PersistentCalls:
+      m_Calls: []
   ps: {fileID: 338928924}
 --- !u!4 &338928922
 Transform:
@@ -5032,6 +5035,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19fed6399e9798546836c680840c69af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  modelType: 0
   moves:
     duck:
       onMove:
@@ -5220,8 +5224,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 513305674}
-  - component: {fileID: 513305673}
   - component: {fileID: 513305675}
+  - component: {fileID: 513305673}
   m_Layer: 0
   m_Name: EditorController
   m_TagString: Untagged
@@ -5238,46 +5242,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 513305672}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc06450a03b563d45825f17b62ba236e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  deviceOrientation: 0
-  controllerSettings:
-    isPaired: 0
-    deviceId: 
-    isGlobal: 1
-  modelManager:
-    chosenModel:
-      GuidAssignmentFailed: 0
-      GUID: 
-      _typeNameAndAssembly: MotionAI.Core.Models.Generated.Subway_Surfer, MotionAI.Core
-    modelComponent: {fileID: 513305675}
---- !u!4 &513305674
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 513305672}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 562.69183, y: 337.10522, z: 115.12665}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &513305675
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 513305672}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 19fed6399e9798546836c680840c69af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  modelType: 0
   moves:
     duck:
       onMove:
@@ -5312,6 +5280,46 @@ MonoBehaviour:
         m_PersistentCalls:
           m_Calls: []
   meta: {}
+--- !u!4 &513305674
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 513305672}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 562.69183, y: 337.10522, z: 115.12665}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &513305675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 513305672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc06450a03b563d45825f17b62ba236e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deviceOrientation: 0
+  controllerSettings:
+    isPaired: 0
+    deviceId: 
+    isGlobal: 1
+  modelManager:
+    chosenModel:
+      GuidAssignmentFailed: 0
+      GUID: 
+      _typeNameAndAssembly: 
+    modelComponent: {fileID: 0}
+  OnEvoMovement:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &701655731
 GameObject:
   m_ObjectHideFlags: 0
@@ -5375,6 +5383,7 @@ MonoBehaviour:
   mySDKConfig: {fileID: 11400000, guid: 37421fad8d1aae74ea6a1a025c7fd302, type: 2}
   controllerManager:
     unpairedAvailableControllers: []
+    pairedControllers: []
     pairedEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -5385,6 +5394,8 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   automaticPairing: 1
+  isTracking: 0
+  deviceType: 0
   isDebug: 1
 --- !u!1 &824901536
 GameObject:

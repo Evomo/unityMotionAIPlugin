@@ -5,11 +5,11 @@
 #else
     #import <EvomoUnitySDK/EvomoUnitySDK-Swift.h>
 #endif
-#import "EvomounityBridge.h"
+#import "EvomounityBridgeMovesense.h"
 
 // note: c method declations executes objective-c function
 
-EvomounityBridge *bridge;
+EvomounityBridgeMovesense *bridge;
 
 NSString* CreateNSString (const char* string)
 {
@@ -21,7 +21,7 @@ NSString* CreateNSString (const char* string)
 
 void InitEvomoBridge(UnityCallback evomoCallback, const char* licenseID, const char* debugging)
 {
-    bridge = [EvomounityBridge alloc];
+    bridge = [EvomounityBridgeMovesense alloc];
     [bridge Init:evomoCallback licenseID:CreateNSString(licenseID) debugging:CreateNSString(debugging)];
 }
 

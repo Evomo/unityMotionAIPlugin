@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using MotionAI.Core.Controller;
+using MotionAI.Core.POCO;
 using UnityEditor;
 using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
@@ -22,6 +23,9 @@ namespace MotionAI.Core.Editor {
 
 		public void OnPostprocessBuild(BuildReport report) {
 #if UNITY_EDITOR_OSX
+			
+			SDKConfig sdkConfig = (SDKConfig)AssetDatabase.LoadAssetAtPath($"Assets/{Application.productName}-MotionAI.asset", typeof(SDKConfig));
+			
 			if (report.summary.platform == BuildTarget.iOS) // Check if the build is for iOS 
 			{
 				// --- configure plist
@@ -35,6 +39,12 @@ namespace MotionAI.Core.Editor {
 				// set encryption usage for appstore upload
 				rootDict.SetBoolean("ITSAppUsesNonExemptEncryption", false);
 
+				if (sdkConfig.sensorType == UtilHelper.EvomoSensorType.Movesense)
+				{
+					rootDict.SetString("NSBluetoothAlwaysUsageDescription", "We use Bluetooth to communicate with extern motion sensors to make motion detection possible.");
+					rootDict.SetString("NSBluetoothPeripheralUsageDescription", "This app requires Bluetooth to connect to an external motion sensor.");
+				}
+				
 				File.WriteAllText(plistPath, plist.WriteToString()); // Override Info.plist
 
 				// ---- configure build settings
@@ -58,51 +68,27 @@ namespace MotionAI.Core.Editor {
 
 
 				// --- copy podfile to project folder
-				CopyPodfile(report.summary.outputPath);
+				CopyPodfile(report.summary.outputPath, sdkConfig);
 
 			}
 #endif
 		}
 
 
-		private static void CopyPodfile(string pathToBuiltProject)
+		private static void CopyPodfile(string pathToBuiltProject, SDKConfig sdkConfig)
+		
 		{
-
-			//EditorBuildSettingsScene[] scenes = EditorBuildSettings.scenes;
-			
-			// for (int i = 0; i < scenes.Length; i++)
-			// {
-			// 	EditorBuildSettingsScene scene = scenes[i];
-			//
-			// 	Debug.Log(scene.path);
-			// }
-			//
-			// Debug.Log("sdfs2222dfsdf");
-			// GameObject motionManagerGO = GameObject.Find("MotionAIManager");
-			// Debug.Log(motionManagerGO.ToString());
-			//MotionAIManager manager = motionManagerGO.GetComponent<MotionAIManager>();
-			//Debug.Log(manager.deviceType.ToString());
-			
-			
-			
-			string prefix = PlayerSettings.productName == "unityMotionAIPlugin"
+			string sdkPath = PlayerSettings.productName == "EvomoUnitySDK"
 				? Application.dataPath + "/MotionAI"
 				: Path.GetFullPath("Packages/com.evomo.motionai");
 
-			// if (!Directory.Exists(prefix))
-			// {
-			// 	prefix = PlayerSettings.productName == "unityMotionAIPlugin"
-			// 		? Application.dataPath + "/MotionAI"
-			// 		: Path.GetFullPath("Packages/com.evomo.motionai");
-			// }
-			//Packages/com.evomo.motionai
-			
 			bool is2020 = Application.unityVersion.Contains("2020") || Application.unityVersion.Contains("2019.3");
 			string suffix = $"/Core/Editor/BuildFiles/Podfile{(is2020 ? "2020" : "2019")}";
-			string podfilePath = $"{prefix}{suffix}";
+			string movesense = sdkConfig.sensorType == UtilHelper.EvomoSensorType.Movesense ? "Movesense" : "";
+			string podfilePath = $"{sdkPath}{suffix}{movesense}";
 			
 			var destPodfilePath = pathToBuiltProject + "/Podfile";
-
+			Debug.Log($"You selected sensorType {sdkConfig.sensorType.ToString()}");
 			Debug.Log(string.Format("Copying Podfile from {0} to {1}", podfilePath, destPodfilePath));
 
 			if (!File.Exists(destPodfilePath)) {
@@ -110,6 +96,12 @@ namespace MotionAI.Core.Editor {
 			}
 			else {
 				Debug.Log("Podfile already exists");
+			}
+			
+			// Copy Unity Helper file when movesense device (because some different naming is needed)
+			if (sdkConfig.sensorType == UtilHelper.EvomoSensorType.Movesense)
+			{
+				FileUtil.ReplaceFile($"{sdkPath}/Core/Editor/BuildFiles/UnityHelperMovesense.m", $"{pathToBuiltProject}/Libraries/MotionAI/Core/Plugins/iOS/UnityHelper.m");
 			}
 		}
 	}
