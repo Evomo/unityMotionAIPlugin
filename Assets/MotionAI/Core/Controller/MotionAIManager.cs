@@ -26,7 +26,7 @@ namespace MotionAI.Core.Controller {
     private static extern void InitEvomoBridge(UnityCallback callback, string licenseID, string debugging);
 
     [DllImport("__Internal")]
-    private static extern void StartEvomoBridge(string deviceOrientation, string classificationModel, string gaming);
+    private static extern void StartEvomoBridge(string deviceOrientation, string deviceType, string classificationModel, string gaming, string licenseID);
 
     [DllImport("__Internal")]
     private static extern void StopEvomoBridge();
@@ -74,11 +74,11 @@ namespace MotionAI.Core.Controller {
                 foreach (MotionAIController c in controllerManager.PairedControllers) {
                     AbstractModelComponent model = c.modelManager.model;
 
-                    MAIHelper.Log($"StartTracking StartTracking ({c.deviceOrientation.ToString()}, {model.modelName},  {(model.modelType == ModelType.gaming).ToString()})");
+                    MAIHelper.Log($"StartTracking {c.deviceOrientation.ToString()}, {mySDKConfig.sensorType.ToString()}, {model.modelName},  {(model.modelType == ModelType.gaming).ToString()}, {mySDKConfig.licenseID}");
 
 
 #if UNITY_IOS && !UNITY_EDITOR
-					StartEvomoBridge(c.deviceOrientation.ToString(), model.modelName,  (model.modelType == ModelType.gaming).ToString());
+					StartEvomoBridge(c.deviceOrientation.ToString(), mySDKConfig.sensorType.ToString(), model.modelName, (model.modelType == ModelType.gaming).ToString(), mySDKConfig.licenseID);
 #endif
 
 #if UNITY_EDITOR
@@ -147,9 +147,6 @@ namespace MotionAI.Core.Controller {
         public bool automaticPairing = true;
         public bool isTracking;
 
-        // Movesense-DeviceType
-        public UtilHelper.EvomoDeviceType deviceType = EvomoDeviceType.smartPhone;
-        
         [Tooltip("SDK will send some Debugging and Raw measurements to the server")]
         public bool isDebug = true;
 

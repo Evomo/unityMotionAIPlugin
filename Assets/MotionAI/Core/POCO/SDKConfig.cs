@@ -6,6 +6,7 @@ namespace MotionAI.Core.POCO {
 	[Serializable]
 	public class SDKConfig : ScriptableObject {
 		public string licenseID;
+		public UtilHelper.EvomoSensorType sensorType;
 
 #if UNITY_EDITOR
 		
@@ -15,6 +16,7 @@ namespace MotionAI.Core.POCO {
 			AssetDatabase.CreateAsset(gs, $"Assets/{Application.productName}-MotionAI.asset");
 			AssetDatabase.SaveAssets();
 			AssetDatabase.Refresh();
+			
 		}
 #endif
 
