@@ -100,6 +100,16 @@ A full list of the available movements and elmos can be found [here](https://git
 
 Feel free to explore the different models found in [the models folder](https://github.com/Evomo/unityMotionAIPlugin/tree/master/Assets/MotionAI/Core/Models/Generated) to get a better understanding of which moves/elmos are present in each model. 
 
+## **Movesense Sensor Usage **
+
+- Select Sensor Type **Movesense** in the SDK-Config
+- You have to scan for the movesense sensor every time before you start movement tracking
+1. Execute ScanForMovesense() of MotionAIManager GameObject
+2. Turn on the Movesense device by connecting both pins on the backside and hold the sensor near the smartphone till it beebs
+3. Execute StartTracking() of MotionAIManager GameObject
+...
+4. After the tracking session execute StopTracking() of MotionAIManager GameObject
+
 ## **[MotionAIControlDebugger](https://github.com/Evomo/unityMotionAIPlugin/blob/master/Assets/MotionAI/Core/Controller/DebugMovement/MotionAIControlDebugger.cs)**
 
 The ControlDebugger is an interface to send debug movements with a delay and play your games in the editor.
@@ -110,7 +120,6 @@ This is placed in the object which contains a MotionAIController
 
 
 ## Examples
-
 
 Further examples can be found in the samples of the package or in the following prototypes:
 
