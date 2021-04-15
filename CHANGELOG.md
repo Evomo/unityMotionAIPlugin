@@ -1,3 +1,10 @@
+## [1.2.31](https://github.com/Evomo/unityMotionAIPlugin/compare/v1.2.30...v1.2.31) (2021-03-29)
+
+
+### Bug Fixes
+
+* movesense sensor integration ([f50523c](https://github.com/Evomo/unityMotionAIPlugin/commit/f50523cce30c5877b7df4956446d2babb60a5944))
+
 ## [1.2.30](https://github.com/Evomo/unityMotionAIPlugin/compare/v1.2.29...v1.2.30) (2021-03-24)
 
 
