@@ -123,29 +123,34 @@ Further examples can be found in the samples of the package or in the following 
 
 ## Building
 
-### 1: Export the xcode project from unity. 
+### 1: Export/Build the xcode project from unity. 
 
 Be sure to set the minimum iOS version to 12.1 and the supported arch to ARM64 only in your unity player settings before exporting.
 
-### 2: Enable swift in the xcode project. 
-
-Because the exported project is Objective-C based you must open the exported project and manually add the build setting 'SWIFT_VERSION' = 5 to your targets build settings.
-
->Go to the Build Settings of your project > Click on "+" > Add User-Defined Setting > Add SWIFT_VERSION in first and 5 in second column
-
-**IMPORTANT NOTE:** Unity have recently changed the way that the exported Xcode project is organised. If one of your targets is named 'UnityFramework' then you must add the setting to that target. 
-
-If you do not see a target named 'UnityFramework' then you must add the setting to the target named 'Unity-iPhone'.
-
 ### Cocoa Pods
 
-#### 3.1: Install Cocoa Pods on your Mac
+#### 2: Install Cocoa Pods on your Mac
 
 ```
 sudo gem install cocoapods
 ```
 
-#### 3.2: Add the Evomo cocoa pod
+#### 3.1: Install pods
+
+Navigate to the project folder and run **pod install** on the console. From then on use the generated project workspace and you should be good to go.
+
+This process only needs to be done the first time you export from unity. For following builds you can use the 'append' option.
+
+If you use the replace option then you will need to follow these steps again.
+
+#### 3.2: Optional: Update Evomo SDK 
+
+Upgrade the evomo cocoa pod if needed with the shell command **pod update** in your Xcode project folder.
+
+Then go into the Xcode workspace and **clean** the project build folder with: Product > Clean Build Folder
+
+
+#### Optional: Add the Evomo cocoa pod file manually (normally it will be automatically created after building)
 
 Run pod init in the project and add the following cocoa pod to the targets of your pod file:
 
@@ -185,20 +190,6 @@ target 'EvomoUnitySDK' do
 end
 
 ```
-
-#### 3.3: Install pods
-
-Navigate to the project folder and run **pod install** on the console. From then on use the generated project workspace and you should be good to go.
-
-This process only needs to be done the first time you export from unity. For following builds you can use the 'append' option.
-
-If you use the replace option then you will need to follow these steps again.
-
-#### 3.4: Optional: Update Evomo SDK 
-
-Upgrade the evomo cocoa pod if needed with the shell command **pod update** in your Xcode project folder.
-
-Then go into the Xcode workspace and **clean** the project build folder with: Product > Clean Build Folder
 
 ### Hint
 
