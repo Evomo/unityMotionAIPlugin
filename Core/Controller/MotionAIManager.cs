@@ -26,7 +26,7 @@ namespace MotionAI.Core.Controller {
     private static extern void InitEvomoBridge(UnityCallback callback, string licenseID, string debugging);
 
     [DllImport("__Internal")]
-    private static extern void StartEvomoBridge(string deviceOrientation, string deviceType, string classificationModel, string gaming, string licenseID);
+    private static extern void StartEvomoBridge(string deviceOrientation, string deviceType, string deviceId, string classificationModel, string gaming);
 
     [DllImport("__Internal")]
     private static extern void StopEvomoBridge();
@@ -46,6 +46,9 @@ namespace MotionAI.Core.Controller {
     [DllImport("__Internal")]
     private static extern void SendGameHubMessageBridge(string message);
 
+    [DllImport("__Internal")]
+    private static extern void ScanForMovesenseBridge();
+
 #endif
 
         #endregion
@@ -64,6 +67,12 @@ namespace MotionAI.Core.Controller {
 
 #endif
 
+        public void ScanForMovesense()
+        {
+#if UNITY_IOS && !UNITY_EDITOR
+					ScanForMovesenseBridge();
+#endif
+        }
 
         public void StartTracking()
         {
@@ -74,11 +83,10 @@ namespace MotionAI.Core.Controller {
                 foreach (MotionAIController c in controllerManager.PairedControllers) {
                     AbstractModelComponent model = c.modelManager.model;
 
-                    MAIHelper.Log($"StartTracking {c.deviceOrientation.ToString()}, {mySDKConfig.sensorType.ToString()}, {model.modelName},  {(model.modelType == ModelType.gaming).ToString()}, {mySDKConfig.licenseID}");
-
-
+                    MAIHelper.Log($"StartTracking {c.deviceOrientation.ToString()}, {mySDKConfig.sensorType.ToString()}, {model.modelName},  {(model.modelType == ModelType.gaming).ToString()}");
+                    
 #if UNITY_IOS && !UNITY_EDITOR
-					StartEvomoBridge(c.deviceOrientation.ToString(), mySDKConfig.sensorType.ToString(), model.modelName, (model.modelType == ModelType.gaming).ToString(), mySDKConfig.licenseID);
+					StartEvomoBridge(c.deviceOrientation.ToString(), mySDKConfig.sensorType.ToString(), movesenseSensorIdent, model.modelName, (model.modelType == ModelType.gaming).ToString());
 #endif
 
 #if UNITY_EDITOR
@@ -144,6 +152,8 @@ namespace MotionAI.Core.Controller {
         public SDKConfig mySDKConfig;
         public ControllerManager controllerManager;
 
+        public String movesenseSensorIdent;
+        
         public bool automaticPairing = true;
         public bool isTracking;
 
@@ -172,7 +182,7 @@ namespace MotionAI.Core.Controller {
 
             if (automaticPairing) {
                 StartControlPairing();
-                StartTracking();
+                // StartTracking();
             }
         }
 
@@ -186,9 +196,9 @@ namespace MotionAI.Core.Controller {
                 while (_executionQueue.Count > 0) {
                     BridgeMessage msg = _executionQueue.Dequeue();
                     // MAIHelper.Log($"Update - isTracking: {isTracking}");
-                    if (isTracking) {
-                        StartCoroutine("ProcessMotionMessage", msg);
-                    }
+                    // if (isTracking) {
+                    StartCoroutine("ProcessMotionMessage", msg);
+                    // }
                 }
             }
         }
@@ -228,7 +238,16 @@ namespace MotionAI.Core.Controller {
                 yield break;
             }
 
-            if (msg.message != null) MAIHelper.Log($"{msg.message.statusCode} - {msg.message.data}");
+            if (msg.message != null)
+            {
+                if (msg.message.statusCode == 4)
+                {
+                    movesenseSensorIdent = msg.message.data;
+                    Debug.Log($"Set movesenseSensorIdent to {movesenseSensorIdent}");
+                } else {
+                    MAIHelper.Log($"{msg.message.statusCode} - {msg.message.data}");
+                }
+            }
 
         }
 

@@ -25,9 +25,15 @@ void InitEvomoBridge(UnityCallback evomoCallback, const char* licenseID, const c
     [bridge Init:evomoCallback licenseID:CreateNSString(licenseID) debugging:CreateNSString(debugging)];
 }
 
-void StartEvomoBridge(const char* deviceOrientation, const char* deviceType, const char* classificationModel, const char* gaming, const char* licenseID)
+void ScanForMovesenseBridge()
 {
-    [bridge Start:CreateNSString(deviceOrientation) deviceType:CreateNSString(deviceType) classificationModel:CreateNSString(classificationModel) gaming:CreateNSString(gaming) licenseID:CreateNSString(licenseID)];
+    // only available for movesense version
+    [bridge Stop];
+}
+
+void StartEvomoBridge(const char* deviceOrientation, const char* deviceType, const char* deviceId, const char* classificationModel, const char* gaming)
+{
+    [bridge Start:CreateNSString(deviceOrientation) deviceType:CreateNSString(deviceType) deviceId:CreateNSString(deviceId) classificationModel:CreateNSString(classificationModel) gaming:CreateNSString(gaming)];
 }
 
 void StopEvomoBridge()

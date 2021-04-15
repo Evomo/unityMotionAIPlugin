@@ -50,7 +50,7 @@ namespace MotionAI.Core.Models.Generated {
         }
         [Serializable()]
         public class Metadata {
-            public ModelBuildMeta Belly = new MotionAI.Core.POCO.ModelBuildMeta("Belly", 0, 1915, "bodyweight");
+            public ModelBuildMeta Chest = new MotionAI.Core.POCO.ModelBuildMeta("Chest", 0, 1915, "bodyweight");
         }
     }
 }

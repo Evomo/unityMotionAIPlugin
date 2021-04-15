@@ -12,11 +12,17 @@
 EvomounityBridgeMovesense *bridge;
 
 NSString* CreateNSString (const char* string)
+
 {
   if (string)
     return [NSString stringWithUTF8String: string];
   else
         return [NSString stringWithUTF8String: ""];
+}
+
+void ScanForMovesenseBridge()
+{
+    [bridge ScanForMovesense];
 }
 
 void InitEvomoBridge(UnityCallback evomoCallback, const char* licenseID, const char* debugging)
@@ -25,9 +31,9 @@ void InitEvomoBridge(UnityCallback evomoCallback, const char* licenseID, const c
     [bridge Init:evomoCallback licenseID:CreateNSString(licenseID) debugging:CreateNSString(debugging)];
 }
 
-void StartEvomoBridge(const char* deviceOrientation, const char* deviceType, const char* classificationModel, const char* gaming, const char* licenseID)
+void StartEvomoBridge(const char* deviceOrientation, const char* deviceType, const char* deviceId, const char* classificationModel, const char* gaming)
 {
-    [bridge Start:CreateNSString(deviceOrientation) deviceType:CreateNSString(deviceType) classificationModel:CreateNSString(classificationModel) gaming:CreateNSString(gaming) licenseID:CreateNSString(licenseID)];
+    [bridge Start:CreateNSString(deviceOrientation) deviceType:CreateNSString(deviceType) deviceId:CreateNSString(deviceId) classificationModel:CreateNSString(classificationModel) gaming:CreateNSString(gaming)];
 }
 
 void StopEvomoBridge()

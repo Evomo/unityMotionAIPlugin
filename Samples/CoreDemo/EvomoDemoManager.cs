@@ -27,8 +27,8 @@ namespace MotionAI.Samples.CoreDemo {
 			maim.LogFailure(UtilHelper.EventSource.app, UtilHelper.FailureType.toLess, ElmoEnum.duck_down,
 				"abc");
 			maim.SetUsername("testUser");
-			maim.controllerManager.pairedEvent.AddListener(onControllerPaired);
-			maim.controllerManager.onMovement.AddListener(onMovement);
+			// maim.controllerManager.pairedEvent.AddListener(onControllerPaired);
+			// maim.controllerManager.onMovement.AddListener(onMovement);
 		}
 
 
@@ -78,6 +78,11 @@ namespace MotionAI.Samples.CoreDemo {
 
 
 		public void onMovement(EvoMovement mv) {
+			DebugText.text = JsonUtility.ToJson(mv, true);
+			lastEvoMovement = mv;
+		}
+		
+		public void onScanResult(EvoMovement mv) {
 			DebugText.text = JsonUtility.ToJson(mv, true);
 			lastEvoMovement = mv;
 		}
