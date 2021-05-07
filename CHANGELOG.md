@@ -1,3 +1,10 @@
+## [1.2.33](https://github.com/Evomo/unityMotionAIPlugin/compare/v1.2.32...v1.2.33) (2021-05-07)
+
+
+### Bug Fixes
+
+* Update PostProcess Movesense ([310c9a4](https://github.com/Evomo/unityMotionAIPlugin/commit/310c9a4a994e065865ef3642e19da3c9d0b7b63b))
+
 ## [1.2.32](https://github.com/Evomo/unityMotionAIPlugin/compare/v1.2.31...v1.2.32) (2021-04-15)
 
 

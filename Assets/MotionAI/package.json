@@ -1,6 +1,6 @@
 {
   "name": "com.evomo.motionai",
-  "version": "1.2.32",
+  "version": "1.2.33",
   "displayName": "Evomo MotionAI",
   "description": "Plugin to classify complex movements used in exergames",
   "unity": "2019.1",
