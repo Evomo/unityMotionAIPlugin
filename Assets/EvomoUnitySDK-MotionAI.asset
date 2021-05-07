@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c305fd86cef4d55af0e24232ca15345, type: 3}
   m_Name: EvomoUnitySDK-MotionAI
   m_EditorClassIdentifier: 
-  licenseID: 4b3d051f-d4f5-46a6-a403-6f4a4b474dbd
+  licenseID: 403-6f4a4b474dbda6-a403-6f4a4b474dbd
   sensorType: 1
