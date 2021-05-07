@@ -1,3 +1,10 @@
+## [1.2.32](https://github.com/Evomo/unityMotionAIPlugin/compare/v1.2.31...v1.2.32) (2021-04-15)
+
+
+### Bug Fixes
+
+* scan for movesense, bodyweight model ([c02272b](https://github.com/Evomo/unityMotionAIPlugin/commit/c02272b6a3f5d1d37640c44cc1a7c3eb2a54bfa5))
+
 ## [1.2.31](https://github.com/Evomo/unityMotionAIPlugin/compare/v1.2.30...v1.2.31) (2021-03-29)
 
 
