@@ -101,7 +101,18 @@ namespace MotionAI.Core.Editor {
 			// Copy Unity Helper file when movesense device (because some different naming is needed)
 			if (sdkConfig.sensorType == UtilHelper.EvomoSensorType.Movesense)
 			{
-				FileUtil.ReplaceFile($"{sdkPath}/Core/Editor/BuildFiles/UnityHelperMovesense.m", $"{pathToBuiltProject}/Libraries/MotionAI/Core/Plugins/iOS/UnityHelper.m");
+				if (PlayerSettings.productName == "EvomoUnitySDK")
+				{
+					// Shoulde work in motionAIPlugin (dev-project)
+					FileUtil.ReplaceFile($"{sdkPath}/Core/Editor/BuildFiles/UnityHelperMovesense.m", $"{pathToBuiltProject}/Libraries/MotionAI/Core/Plugins/iOS/UnityHelper.m");
+				}
+				else
+				{
+
+					// Should work when the plugin was distributed
+					FileUtil.ReplaceFile($"{sdkPath}/Core/Editor/BuildFiles/UnityHelperMovesense.m",
+						$"{pathToBuiltProject}/Libraries/com.evomo.motionai/Core/Plugins/iOS/UnityHelper.m");
+				}
 			}
 		}
 	}
