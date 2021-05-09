@@ -149,13 +149,20 @@ namespace MotionAI.Core.Controller {
         public delegate void UnityCallback(string value);
 
         private static readonly Queue<BridgeMessage> _executionQueue = new Queue<BridgeMessage>();
+        
         public SDKConfig mySDKConfig;
+        
+        //[HideInInspector]
+        public bool automaticPairing = true;
+        
+        [HideInInspector]
         public ControllerManager controllerManager;
-
+        
+        [HideInInspector]
         public String movesenseSensorIdent;
         
-        public bool automaticPairing = true;
-        public bool isTracking;
+        [HideInInspector]
+        public bool isTracking = false;
 
         [Tooltip("SDK will send some Debugging and Raw measurements to the server")]
         public bool isDebug = true;
