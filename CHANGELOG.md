@@ -1,3 +1,10 @@
+## [1.2.34](https://github.com/Evomo/unityMotionAIPlugin/compare/v1.2.33...v1.2.34) (2021-05-09)
+
+
+### Bug Fixes
+
+* clean motionAIManager ([35a0d0f](https://github.com/Evomo/unityMotionAIPlugin/commit/35a0d0f9324d81a951227c30b45bc578a7404734))
+
 ## [1.2.33](https://github.com/Evomo/unityMotionAIPlugin/compare/v1.2.32...v1.2.33) (2021-05-07)
 
 
