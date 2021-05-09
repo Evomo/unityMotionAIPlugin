@@ -152,7 +152,7 @@ namespace MotionAI.Core.Controller {
         
         public SDKConfig mySDKConfig;
         
-        //[HideInInspector]
+        [HideInInspector]
         public bool automaticPairing = true;
         
         [HideInInspector]
